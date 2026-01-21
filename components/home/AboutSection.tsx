@@ -25,7 +25,7 @@ export default function AboutSection() {
         {/* LEFT CONTENT */}
         <div className="w-1/2 flex items-center pl-[200px] pr-16 text-white">
           <div>
-            <p className="text-sm mb-3">About Us</p>
+            <p className="text-sm mb-3 work-sans font-bold text-[16px]">About Us</p>
 
             <h2 className="text-4xl font-bold mb-6 leading-tight">
               Creative solutions <br />

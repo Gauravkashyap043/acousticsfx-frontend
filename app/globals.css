@@ -3,7 +3,7 @@
 /* ================= Theme ================= */
 :root {
   --background: #ffffff;
-  --foreground: #ffffff;
+  --foreground: #000000;
 }
 
 @theme inline {
@@ -18,20 +18,37 @@ body {
   color: var(--foreground);
 }
 
-/* ================= Font utility classes ================= */
+/* ================= Font Utility Classes ================= */
+
+/* Playfair Display */
 .playfair-display {
   font-family: var(--font-playfair);
 }
 
+/* Poppins */
 .poppins-font {
   font-family: var(--font-poppins);
 }
 
+/* Work Sans */
+.worksans-font {
+  font-family: var(--font-worksans);
+}
+
+/* Inter */
+.inter-font {
+  font-family: var(--font-inter);
+}
+
+/* Geist */
 .geist-font {
   font-family: var(--font-geist-sans);
 }
 
-/* ✅ Work Sans */
-.worksans-font {
-  font-family: var(--font-worksans);
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

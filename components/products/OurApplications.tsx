@@ -75,7 +75,7 @@ export default function OurApplications() {
               </div>
             </div>
 
-            {/* Card 3 */}
+            {/* Card 3 */}z
             <div className="relative w-[260px] h-[340px]">
               <Image
                 src="/app3.jpg"
