@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function AwardsSection() {
   return (
     <section className="w-full bg-[#1F6775]">
-      <div className="px-[200px] py-[100px]">
+      <div className="px-[50px] py-[100px]">
 
         <div className="flex items-center justify-between">
 

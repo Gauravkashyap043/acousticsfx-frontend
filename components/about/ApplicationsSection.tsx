@@ -2,7 +2,7 @@
 
 export default function ApplicationsSection() {
   return (
-    <section className="relative px-[200px] py-[100px] bg-white">
+    <section className="relative px-[50px] py-[100px] bg-white">
       {/* ================= Heading ================= */}
       <div className="flex justify-between items-start mb-12">
         <h2 className="text-4xl font-semibold text-[#111]">

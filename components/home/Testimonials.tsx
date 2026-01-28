@@ -49,8 +49,8 @@ export default function Testimonials() {
     );
 
   return (
-    <section className="px-6 md:px-[200px] py-[100px] bg-white relative">
-      
+    <section className="px-6 md:px-[50px] py-[100px] bg-white relative">
+
       {/* HEADING */}
       <h2 className="text-center text-[60px] inter-font font-bold mb-16">
         Loved by the world's best teams

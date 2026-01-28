@@ -2,7 +2,7 @@
 
 export default function StoryInnovation() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       {/* ================= Top Content ================= */}
       <div className="grid grid-cols-2 gap-20 items-start mb-16">
         {/* Left Heading */}

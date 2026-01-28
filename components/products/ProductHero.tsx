@@ -12,7 +12,7 @@ export default function HomeHero() {
       </div>
 
       {/* Main Content */}
-      <div className="relative px-[200px] py-[100px] text-center">
+      <div className="relative px-[50px] py-[100px] text-center">
 
         {/* Social Icons */}
         <div className="absolute left-[60px] top-1/2 -translate-y-1/2 flex flex-col gap-4 text-orange-500">

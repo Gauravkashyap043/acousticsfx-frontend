@@ -2,7 +2,7 @@
 
 export default function FounderSection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       <div className="grid grid-cols-2 gap-20 items-center">
         {/* ================= Left Image ================= */}
         <div className="relative">

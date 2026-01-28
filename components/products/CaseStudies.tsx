@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function CaseStudies() {
   return (
     <section className="w-full bg-[#FAFAFA]">
-      <div className="px-[200px] py-[100px]">
+      <div className="px-[50px] py-[100px]">
 
         {/* Header */}
         <div className="flex justify-between items-start mb-16">

@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function WhyChooseUs() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
-      
+    <section className="px-[50px] py-[100px] bg-white">
+
       {/* Heading */}
       <div className="max-w-4xl mb-16">
         <p className="text-[15px] mb-3 text-gray-600 worksans-font font-bold">

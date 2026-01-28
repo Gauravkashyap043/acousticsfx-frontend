@@ -15,7 +15,7 @@ export default function AboutHero() {
       <div
         className="
           relative z-10
-          px-[200px] py-[100px]
+          px-[50px] py-[100px]
           flex flex-col
           items-center justify-center
           text-white text-center

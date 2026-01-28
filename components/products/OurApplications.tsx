@@ -16,7 +16,7 @@ export default function OurApplications() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 px-[200px] py-[100px] h-full flex flex-col justify-between">
+      <div className="relative z-10 px-[50px] py-[100px] h-full flex flex-col justify-between">
 
         {/* Top Content */}
         <div className="flex justify-between items-start text-white">

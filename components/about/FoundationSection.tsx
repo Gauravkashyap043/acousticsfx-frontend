@@ -2,7 +2,7 @@
 
 export default function FoundationSection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       {/* ================= Top Heading Row ================= */}
       <div className="grid grid-cols-2 gap-20 mb-20 items-start">
         <h2 className="text-4xl font-semibold text-[#111] leading-tight">

@@ -2,7 +2,7 @@
 
 export default function ContactFormSection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       <div className="grid grid-cols-2 gap-24 items-center">
         {/* ================= Left Illustration ================= */}
         <div className="flex justify-center">

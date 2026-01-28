@@ -2,7 +2,7 @@
 
 export default function LocationsSection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       {/* ================= Heading ================= */}
       <div className="mb-14">
         <h2 className="text-3xl font-semibold text-[#111] mb-2">
@@ -97,10 +97,9 @@ function LocationCard({
         p-8 rounded-lg
         bg-gray-50
         border
-        ${
-          highlight
-            ? "border-orange-400"
-            : "border-gray-200"
+        ${highlight
+          ? "border-orange-400"
+          : "border-gray-200"
         }
         relative
         overflow-hidden

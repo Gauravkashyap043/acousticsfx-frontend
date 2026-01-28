@@ -23,7 +23,7 @@ export default function ContactHero() {
       <div
         className="
           relative z-10
-          px-[200px] py-[100px]
+          px-[50px] py-[100px]
           h-full
           flex flex-col justify-center
           text-white
@@ -72,10 +72,9 @@ function ContactIcon({
         flex items-center justify-center
         backdrop-blur-md
         border border-white/30
-        ${
-          active
-            ? "bg-cyan-400/60 shadow-lg shadow-cyan-400/40"
-            : "bg-white/20"
+        ${active
+          ? "bg-cyan-400/60 shadow-lg shadow-cyan-400/40"
+          : "bg-white/20"
         }
       `}
     >

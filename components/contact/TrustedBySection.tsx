@@ -2,7 +2,7 @@
 
 export default function TrustedBySection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white text-center">
+    <section className="px-[50px] py-[100px] bg-white text-center">
       {/* ================= Heading ================= */}
       <h2 className="text-3xl font-semibold text-[#111] mb-4">
         Trusted By Industry Leaders

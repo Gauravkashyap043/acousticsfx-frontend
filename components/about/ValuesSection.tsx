@@ -11,7 +11,7 @@ import {
 
 export default function ValuesSection() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       {/* ================= Heading ================= */}
       <div className="max-w-3xl mb-20">
         <p className="text-sm text-gray-500 mb-4">Our Values</p>
