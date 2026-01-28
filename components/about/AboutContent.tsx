@@ -2,27 +2,27 @@
 
 export default function AboutContent() {
   return (
-    <section className="px-[200px] py-[100px] bg-white">
+    <section className="px-[50px] py-[100px] bg-white">
       {/* ================= Section 1 ================= */}
       <div className="grid grid-cols-2 gap-20 items-center">
         {/* Left Content */}
         <div>
-          <p className="text-sm tracking-widest text-gray-500 uppercase mb-4">
+          <p className="text-[15px] text-[#183B56] font-[700] tracking-widest text-gray-500 worksans-font uppercase mb-4">
             Our Story
           </p>
 
-          <h2 className="text-4xl font-serif text-[#0c2d48] mb-6">
+          <h2 className="text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
             The Power of Purity Source
           </h2>
 
-          <p className="text-gray-600 leading-relaxed mb-4">
+          <p className="text-[#183B56] worksans-font font-[400] text-[16px] leading-relaxed mb-4">
             Fx Acoustics Inc. is a premium manufacturer of high-performance
             solutions, blending cutting-edge sound control with elegant design.
             From NRC-certified panels to turnkey acoustic interiors, we
             specialize in transforming spaces across India and beyond.
           </p>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-[#183B56] worksans-font font-[400] text-[16px] leading-relaxed mb-4">
             Proudly Made in India and globally trusted, we have built our
             reputation on craftsmanship, reliability, and customer
             satisfaction.
@@ -32,9 +32,9 @@ export default function AboutContent() {
         {/* Right Images */}
         <div className="relative flex justify-end">
           {/* Big Image */}
-          <div className="relative z-10">
+          <div className="relative z-10 left-[-200px]">
             <img
-              src="/img-big-1.jpg"
+              src="/assets/about/Image (1).png"
               alt="Auditorium"
               className="object-cover"
               style={{ width: 525, height: 566 }}
@@ -42,9 +42,9 @@ export default function AboutContent() {
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-16 -right-16">
+          <div className="absolute -bottom-16 right-2">
             <img
-              src="/img-small-1.jpg"
+              src="/assets/about/Image (2).png"
               alt="Hallway"
               className="object-cover"
               style={{ width: 400, height: 500 }}
@@ -60,44 +60,45 @@ export default function AboutContent() {
           {/* Big Image */}
           <div className="relative z-10">
             <img
-              src="/img-big-2.jpg"
+              src="/assets/about/Image (3).png"
               alt="Interior"
               className="object-cover"
-              style={{ width: 525, height: 566 }}
+              style={{ width: 505, height: 466 }}
             />
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-16 left-40">
+          <div className="absolute -bottom-16 left-100">
             <img
-              src="/img-small-2.jpg"
+              src="/assets/about/Image (4).png"
               alt="Studio"
               className="object-cover"
-              style={{ width: 400, height: 500 }}
+              style={{ width: 350, height: 400 }}
             />
           </div>
         </div>
 
         {/* Right Content */}
         <div>
-          <p className="text-sm tracking-widest text-gray-500 uppercase mb-4">
-            Our Background
+          <p className="text-[15px] text-[#183B56] font-[700] tracking-widest text-gray-500 worksans-font uppercase mb-4">
+            Our Story
           </p>
 
-          <h2 className="text-4xl font-serif text-[#0c2d48] mb-6">
+          <h2 className="text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
             The Power of Purity Source
           </h2>
 
-          <p className="text-gray-600 leading-relaxed mb-4">
-            Fx Acoustics was founded with a singular vision: to create high
-            quality, decorative acoustic solutions that seamlessly marry
-            functionality with aesthetics.
+          <p className="text-[#183B56] worksans-font font-[400] text-[16px] leading-relaxed mb-4">
+            Fx Acoustics Inc. is a premium manufacturer of high-performance
+            solutions, blending cutting-edge sound control with elegant design.
+            From NRC-certified panels to turnkey acoustic interiors, we
+            specialize in transforming spaces across India and beyond.
           </p>
 
-          <p className="text-gray-600 leading-relaxed">
-            Our commitment to craftsmanship, innovation, and customer
-            satisfaction has fueled our growth and established Fx Acoustics as a
-            trusted name in the industry.
+          <p className="text-[#183B56] worksans-font font-[400] text-[16px] leading-relaxed mb-4">
+            Proudly Made in India and globally trusted, we have built our
+            reputation on craftsmanship, reliability, and customer
+            satisfaction.
           </p>
         </div>
       </div>

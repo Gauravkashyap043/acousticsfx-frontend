@@ -97,12 +97,12 @@ export default function ProductsSection() {
               </div>
 
               {/* CONTENT */}
-              <div className="pt-6 text-center">
-                <h3 className="text-lg font-semibold mb-3">
+              <div className="pt-6 text-center px-6">
+                <h3 className="text-[24px] axiforma font-bold mb-3 text-left">
                   {product.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 mb-6 max-w-[520px] mx-auto">
+                <p className="text-sm text-gray-600 mb-6 max-w-[520px] text-left">
                   Acoustic wall panels made of wood stops reverberation and spreading
                   sound waves better than panels made of steel and glass or concrete.
                 </p>
