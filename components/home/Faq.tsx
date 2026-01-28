@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null); // ✅ none open by default
 
   const faqs = [
     {
@@ -30,30 +31,36 @@ export default function FAQSection() {
         
         {/* LEFT CONTENT */}
         <div className="w-1/2">
-          <p className="text-sm mb-3">FAQs</p>
+          <p className="text-[16px] mb-3 inter-font font-[500]">FAQs</p>
 
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-[54px] font-bold mb-4 inter-font font-[500]">
             Wondering How We Work?
           </h2>
 
-          <p className="text-sm text-gray-600 mb-6 max-w-md">
+          <p className="text-[16px] text-gray-600 mb-6 max-w-md inter-font font-[500]">
             Answers to common questions about our process, services,
             and how we work.
           </p>
 
-          <button className="bg-orange-500 text-white px-6 py-3 text-sm mb-10">
+          <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font">
             Contact Us
           </button>
 
-          {/* IMAGE PLACEHOLDER (tum yahan image lagaoge) */}
+          {/* IMAGE */}
           <div
-            className="bg-gray-100 flex items-center justify-center"
+            className="relative overflow-hidden"
             style={{
               width: "551.55px",
               height: "443.52px",
             }}
           >
-            {/* IMAGE WILL COME HERE */}
+            <Image
+              src="/assets/home/Design.png"
+              alt="FAQ Visual"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 
@@ -67,11 +74,11 @@ export default function FAQSection() {
               >
                 <button
                   onClick={() =>
-                    setOpenIndex(openIndex === index ? -1 : index)
+                    setOpenIndex(openIndex === index ? null : index)
                   }
                   className="w-full flex justify-between items-center p-5 text-left"
                 >
-                  <span className="font-medium">
+                  <span className="font-medium inter-font text-[20px]">
                     {index + 1}. {item.q}
                   </span>
                   <span className="text-xl">
@@ -80,7 +87,7 @@ export default function FAQSection() {
                 </button>
 
                 {openIndex === index && (
-                  <div className="px-5 pb-5 text-sm text-gray-600">
+                  <div className="px-5 pb-5 text-[18px] axiforma text-gray-600">
                     {item.a}
                   </div>
                 )}

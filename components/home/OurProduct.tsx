@@ -40,9 +40,9 @@ export default function ProductsSection() {
       <div className="px-[200px] mb-12">
         <div className="flex justify-between items-start">
           <div className="max-w-3xl">
-            <p className="text-sm mb-3">Our Products</p>
+            <p className="text-[16px] mb-3 worksans-font font=[700]">Our Products</p>
 
-            <h2 className="text-4xl font-bold leading-tight mb-4">
+            <h2 className="text-[38px] axiforma font-bold leading-tight mb-4">
               We Cut Through Noise to create architects
               <br />
               that are thoughtful, timeless & Impactful.
@@ -55,13 +55,13 @@ export default function ProductsSection() {
             </p>
 
             <div className="flex gap-3">
-              <button className="bg-[#1F6775] text-white px-4 py-2 text-xs">
+              <button className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px]">
                 ACOUSTIC SOLUTION
               </button>
-              <button className="border px-4 py-2 text-xs">
+              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold">
                 FLOORING SOLUTION
               </button>
-              <button className="border px-4 py-2 text-xs">
+              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold">
                 SOUND PROOFING SOLUTION
               </button>
             </div>

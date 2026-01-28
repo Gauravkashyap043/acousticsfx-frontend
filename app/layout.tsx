@@ -84,6 +84,7 @@ import {
   Playfair_Display,
   Work_Sans,
   Inter,
+  Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
 
@@ -101,10 +102,7 @@ const geistMono = Geist_Mono({
 /* ================= Poppins ================= */
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: [
-    "100","200","300","400","500",
-    "600","700","800","900",
-  ],
+  weight: ["100","200","300","400","500","600","700","800","900"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -120,10 +118,7 @@ const playfair = Playfair_Display({
 /* ================= Work Sans ================= */
 const worksans = Work_Sans({
   subsets: ["latin"],
-  weight: [
-    "100","200","300","400","500",
-    "600","700","800","900",
-  ],
+  weight: ["100","200","300","400","500","600","700","800","900"],
   variable: "--font-worksans",
   display: "swap",
 });
@@ -131,11 +126,16 @@ const worksans = Work_Sans({
 /* ================= Inter ================= */
 const inter = Inter({
   subsets: ["latin"],
-  weight: [
-    "100","200","300","400","500",
-    "600","700","800","900",
-  ],
+  weight: ["100","200","300","400","500","600","700","800","900"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+/* ================= Plus Jakarta Sans ================= */
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["200","300","400","500","600","700","800"],
+  variable: "--font-plusjakarta",
   display: "swap",
 });
 
@@ -159,6 +159,7 @@ export default function RootLayout({
           ${playfair.variable}
           ${worksans.variable}
           ${inter.variable}
+          ${plusJakarta.variable}
           antialiased
         `}
       >

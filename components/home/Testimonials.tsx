@@ -52,7 +52,7 @@ export default function Testimonials() {
     <section className="px-6 md:px-[200px] py-[100px] bg-white relative">
       
       {/* HEADING */}
-      <h2 className="text-center text-4xl font-semibold mb-16">
+      <h2 className="text-center text-[60px] inter-font font-bold mb-16">
         Loved by the world's best teams
       </h2>
 
