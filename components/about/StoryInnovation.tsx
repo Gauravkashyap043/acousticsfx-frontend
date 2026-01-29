@@ -2,21 +2,21 @@
 
 export default function StoryInnovation() {
   return (
-    <section className="px-[50px] py-[100px] bg-white">
+    <section className="px-[100px] pt-[100px] bg-[#F5F5F5]">
       {/* ================= Top Content ================= */}
       <div className="grid grid-cols-2 gap-20 items-start mb-16">
         {/* Left Heading */}
         <div>
-          <h2 className="text-4xl font-semibold text-[#111] leading-tight">
+          <h2 className="text-[60px] lato font-bold leading-[40px]">
             Our Story That Drives
           </h2>
-          <h2 className="text-5xl font-bold text-orange-500 mt-2">
+          <h2 className="text-[100px] font-bold lato text-[#ea8e39] mt-2">
             INNOVATION
           </h2>
         </div>
 
         {/* Right Text */}
-        <p className="text-gray-600 leading-relaxed max-w-xl">
+        <p className="text-gray-600 leading-relaxed lato font-[400] text-[20px] max-w-xl">
           Circuit is flexible and affordable and offers you exceptional support
           to achieve your career goals. Circuit is a Global training provider
           based across the UK that specialises.

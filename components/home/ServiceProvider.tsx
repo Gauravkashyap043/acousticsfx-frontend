@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ServiceProvider() {
   return (
-    <section className="px-[50px] py-[100px]">
+    <section className="px-[100px] py-[100px]">
       <div className="flex items-center gap-10">
 
         {/* Left Image */}

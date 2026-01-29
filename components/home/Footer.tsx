@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white">
       {/* TOP FOOTER */}
-      <div className="px-[200px] py-16">
+      <div className="px-[100px] py-16">
         <div className="grid grid-cols-4 gap-[90px]">
           
           {/* LOGO + ABOUT */}
@@ -17,7 +17,7 @@ export default function Footer() {
               height={50}
               className="mb-4"
             />
-            <p className="text-sm text-gray-700 leading-relaxed mb-6">
+            <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6">
               Its your premier destination for luxury and modern interior design
             </p>
 
@@ -36,8 +36,8 @@ export default function Footer() {
 
           {/* OUR SERVICES */}
           <div>
-            <h4 className="font-semibold mb-4">Our Services</h4>
-            <ul className="space-y-3 text-sm text-gray-700">
+            <h4 className="font-semibold inter-font text-[24px] mb-4">Our Services</h4>
+            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>Acoustic Solution</li>
               <li>Sound Proofing</li>
               <li>Floor Solution</li>
@@ -46,8 +46,8 @@ export default function Footer() {
 
           {/* RESOURCES */}
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
-            <ul className="space-y-3 text-sm text-gray-700">
+            <h4 className="font-semibold inter-font text-[24px] mb-4">Resources</h4>
+            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>Case Study</li>
               <li>Careers</li>
               <li>FX Acoustic In News</li>
@@ -57,8 +57,8 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3 text-sm text-gray-700">
+            <h4 className="font-semibold inter-font text-[24px] mb-4">Contact Us</h4>
+            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>email@gmail.com</li>
               <li>
                 Design Avenue Cityville, <br />
@@ -74,10 +74,10 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="bg-[#1f5e67] text-white px-[200px] py-4">
-        <div className="flex items-center justify-between text-sm">
+      <div className="bg-[#1f5e67] text-white px-[100px] py-4">
+        <div className="flex items-center justify-between text-[15px] axiforma font-[500]">
           <span>© Copyright 2025 FX Acoustic Solution — All Rights Reserved.</span>
-          <div className="flex gap-8">
+          <div className="flex gap-8 text-[15px] axiforma font-[500]">
             <Link href="/privacy-policy" className="hover:underline">
               Privacy Policy
             </Link>

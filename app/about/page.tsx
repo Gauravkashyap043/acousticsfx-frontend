@@ -12,6 +12,7 @@ import ApplicationsSection from '@/components/about/ApplicationsSection';
 import TrustedBySection from '@/components/contact/TrustedBySection';
 import LatestBlogs from '@/components/home/LatestBlogs';
 import Testimonials from '@/components/home/Testimonials';
+import ConnectWithExperts from '@/components/home/ConnectWithExperts';
 
 const page = () => {
   return (
@@ -28,6 +29,7 @@ const page = () => {
     <TrustedBySection/>
     <LatestBlogs/>
     <Testimonials/>
+    <ConnectWithExperts/>
     <Footer/>
     </>
   )

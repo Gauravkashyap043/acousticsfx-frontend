@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function WhyChooseUs() {
   return (
-    <section className="px-[50px] py-[100px] bg-white">
+    <section className="px-[100px] py-[100px] bg-white">
 
       {/* Heading */}
       <div className="max-w-4xl mb-16">

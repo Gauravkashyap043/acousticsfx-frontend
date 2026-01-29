@@ -13,7 +13,7 @@ export default function ContactHero() {
     <section
       className="relative w-full min-h-[70vh] bg-cover bg-center"
       style={{
-        backgroundImage: "url('/contact-bg.jpg')", // apni image yahan lagana
+        backgroundImage: "url('/assets/contacts/1d173913fbb7b4adf7587f36d280e8edcf59765a.png')", // apni image yahan lagana
       }}
     >
       {/* Dark overlay */}
@@ -23,7 +23,7 @@ export default function ContactHero() {
       <div
         className="
           relative z-10
-          px-[50px] py-[100px]
+          px-[100px] py-[100px]
           h-full
           flex flex-col justify-center
           text-white
@@ -44,14 +44,7 @@ export default function ContactHero() {
           Contact Us
         </h1>
 
-        {/* Icons Row */}
-        <div className="flex gap-10 items-center">
-          <ContactIcon icon={<Smartphone size={28} />} />
-          <ContactIcon icon={<Mail size={28} />} />
-          <ContactIcon active icon={<Phone size={28} />} />
-          <ContactIcon icon={<AtSign size={28} />} />
-          <ContactIcon icon={<Headphones size={28} />} />
-        </div>
+
       </div>
     </section>
   );

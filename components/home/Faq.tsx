@@ -26,7 +26,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="px-[50px] py-[100px] bg-white">
+    <section className="px-[100px] py-[100px] bg-white">
       <div className="flex gap-20 items-start">
 
         {/* LEFT CONTENT */}

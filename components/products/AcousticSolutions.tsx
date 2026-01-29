@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function AcousticSolutions() {
   return (
     <section className="w-full bg-white">
-      <div className="px-[50px] py-[100px]">
+      <div className="px-[100px] py-[100px]">
 
         {/* Top Tabs */}
         <div className="flex justify-center gap-4 mb-16">

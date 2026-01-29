@@ -16,7 +16,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-
 }
 
 /* ================= Font Utility Classes ================= */
@@ -46,6 +45,26 @@ body {
   font-family: var(--font-geist-sans);
 }
 
+/* Plus Jakarta */
+.jakarta {
+  font-family: var(--font-plusjakarta), sans-serif;
+}
+
+/* Manrope */
+.manrope {
+  font-family: var(--font-manrope), sans-serif;
+}
+
+/* Lato */
+.lato {
+  font-family: var(--font-lato), sans-serif;
+}
+
+/* Axiforma */
+.axiforma {
+  font-family: "Axiforma", sans-serif;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -53,6 +72,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ================= Axiforma Font Faces ================= */
 
 /* Thin - 100 */
 @font-face {
@@ -140,12 +161,4 @@ body {
   font-weight: 900;
   font-style: normal;
   font-display: swap;
-}
-
-.axiforma {
-  font-family: "Axiforma", sans-serif;
-}
-
-.jakarta {
-  font-family: var(--font-plusjakarta), sans-serif;
 }

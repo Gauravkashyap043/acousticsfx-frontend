@@ -47,7 +47,7 @@ export default function LatestBlogs() {
     );
 
   return (
-    <section className="px-6 lg:px-[50px] py-[100px] bg-white">
+    <section className="px-6 lg:px-[100px] py-[100px] bg-white">
       {/* HEADER */}
       <div className="flex justify-between items-start mb-12">
         <div>

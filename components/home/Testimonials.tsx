@@ -6,6 +6,7 @@ import Image from "next/image";
 const testimonials = [
   {
     company: "vmware",
+    companyLogo: "/assets/about/vmware.svg.svg",
     text:
       "When the pandemic hit, those of us who thrive on in-person collaboration were worried that our creativity and productivity would suffer. Miro was the perfect tool to help us with collaboration, whiteboarding, and retrospectives while remote.",
     name: "Roxanne Mustafa",
@@ -14,6 +15,7 @@ const testimonials = [
   },
   {
     company: "DocuSign",
+    companyLogo: "/assets/about/Docusign-Testimonials-280-60-Baseline.svg.svg",
     text:
       "Miro helps solve one of the major gaps in product design: how to manage tasks across product designers whose projects are in different tools.",
     name: "Jane Ashley",
@@ -22,20 +24,14 @@ const testimonials = [
   },
   {
     company: "frog",
+    companyLogo: "/assets/about/frog.svg.svg",
     text:
       "As we used Miro we moved from skepticism to belief to innovation, and now we have a tool that’s at the core of what we do and will continue to extend into the future.",
     name: "Laura Baird",
     role: "Associate Design Director at frog",
     avatar: "/avatar-3.jpg",
   },
-  {
-    company: "Atlassian",
-    text:
-      "Miro enables distributed teams to collaborate in real time, helping us move faster and stay aligned.",
-    name: "Alex Morgan",
-    role: "Product Design Lead",
-    avatar: "/avatar-4.jpg",
-  },
+  
 ];
 
 export default function Testimonials() {
@@ -49,8 +45,7 @@ export default function Testimonials() {
     );
 
   return (
-    <section className="px-6 md:px-[50px] py-[100px] bg-white relative">
-
+    <section className="px-6 md:px-[100px] py-[100px] bg-white relative">
       {/* HEADING */}
       <h2 className="text-center text-[60px] inter-font font-bold mb-16">
         Loved by the world's best teams
@@ -69,10 +64,15 @@ export default function Testimonials() {
               key={i}
               className="min-w-[380px] border rounded-2xl p-8 bg-white"
             >
-              {/* COMPANY */}
-              <h3 className="text-3xl font-semibold mb-6">
-                {item.company}
-              </h3>
+              {/* COMPANY LOGO */}
+              <div className="relative w-[200px] h-[80px] mb-6">
+                <Image
+                  src={item.companyLogo}
+                  alt={item.company}
+                  fill
+                  className="object-contain"
+                />
+              </div>
 
               {/* TEXT */}
               <p className="text-gray-600 mb-10 leading-relaxed">

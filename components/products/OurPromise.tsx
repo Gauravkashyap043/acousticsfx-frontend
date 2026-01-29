@@ -1,7 +1,7 @@
 export default function OurPromise() {
   return (
     <section className="w-full bg-white">
-      <div className="px-[50px] py-[100px]">
+      <div className="px-[100px] py-[100px]">
 
         {/* Heading */}
         <div className="max-w-2xl mb-20">

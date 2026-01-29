@@ -11,12 +11,12 @@ import {
 
 export default function ValuesSection() {
   return (
-    <section className="px-[50px] py-[100px] bg-white">
+    <section className="px-[100px] py-[100px] bg-white">
       {/* ================= Heading ================= */}
       <div className="max-w-3xl mb-20">
-        <p className="text-sm text-gray-500 mb-4">Our Values</p>
+        <p className="text-[16px] font-bold mb-4 worksans-font">Our Values</p>
 
-        <h2 className="text-4xl font-semibold text-[#111] leading-tight">
+        <h2 className="text-[35px] axiforma font-bold leading-tight">
           We Build Values That Are Timeless, Thoughtful & Impactful.
         </h2>
       </div>
@@ -83,9 +83,9 @@ function ValueCard({
     <div className="flex flex-col items-center text-center px-6">
       <div className="text-orange-500 mb-4">{icon}</div>
 
-      <h3 className="text-lg font-semibold text-[#111] mb-3">{title}</h3>
+      <h3 className="text-[26px] font-[500] inter-font text-[#1B152B] mb-3">{title}</h3>
 
-      <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
+      <p className="text-[17px] manrope font-[400] text-[#1F6775] leading-relaxed max-w-xs">
         {text}
       </p>
     </div>

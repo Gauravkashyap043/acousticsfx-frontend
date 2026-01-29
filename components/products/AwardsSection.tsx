@@ -3,8 +3,7 @@ import Image from "next/image";
 export default function AwardsSection() {
   return (
     <section className="w-full bg-[#1F6775]">
-      <div className="px-[50px] py-[100px]">
-
+      <div className="px-[100px] py-[30px]">
         <div className="flex items-center justify-between">
 
           {/* Left Vertical Text */}
@@ -20,10 +19,12 @@ export default function AwardsSection() {
             {/* Award 1 */}
             <div className="flex items-center gap-4">
               <Image
-                src="/award1.png" // orange image tu khud lagayega
+                src="/assets/product/german-design-award.svg"
                 alt="Award"
-                width={48}
-                height={48}
+                width={1}
+                height={1}
+                unoptimized
+                style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
                 <p className="font-medium">German Design Award</p>
@@ -34,10 +35,12 @@ export default function AwardsSection() {
             {/* Award 2 */}
             <div className="flex items-center gap-4">
               <Image
-                src="/award2.png"
+                src="/assets/product/a-design-award.svg"
                 alt="Award"
-                width={48}
-                height={48}
+                width={1}
+                height={1}
+                unoptimized
+                style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
                 <p className="font-medium">Gold A’ Design Award</p>
@@ -48,10 +51,12 @@ export default function AwardsSection() {
             {/* Award 3 */}
             <div className="flex items-center gap-4">
               <Image
-                src="/award3.png"
+                src="/assets/product/if-design-award.svg"
                 alt="Award"
-                width={48}
-                height={48}
+                width={1}
+                height={1}
+                unoptimized
+                style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
                 <p className="font-medium">IF Design Award</p>
@@ -62,10 +67,12 @@ export default function AwardsSection() {
             {/* Award 4 */}
             <div className="flex items-center gap-4">
               <Image
-                src="/award4.png"
+                src="/assets/product/good-design-award.svg"
                 alt="Award"
-                width={48}
-                height={48}
+                width={1}
+                height={1}
+                unoptimized
+                style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
                 <p className="font-medium">Good Design Award</p>
@@ -75,7 +82,6 @@ export default function AwardsSection() {
 
           </div>
         </div>
-
       </div>
     </section>
   );

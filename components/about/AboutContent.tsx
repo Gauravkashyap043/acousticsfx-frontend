@@ -2,7 +2,7 @@
 
 export default function AboutContent() {
   return (
-    <section className="px-[50px] py-[100px] bg-white">
+    <section className="px-[100px] py-[100px] bg-white">
       {/* ================= Section 1 ================= */}
       <div className="grid grid-cols-2 gap-20 items-center">
         {/* Left Content */}
