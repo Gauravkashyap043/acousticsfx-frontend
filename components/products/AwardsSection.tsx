@@ -27,8 +27,8 @@ export default function AwardsSection() {
                 style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
-                <p className="font-medium">German Design Award</p>
-                <p className="text-sm text-white/70">2021</p>
+                <p className="font-[400] inter-font text-[18px]">German Design Award</p>
+                <p className="font-[400] inter-font text-[18px]">2021</p>
               </div>
             </div>
 
@@ -43,8 +43,8 @@ export default function AwardsSection() {
                 style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
-                <p className="font-medium">Gold A’ Design Award</p>
-                <p className="text-sm text-white/70">2021</p>
+                <p className="font-[400] inter-font text-[18px]">Gold A’ Design Award</p>
+                <p className="font-[400] inter-font text-[18px]">2021</p>
               </div>
             </div>
 
@@ -59,8 +59,8 @@ export default function AwardsSection() {
                 style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
-                <p className="font-medium">IF Design Award</p>
-                <p className="text-sm text-white/70">2020</p>
+                <p className="font-[400] inter-font text-[18px]">IF Design Award</p>
+                <p className="font-[400] inter-font text-[18px]">2020</p>
               </div>
             </div>
 
@@ -75,8 +75,8 @@ export default function AwardsSection() {
                 style={{ width: "auto", height: "auto" }}
               />
               <div className="text-white">
-                <p className="font-medium">Good Design Award</p>
-                <p className="text-sm text-white/70">2019</p>
+                <p className="font-[400] inter-font text-[18px]">Good Design Award</p>
+                <p className="font-[400] inter-font text-[18px]">2019</p>
               </div>
             </div>
 

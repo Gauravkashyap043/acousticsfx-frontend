@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function HomeHero() {
+export default function ProductHero() {
   return (
     <section className="w-full bg-white">
 

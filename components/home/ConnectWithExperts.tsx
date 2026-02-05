@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ConnectWithExperts() {
   return (
-    <section className="relative bg-[#1f2528] text-white overflow-hidden">
+    <section className="relative bg-[#1f2528] py-10 text-white overflow-hidden">
       {/* ================= TOP AREA ================= */}
       <div className="relative flex min-h-[300px]">
         {/* LEFT DARK CONTENT */}

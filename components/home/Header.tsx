@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="w-full bg-white border-b">
-      <div className="px-[200px] py-4 flex items-center">
+      <div className="px-[100px] py-4 flex items-center">
 
         {/* LEFT : LOGO */}
         <div className="flex-shrink-0">
@@ -62,8 +62,8 @@ export default function Header() {
                   <h3 className="text-[24px] font-[400] mb-4">Our Products</h3>
 
                   {[
-                    { name: "Acoustic Solutions", link: "/products/acoustic-solutions" },
-                    { name: "Flooring Solutions", link: "/products/flooring-solutions" },
+                    { name: "Acoustic Solutions", link: "/products/productId" },
+                    { name: "Flooring Solutions", link: "/products/productId/InsideProduct" },
                     { name: "Noise Solution", link: "/products/noise-solutions" },
                   ].map((item) => (
                     <Link
@@ -121,7 +121,7 @@ export default function Header() {
 
                   {[
                     { name: "Blogs & Articles", link: "/resources?tab=blogs" },
-                    { name: "Quasmo In News", link: "/resources?tab=news" },
+                    { name: "Case Studies", link: "/resources/casestudy" },
                     { name: "Events", link: "/resources?tab=events" },
                   ].map((item) => (
                     <Link
