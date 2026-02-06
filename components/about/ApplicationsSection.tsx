@@ -1,13 +1,54 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+
+const applications = [
+  {
+    title: "OFFICES",
+    subtitle: "Workplaces that work better",
+    image: "/assets/about/Rectangle 59.png",
+  },
+  {
+    title: "EDUCATION",
+    subtitle: "Create spaces to inspire",
+    image: "/assets/about/6d475af8e833a39bf05332dcf051bd2d05e4d822.png",
+  },
+  {
+    title: "RETAIL",
+    subtitle: "Workplaces that work better",
+    image: "/assets/about/90c93904193b3102144eed3522817c9a15dbd531.png",
+  },
+  {
+    title: "HOSPITALITY",
+    subtitle: "Spaces that welcome and inspire",
+    image: "/assets/about/Rectangle 59.png",
+  },
+  {
+    title: "HEALTHCARE",
+    subtitle: "Quiet environments for healing",
+    image: "/assets/about/6d475af8e833a39bf05332dcf051bd2d05e4d822.png",
+  },
+];
+
 export default function ApplicationsSection() {
+  const [index, setIndex] = useState(0);
+
+  const prev = () => {
+    setIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const next = () => {
+    setIndex((prev) => Math.min(prev + 1, applications.length - 3));
+  };
+
   return (
     <section className="relative px-[100px] py-[90px] overflow-hidden">
       
       {/* ================= Background Image + Fade ================= */}
       <div className="absolute inset-0 -z-10">
         <img
-          src="/assets/about/sliderbg.jpg" // <-- yahan apni faded bg image
+          src="/assets/about/sliderbg.jpg"
           alt="Applications Background"
           className="w-full h-full object-cover"
         />
@@ -31,33 +72,51 @@ export default function ApplicationsSection() {
 
       {/* ================= Cards + Arrows ================= */}
       <div className="relative mt-6 px-20">
-        <div className="grid grid-cols-3 gap-6">
-          <ApplicationCard
-            title="OFFICES"
-            subtitle="Workplaces that work better"
-            image="/assets/about/Rectangle 59.png"
-          />
-
-          <ApplicationCard
-            title="EDUCATION"
-            subtitle="Create spaces to inspire"
-            image="/assets/about/6d475af8e833a39bf05332dcf051bd2d05e4d822.png"
-          />
-
-          <ApplicationCard
-            title="RETAIL"
-            subtitle="Workplaces that work better"
-            image="/assets/about/90c93904193b3102144eed3522817c9a15dbd531.png"
-          />
+        <div className="relative overflow-hidden">
+          <div
+            className="flex gap-6 transition-transform duration-500"
+            style={{
+              transform: `translateX(-${index * (100 / 3)}%)`,
+            }}
+          >
+            {applications.map((app, i) => (
+              <div key={i} className="min-w-[calc(33.333%-16px)] flex-shrink-0">
+                <ApplicationCard
+                  title={app.title}
+                  subtitle={app.subtitle}
+                  image={app.image}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ================= Navigation Arrows ================= */}
-        <button className="absolute left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition text-sm">
-          ←
+        <button
+          onClick={prev}
+          disabled={index === 0}
+          className="absolute left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Previous"
+            width={24}
+            height={10}
+            className="rotate-180"
+          />
         </button>
 
-        <button className="absolute right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition text-sm">
-          →
+        <button
+          onClick={next}
+          disabled={index >= applications.length - 3}
+          className="absolute right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Next"
+            width={24}
+            height={10}
+          />
         </button>
       </div>
     </section>

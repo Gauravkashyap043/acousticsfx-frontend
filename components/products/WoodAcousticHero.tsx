@@ -6,7 +6,7 @@ export default function WoodAcousticHero() {
 
       {/* Background Image */}
       <Image
-        src="/assets/product/Image.png"
+        src="/assets/product/product-hero.png"
         alt="Wood Acoustic Background"
         fill
         priority
@@ -18,7 +18,7 @@ export default function WoodAcousticHero() {
 
       {/* Vector Line */}
       <Image
-        src="/assets/product/Vector 1.svg"
+        src="/assets/product/vector-decoration.svg"
         alt="Decorative Line"
         width={420}
         height={420}

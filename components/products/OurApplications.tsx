@@ -34,8 +34,14 @@ export default function OurApplications() {
         <div className="relative flex items-center">
 
           {/* Left Arrow */}
-          <button className="absolute -left-16 w-12 h-12 bg-white/30 text-white flex items-center justify-center">
-            ←
+          <button className="absolute -left-16 w-12 h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={34}
+              height={14}
+              className="rotate-180 invert"
+            />
           </button>
 
           {/* Cards */}
@@ -95,8 +101,14 @@ export default function OurApplications() {
           </div>
 
           {/* Right Arrow */}
-          <button className="absolute -right-16 w-12 h-12 bg-white/30 text-white flex items-center justify-center">
-            →
+          <button className="absolute -right-16 w-12 h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={34}
+              height={14}
+              className="invert"
+            />
           </button>
 
         </div>

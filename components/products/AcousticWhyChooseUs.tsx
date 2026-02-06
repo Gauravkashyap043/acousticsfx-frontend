@@ -25,7 +25,7 @@ export default function AcousticWhyChooseUs() {
           <div className="col-span-4 rounded-2xl overflow-hidden border bg-gray-100">
             <div className="relative h-[280px]">
               <Image
-                src="/assets/product/2c1373ceb51ef7eae4c75ffb74b3bae0b0df0911.jpg"
+                src="/assets/product/acoustic-feature-1.jpg"
                 alt="Precision Built"
                 fill
                 className="object-cover"
@@ -90,7 +90,7 @@ export default function AcousticWhyChooseUs() {
           {/* Right Image Card */}
           <div className="col-span-3 rounded-2xl overflow-hidden relative">
             <Image
-              src="/assets/product/766649942ea2918087cc9b635609a50b03eb0d04.jpg"
+              src="/assets/product/acoustic-feature-2.jpg"
               alt="Design with intent"
               fill
               className="object-cover grayscale"

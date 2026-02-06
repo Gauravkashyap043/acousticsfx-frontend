@@ -26,7 +26,7 @@ export default function LinearluxGrid() {
           {/* RIGHT SMALL */}
           <div className="w-[540px] h-[600px] rounded-xl overflow-hidden relative">
             <Image
-              src="/assets/product/ea6a6466588d5e106bb10da2aaa56f6035dff19f.png"
+              src="/assets/product/linearlux-grid-3.png"
               alt="Linearlux Wall"
               fill
               className="object-cover"
@@ -39,7 +39,7 @@ export default function LinearluxGrid() {
           {/* LEFT SMALL */}
           <div className="w-[540px] h-[600px] rounded-xl overflow-hidden relative">
             <Image
-              src="/assets/product/d90c06f639c18614bb63f0a9e00b44c483f0255d.png"
+              src="/assets/product/linearlux-grid-2.png"
               alt="Linearlux Panel"
               fill
               className="object-cover"
@@ -49,7 +49,7 @@ export default function LinearluxGrid() {
           {/* RIGHT BIG */}
           <div className="w-[740px] h-[600px] rounded-xl overflow-hidden relative">
             <Image
-              src="/assets/product/591c5ff1b802805d62b06026cf89469e0d4fe77a.jpg"
+              src="/assets/product/linearlux-grid-1.jpg"
               alt="Linearlux Ceiling"
               fill
               className="object-cover"

@@ -1,29 +1,47 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 const products = [
   {
-    img: "/assets/product/df77e972b0378fa3118e391343c2d897dc4f0674.jpg",
+    img: "/assets/product/related-product-2.jpg",
     title: "Slat",
     desc: "Acoustic wall panels made of wood slats reverberation and spreading sound waves better than plain surfaces and can create warm acoustic spaces.",
   },
   {
-    img: "/assets/product/9b7e85e82987d46515b9ced83f9173e3859916bc.jpg",
+    img: "/assets/product/related-product-1.jpg",
     title: "Slat",
     desc: "Acoustic wall panels made of wood slats reverberation and spreading sound waves better than plain surfaces and can create warm acoustic spaces.",
   },
   {
-    img: "/assets/product/5a3611e63e5e59fe36b4503b6deca73408c7e27a (1).png",
+    img: "/assets/product/related-product-3.png",
     title: "Slat",
     desc: "Acoustic wall panels made of wood slats reverberation and spreading sound waves better than plain surfaces and can create warm acoustic spaces.",
   },
   {
-    img: "/assets/product/9b7e85e82987d46515b9ced83f9173e3859916bc.jpg",
+    img: "/assets/product/related-product-1.jpg",
     title: "Slat",
     desc: "Acoustic wall panels made of wood slats reverberation and spreading sound waves better than plain surfaces and can create warm acoustic spaces.",
+  },
+  {
+    img: "/assets/product/related-product-2.jpg",
+    title: "Wave Panel",
+    desc: "Elegant wave-patterned acoustic panels that combine functionality with stunning visual appeal.",
   },
 ];
 
 export default function RelatedProducts() {
+  const [index, setIndex] = useState(0);
+
+  const prev = () => {
+    setIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const next = () => {
+    setIndex((prev) => Math.min(prev + 1, products.length - 3));
+  };
+
   return (
     <section className="w-full bg-[#faf7f2] pl-[100px] pr-0 py-[90px]">
 
@@ -48,37 +66,68 @@ export default function RelatedProducts() {
         </button>
       </div>
 
-      {/* Products */}
-      <div className="flex gap-8 overflow-hidden">
-        {products.map((item, index) => (
-          <div
-            key={index}
-            className="w-[400px] h-[550px] bg-white rounded-2xl overflow-hidden flex flex-col"
+      {/* Products Slider */}
+      <div className="relative overflow-hidden">
+        <div
+          className="flex gap-8 transition-transform duration-500"
+          style={{
+            transform: `translateX(-${index * 416}px)`,
+          }}
+        >
+          {products.map((item, idx) => (
+            <div
+              key={idx}
+              className="min-w-[400px] h-[550px] bg-white rounded-2xl overflow-hidden flex flex-col"
+            >
+              {/* Image */}
+              <div className="h-[320px] relative">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex flex-col">
+                <h3 className="text-[30px] manrope font-bold mb-3">{item.title}</h3>
+                <p className="text-[16px] manrope font-[400] text-gray-600 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="flex justify-center gap-8 mt-8">
+          <button
+            onClick={prev}
+            disabled={index === 0}
+            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {/* Image */}
-            <div className="h-[320px] relative">
-              <Image
-                src={item.img}
-                alt={item.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="p-6 flex flex-col">
-              <h3 className="text-[30px] manrope font-bold mb-3">{item.title}</h3>
-              <p className="text-[16px] manrope font-[400] text-gray-600 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Navigation */}
-      <div className="flex justify-center mt-8 text-xl">
-        <button className="hover:text-gray-500 transition">→</button>
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={34}
+              height={14}
+              className="rotate-180"
+            />
+          </button>
+          <button
+            onClick={next}
+            disabled={index >= products.length - 3}
+            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={34}
+              height={14}
+            />
+          </button>
+        </div>
       </div>
 
     </section>

@@ -137,15 +137,27 @@ export default function LatestBlogs() {
       <div className="flex justify-end gap-4 mt-10">
         <button
           onClick={prev}
-          className="w-12 h-12 bg-gray-200 rounded-md"
+          className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
-          ←
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Previous"
+            width={34}
+            height={14}
+            className="rotate-180"
+          />
         </button>
         <button
           onClick={next}
-          className="w-12 h-12 bg-black text-white rounded-md"
+          className="w-12 h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
-          →
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Next"
+            width={34}
+            height={14}
+            className="invert"
+          />
         </button>
       </div>
     </section>

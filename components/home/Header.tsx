@@ -44,7 +44,7 @@ export default function Header() {
             >
               <Link
                 href="/products"
-                className={`flex items-center gap-1 transition
+                className={`flex items-center gap-1 transition py-5
                   ${pathname?.startsWith("/products")
                     ? "text-orange-500"
                     : "hover:text-orange-500"
@@ -58,7 +58,7 @@ export default function Header() {
               </Link>
 
               {openProducts && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-[28px] bg-white border shadow-xl w-[320px] p-5 z-40">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[320px] py-3 px-5 z-40">
                   <h3 className="text-[24px] font-[400] mb-4">Our Products</h3>
 
                   {[
@@ -69,22 +69,20 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.link}
-                      className="group flex items-center justify-between px-4 py-3 border-b hover:bg-[#FFF5EB] transition"
+                      className="group flex items-center justify-between px-4 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition"
                     >
                       <span className="font-medium">{item.name}</span>
 
-                      <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 group-hover:bg-orange-500 transition">
+                      <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
                         <Image
-                          src="/home/SVG (1).svg"
+                          src="/assets/home/headervector.svg"
                           alt="arrow"
                           width={16}
                           height={16}
                           className="
-                            transition-all duration-300
-                            [filter:invert(56%)_sepia(88%)_saturate(2171%)_hue-rotate(7deg)]
-                            group-hover:rotate-45
-                            group-hover:brightness-0
-                            group-hover:invert
+                            transition-all duration-300 ease-in-out
+                            transform rotate-[-45deg]
+                            group-hover:rotate-0
                           "
                         />
                       </div>
@@ -102,7 +100,7 @@ export default function Header() {
             >
               <Link
                 href="/resources"
-                className={`flex items-center gap-1 transition
+                className={`flex items-center gap-1 transition py-5
                   ${pathname?.startsWith("/resources")
                     ? "text-blue-600"
                     : "hover:text-blue-500"
@@ -116,7 +114,7 @@ export default function Header() {
               </Link>
 
               {openResources && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-[88px] bg-white border shadow-lg w-[280px] p-6 z-40">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[280px] py-3 px-5 z-40">
                   <h3 className="text-[24px] font-[400] mb-4">Resources</h3>
 
                   {[
@@ -127,22 +125,20 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.link}
-                      className="group flex items-center justify-between px-3 py-3 hover:bg-[#eae9ff] transition"
+                      className="group flex items-center justify-between px-3 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition"
                     >
                       <span className="font-medium">{item.name}</span>
 
-                      <div className="w-8 h-8 flex items-center justify-center rounded-full border border-[#316CE6] group-hover:bg-[#316CE6] transition">
+                      <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
                         <Image
-                          src="/home/SVG (1).svg"
+                          src="/assets/home/headervector.svg"
                           alt="arrow"
                           width={16}
                           height={16}
                           className="
-                            transition-all duration-300
-                            [filter:invert(35%)_sepia(89%)_saturate(2034%)_hue-rotate(206deg)]
-                            group-hover:rotate-45
-                            group-hover:brightness-0
-                            group-hover:invert
+                            transition-all duration-300 ease-in-out
+                            transform rotate-[-45deg]
+                            group-hover:rotate-0
                           "
                         />
                       </div>

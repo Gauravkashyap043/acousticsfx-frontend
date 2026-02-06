@@ -36,7 +36,7 @@ export default function ProductHero() {
       {/* Image */}
       <div className="px-[00px] pb-[00px]">
         <Image
-          src="/assets/product/8fb617893bd3f3083ddae3a97e124816e33cfde5.jpg"
+          src="/assets/product/product-hero-alt.jpg"
           alt="Interior Design"
           width={1920}
           height={900}

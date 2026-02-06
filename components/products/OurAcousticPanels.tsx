@@ -102,12 +102,18 @@ export default function OurAcousticPanels({ productSlug }: OurAcousticPanelsProp
 
                 {/* ARROW BUTTON */}
                 <div className="absolute bottom-4 right-4 w-9 h-9 rounded-full border border-[#f28c28] 
-flex items-center justify-center text-[#f28c28]
+flex items-center justify-center
 transition-all duration-300 ease-in-out
 transform rotate-[-45deg] 
-group-hover:rotate-0
-group-hover:bg-[#f28c28] group-hover:text-white">
-                  →
+group-hover:rotate-0">
+                  <Image
+                    src="/assets/home/universalvector.svg"
+                    alt="Arrow"
+                    width={20}
+                    height={8}
+                    className="text-[#f28c28]"
+                    style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                  />
                 </div>
               </div>
             );

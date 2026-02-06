@@ -26,12 +26,20 @@ const testimonials = [
     company: "frog",
     companyLogo: "/assets/about/frog.svg.svg",
     text:
-      "As we used Miro we moved from skepticism to belief to innovation, and now we have a tool that’s at the core of what we do and will continue to extend into the future.",
+      "As we used Miro we moved from skepticism to belief to innovation, and now we have a tool that's at the core of what we do and will continue to extend into the future.",
     name: "Laura Baird",
     role: "Associate Design Director at frog",
     avatar: "/avatar-3.jpg",
   },
-  
+  {
+    company: "Atlassian",
+    companyLogo: "/assets/about/vmware.svg.svg",
+    text:
+      "FX Acoustics transformed our workspace with elegant acoustic solutions. The panels not only improved sound quality but also enhanced our office aesthetics significantly.",
+    name: "Michael Chen",
+    role: "Workspace Design Lead at Atlassian",
+    avatar: "/avatar-1.jpg",
+  },
 ];
 
 export default function Testimonials() {
@@ -106,16 +114,28 @@ export default function Testimonials() {
         {/* ARROWS */}
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-300 rounded-md flex items-center justify-center"
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
-          ←
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Previous"
+            width={34}
+            height={14}
+            className="rotate-180"
+          />
         </button>
 
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-black text-white rounded-md flex items-center justify-center"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
-          →
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Next"
+            width={34}
+            height={14}
+            className="invert"
+          />
         </button>
       </div>
     </section>

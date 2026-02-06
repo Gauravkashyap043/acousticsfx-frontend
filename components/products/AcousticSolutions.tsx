@@ -39,7 +39,7 @@ export default function AcousticSolutions() {
             {/* Card 1 */}
             <Link href="/products/acoustic/wood-acoustic-panel" className="block">
               <Image
-                src="/assets/product/Rectangle 4.png"
+                src="/assets/product/product-card-1.png"
                 alt=""
                 width={600}
                 height={600}
@@ -51,15 +51,22 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
 
             {/* Card 3 */}
             <Link href="/products/acoustic/baffle-clouds" className="block">
               <Image
-                src="/assets/product/Rectangle 4 (2).png"
+                src="/assets/product/product-card-3.png"
                 alt=""
                 width={600}
                 height={450}
@@ -71,15 +78,22 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
 
             {/* Card 5 */}
             <Link href="/products/acoustic/baffle-clouds" className="block">
               <Image
-                src="/assets/product/Rectangle 4 (4).png"
+                src="/assets/product/product-card-4.png"
                 alt=""
                 width={600}
                 height={450}
@@ -91,8 +105,15 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
 
@@ -104,7 +125,7 @@ export default function AcousticSolutions() {
             {/* Card 2 */}
             <Link href="/products/acoustic/fabric-acoustic-panel" className="block">
               <Image
-                src="/assets/product/Rectangle 4 (1).png"
+                src="/assets/product/product-card-2.png"
                 alt=""
                 width={600}
                 height={450}
@@ -116,15 +137,22 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
 
             {/* Card 4 */}
             <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block">
               <Image
-                src="/assets/product/rect3.png"
+                src="/assets/product/product-card-7.png"
                 alt=""
                 width={600}
                 height={450}
@@ -136,8 +164,15 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
 
@@ -145,7 +180,7 @@ export default function AcousticSolutions() {
             {/* Card 6 */}
             <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block">
               <Image
-                src="/assets/product/Rectangle 4 (5).png"
+                src="/assets/product/product-card-5.png"
                 alt=""
                 width={600}
                 height={450}
@@ -157,8 +192,15 @@ export default function AcousticSolutions() {
                 Acoustic wall panels made of wood stops reverberation and spreading
                 sound waves better than panels made of steel and glass or concrete.
               </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center text-orange-400">
-                →
+              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+                <Image
+                  src="/assets/home/universalvector.svg"
+                  alt="Arrow"
+                  width={20}
+                  height={8}
+                  className="brightness-0"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)' }}
+                />
               </div>
             </Link>
           </div>

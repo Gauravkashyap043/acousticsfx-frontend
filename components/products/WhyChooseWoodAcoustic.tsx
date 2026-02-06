@@ -10,7 +10,7 @@ export default function WhyChooseWoodAcoustic() {
           <div className="col-span-6">
             <div className="relative w-[550px] h-[700px] rounded-xl overflow-hidden">
               <Image
-                src="/assets/product/fc82bb294900c89aefa6327da4c2bd5a3ae3c576.jpg"
+                src="/assets/product/why-choose-1.jpg"
                 alt="Why Choose Wood Acoustic Panel"
                 fill
                 className="object-cover"

@@ -10,7 +10,7 @@ interface ProductHeroSectionProps {
 export default function ProductHeroSection({
   title,
   description,
-  heroImage = "/assets/product/Image.png",
+  heroImage = "/assets/product/product-hero.png",
   breadcrumbText,
 }: ProductHeroSectionProps) {
   return (
@@ -29,7 +29,7 @@ export default function ProductHeroSection({
 
       {/* Vector Line */}
       <Image
-        src="/assets/product/Vector 1.svg"
+        src="/assets/product/vector-decoration.svg"
         alt="Decorative Line"
         width={420}
         height={420}

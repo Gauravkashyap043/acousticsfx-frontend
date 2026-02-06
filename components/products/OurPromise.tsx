@@ -28,7 +28,7 @@ export default function OurPromise() {
           <div>
             <div className="w-12 h-12 mb-6 relative">
               <Image
-                src="/assets/product/SVG (1).svg"   // apna SVG path
+                src="/assets/product/icon-1.svg"   // apna SVG path
                 alt="Growth"
                 width={81}
                 height={81}
@@ -44,7 +44,7 @@ export default function OurPromise() {
           <div>
             <div className="w-12 h-12 mb-6 relative">
               <Image
-                src="/assets/product/SVG.svg"   // apna SVG path
+                src="/assets/product/icon-default.svg"   // apna SVG path
                 alt="Growth"
                 width={81}
                 height={81}
@@ -62,7 +62,7 @@ export default function OurPromise() {
           <div>
             <div className="w-12 h-12 mb-6 relative">
               <Image
-                src="/assets/product/SVG (2).svg"   // apna SVG path
+                src="/assets/product/icon-2.svg"   // apna SVG path
                 alt="Growth"
                 width={81}
                 height={81}
@@ -80,7 +80,7 @@ export default function OurPromise() {
           <div>
             <div className="w-12 h-12 mb-6 relative">
               <Image
-                src="/assets/product/SVG (3).svg"   // apna SVG path
+                src="/assets/product/icon-3.svg"   // apna SVG path
                 alt="Growth"
                 width={81}
                 height={81}

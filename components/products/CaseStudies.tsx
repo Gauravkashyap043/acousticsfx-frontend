@@ -28,7 +28,7 @@ export default function CaseStudies() {
           {/* Card 1 */}
           <div>
             <Image
-              src="/assets/product/57486c20ec26568fc83000581836ce234b25487a.jpg"
+              src="/assets/product/case-study-1.jpg"
               alt=""
               width={500}
               height={400}
@@ -46,7 +46,7 @@ export default function CaseStudies() {
           {/* Card 2 */}
           <div>
             <Image
-              src="/assets/product/Rectangle 6.png"
+              src="/assets/product/product-card-6.png"
               alt=""
               width={500}
               height={400}
@@ -64,7 +64,7 @@ export default function CaseStudies() {
           {/* Card 3 */}
           <div>
             <Image
-              src="/assets/product/Rectangle 4.png"
+              src="/assets/product/product-card-1.png"
               alt=""
               width={500}
               height={400}

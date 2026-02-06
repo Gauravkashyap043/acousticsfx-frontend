@@ -2,19 +2,19 @@ import Image from "next/image";
 
 const certifications = [
   {
-    img: "/assets/product/78fb9a2cf4635c9ef21e29a1c44b080f14d40e03.png",
+    img: "/assets/product/certification-1.png",
     title: "GECA CERTIFIED",
   },
   {
-    img: "/assets/product/cd6966f493887871fec3a09e21137d75a1dd88be.png",
+    img: "/assets/product/certification-3.png",
     title: "FSC® CERTIFIED",
   },
   {
-    img: "/assets/product/e025a5376dc9cc3b76128ff8e7e7c06cb8836889.png",
+    img: "/assets/product/certification-4.png",
     title: "SUPPLY NATION CERTIFIED",
   },
   {
-    img: "/assets/product/b75172de0f598e4ec24a902b49611492cdbe8db4.png",
+    img: "/assets/product/certification-2.png",
     title: "SUPPLY NATION CERTIFIED",
   },
 ];

@@ -5,7 +5,7 @@ const featuredPost = {
   title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
   author: "John Doe",
   date: "May 23, 2022",
-  image: "/assets/product/Image.png", // local image
+  image: "/assets/product/product-hero.png", // local image
   excerpt:
     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   slug: "/blogs/featured-post",
