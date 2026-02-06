@@ -12,18 +12,20 @@ export default function Header() {
   const [openResources, setOpenResources] = useState(false);
 
   return (
-    <header className="w-full bg-white border-b">
+    <header className="sticky top-0 w-full bg-white shadow-md z-50">
       <div className="px-[100px] py-4 flex items-center">
 
         {/* LEFT : LOGO */}
         <div className="flex-shrink-0">
-          <Image
-            src="/assets/home/Group 34.svg"
-            alt="FX Acoustic Inc"
-            width={210}
-            height={50}
-            priority
-          />
+          <Link href="/" className="cursor-pointer inline-block">
+            <Image
+              src="/assets/home/Group 34.svg"
+              alt="FX Acoustic Inc"
+              width={210}
+              height={50}
+              priority
+            />
+          </Link>
         </div>
 
         {/* CENTER : NAV */}

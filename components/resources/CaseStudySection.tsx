@@ -20,15 +20,15 @@ export default function CaseStudySection({
 
         {/* HEADER CONTENT */}
         <div className="max-w-3xl mb-12">
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-[40px] axiforma font-bold mb-4 text-gray-900">
             Case Study Header to be placed here
           </h2>
 
-          <p className="text-gray-600 mb-4">
+          <p className="text-[20px] inter-font font-[400] text-gray-600 mb-4 leading-relaxed">
             Revolutionizing technology by exceeding industry benchmarks.
           </p>
 
-          <p className="text-gray-500 mb-6">
+          <p className="text-[16px] inter-font font-[400] text-gray-500 mb-6 leading-relaxed">
             Harness the power of AI to automate and enhance business processes.
             We utilize cutting-edge AI technologies to develop intelligent systems
             that improve efficiency and drive innovation.
@@ -62,11 +62,11 @@ export default function CaseStudySection({
 
           {/* CONTENT */}
           <div className="w-full lg:w-1/2">
-            <h3 className="text-xl font-semibold mb-3">
+            <h3 className="text-[24px] axiforma font-bold mb-3 text-gray-900">
               Website Design for SCFC Canada
             </h3>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-[18px] inter-font font-[400] text-gray-600 mb-6 leading-relaxed">
               Born out of vision, a single-minded objective that puts service before
               everything else, SMH Clearance and Forwarding Corp, using fortis to deliver
               cost-effective shipping and logistics solutions.

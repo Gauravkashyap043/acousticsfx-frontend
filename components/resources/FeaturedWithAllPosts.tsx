@@ -45,7 +45,7 @@ export default function FeaturedWithAllPosts() {
 
         {/* LEFT – FEATURED POST */}
         <div className="lg:col-span-2">
-          <h3 className="text-sm font-semibold text-gray-500 mb-6">
+          <h3 className="text-[16px] worksans-font font-bold text-gray-500 mb-6">
             Featured Post
           </h3>
 
@@ -59,15 +59,15 @@ export default function FeaturedWithAllPosts() {
               />
             </div>
 
-            <p className="text-sm text-gray-500 mb-2">
+            <p className="text-[14px] inter-font font-[400] text-gray-500 mb-2">
               By {featuredPost.author} &nbsp;|&nbsp; {featuredPost.date}
             </p>
 
-            <h2 className="text-2xl font-semibold mb-4">
+            <h2 className="text-[34px] axiforma font-bold mb-4 text-gray-900 leading-tight">
               {featuredPost.title}
             </h2>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-[18px] inter-font font-[400] text-gray-600 mb-6 leading-relaxed">
               {featuredPost.excerpt}
             </p>
 
@@ -82,7 +82,7 @@ export default function FeaturedWithAllPosts() {
 
         {/* RIGHT – ALL POSTS */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-500 mb-6">
+          <h3 className="text-[16px] worksans-font font-bold text-gray-500 mb-6">
             All Posts
           </h3>
 
@@ -93,11 +93,11 @@ export default function FeaturedWithAllPosts() {
                 href={post.slug}
                 className="block bg-[#FFF7ED] p-4 hover:bg-[#FFEDD5] transition"
               >
-                <p className="text-xs text-gray-500 mb-1">
+                <p className="text-[12px] inter-font font-[400] text-gray-500 mb-1">
                   By {post.author} &nbsp;|&nbsp; {post.date}
                 </p>
 
-                <h4 className="text-sm font-semibold text-gray-900 leading-snug">
+                <h4 className="text-[14px] axiforma font-bold text-gray-900 leading-snug">
                   {post.title}
                 </h4>
               </Link>

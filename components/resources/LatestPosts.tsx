@@ -80,14 +80,7 @@ export default function LatestPosts() {
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <h2
-          className="mb-6"
-          style={{
-            fontFamily: 'Lora',
-            fontWeight: 700,
-            fontSize: '24.24px',
-            lineHeight: '33.66px',
-            color: '#1C1C1C'
-          }}
+          className="mb-6 text-[35px] axiforma font-bold text-gray-900"
           data-aos="fade-up"
           data-aos-delay="100"
         >
@@ -137,16 +130,7 @@ export default function LatestPosts() {
                   )}
 
                   {/* TITLE */}
-                  <h3
-                    className="mt-3"
-                    style={{
-                      fontFamily: 'Lora',
-                      fontWeight: 700,
-                      fontSize: '20.01px',
-                      lineHeight: '27.79px',
-                      color: '#1C1C1C'
-                    }}
-                  >
+                  <h3 className="mt-3 text-[20px] axiforma font-bold text-gray-900 leading-tight">
                     {blog.title}
                   </h3>
 
@@ -166,11 +150,11 @@ export default function LatestPosts() {
                         {blog.authorName.charAt(0).toUpperCase()}
                       </div>
                     )}
-                    <p className="text-[12px] pp-400 text-gray-700">{blog.authorName}</p>
+                    <p className="text-[12px] inter-font font-[400] text-gray-700">{blog.authorName}</p>
                     {(blog.publishedAt || blog.createdAt) && (
                       <>
                         <span className="text-gray-400 text-[12px]">•</span>
-                        <p className="text-[12px] pp-400 text-gray-500">
+                        <p className="text-[12px] inter-font font-[400] text-gray-500">
                           {formatDate(blog.publishedAt || blog.createdAt)}
                         </p>
                       </>

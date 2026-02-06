@@ -96,17 +96,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
     switch (block.type) {
       case 'heading':
         return (
-          <h2
-            key={index}
-            className="mb-2"
-            style={{
-              fontFamily: 'Work Sans',
-              fontWeight: 600,
-              fontSize: '24px',
-              lineHeight: '28px',
-              color: '#1C1C1C'
-            }}
-          >
+          <h2 key={index} className="mb-2 text-[24px] axiforma font-bold text-gray-900 leading-tight">
             {block.content}
           </h2>
         );
@@ -127,15 +117,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
       case 'paragraph':
       default:
         return (
-          <p
-            key={index}
-            style={{
-              fontFamily: 'Source Serif Pro',
-              fontWeight: 400,
-              fontSize: '20px',
-              lineHeight: '32px'
-            }}
-          >
+          <p key={index} className="text-[18px] inter-font font-[400] text-gray-700 leading-relaxed">
             {block.content}
           </p>
         );
@@ -186,16 +168,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
           )}
 
           {/* TITLE */}
-          <h1
-            className="mt-4"
-            style={{
-              fontFamily: 'Work Sans',
-              fontWeight: 600,
-              fontSize: '36px',
-              lineHeight: '40px',
-              color: '#1C1C1C'
-            }}
-          >
+          <h1 className="mt-4 text-[36px] axiforma font-bold text-gray-900 leading-tight">
             {blog.title}
           </h1>
 
@@ -215,11 +188,11 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
                 {blog.authorName.charAt(0).toUpperCase()}
               </div>
             )}
-            <p className="text-sm pp-600 text-gray-700">{blog.authorName}</p>
+            <p className="text-sm inter-font font-[500] text-gray-700">{blog.authorName}</p>
             {(blog.publishedAt || blog.createdAt) && (
               <>
             <span className="text-gray-400 text-sm">•</span>
-                <p className="text-sm pp-400 text-gray-500">
+                <p className="text-sm inter-font font-[400] text-gray-500">
                   {formatDate(blog.publishedAt || blog.createdAt)}
                 </p>
               </>
@@ -228,15 +201,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
           {/* EXCERPT */}
           {blog.excerpt && (
-            <p
-              className="mt-6 text-gray-600 italic"
-              style={{
-                fontFamily: 'Source Serif Pro',
-                fontWeight: 400,
-                fontSize: '18px',
-                lineHeight: '28px'
-              }}
-            >
+            <p className="mt-6 text-[18px] inter-font font-[400] text-gray-600 italic leading-relaxed">
               {blog.excerpt}
             </p>
           )}
@@ -246,12 +211,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
             {typeof blog.content === 'string' ? (
               // Render HTML content directly
               <div
-                className="prose max-w-none prose-headings:mt-6 prose-headings:mb-4 prose-p:mb-4 prose-img:rounded-xl prose-img:w-full prose-img:my-6 prose-a:text-blue-600 prose-a:underline prose-strong:font-bold prose-em:italic"
-                style={{
-                  fontFamily: 'Source Serif Pro',
-                  fontSize: '20px',
-                  lineHeight: '32px'
-                }}
+                className="prose max-w-none prose-headings:mt-6 prose-headings:mb-4 prose-p:mb-4 prose-img:rounded-xl prose-img:w-full prose-img:my-6 prose-a:text-blue-600 prose-a:underline prose-strong:font-bold prose-em:italic inter-font text-[18px] font-[400] leading-relaxed text-gray-700"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
             ) : (
@@ -312,7 +272,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
                     Article
             </span>
                 )}
-                <h3 className="mt-2 text-[15px] pp-700 leading-tight">
+                <h3 className="mt-2 text-[15px] axiforma font-bold leading-tight text-gray-900">
                   {recentBlog.title}
             </h3>
             <div className="flex items-center gap-2 mt-3">
@@ -330,11 +290,11 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
                       {recentBlog.authorName.charAt(0).toUpperCase()}
             </div>
                   )}
-                  <p className="text-xs pp-600 text-gray-700">{recentBlog.authorName}</p>
+                  <p className="text-xs inter-font font-[500] text-gray-700">{recentBlog.authorName}</p>
                   {(recentBlog.publishedAt || recentBlog.createdAt) && (
                     <>
               <span className="text-gray-400 text-xs">•</span>
-                      <p className="text-xs pp-400 text-gray-500">
+                      <p className="text-xs inter-font font-[400] text-gray-500">
                         {formatDate(recentBlog.publishedAt || recentBlog.createdAt)}
                       </p>
                     </>
@@ -352,27 +312,10 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
         <div className="max-w-7xl mx-auto px-6">
           {/* Header Section */}
           <div className="mb-12">
-            <h2
-              className="mb-3"
-              style={{
-                fontFamily: 'Lora',
-                fontWeight: 700,
-                fontSize: '24.24px',
-                lineHeight: '33.66px',
-                color: '#1C1C1C'
-              }}
-            >
+            <h2 className="mb-3 text-[35px] axiforma font-bold text-gray-900">
               Insights from our latest blogs
             </h2>
-            <p
-              style={{
-                fontFamily: 'Lora',
-                fontWeight: 400,
-                fontSize: '13.34px',
-                lineHeight: '22.23px',
-                color: '#666666'
-              }}
-            >
+            <p className="text-[16px] inter-font font-[400] text-gray-600 leading-relaxed">
               Stay updated with the latest trends, innovations, and expert insights in the manufacturing and industrial sectors
             </p>
           </div>
@@ -404,29 +347,11 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
                     <p className="text-xs text-gray-500 mb-3">
                       {formatDate(insightBlog.publishedAt || insightBlog.createdAt)}
                     </p>
-                <h3
-                  className="mb-3"
-                  style={{
-                    fontFamily: 'Lora',
-                    fontWeight: 700,
-                    fontSize: '20.01px',
-                    lineHeight: '27.79px',
-                    color: '#1C1C1C'
-                  }}
-                >
+                <h3 className="mb-3 text-[20px] axiforma font-bold text-gray-900 leading-tight">
                       {insightBlog.title}
                 </h3>
                     {insightBlog.excerpt && (
-                <p
-                        className="line-clamp-3"
-                  style={{
-                    fontFamily: 'Lora',
-                    fontWeight: 400,
-                    fontSize: '13.34px',
-                    lineHeight: '22.23px',
-                    color: '#666666'
-                  }}
-                >
+                <p className="line-clamp-3 text-[14px] inter-font font-[400] text-gray-600 leading-relaxed">
                         {insightBlog.excerpt}
                 </p>
                     )}
