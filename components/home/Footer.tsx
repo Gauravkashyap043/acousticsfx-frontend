@@ -4,9 +4,10 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="w-full bg-white">
+
       {/* TOP FOOTER */}
-      <div className="px-[100px] py-16">
-        <div className="grid grid-cols-4 gap-[90px]">
+      <div className="px-6 sm:px-10 lg:px-[100px] py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-[90px]">
           
           {/* LOGO + ABOUT */}
           <div>
@@ -17,6 +18,7 @@ export default function Footer() {
               height={50}
               className="mb-4"
             />
+
             <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6">
               Its your premier destination for luxury and modern interior design
             </p>
@@ -36,7 +38,9 @@ export default function Footer() {
 
           {/* OUR SERVICES */}
           <div>
-            <h4 className="font-semibold inter-font text-[24px] mb-4">Our Services</h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4">
+              Our Services
+            </h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>Acoustic Solution</li>
               <li>Sound Proofing</li>
@@ -46,7 +50,9 @@ export default function Footer() {
 
           {/* RESOURCES */}
           <div>
-            <h4 className="font-semibold inter-font text-[24px] mb-4">Resources</h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4">
+              Resources
+            </h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>Case Study</li>
               <li>Careers</li>
@@ -57,7 +63,9 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div>
-            <h4 className="font-semibold inter-font text-[24px] mb-4">Contact Us</h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4">
+              Contact Us
+            </h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700">
               <li>email@gmail.com</li>
               <li>
@@ -70,14 +78,18 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
         </div>
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="bg-[#1f5e67] text-white px-[100px] py-4">
-        <div className="flex items-center justify-between text-[15px] axiforma font-[500]">
-          <span>© Copyright 2025 FX Acoustic Solution — All Rights Reserved.</span>
-          <div className="flex gap-8 text-[15px] axiforma font-[500]">
+      <div className="bg-[#1f5e67] text-white px-6 sm:px-10 lg:px-[100px] py-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[15px] axiforma font-[500] text-center sm:text-left">
+          <span>
+            © Copyright 2025 FX Acoustic Solution — All Rights Reserved.
+          </span>
+
+          <div className="flex gap-6 sm:gap-8 text-[15px] axiforma font-[500]">
             <Link href="/privacy-policy" className="hover:underline">
               Privacy Policy
             </Link>
@@ -87,6 +99,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
     </footer>
   );
 }

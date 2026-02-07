@@ -2,16 +2,18 @@
 
 export default function AboutContent() {
   return (
-    <section className="px-[100px] py-[100px] bg-white">
+    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-white">
+
       {/* ================= Section 1 ================= */}
-      <div className="grid grid-cols-2 gap-20 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center">
+
         {/* Left Content */}
         <div>
           <p className="text-[15px] text-[#183B56] font-[700] tracking-widest text-gray-500 worksans-font uppercase mb-4">
             Our Story
           </p>
 
-          <h2 className="text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
+          <h2 className="text-[32px] sm:text-[36px] lg:text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
             The Power of Purity Source
           </h2>
 
@@ -30,50 +32,53 @@ export default function AboutContent() {
         </div>
 
         {/* Right Images */}
-        <div className="relative flex justify-end">
+        <div className="relative flex justify-center lg:justify-end">
+
           {/* Big Image */}
-          <div className="relative z-10 left-[-200px]">
+          <div className="relative z-10 lg:left-[-200px]">
             <img
               src="/assets/about/Image (1).png"
               alt="Auditorium"
-              className="object-cover"
-              style={{ width: 525, height: 566 }}
+              className="object-cover w-[320px] sm:w-[420px] lg:w-[525px]"
+              style={{ height: 566 }}
             />
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-16 right-2">
+          <div className="absolute -bottom-12 sm:-bottom-16 right-2">
             <img
               src="/assets/about/Image (2).png"
               alt="Hallway"
-              className="object-cover"
-              style={{ width: 400, height: 500 }}
+              className="object-cover w-[260px] sm:w-[320px] lg:w-[400px]"
+              style={{ height: 500 }}
             />
           </div>
         </div>
       </div>
 
       {/* ================= Section 2 ================= */}
-      <div className="grid grid-cols-2 gap-20 items-center mt-40">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center mt-24 sm:mt-32 lg:mt-40">
+
         {/* Left Images */}
-        <div className="relative">
+        <div className="relative flex justify-center lg:justify-start">
+
           {/* Big Image */}
           <div className="relative z-10">
             <img
               src="/assets/about/Image (3).png"
               alt="Interior"
-              className="object-cover"
-              style={{ width: 505, height: 466 }}
+              className="object-cover w-[300px] sm:w-[420px] lg:w-[505px]"
+              style={{ height: 466 }}
             />
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-16 left-100">
+          <div className="absolute -bottom-12 sm:-bottom-16 left-[40px] sm:left-[80px] lg:left-[100px]">
             <img
               src="/assets/about/Image (4).png"
               alt="Studio"
-              className="object-cover"
-              style={{ width: 350, height: 400 }}
+              className="object-cover w-[240px] sm:w-[300px] lg:w-[350px]"
+              style={{ height: 400 }}
             />
           </div>
         </div>
@@ -84,7 +89,7 @@ export default function AboutContent() {
             Our Story
           </p>
 
-          <h2 className="text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
+          <h2 className="text-[32px] sm:text-[36px] lg:text-[40px] text-[#183B56] mb-6 axiforma font-[500]">
             The Power of Purity Source
           </h2>
 
@@ -102,6 +107,7 @@ export default function AboutContent() {
           </p>
         </div>
       </div>
+
     </section>
   );
 }

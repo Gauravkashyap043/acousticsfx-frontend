@@ -14,7 +14,7 @@ export default function ProductHeroSection({
   breadcrumbText,
 }: ProductHeroSectionProps) {
   return (
-    <section className="relative w-full h-[520px] overflow-hidden">
+    <section className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] overflow-hidden">
       {/* Background Image */}
       <Image
         src={heroImage}
@@ -33,12 +33,12 @@ export default function ProductHeroSection({
         alt="Decorative Line"
         width={420}
         height={420}
-        className="absolute top-0 right-0 opacity-80"
+        className="absolute top-0 right-0 opacity-80 hidden sm:block"
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto px-[100px] h-full flex items-center">
-        <div className=" text-white">
+      <div className="relative z-10 mx-auto px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] h-full flex items-center">
+        <div className="text-white">
           {/* Breadcrumb */}
           <p className="text-sm text-white/70 mb-4">
             Our Products <span className="mx-2">•</span>
@@ -46,12 +46,12 @@ export default function ProductHeroSection({
           </p>
 
           {/* Heading */}
-          <h1 className="playfair-display font-[800] text-[90px] leading-tight mb-6">
+          <h1 className="playfair-display font-[800] text-[42px] sm:text-[64px] lg:text-[90px] leading-tight mb-6">
             {title}
           </h1>
 
           {/* Description */}
-          <p className="text-[20px] inter-font font-[300] leading-[28px] text-white max-w-[65ch]">
+          <p className="text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[300] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-white max-w-[65ch]">
             {description}
           </p>
         </div>

@@ -2,10 +2,12 @@
 
 export default function FoundationSection() {
   return (
-    <section className="px-[100px] py-[100px] bg-[#F5F5F5]">
+    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
+
       {/* ================= Top Heading Row ================= */}
-      <div className="grid grid-cols-2 gap-20 mb-20 items-start">
-        <h2 className="text-4xl font-semibold text-[#111] leading-tight">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-start">
+
+        <h2 className="text-[28px] sm:text-[34px] lg:text-4xl font-semibold text-[#111] leading-tight">
           Our Foundation of Trust & Innovation
         </h2>
 
@@ -17,10 +19,10 @@ export default function FoundationSection() {
       </div>
 
       {/* ================= Cards Section ================= */}
-      <div className="grid grid-cols-3 gap-16 items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-16 items-start">
 
         {/* -------- Card 01 -------- */}
-        <div className="bg-white border border-gray-100 p-10 h-[420px] flex flex-col">
+        <div className="bg-white border border-gray-100 p-8 sm:p-9 lg:p-10 h-auto lg:h-[420px] flex flex-col">
           <span className="text-5xl font-light text-[#111]">01</span>
 
           <h3 className="mt-6 text-xl font-semibold text-[#111]">
@@ -37,7 +39,7 @@ export default function FoundationSection() {
         </div>
 
         {/* -------- Card 02 (Image Card) -------- */}
-        <div className="relative h-[420px] overflow-hidden">
+        <div className="relative h-[300px] sm:h-[360px] lg:h-[420px] overflow-hidden">
           <img
             src="/assets/about/bgfoundation.png"
             alt="Our Vision"
@@ -48,7 +50,7 @@ export default function FoundationSection() {
           <div className="absolute inset-0 bg-black/40"></div>
 
           {/* Text on Image */}
-          <div className="absolute bottom-8 left-8 right-8 text-white">
+          <div className="absolute bottom-6 sm:bottom-7 lg:bottom-8 left-6 sm:left-7 lg:left-8 right-6 sm:right-7 lg:right-8 text-white">
             <span className="text-5xl font-light">02</span>
             <h3 className="mt-3 text-xl font-semibold">Our Vision</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/90">
@@ -61,7 +63,7 @@ export default function FoundationSection() {
         </div>
 
         {/* -------- Card 03 -------- */}
-        <div className="bg-white border border-gray-100 p-10 h-[420px] flex flex-col">
+        <div className="bg-white border border-gray-100 p-8 sm:p-9 lg:p-10 h-auto lg:h-[420px] flex flex-col">
           <span className="text-5xl font-light text-[#111]">03</span>
 
           <h3 className="mt-6 text-xl font-semibold text-[#111]">

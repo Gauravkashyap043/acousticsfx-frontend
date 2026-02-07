@@ -48,16 +48,16 @@ export default function FinishesShades() {
   };
 
   return (
-    <section className="w-full bg-[#faf7f2] pl-[100px] py-[80px]">
+    <section className="w-full bg-[#faf7f2] pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] py-[48px] sm:py-[64px] lg:py-[80px]">
       
-      <div className="flex gap-20">
+      <div className="flex flex-col lg:flex-row gap-10 sm:gap-14 lg:gap-20">
         
         {/* Left Content */}
         <div className="max-w-xs">
-          <h2 className="text-[34px] inter-font font-medium mb-4">
+          <h2 className="text-[28px] sm:text-[30px] lg:text-[34px] inter-font font-medium mb-4">
             Finishes & Shades
           </h2>
-          <p className="text-[16px] inter-font font-[500] text-gray-600 mb-8">
+          <p className="text-[15px] sm:text-[16px] inter-font font-[500] text-gray-600 mb-8">
             Our inspired solutions have helped shape modern acoustic design.
             Alluring spaces, internationally recognised for their architectural
             elegance and exceptional sound management live here.
@@ -67,7 +67,7 @@ export default function FinishesShades() {
         {/* Slider */}
         <div className="flex-1 relative overflow-hidden">
           <div
-            className="flex gap-8 transition-transform duration-500"
+            className="flex gap-6 sm:gap-8 transition-transform duration-500"
             style={{
               transform: `translateX(-${index * 208}px)`,
             }}
@@ -86,13 +86,13 @@ export default function FinishesShades() {
                 </div>
 
                 {/* Text */}
-                <p className="text-[24px] inter-font font-[400] text-gray-400 mb-1">
+                <p className="text-[22px] sm:text-[24px] inter-font font-[400] text-gray-400 mb-1">
                   {item.code}
                 </p>
-                <p className="text-[24px] inter-font font-[400] mb-1">
+                <p className="text-[22px] sm:text-[24px] inter-font font-[400] mb-1">
                   {item.name}
                 </p>
-                <p className="text-[15px] inter-font font-[500] text-gray-500 leading-snug">
+                <p className="text-[14px] sm:text-[15px] inter-font font-[500] text-gray-500 leading-snug">
                   {item.desc}
                 </p>
               </div>

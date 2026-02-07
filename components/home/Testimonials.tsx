@@ -45,24 +45,22 @@ const testimonials = [
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
 
-  const prev = () =>
-    setIndex((prev) => Math.max(prev - 1, 0));
+  const prev = () => setIndex((prev) => Math.max(prev - 1, 0));
   const next = () =>
-    setIndex((prev) =>
-      Math.min(prev + 1, testimonials.length - 3)
-    );
+    setIndex((prev) => Math.min(prev + 1, testimonials.length - 1));
 
   return (
-    <section className="px-6 md:px-[100px] py-[100px] bg-white relative">
+    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white relative">
+
       {/* HEADING */}
-      <h2 className="text-center text-[60px] inter-font font-bold mb-16">
+      <h2 className="text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
         Loved by the world's best teams
       </h2>
 
       {/* SLIDER */}
       <div className="relative overflow-hidden">
         <div
-          className="flex gap-8 transition-transform duration-500"
+          className="flex gap-6 sm:gap-8 transition-transform duration-500"
           style={{
             transform: `translateX(-${index * 420}px)`,
           }}
@@ -70,10 +68,10 @@ export default function Testimonials() {
           {testimonials.map((item, i) => (
             <div
               key={i}
-              className="min-w-[380px] border rounded-2xl p-8 bg-white"
+              className="min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] border rounded-2xl p-6 sm:p-7 lg:p-8 bg-white"
             >
               {/* COMPANY LOGO */}
-              <div className="relative w-[200px] h-[80px] mb-6">
+              <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6">
                 <Image
                   src={item.companyLogo}
                   alt={item.company}
@@ -114,7 +112,7 @@ export default function Testimonials() {
         {/* ARROWS */}
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition"
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -127,7 +125,7 @@ export default function Testimonials() {
 
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
         >
           <Image
             src="/assets/home/universalvector.svg"

@@ -11,21 +11,23 @@ export default function ProductContentSection({
 }: ProductContentSectionProps) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto py-[100px]">
-        <div className="grid grid-cols-12 gap-12 items-center">
+      <div className="mx-auto py-[60px] sm:py-[80px] lg:py-[100px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
           {/* LEFT CONTENT – 100px padding */}
-          <div className="col-span-6 pl-[100px]">
-            <h2 className="text-[65px] playfair-display text-black mb-6">
+          <div className="col-span-1 lg:col-span-6 px-[24px] sm:px-[40px] md:px-[60px] lg:pl-[100px] lg:pr-0">
+            <h2 className="text-[36px] sm:text-[48px] lg:text-[65px] playfair-display text-black mb-6">
               {title}
             </h2>
 
-            <p className="text-[32px] poppins-font font-[400] leading-[45px] text-gray-600 ">
+            <p className="text-[18px] sm:text-[24px] lg:text-[32px] poppins-font font-[400] leading-[28px] sm:leading-[36px] lg:leading-[45px] text-gray-600 ">
               {description}
             </p>
           </div>
 
           {/* RIGHT IMAGES */}
-          <div className="col-span-6 pr-0 grid grid-cols-3 gap-x-4 gap-y-2">
+          <div className="col-span-1 lg:col-span-6 px-[24px] sm:px-[40px] md:px-[60px] lg:px-0 grid grid-cols-3 gap-x-4 gap-y-2">
+            
             {/* COLUMN 1 */}
             <div className="flex items-center">
               <div className="relative w-full aspect-[240/340] rounded-2xl overflow-hidden">
@@ -70,6 +72,7 @@ export default function ProductContentSection({
                 />
               </div>
             </div>
+
           </div>
         </div>
       </div>

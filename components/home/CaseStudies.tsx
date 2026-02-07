@@ -37,17 +37,18 @@ export default function CaseStudies() {
   ];
 
   return (
-    <section className="py-[100px] bg-white overflow-hidden">
+    <section className="py-[80px] lg:py-[100px] bg-white overflow-hidden">
 
       {/* TOP CONTENT */}
-      <div className="px-[200px] mb-14">
-        <div className="flex justify-between items-start gap-20">
-          <h2 className="text-[60px] font-[400] leading-tight axiforma max-w-xl">
+      <div className="px-6 sm:px-10 lg:px-[200px] mb-14">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
+          
+          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] font-[400] leading-tight axiforma max-w-xl">
             CASE STUDIES THAT <br /> INSPIRE US
           </h2>
 
           <div className="max-w-md">
-            <p className="text-[21px] font-[500] text-gray-600 leading-relaxed mb-6 jakarta">
+            <p className="text-[16px] sm:text-[18px] lg:text-[21px] font-[500] text-gray-600 leading-relaxed mb-6 jakarta">
               A premium workspace faced disruptive noise and poor sound clarity.
               We designed and installed bespoke acoustic panels tailored to their
               architecture. The result: enhanced productivity, elegant aesthetics,
@@ -62,7 +63,7 @@ export default function CaseStudies() {
       </div>
 
       {/* SLIDER */}
-      <div className="relative pl-[360px]">
+      <div className="relative pl-6 sm:pl-10 lg:pl-[360px]">
         <Splide
           options={{
             perPage: 3,
@@ -85,7 +86,7 @@ export default function CaseStudies() {
               <div className="max-w-[420px]">
 
                 {/* IMAGE */}
-                <div className="relative h-[260px] w-full mb-4">
+                <div className="relative h-[220px] sm:h-[240px] lg:h-[260px] w-full mb-4">
                   <Image
                     src={item.image}
                     alt={item.title}

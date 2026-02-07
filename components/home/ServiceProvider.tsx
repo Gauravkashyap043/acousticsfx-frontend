@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function ServiceProvider() {
   return (
-    <section className="px-[100px] py-[100px]">
-      <div className="flex items-center gap-10">
+    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px]">
+      <div className="flex flex-col lg:flex-row items-center gap-10">
 
         {/* Left Image */}
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <Image
             src="/assets/home/image 1.png"
             alt="Library"
@@ -18,11 +18,14 @@ export default function ServiceProvider() {
         </div>
 
         {/* Right Content */}
-        <div className="w-[60%]">
-          <p className="text-[15px] uppercase mb-2 worksans-font text-black font-bold">Services Provided by us</p>
+        <div className="w-full lg:w-[60%] text-center lg:text-left">
+          <p className="text-[15px] uppercase mb-2 worksans-font text-black font-bold">
+            Services Provided by us
+          </p>
 
-          <h2 className="text-[40px] worksans-font text-black font-bold mb-4 leading-[55px]">
+          <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] worksans-font text-black font-bold mb-4 leading-[38px] sm:leading-[46px] lg:leading-[55px]">
             Engineered for Performance.
+            <br />
             Designed for Impact.
           </h2>
 

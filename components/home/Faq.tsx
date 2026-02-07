@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null); // ✅ none open by default
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
@@ -26,14 +26,14 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="px-[100px] py-[100px] bg-white">
-      <div className="flex gap-20 items-start">
+    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
         {/* LEFT CONTENT */}
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <p className="text-[16px] mb-3 inter-font font-[500]">FAQs</p>
 
-          <h2 className="text-[54px] font-bold mb-4 inter-font font-[500]">
+          <h2 className="text-[34px] sm:text-[44px] lg:text-[54px] font-bold mb-4 inter-font font-[500]">
             Wondering How We Work?
           </h2>
 
@@ -47,13 +47,7 @@ export default function FAQSection() {
           </button>
 
           {/* IMAGE */}
-          <div
-            className="relative overflow-hidden"
-            style={{
-              width: "551.55px",
-              height: "443.52px",
-            }}
-          >
+          <div className="relative overflow-hidden w-full max-w-[551.55px] aspect-[551.55/443.52]">
             <Image
               src="/assets/home/Design.png"
               alt="FAQ Visual"
@@ -65,7 +59,7 @@ export default function FAQSection() {
         </div>
 
         {/* RIGHT ACCORDION */}
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <div className="space-y-4">
             {faqs.map((item, index) => (
               <div
@@ -76,9 +70,9 @@ export default function FAQSection() {
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
-                  className="w-full flex justify-between items-center p-5 text-left"
+                  className="w-full flex justify-between items-center p-4 sm:p-5 text-left"
                 >
-                  <span className="font-medium inter-font text-[20px]">
+                  <span className="font-medium inter-font text-[16px] sm:text-[18px] lg:text-[20px]">
                     {index + 1}. {item.q}
                   </span>
                   <span className="text-xl">
@@ -87,7 +81,7 @@ export default function FAQSection() {
                 </button>
 
                 {openIndex === index && (
-                  <div className="px-5 pb-5 text-[18px] axiforma text-gray-600">
+                  <div className="px-5 pb-5 text-[16px] sm:text-[17px] lg:text-[18px] axiforma text-gray-600">
                     {item.a}
                   </div>
                 )}

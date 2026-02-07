@@ -11,18 +11,22 @@ import {
 
 export default function ValuesSection() {
   return (
-    <section className="px-[100px] py-[100px] bg-white">
-      {/* ================= Heading ================= */}
-      <div className="max-w-3xl mb-20">
-        <p className="text-[16px] font-bold mb-4 worksans-font">Our Values</p>
+    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-white">
 
-        <h2 className="text-[35px] axiforma font-bold leading-tight">
+      {/* ================= Heading ================= */}
+      <div className="max-w-3xl mb-12 sm:mb-16 lg:mb-20">
+        <p className="text-[16px] font-bold mb-4 worksans-font">
+          Our Values
+        </p>
+
+        <h2 className="text-[26px] sm:text-[30px] lg:text-[35px] axiforma font-bold leading-tight">
           We Build Values That Are Timeless, Thoughtful & Impactful.
         </h2>
       </div>
 
       {/* ================= Values Grid ================= */}
-      <div className="grid grid-cols-3 gap-y-20 gap-x-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-14 sm:gap-y-16 lg:gap-y-20 gap-x-8 sm:gap-x-12 lg:gap-x-16">
+
         {/* Card 1 */}
         <ValueCard
           icon={<ShieldCheck size={28} />}
@@ -81,11 +85,15 @@ function ValueCard({
 }) {
   return (
     <div className="flex flex-col items-center text-center px-6">
-      <div className="text-orange-500 mb-4">{icon}</div>
+      <div className="text-orange-500 mb-4">
+        {icon}
+      </div>
 
-      <h3 className="text-[26px] font-[500] inter-font text-[#1B152B] mb-3">{title}</h3>
+      <h3 className="text-[24px] sm:text-[25px] lg:text-[26px] font-[500] inter-font text-[#1B152B] mb-3">
+        {title}
+      </h3>
 
-      <p className="text-[17px] manrope font-[400] text-[#1F6775] leading-relaxed max-w-xs">
+      <p className="text-[16px] sm:text-[16px] lg:text-[17px] manrope font-[400] text-[#1F6775] leading-relaxed max-w-xs">
         {text}
       </p>
     </div>

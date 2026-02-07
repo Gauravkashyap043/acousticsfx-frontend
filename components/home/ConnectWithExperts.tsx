@@ -5,13 +5,17 @@ import Image from "next/image";
 export default function ConnectWithExperts() {
   return (
     <section className="relative bg-[#1f2528] py-10 text-white overflow-hidden">
-      {/* ================= TOP AREA ================= */}
-      <div className="relative flex min-h-[300px]">
-        {/* LEFT DARK CONTENT */}
-        <div className="pl-6 md:pl-[100px] pr-12 flex flex-col justify-center max-w-[720px] z-10">
-          <h2 className="text-[45px] inter-font font-[600] mb-4">Connect with experts</h2>
 
-          <div className="flex items-center gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
+      {/* ================= TOP AREA ================= */}
+      <div className="relative flex min-h-[300px] flex-col lg:flex-row">
+
+        {/* LEFT CONTENT */}
+        <div className="pl-6 sm:pl-10 lg:pl-[100px] pr-6 lg:pr-12 flex flex-col justify-center max-w-[720px] z-10 text-center lg:text-left">
+          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] inter-font font-[600] mb-4">
+            Connect with experts
+          </h2>
+
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
             <span>🔒 IP Awards</span>
             <span>👨‍💼 Experienced Experts</span>
             <span>📈 Success Rate</span>
@@ -23,15 +27,14 @@ export default function ConnectWithExperts() {
             at Roax.
           </p>
 
-          <button className="bg-white text-black px-6 py-3 w-fit text-sm font-medium">
+          <button className="bg-white text-black px-6 py-3 w-fit mx-auto lg:mx-0 text-sm font-medium">
             Get in touch →
           </button>
         </div>
 
-        {/* RIGHT IMAGE (FIXED SIZE) */}
-        {/* RIGHT IMAGE (FIXED SIZE - FLUSH RIGHT) */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 z-0">
-          <div className="relative w-[600px] h-[300px] overflow-hidden">
+        {/* RIGHT IMAGE */}
+        <div className="relative lg:absolute right-0 top-1/2 lg:-translate-y-1/2 mt-10 lg:mt-0">
+          <div className="relative w-full lg:w-[600px] h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden">
             <Image
               src="/assets/about/glassimg.jpg"
               alt="Expert"
@@ -40,7 +43,7 @@ export default function ConnectWithExperts() {
               priority
             />
 
-            {/* ULTRA STRONG LEFT FADE (FORM MASK) */}
+            {/* LEFT FADE */}
             <div
               className="absolute inset-0"
               style={{
@@ -51,8 +54,7 @@ export default function ConnectWithExperts() {
           </div>
         </div>
 
-
-        {/* ================= FORM CARD (SHIFTED LEFT) ================= */}
+        {/* FORM CARD — DESKTOP ONLY (UNCHANGED) */}
         <div className="absolute right-[200px] top-1/2 -translate-y-1/2 z-20 hidden lg:block">
           <div className="bg-white/40 backdrop-blur-[0px] text-black rounded-2xl p-8 w-[550px] shadow-xl">
             <p className="text-xs mb-6 text-gray-800">
@@ -87,9 +89,9 @@ export default function ConnectWithExperts() {
       </div>
 
       {/* ================= BOTTOM SUBSCRIBE ================= */}
-      <div className="px-6 md:px-[100px] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="px-6 sm:px-10 lg:px-[100px] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <h3 className="text-[36px] font-semibold mb-2 inter-font">
+          <h3 className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold mb-2 inter-font">
             Subscribe to our Latest News
           </h3>
           <p className="text-[14px] inter-font font-[400] text-white/70 max-w-md leading-relaxed">
@@ -98,11 +100,11 @@ export default function ConnectWithExperts() {
           </p>
         </div>
 
-        <div className="flex gap-4 w-full md:w-auto">
-         <input
-  className="px-5 py-3 bg-white text-black text-[14px] w-full md:w-[280px] outline-none inter-font font-[400] border border-white/40 placeholder:text-[#EA8E39]"
-  placeholder="Email Address"
-/>
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <input
+            className="px-5 py-3 bg-white text-black text-[14px] w-full md:w-[280px] outline-none inter-font font-[400] border border-white/40 placeholder:text-[#EA8E39]"
+            placeholder="Email Address"
+          />
 
           <button className="bg-white text-[#097F98] px-6 py-3 text-[14px] inter-font font-bold whitespace-nowrap">
             Subscribe Now →

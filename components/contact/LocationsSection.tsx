@@ -2,19 +2,20 @@
 
 export default function LocationsSection() {
   return (
-    <section className="px-[100px] py-[100px] bg-[#F5F5F5]">
+    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
       {/* ================= Heading ================= */}
-      <div className="mb-14">
-        <h2 className="text-[44px] poppins-font font-bold text-[#111] mb-2">
+      <div className="mb-10 sm:mb-12 lg:mb-14">
+        <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] poppins-font font-bold text-[#111] mb-2">
           A Space That Inspires
         </h2>
-        <p className="text-gray-500 poppins-font font-[500] text-[20px]">
+        <p className="text-gray-500 poppins-font font-[500] text-[16px] sm:text-[18px] lg:text-[20px]">
           You wish to visit our place and sit with us on a coffee.
         </p>
       </div>
 
       {/* ================= Cards ================= */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+
         {/* Card 1 – Highlighted */}
         <LocationCard
           title="Corporate Office"
@@ -94,13 +95,11 @@ function LocationCard({
   return (
     <div
       className={`
-        p-8 rounded-lg
+        p-6 sm:p-7 lg:p-8
+        rounded-lg
         bg-gray-50
         border
-        ${highlight
-          ? "border-orange-400"
-          : "border-gray-200"
-        }
+        ${highlight ? "border-orange-400" : "border-gray-200"}
         relative
         overflow-hidden
       `}
@@ -109,14 +108,14 @@ function LocationCard({
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,0,0,0.03)_25%,transparent_25%,transparent_50%,rgba(0,0,0,0.03)_50%,rgba(0,0,0,0.03)_75%,transparent_75%,transparent)] bg-[length:24px_24px] pointer-events-none" />
 
       <div className="relative z-10">
-        <h3 className="text-[20px] poppins-font font-bold text-[#111] mb-4">
+        <h3 className="text-[18px] sm:text-[19px] lg:text-[20px] poppins-font font-bold text-[#111] mb-4">
           {title}
         </h3>
 
-        <div className="space-y-3 text-[19px] poppins-font font-[400] text-gray-600">
+        <div className="space-y-3 text-[16px] sm:text-[18px] lg:text-[19px] poppins-font font-[400] text-gray-600">
           {items.map((item, idx) => (
             <p key={idx}>
-              <span className="text-[19px] poppins-font font-[600] text-black">
+              <span className="text-[16px] sm:text-[18px] lg:text-[19px] poppins-font font-[600] text-black">
                 {item.label}:
               </span>{" "}
               {item.value}

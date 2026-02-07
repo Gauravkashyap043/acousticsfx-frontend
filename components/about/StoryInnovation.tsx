@@ -2,21 +2,23 @@
 
 export default function StoryInnovation() {
   return (
-    <section className="px-[100px] pt-[100px] bg-[#F5F5F5]">
+    <section className="px-[16px] sm:px-[40px] lg:px-[100px] pt-[60px] sm:pt-[80px] lg:pt-[100px] bg-[#F5F5F5]">
+
       {/* ================= Top Content ================= */}
-      <div className="grid grid-cols-2 gap-20 items-start mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-start mb-12 sm:mb-14 lg:mb-16">
+
         {/* Left Heading */}
         <div>
-          <h2 className="text-[60px] lato font-bold leading-[40px]">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[60px] lato font-bold leading-[40px]">
             Our Story That Drives
           </h2>
-          <h2 className="text-[100px] font-bold lato text-[#ea8e39] mt-2">
+          <h2 className="text-[56px] sm:text-[72px] lg:text-[100px] font-bold lato text-[#ea8e39] mt-2">
             INNOVATION
           </h2>
         </div>
 
         {/* Right Text */}
-        <p className="text-gray-600 leading-relaxed lato font-[400] text-[20px] max-w-xl">
+        <p className="text-gray-600 leading-relaxed lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] max-w-xl">
           Circuit is flexible and affordable and offers you exceptional support
           to achieve your career goals. Circuit is a Global training provider
           based across the UK that specialises.
@@ -26,9 +28,9 @@ export default function StoryInnovation() {
       {/* ================= Image / Video Section ================= */}
       <div className="relative w-full overflow-hidden rounded-lg">
         <img
-          src="/innovation-video.jpg" // apni image yahan lagana
+          src="/innovation-video.jpg"
           alt="Innovation Auditorium"
-          className="w-full h-[520px] object-cover"
+          className="w-full h-[280px] sm:h-[400px] lg:h-[520px] object-cover"
         />
 
         {/* Dark overlay */}
@@ -42,7 +44,7 @@ export default function StoryInnovation() {
           "
           aria-label="Play video"
         >
-          <div className="w-20 h-20 rounded-full bg-white/80 flex items-center justify-center hover:scale-105 transition">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white/80 flex items-center justify-center hover:scale-105 transition">
             <svg
               width="28"
               height="28"

@@ -34,15 +34,18 @@ export default function ProductsSection() {
   };
 
   return (
-    <section className="py-[100px] bg-[#F5F5F5] overflow-hidden">
+    <section className="py-[80px] lg:py-[100px] bg-[#F5F5F5] overflow-hidden">
 
       {/* TOP CONTENT */}
-      <div className="px-[200px] mb-12">
-        <div className="flex justify-between items-start">
-          <div className="max-w-3xl">
-            <p className="text-[16px] mb-3 worksans-font font=[700]">Our Products</p>
+      <div className="px-6 sm:px-10 lg:px-[200px] mb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-8">
 
-            <h2 className="text-[38px] axiforma font-bold leading-tight mb-4">
+          <div className="max-w-3xl">
+            <p className="text-[16px] mb-3 worksans-font font=[700]">
+              Our Products
+            </p>
+
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] axiforma font-bold leading-tight mb-4">
               We Cut Through Noise to create architects
               <br />
               that are thoughtful, timeless & Impactful.
@@ -54,7 +57,7 @@ export default function ProductsSection() {
               elegance and exceptional sound management live here.
             </p>
 
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <button className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px]">
                 ACOUSTIC SOLUTION
               </button>
@@ -74,20 +77,20 @@ export default function ProductsSection() {
       </div>
 
       {/* SLIDER */}
-      <div className="relative pl-[200px]">
+      <div className="relative pl-6 sm:pl-10 lg:pl-[200px]">
 
         {/* TRACK */}
         <div
           ref={sliderRef}
-          className="flex gap-10 overflow-x-auto scroll-smooth no-scrollbar"
+          className="flex gap-6 sm:gap-8 lg:gap-10 overflow-x-auto scroll-smooth no-scrollbar"
         >
           {products.map((product) => (
             <div
               key={product.id}
-              className="min-w-[575px] bg-white"
+              className="min-w-[280px] sm:min-w-[420px] lg:min-w-[575px] bg-white"
             >
               {/* IMAGE */}
-              <div className="relative w-[575px] h-[392px]">
+              <div className="relative w-full h-[220px] sm:h-[300px] lg:w-[575px] lg:h-[392px]">
                 <Image
                   src={product.image}
                   alt={product.title}
@@ -98,7 +101,7 @@ export default function ProductsSection() {
 
               {/* CONTENT */}
               <div className="pt-6 text-center px-6">
-                <h3 className="text-[24px] axiforma font-bold mb-3 text-left">
+                <h3 className="text-[20px] lg:text-[24px] axiforma font-bold mb-3 text-left">
                   {product.title}
                 </h3>
 
@@ -107,7 +110,7 @@ export default function ProductsSection() {
                   sound waves better than panels made of steel and glass or concrete.
                 </p>
 
-                <div className="flex justify-center gap-10 mb-6 text-xs text-gray-600">
+                <div className="flex justify-center gap-6 sm:gap-10 mb-6 text-xs text-gray-600">
                   <div>
                     <p className="uppercase text-[10px] mb-1">Category</p>
                     <p className="font-medium">Slats</p>
@@ -124,7 +127,7 @@ export default function ProductsSection() {
                   </div>
                 </div>
 
-                <button className="border border-orange-500 text-orange-500 px-6 py-2 text-sm">
+                <button className="border border-orange-500 text-orange-500 px-6 py-2 text-sm mb-4">
                   View Details
                 </button>
               </div>
@@ -134,33 +137,25 @@ export default function ProductsSection() {
 
         {/* IMAGE ARROWS */}
         <div className="flex justify-center gap-8 mt-10">
-          <button
-            onClick={scrollLeft}
-            className="flex items-center justify-center"
-          >
+          <button onClick={scrollLeft}>
             <Image
               src="/assets/home/Vector.svg"
               alt="Previous"
               width={10}
               height={10}
-              className="rotate-180 block"
+              className="rotate-180"
             />
           </button>
 
-          <button
-            onClick={scrollRight}
-            className="flex items-center justify-center"
-          >
+          <button onClick={scrollRight}>
             <Image
               src="/assets/home/Vector.svg"
               alt="Next"
               width={10}
               height={10}
-              className="block"
             />
           </button>
         </div>
-
 
       </div>
     </section>

@@ -8,7 +8,7 @@ interface LinearluxHeroProps {
 
 export default function LinearluxHero({ productTitle, subProductTitle, description }: LinearluxHeroProps) {
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden bg-[#1b1b1b] text-white">
+    <section className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[90vh] overflow-hidden bg-[#1b1b1b] text-white">
       
       {/* Background vertical panels */}
       <div className="absolute inset-0 flex">
@@ -21,10 +21,10 @@ export default function LinearluxHero({ productTitle, subProductTitle, descripti
       </div>
 
       {/* Content wrapper */}
-      <div className="relative z-10 h-full px-[100px] py-[80px] flex">
+      <div className="relative z-10 h-full px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[40px] sm:py-[60px] lg:py-[80px] flex">
         
         {/* Left Social Icons */}
-        <div className="flex flex-col gap-6 mt-24 mr-10 text-[#f59e0b]">
+        <div className="hidden sm:flex flex-col gap-6 mt-24 mr-10 text-[#f59e0b]">
           <FaFacebookF className="cursor-pointer hover:opacity-70" />
           <FaInstagram className="cursor-pointer hover:opacity-70" />
           <FaTwitter className="cursor-pointer hover:opacity-70" />
@@ -40,12 +40,12 @@ export default function LinearluxHero({ productTitle, subProductTitle, descripti
           </p>
 
           {/* Heading */}
-          <h1 className="text-[94px] playfair-display font-serif mb-6">
+          <h1 className="text-[42px] sm:text-[64px] lg:text-[94px] playfair-display font-serif mb-6">
             {subProductTitle}
           </h1>
 
           {/* Description */}
-          <p className="text-[20px] inter-font font-[400] leading-relaxed text-gray-300">
+          <p className="text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[400] leading-relaxed text-gray-300">
             {description}
           </p>
 

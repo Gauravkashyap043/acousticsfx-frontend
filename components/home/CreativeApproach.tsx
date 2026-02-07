@@ -12,11 +12,11 @@ export default function CreativeApproach() {
 
   return (
     <section className="relative w-full px-4 sm:px-8 lg:px-[12.5vw] py-12 lg:py-[6.25vw] bg-[#F5F5F5] overflow-hidden">
-      <div className="relative flex items-center max-w-[1600px] xl:max-w-none mx-auto">
+      <div className="relative flex flex-col lg:flex-row items-center max-w-[1600px] xl:max-w-none mx-auto">
 
         {/* LEFT CONTENT CARD */}
         <div
-          className="relative z-30 bg-[#FFF3E8] p-6 lg:p-10 shadow-lg flex-shrink-0"
+          className="relative z-30 bg-[#FFF3E8] p-6 lg:p-10 shadow-lg flex-shrink-0 w-full lg:w-auto"
           style={{
             width: "clamp(500px, 40.9vw, 655px)",
             height: "clamp(550px, 44.3vw, 709px)",
@@ -95,11 +95,14 @@ export default function CreativeApproach() {
         </div>
 
         {/* IMAGES WRAPPER */}
-        <div className="relative flex-1 min-w-0" style={{ height: "clamp(700px, 56.25vw, 900px)" }}>
+        <div
+          className="relative flex-1 min-w-0 mt-10 lg:mt-0 w-full"
+          style={{ height: "clamp(700px, 56.25vw, 900px)" }}
+        >
 
           {/* SMALL IMAGE (BACK) */}
           <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-0"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-0 hidden sm:block"
             style={{
               width: "clamp(350px, 31.25vw, 500px)",
               height: "clamp(525px, 46.875vw, 750px)",
@@ -115,11 +118,10 @@ export default function CreativeApproach() {
 
           {/* BIG IMAGE (FRONT) */}
           <div
-            className="absolute z-10 top-1/2 -translate-y-1/2"
+            className="absolute z-10 top-1/2 -translate-y-1/2 right-0 sm:right-[80px] lg:right-[clamp(180px,16.25vw,260px)]"
             style={{
-              right: "clamp(180px, 16.25vw, 260px)",
-              width: "clamp(467px, 41.6875vw, 667px)",
-              height: "clamp(585px, 52.1875vw, 835px)",
+              width: "clamp(320px, 80vw, 667px)",
+              height: "clamp(420px, 90vw, 835px)",
             }}
           >
             <Image

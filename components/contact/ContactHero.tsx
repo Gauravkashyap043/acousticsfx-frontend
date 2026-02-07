@@ -11,9 +11,10 @@ import {
 export default function ContactHero() {
   return (
     <section
-      className="relative w-full min-h-[70vh] bg-cover bg-center"
+      className="relative w-full min-h-[60vh] sm:min-h-[65vh] lg:min-h-[70vh] bg-cover bg-center"
       style={{
-        backgroundImage: "url('/assets/contacts/1d173913fbb7b4adf7587f36d280e8edcf59765a.png')", // apni image yahan lagana
+        backgroundImage:
+          "url('/assets/contacts/1d173913fbb7b4adf7587f36d280e8edcf59765a.png')",
       }}
     >
       {/* Dark overlay */}
@@ -23,7 +24,8 @@ export default function ContactHero() {
       <div
         className="
           relative z-10
-          px-[100px] py-[100px]
+          px-[16px] sm:px-[40px] lg:px-[100px]
+          py-[60px] sm:py-[80px] lg:py-[100px]
           h-full
           flex flex-col justify-center
           text-white
@@ -36,15 +38,13 @@ export default function ContactHero() {
         </p>
 
         {/* Heading */}
-        <h2 className="text-4xl font-light mb-2">
+        <h2 className="text-[28px] sm:text-[32px] lg:text-4xl font-light mb-2">
           Have a Question or confusion:
         </h2>
 
-        <h1 className="text-5xl font-semibold mb-12">
+        <h1 className="text-[36px] sm:text-[44px] lg:text-5xl font-semibold mb-12">
           Contact Us
         </h1>
-
-
       </div>
     </section>
   );
@@ -61,13 +61,15 @@ function ContactIcon({
   return (
     <div
       className={`
-        w-20 h-20 rounded-full
+        w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20
+        rounded-full
         flex items-center justify-center
         backdrop-blur-md
         border border-white/30
-        ${active
-          ? "bg-cyan-400/60 shadow-lg shadow-cyan-400/40"
-          : "bg-white/20"
+        ${
+          active
+            ? "bg-cyan-400/60 shadow-lg shadow-cyan-400/40"
+            : "bg-white/20"
         }
       `}
     >

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { api } from "@/lib/api/client";
+import NewsletterSubscribe from "./NewsletterSubscribe";
 
 // Placeholder image as data URI
 const PLACEHOLDER_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
@@ -96,28 +97,41 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
     switch (block.type) {
       case 'heading':
         return (
-          <h2 key={index} className="mb-2 text-[24px] axiforma font-bold text-gray-900 leading-tight">
+          <h2 key={index} className="mb-2 text-xl sm:text-2xl lg:text-[24px] axiforma font-bold text-gray-900 leading-tight">
             {block.content}
           </h2>
         );
       case 'image':
+        // Replace with product images - cycle through available product images
+        const productImages = [
+          "/assets/product/product-card-1.png",
+          "/assets/product/product-card-2.png",
+          "/assets/product/product-card-3.png",
+          "/assets/product/product-card-4.png",
+          "/assets/product/product-card-5.png",
+          "/assets/product/product-card-6.png",
+          "/assets/product/product-feature-1.png",
+          "/assets/product/product-feature-2.png",
+          "/assets/product/product-feature-3.png",
+          "/assets/product/product-feature-4.png",
+        ];
+        const imageIndex = index % productImages.length;
         return (
-          <div key={index} className="my-6">
+          <div key={index} className="my-4 sm:my-6">
             <img
-              src={imgErrors[`content-${index}`] ? PLACEHOLDER_IMAGE : block.content}
+              src={productImages[imageIndex]}
               alt={block.caption || "Blog image"}
-              className="rounded-xl w-full max-h-[400px] object-cover"
-              onError={() => handleImageError(`content-${index}`)}
+              className="rounded-lg sm:rounded-xl w-full max-h-[250px] sm:max-h-[350px] lg:max-h-[400px] object-cover"
             />
             {block.caption && (
-              <p className="text-sm text-gray-500 mt-2 text-center italic">{block.caption}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-2 text-center italic">{block.caption}</p>
             )}
           </div>
         );
       case 'paragraph':
       default:
         return (
-          <p key={index} className="text-[18px] inter-font font-[400] text-gray-700 leading-relaxed">
+          <p key={index} className="text-base sm:text-lg lg:text-[18px] inter-font font-[400] text-gray-700 leading-relaxed">
             {block.content}
           </p>
         );
@@ -126,10 +140,10 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
   if (loading) {
     return (
-      <div className="w-full py-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-center py-20">
-            <div className="text-gray-500">Loading blog...</div>
+      <div className="w-full py-6 sm:py-8 lg:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6">
+          <div className="flex items-center justify-center py-12 sm:py-16 lg:py-20">
+            <div className="text-gray-500 text-sm sm:text-base">Loading blog...</div>
           </div>
         </div>
       </div>
@@ -138,11 +152,11 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
   if (error || !blog) {
     return (
-      <div className="w-full py-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="text-gray-500 mb-4">{error || "Blog not found"}</div>
-            <Link href="/resources" className="text-blue-600 hover:underline">
+      <div className="w-full py-6 sm:py-8 lg:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6">
+          <div className="flex flex-col items-center justify-center py-12 sm:py-16 lg:py-20">
+            <div className="text-gray-500 mb-4 text-sm sm:text-base">{error || "Blog not found"}</div>
+            <Link href="/resources" className="text-blue-600 hover:underline text-sm sm:text-base">
               ← Back to Resources
             </Link>
           </div>
@@ -152,47 +166,47 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
   }
 
   return (
-    <div className="w-full py-10">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-[65%_35%] gap-10">
+    <div className="w-full py-6 sm:py-8 lg:py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6 grid grid-cols-1 lg:grid-cols-[65%_35%] gap-6 sm:gap-8 lg:gap-10">
         {/* LEFT COLUMN - ALL TEXT CONTENT */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-5 lg:space-y-6">
           {/* TAG */}
           {blog.tags && blog.tags.length > 0 ? (
             <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md inline-block">
               {blog.tags[0]}
             </span>
           ) : (
-          <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md inline-block">
+            <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md inline-block">
               Article
-          </span>
+            </span>
           )}
 
           {/* TITLE */}
-          <h1 className="mt-4 text-[36px] axiforma font-bold text-gray-900 leading-tight">
+          <h1 className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-[36px] axiforma font-bold text-gray-900 leading-tight">
             {blog.title}
           </h1>
 
           {/* AUTHOR + DATE */}
-          <div className="flex items-center gap-3 mt-4">
+          <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4 flex-wrap">
             {blog.authorImage ? (
-            <img
-                src={imgErrors['author'] ? PLACEHOLDER_IMAGE : blog.authorImage}
-              width={32}
-              height={32}
+              <img
+                src={imgErrors['author'] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-3.png"}
+                width={32}
+                height={32}
                 alt={blog.authorName}
-                className="rounded-full w-8 h-8 object-cover"
+                className="rounded-full w-7 h-7 sm:w-8 sm:h-8 object-cover"
                 onError={() => handleImageError('author')}
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm text-gray-600">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs sm:text-sm text-gray-600">
                 {blog.authorName.charAt(0).toUpperCase()}
               </div>
             )}
-            <p className="text-sm inter-font font-[500] text-gray-700">{blog.authorName}</p>
+            <p className="text-xs sm:text-sm inter-font font-[500] text-gray-700">{blog.authorName}</p>
             {(blog.publishedAt || blog.createdAt) && (
               <>
-            <span className="text-gray-400 text-sm">•</span>
-                <p className="text-sm inter-font font-[400] text-gray-500">
+                <span className="text-gray-400 text-xs sm:text-sm">•</span>
+                <p className="text-xs sm:text-sm inter-font font-[400] text-gray-500">
                   {formatDate(blog.publishedAt || blog.createdAt)}
                 </p>
               </>
@@ -201,21 +215,49 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
           {/* EXCERPT */}
           {blog.excerpt && (
-            <p className="mt-6 text-[18px] inter-font font-[400] text-gray-600 italic leading-relaxed">
+            <p className="mt-4 sm:mt-5 lg:mt-6 text-base sm:text-lg lg:text-[18px] inter-font font-[400] text-gray-600 italic leading-relaxed">
               {blog.excerpt}
             </p>
           )}
 
           {/* TEXT CONTENT */}
-          <div className="mt-6 space-y-6 text-gray-700 leading-relaxed">
+          <div className="mt-4 sm:mt-5 lg:mt-6 space-y-4 sm:space-y-5 lg:space-y-6 text-gray-700 leading-relaxed">
             {typeof blog.content === 'string' ? (
-              // Render HTML content directly
+              // Render HTML content directly - replace all images with product images
               <div
-                className="prose max-w-none prose-headings:mt-6 prose-headings:mb-4 prose-p:mb-4 prose-img:rounded-xl prose-img:w-full prose-img:my-6 prose-a:text-blue-600 prose-a:underline prose-strong:font-bold prose-em:italic inter-font text-[18px] font-[400] leading-relaxed text-gray-700"
-                dangerouslySetInnerHTML={{ __html: blog.content }}
+                className="prose max-w-none prose-headings:mt-4 sm:prose-headings:mt-5 lg:prose-headings:mt-6 prose-headings:mb-3 sm:prose-headings:mb-4 prose-p:mb-3 sm:prose-p:mb-4 prose-img:rounded-lg sm:prose-img:rounded-xl prose-img:w-full prose-img:my-4 sm:prose-img:my-5 lg:prose-img:my-6 prose-a:text-blue-600 prose-a:underline prose-strong:font-bold prose-em:italic inter-font text-base sm:text-lg lg:text-[18px] font-[400] leading-relaxed text-gray-700"
+                dangerouslySetInnerHTML={{
+                  __html: (() => {
+                    const productImages = [
+                      "/assets/product/product-card-1.png",
+                      "/assets/product/product-card-2.png",
+                      "/assets/product/product-card-3.png",
+                      "/assets/product/product-card-4.png",
+                      "/assets/product/product-card-5.png",
+                      "/assets/product/product-card-6.png",
+                      "/assets/product/product-feature-1.png",
+                      "/assets/product/product-feature-2.png",
+                      "/assets/product/product-feature-3.png",
+                      "/assets/product/product-feature-4.png",
+                    ];
+                    let imageCounter = 0;
+                    return blog.content.replace(
+                      /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
+                      (match, src) => {
+                        // Replace all images (except data URIs) with product images
+                        if (src && !src.startsWith('data:')) {
+                          const replacementImage = productImages[imageCounter % productImages.length];
+                          imageCounter++;
+                          return match.replace(src, replacementImage);
+                        }
+                        return match;
+                      }
+                    );
+                  })()
+                }}
               />
             ) : (
-              // Render legacy ContentBlock array
+              // Render legacy ContentBlock array - images already replaced in renderContentBlock
               blog.content
                 .sort((a, b) => (a.order || 0) - (b.order || 0))
                 .map((block, idx) => renderContentBlock(block, idx))
@@ -224,82 +266,82 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
           {/* TAGS */}
           {blog.tags && blog.tags.length > 0 && (
-            <div className="mt-8 pt-6 border-t">
-              <h4 className="text-sm font-medium text-gray-700 mb-3">Tags:</h4>
+            <div className="mt-6 sm:mt-7 lg:mt-8 pt-4 sm:pt-5 lg:pt-6 border-t">
+              <h4 className="text-xs sm:text-sm font-medium text-gray-700 mb-2 sm:mb-3">Tags:</h4>
               <div className="flex flex-wrap gap-2">
                 {blog.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
+                    className="bg-gray-100 text-gray-600 text-xs px-2.5 sm:px-3 py-1 rounded-full"
                   >
                     {tag}
                   </span>
                 ))}
-            </div>
+              </div>
             </div>
           )}
         </div>
 
         {/* RIGHT COLUMN - RECENT BLOGS */}
-        <div className="space-y-8">
+        <div className="space-y-5 sm:space-y-6 lg:space-y-8">
           <button className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md">
             Recent Blogs
           </button>
 
           {recentBlogs.length === 0 ? (
-            <p className="text-gray-500 text-sm">No recent blogs available</p>
+            <p className="text-gray-500 text-xs sm:text-sm">No recent blogs available</p>
           ) : (
             recentBlogs.map((recentBlog) => (
               <Link
                 key={recentBlog._id}
                 href={`/resources/blogs-and-articles/${recentBlog.slug}`}
-                className="bg-white border rounded-xl p-4 shadow-sm block hover:shadow-md transition"
+                className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm block hover:shadow-md transition"
               >
-            <img
-                  src={imgErrors[`recent-${recentBlog._id}`] ? PLACEHOLDER_IMAGE : recentBlog.heroImage}
-              width={400}
-              height={250}
+                <img
+                  src={imgErrors[`recent-${recentBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-1.png"}
+                  width={400}
+                  height={250}
                   alt={recentBlog.title}
-              className="rounded-lg w-full h-[150px] object-cover"
+                  className="rounded-md sm:rounded-lg w-full h-[120px] sm:h-[140px] lg:h-[150px] object-cover"
                   onError={() => handleImageError(`recent-${recentBlog._id}`)}
-            />
+                />
                 {recentBlog.tags && recentBlog.tags.length > 0 ? (
-            <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md mt-3 inline-block">
+                  <span className="bg-blue-100 text-blue-600 text-xs px-2.5 sm:px-3 py-1 rounded-md mt-2 sm:mt-3 inline-block">
                     {recentBlog.tags[0]}
-            </span>
+                  </span>
                 ) : (
-            <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md mt-3 inline-block">
+                  <span className="bg-blue-100 text-blue-600 text-xs px-2.5 sm:px-3 py-1 rounded-md mt-2 sm:mt-3 inline-block">
                     Article
-            </span>
+                  </span>
                 )}
-                <h3 className="mt-2 text-[15px] axiforma font-bold leading-tight text-gray-900">
+                <h3 className="mt-2 text-sm sm:text-[15px] axiforma font-bold leading-tight text-gray-900">
                   {recentBlog.title}
-            </h3>
-            <div className="flex items-center gap-2 mt-3">
+                </h3>
+                <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 flex-wrap">
                   {recentBlog.authorImage ? (
-              <img
-                      src={imgErrors[`recent-author-${recentBlog._id}`] ? PLACEHOLDER_IMAGE : recentBlog.authorImage}
-                width={26}
-                height={26}
+                    <img
+                      src={imgErrors[`recent-author-${recentBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-4.png"}
+                      width={26}
+                      height={26}
                       alt={recentBlog.authorName}
-                      className="rounded-full w-[26px] h-[26px] object-cover"
+                      className="rounded-full w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] object-cover"
                       onError={() => handleImageError(`recent-author-${recentBlog._id}`)}
-              />
+                    />
                   ) : (
-                    <div className="w-[26px] h-[26px] rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-600">
+                    <div className="w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] rounded-full bg-gray-200 flex items-center justify-center text-[10px] sm:text-xs text-gray-600">
                       {recentBlog.authorName.charAt(0).toUpperCase()}
-            </div>
+                    </div>
                   )}
-                  <p className="text-xs inter-font font-[500] text-gray-700">{recentBlog.authorName}</p>
+                  <p className="text-[11px] sm:text-xs inter-font font-[500] text-gray-700">{recentBlog.authorName}</p>
                   {(recentBlog.publishedAt || recentBlog.createdAt) && (
                     <>
-              <span className="text-gray-400 text-xs">•</span>
-                      <p className="text-xs inter-font font-[400] text-gray-500">
+                      <span className="text-gray-400 text-[11px] sm:text-xs">•</span>
+                      <p className="text-[11px] sm:text-xs inter-font font-[400] text-gray-500">
                         {formatDate(recentBlog.publishedAt || recentBlog.createdAt)}
                       </p>
                     </>
                   )}
-            </div>
+                </div>
               </Link>
             ))
           )}
@@ -308,60 +350,63 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
       {/* BLOG INSIGHTS SECTION - Full Width */}
       {recentBlogs.length > 0 && (
-      <div className="w-full py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Header Section */}
-          <div className="mb-12">
-            <h2 className="mb-3 text-[35px] axiforma font-bold text-gray-900">
-              Insights from our latest blogs
-            </h2>
-            <p className="text-[16px] inter-font font-[400] text-gray-600 leading-relaxed">
-              Stay updated with the latest trends, innovations, and expert insights in the manufacturing and industrial sectors
-            </p>
-          </div>
+        <div className="w-full py-10 sm:py-12 lg:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6">
+            {/* Header Section */}
+            <div className="mb-8 sm:mb-10 lg:mb-12">
+              <h2 className="mb-2 sm:mb-3 text-2xl sm:text-3xl lg:text-[35px] axiforma font-bold text-gray-900">
+                Insights from our latest blogs
+              </h2>
+              <p className="text-sm sm:text-base lg:text-[16px] inter-font font-[400] text-gray-600 leading-relaxed">
+                Stay updated with the latest trends, innovations, and expert insights in the manufacturing and industrial sectors
+              </p>
+            </div>
 
-          {/* Blog Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Blog Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
               {recentBlogs.slice(0, 4).map((insightBlog) => (
                 <Link
                   key={insightBlog._id}
                   href={`/resources/blogs-and-articles/${insightBlog.slug}`}
                   className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-              <div className="relative">
-                <Image
-                      src={imgErrors[`insight-${insightBlog._id}`] ? PLACEHOLDER_IMAGE : insightBlog.heroImage}
+                  <div className="relative">
+                    <Image
+                      src={imgErrors[`insight-${insightBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-2.png"}
                       alt={insightBlog.title}
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover"
+                      width={400}
+                      height={300}
+                      className="w-full h-36 sm:h-44 lg:h-48 object-cover"
                       onError={() => handleImageError(`insight-${insightBlog._id}`)}
-                />
+                    />
                     {insightBlog.tags && insightBlog.tags.length > 0 && (
-                      <span className="absolute top-3 right-3 bg-gray-800 text-white text-xs px-3 py-1 rounded-full">
+                      <span className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gray-800 text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full">
                         {insightBlog.tags[0].toUpperCase()}
                       </span>
                     )}
-              </div>
-              <div className="p-5">
-                    <p className="text-xs text-gray-500 mb-3">
+                  </div>
+                  <div className="p-3 sm:p-4 lg:p-5">
+                    <p className="text-[10px] sm:text-xs text-gray-500 mb-2 sm:mb-3">
                       {formatDate(insightBlog.publishedAt || insightBlog.createdAt)}
                     </p>
-                <h3 className="mb-3 text-[20px] axiforma font-bold text-gray-900 leading-tight">
+                    <h3 className="mb-2 sm:mb-3 text-base sm:text-lg lg:text-[20px] axiforma font-bold text-gray-900 leading-tight">
                       {insightBlog.title}
-                </h3>
+                    </h3>
                     {insightBlog.excerpt && (
-                <p className="line-clamp-3 text-[14px] inter-font font-[400] text-gray-600 leading-relaxed">
+                      <p className="line-clamp-3 text-xs sm:text-sm lg:text-[14px] inter-font font-[400] text-gray-600 leading-relaxed">
                         {insightBlog.excerpt}
-                </p>
+                      </p>
                     )}
-              </div>
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         </div>
       )}
+
+      {/* Newsletter Section */}
+      <NewsletterSubscribe />
     </div>
   );
 }

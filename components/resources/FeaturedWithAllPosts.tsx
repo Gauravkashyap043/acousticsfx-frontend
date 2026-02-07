@@ -5,7 +5,7 @@ const featuredPost = {
   title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
   author: "John Doe",
   date: "May 23, 2022",
-  image: "/assets/product/product-hero.png", // local image
+  image: "/assets/product/product-hero.png",
   excerpt:
     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   slug: "/blogs/featured-post",
@@ -40,8 +40,8 @@ const allPosts = [
 
 export default function FeaturedWithAllPosts() {
   return (
-    <section className="w-full bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16">
+    <section className="w-full bg-white py-14 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
 
         {/* LEFT – FEATURED POST */}
         <div className="lg:col-span-2">
@@ -50,7 +50,7 @@ export default function FeaturedWithAllPosts() {
           </h3>
 
           <div className="bg-white">
-            <div className="relative w-full h-[320px] mb-6">
+            <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] mb-6">
               <Image
                 src={featuredPost.image}
                 alt={featuredPost.title}
@@ -63,11 +63,11 @@ export default function FeaturedWithAllPosts() {
               By {featuredPost.author} &nbsp;|&nbsp; {featuredPost.date}
             </p>
 
-            <h2 className="text-[34px] axiforma font-bold mb-4 text-gray-900 leading-tight">
+            <h2 className="text-[26px] sm:text-[30px] lg:text-[34px] axiforma font-bold mb-4 text-gray-900 leading-tight">
               {featuredPost.title}
             </h2>
 
-            <p className="text-[18px] inter-font font-[400] text-gray-600 mb-6 leading-relaxed">
+            <p className="text-[16px] sm:text-[17px] lg:text-[18px] inter-font font-[400] text-gray-600 mb-6 leading-relaxed">
               {featuredPost.excerpt}
             </p>
 

@@ -43,8 +43,8 @@ export default function ApplicationsSection() {
   };
 
   return (
-    <section className="relative px-[100px] py-[90px] overflow-hidden">
-      
+    <section className="relative px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[75px] lg:py-[90px] overflow-hidden">
+
       {/* ================= Background Image + Fade ================= */}
       <div className="absolute inset-0 -z-10">
         <img
@@ -52,17 +52,16 @@ export default function ApplicationsSection() {
           alt="Applications Background"
           className="w-full h-full object-cover"
         />
-        {/* White fade overlay */}
         <div className="absolute inset-0 bg-white/85"></div>
       </div>
 
       {/* ================= Heading ================= */}
-      <div className="flex justify-between items-start mb-8">
-        <h2 className="text-[45px] worksans-font font-bold text-[#111]">
+      <div className="flex flex-col lg:flex-row justify-between items-start mb-8 gap-6">
+        <h2 className="text-[30px] sm:text-[38px] lg:text-[45px] worksans-font font-bold text-[#111]">
           Our Applications
         </h2>
 
-        <p className="text-gray-600 max-w-lg leading-relaxed worksans-font font-[400] text-[20px]">
+        <p className="text-gray-600 max-w-lg leading-relaxed worksans-font font-[400] text-[16px] sm:text-[18px] lg:text-[20px]">
           FX Acoustics solutions blend performance with aesthetics,
           transforming offices, hospitality, education, and residences.
           From clarity in boardrooms to comfort at home, we craft acoustic
@@ -71,7 +70,7 @@ export default function ApplicationsSection() {
       </div>
 
       {/* ================= Cards + Arrows ================= */}
-      <div className="relative mt-6 px-20">
+      <div className="relative mt-6 px-0 sm:px-10 lg:px-20">
         <div className="relative overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-500"
@@ -80,7 +79,10 @@ export default function ApplicationsSection() {
             }}
           >
             {applications.map((app, i) => (
-              <div key={i} className="min-w-[calc(33.333%-16px)] flex-shrink-0">
+              <div
+                key={i}
+                className="min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] flex-shrink-0"
+              >
                 <ApplicationCard
                   title={app.title}
                   subtitle={app.subtitle}
@@ -95,7 +97,7 @@ export default function ApplicationsSection() {
         <button
           onClick={prev}
           disabled={index === 0}
-          className="absolute left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute left-0 sm:left-[-10px] lg:left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -109,7 +111,7 @@ export default function ApplicationsSection() {
         <button
           onClick={next}
           disabled={index >= applications.length - 3}
-          className="absolute right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute right-0 sm:right-[-10px] lg:right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -134,7 +136,7 @@ function ApplicationCard({
   image: string;
 }) {
   return (
-    <div className="relative h-[320px] overflow-hidden group">
+    <div className="relative h-[260px] sm:h-[300px] lg:h-[320px] overflow-hidden group">
       <img
         src={image}
         alt={title}

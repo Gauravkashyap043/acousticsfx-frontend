@@ -19,7 +19,7 @@ export default function OurClients() {
   ];
 
   return (
-    <section className="relative h-[580px] overflow-hidden">
+    <section className="relative h-[420px] sm:h-[500px] lg:h-[580px] overflow-hidden">
 
       {/* BACKGROUND IMAGE */}
       <div className="absolute inset-0">
@@ -32,28 +32,24 @@ export default function OurClients() {
         />
       </div>
 
-      {/* BLUISH OVERLAY */}
+      {/* OVERLAYS */}
       <div className="absolute inset-0 bg-[#1d4a77]/40" />
-
-      {/* TOP & BOTTOM FADE MASK */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
-
-      {/* EXTRA WASH */}
       <div className="absolute inset-0 bg-white/10" />
 
       {/* CONTENT */}
-      <div className="relative z-10 h-full px-[340px] flex flex-col justify-center">
+      <div className="relative z-10 h-full px-6 sm:px-10 lg:px-[340px] flex flex-col justify-center">
 
         {/* HEADING */}
-        <h2 className="text-center text-white text-2xl font-semibold mb-16">
+        <h2 className="text-center text-white text-2xl font-semibold mb-10 sm:mb-14 lg:mb-16">
           Our Valuable Clients
         </h2>
 
-        {/* LOGOS GRID */}
-        <div className="flex flex-col items-center gap-[91px]">
+        {/* LOGOS */}
+        <div className="flex flex-col items-center gap-10 sm:gap-14 lg:gap-[91px]">
 
-          {/* ROW 1 – 5 LOGOS */}
-          <div className="flex gap-[91px]">
+          {/* ROW 1 */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 lg:gap-[91px]">
             {row1Logos.map((logo, index) => (
               <div
                 key={index}
@@ -72,8 +68,8 @@ export default function OurClients() {
             ))}
           </div>
 
-          {/* ROW 2 – 4 LOGOS */}
-          <div className="flex gap-[91px]">
+          {/* ROW 2 */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 lg:gap-[91px]">
             {row2Logos.map((logo, index) => (
               <div
                 key={index}
