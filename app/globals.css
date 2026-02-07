@@ -162,3 +162,19 @@ body {
   font-style: normal;
   font-display: swap;
 }
+
+
+
+
+@keyframes client-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-client-marquee {
+  animation: client-marquee 25s linear infinite;
+}

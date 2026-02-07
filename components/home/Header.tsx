@@ -3,34 +3,45 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
   const [openProducts, setOpenProducts] = useState(false);
   const [openResources, setOpenResources] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+
+  // Close mobile menu when route changes
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+    setMobileProductsOpen(false);
+    setMobileResourcesOpen(false);
+  };
 
   return (
     <header className="sticky top-0 w-full bg-white shadow-md z-50">
-      <div className="px-[100px] py-4 flex items-center">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-[100px] py-3 sm:py-4 flex items-center justify-between">
 
         {/* LEFT : LOGO */}
-        <div className="flex-shrink-0">
-          <Link href="/" className="cursor-pointer inline-block">
+        <div className="flex-shrink-0 z-50">
+          <Link href="/" className="cursor-pointer inline-block" onClick={handleLinkClick}>
             <Image
               src="/assets/home/Group 34.svg"
               alt="FX Acoustic Inc"
-              width={210}
-              height={50}
+              width={150}
+              height={40}
+              className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[210px] h-auto"
               priority
             />
           </Link>
         </div>
 
-        {/* CENTER : NAV */}
-        <nav className="flex-1 flex justify-center">
-          <ul className="hidden md:flex items-center gap-[55px] text-sm font-medium text-gray-800">
+        {/* CENTER : DESKTOP NAV */}
+        <nav className="flex-1 hidden lg:flex justify-center">
+          <ul className="flex items-center gap-8 xl:gap-[55px] text-sm font-medium text-gray-800">
 
             <li>
               <Link href="/about" className="hover:text-orange-500 transition">
@@ -60,7 +71,7 @@ export default function Header() {
               </Link>
 
               {openProducts && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[320px] py-3 px-5 z-40">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[320px] py-3 px-5 z-40 shadow-lg rounded-lg">
                   <h3 className="text-[24px] font-[400] mb-4">Our Products</h3>
 
                   {[
@@ -116,7 +127,7 @@ export default function Header() {
               </Link>
 
               {openResources && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[280px] py-3 px-5 z-40">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[60px] bg-white w-[280px] py-3 px-5 z-40 shadow-lg rounded-lg">
                   <h3 className="text-[24px] font-[400] mb-4">Resources</h3>
 
                   {[
@@ -158,14 +169,153 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* RIGHT : CTA */}
-        <div className="flex-shrink-0">
+        {/* RIGHT : CTA - Desktop */}
+        <div className="hidden lg:flex flex-shrink-0">
           <Link
             href="/get-quote"
-            className="bg-[#EA8E39] text-white px-4 py-3 text-sm font-[400] hover:bg-orange-600 transition"
+            className="bg-[#EA8E39] text-white px-4 py-3 text-sm font-[400] hover:bg-orange-600 transition rounded"
           >
             Get Quote
           </Link>
+        </div>
+
+        {/* HAMBURGER MENU BUTTON - Mobile & Tablet */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden z-50 p-2 text-gray-800 hover:text-orange-500 transition"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* MOBILE MENU OVERLAY */}
+        {mobileMenuOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
+        {/* MOBILE MENU */}
+        <div
+          className={`
+            fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white shadow-2xl z-40 lg:hidden
+            transform transition-transform duration-300 ease-in-out
+            ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+            overflow-y-auto
+          `}
+        >
+          <div className="p-6 pt-20">
+            <nav>
+              <ul className="space-y-2">
+                
+                {/* About */}
+                <li>
+                  <Link
+                    href="/about"
+                    onClick={handleLinkClick}
+                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium"
+                  >
+                    About
+                  </Link>
+                </li>
+
+                {/* Our Products - Mobile Accordion */}
+                <li>
+                  <button
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium
+                      ${pathname?.startsWith("/products") ? "text-orange-500 bg-orange-50" : ""}
+                    `}
+                  >
+                    <span>Our Products</span>
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  
+                  {mobileProductsOpen && (
+                    <ul className="mt-2 ml-4 space-y-1">
+                      {[
+                        { name: "Acoustic Solutions", link: "/products/productId" },
+                        { name: "Flooring Solutions", link: "/products/productId/InsideProduct" },
+                        { name: "Noise Solution", link: "/products/noise-solutions" },
+                      ].map((item) => (
+                        <li key={item.name}>
+                          <Link
+                            href={item.link}
+                            onClick={handleLinkClick}
+                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg"
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+
+                {/* Resources - Mobile Accordion */}
+                <li>
+                  <button
+                    onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium
+                      ${pathname?.startsWith("/resources") ? "text-blue-600 bg-blue-50" : ""}
+                    `}
+                  >
+                    <span>Resources</span>
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform ${mobileResourcesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  
+                  {mobileResourcesOpen && (
+                    <ul className="mt-2 ml-4 space-y-1">
+                      {[
+                        { name: "Blogs & Articles", link: "/resources?tab=blogs" },
+                        { name: "Case Studies", link: "/resources/casestudy" },
+                        { name: "Events", link: "/resources?tab=events" },
+                      ].map((item) => (
+                        <li key={item.name}>
+                          <Link
+                            href={item.link}
+                            onClick={handleLinkClick}
+                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-lg"
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+
+                {/* Contact Us */}
+                <li>
+                  <Link
+                    href="/contactus"
+                    onClick={handleLinkClick}
+                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+
+                {/* Get Quote Button - Mobile */}
+                <li className="pt-4">
+                  <Link
+                    href="/get-quote"
+                    onClick={handleLinkClick}
+                    className="block w-full bg-[#EA8E39] text-white text-center px-4 py-3 rounded-lg font-medium hover:bg-orange-600 transition"
+                  >
+                    Get Quote
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </header>

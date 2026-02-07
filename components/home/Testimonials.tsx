@@ -53,7 +53,7 @@ export default function Testimonials() {
     <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white relative">
 
       {/* HEADING */}
-      <h2 className="text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
+      <h2 className="text-left lg:text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
         Loved by the world's best teams
       </h2>
 
@@ -81,12 +81,12 @@ export default function Testimonials() {
               </div>
 
               {/* TEXT */}
-              <p className="text-gray-600 mb-10 leading-relaxed">
-                “{item.text}”
+              <p className="text-gray-600 mb-10 leading-relaxed text-left">
+                "{item.text}"
               </p>
 
               {/* USER */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 text-left">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden">
                   <Image
                     src={item.avatar}
@@ -96,11 +96,11 @@ export default function Testimonials() {
                   />
                 </div>
 
-                <div>
-                  <p className="font-medium text-sm">
+                <div className="text-left">
+                  <p className="font-medium text-sm text-left">
                     {item.name}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 text-left">
                     {item.role}
                   </p>
                 </div>

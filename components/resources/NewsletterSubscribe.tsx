@@ -7,13 +7,13 @@ export default function NewsletterSubscribe() {
         <div className="bg-[#F7F7F7] rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between px-6 sm:px-10 lg:px-14 py-10 sm:py-12 lg:py-16 gap-10">
 
           {/* Left Content */}
-          <div className="max-w-xl">
-            <p className="text-[12px] tracking-widest text-gray-500 uppercase mb-4">
+          <div className="max-w-xl text-left">
+            <p className="text-[12px] tracking-widest text-gray-500 uppercase mb-4 text-left">
               Subscribe our newsletter
             </p>
 
-            <h2 className="text-[26px] sm:text-[28px] lg:text-[32px] leading-snug font-semibold text-gray-900 mb-8">
-              Get stories in your <br /> inbox twice a month.
+            <h2 className="text-[26px] sm:text-[28px] lg:text-[32px] leading-snug font-semibold text-gray-900 mb-8 text-left">
+              Get stories in your <br className="hidden sm:block" /> inbox twice a month.
             </h2>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">

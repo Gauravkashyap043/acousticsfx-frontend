@@ -35,12 +35,11 @@ const blogs = [
 
 export default function LatestBlogs() {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const activeBlog = blogs[activeIndex];
-  const sideBlogs = blogs.filter((_, i) => i !== activeIndex);
 
   const next = () =>
     setActiveIndex((prev) => (prev + 1) % blogs.length);
+
   const prev = () =>
     setActiveIndex((prev) =>
       prev === 0 ? blogs.length - 1 : prev - 1
@@ -67,10 +66,10 @@ export default function LatestBlogs() {
         </button>
       </div>
 
-      {/* CONTENT */}
+      {/* ================= CONTENT ================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        {/* BIG ACTIVE CARD */}
+        {/* ACTIVE SLIDE (ALL SCREENS) */}
         <div className="relative rounded-2xl overflow-hidden h-[320px] sm:h-[380px] lg:h-[420px]">
           <Image
             src={activeBlog.image}
@@ -98,48 +97,51 @@ export default function LatestBlogs() {
           </span>
         </div>
 
-        {/* SIDE BLOGS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {sideBlogs.map((blog) => (
-            <div
-              key={blog.id}
-              className="cursor-pointer"
-              onClick={() =>
-                setActiveIndex(blogs.findIndex((b) => b.id === blog.id))
-              }
-            >
-              <div className="relative h-[150px] sm:h-[160px] rounded-xl overflow-hidden mb-3">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  fill
-                  className="object-cover"
-                />
+        {/* ================= SIDE BLOGS (DESKTOP ONLY) ================= */}
+        <div className="hidden lg:grid grid-cols-2 gap-6">
+          {blogs
+            .filter((_, i) => i !== activeIndex)
+            .map((blog) => (
+              <div
+                key={blog.id}
+                className="cursor-pointer"
+                onClick={() =>
+                  setActiveIndex(
+                    blogs.findIndex((b) => b.id === blog.id)
+                  )
+                }
+              >
+                <div className="relative h-[160px] rounded-xl overflow-hidden mb-3">
+                  <Image
+                    src={blog.image}
+                    alt={blog.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <span className="absolute top-3 right-3 bg-white text-xs px-3 py-1 rounded-full">
+                    {blog.tag}
+                  </span>
+                </div>
 
-                <span className="absolute top-3 right-3 bg-white text-xs px-3 py-1 rounded-full">
-                  {blog.tag}
-                </span>
+                <p className="text-xs text-gray-500 mb-1">
+                  {blog.date}
+                </p>
+                <h4 className="font-semibold text-sm mb-1">
+                  {blog.title}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {blog.desc}
+                </p>
               </div>
-
-              <p className="text-xs text-gray-500 mb-1">
-                {blog.date}
-              </p>
-              <h4 className="font-semibold text-sm mb-1">
-                {blog.title}
-              </h4>
-              <p className="text-sm text-gray-600">
-                {blog.desc}
-              </p>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
 
-      {/* ARROWS */}
+      {/* ================= ARROWS ================= */}
       <div className="flex justify-center lg:justify-end gap-4 mt-10">
         <button
           onClick={prev}
-          className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center hover:opacity-80 transition"
+          className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -152,7 +154,7 @@ export default function LatestBlogs() {
 
         <button
           onClick={next}
-          className="w-12 h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
+          className="w-12 h-12 bg-black rounded-md flex items-center justify-center"
         >
           <Image
             src="/assets/home/universalvector.svg"

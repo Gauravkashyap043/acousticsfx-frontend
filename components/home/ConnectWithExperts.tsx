@@ -10,24 +10,24 @@ export default function ConnectWithExperts() {
       <div className="relative flex min-h-[300px] flex-col lg:flex-row">
 
         {/* LEFT CONTENT */}
-        <div className="pl-6 sm:pl-10 lg:pl-[100px] pr-6 lg:pr-12 flex flex-col justify-center max-w-[720px] z-10 text-center lg:text-left">
-          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] inter-font font-[600] mb-4">
+        <div className="pl-6 sm:pl-10 lg:pl-[100px] pr-6 lg:pr-12 flex flex-col justify-center max-w-[720px] z-10 text-left">
+          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] inter-font font-[600] mb-4 text-left">
             Connect with experts
           </h2>
 
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
+          <div className="flex flex-wrap justify-start gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
             <span>🔒 IP Awards</span>
             <span>👨‍💼 Experienced Experts</span>
             <span>📈 Success Rate</span>
           </div>
 
-          <p className="text-[14px] inter-font font-[400] text-white/80 mb-8 leading-relaxed">
+          <p className="text-[14px] inter-font font-[400] text-white/80 mb-8 leading-relaxed text-left">
             Reach Out to Our Expert Team for Tailored Solutions, Consultations,
             and Unparalleled Support. Your IP Success Starts with a Conversation
             at Roax.
           </p>
 
-          <button className="bg-white text-black px-6 py-3 w-fit mx-auto lg:mx-0 text-sm font-medium">
+          <button className="bg-white text-black px-6 py-3 w-fit text-sm font-medium">
             Get in touch →
           </button>
         </div>
@@ -90,11 +90,11 @@ export default function ConnectWithExperts() {
 
       {/* ================= BOTTOM SUBSCRIBE ================= */}
       <div className="px-6 sm:px-10 lg:px-[100px] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        <div>
-          <h3 className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold mb-2 inter-font">
+        <div className="text-left">
+          <h3 className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold mb-2 inter-font text-left">
             Subscribe to our Latest News
           </h3>
-          <p className="text-[14px] inter-font font-[400] text-white/70 max-w-md leading-relaxed">
+          <p className="text-[14px] inter-font font-[400] text-white/70 max-w-md leading-relaxed text-left">
             Join our mailing list and get the latest Roax news, insights,
             updates, and exclusive articles delivered to your inbox.
           </p>

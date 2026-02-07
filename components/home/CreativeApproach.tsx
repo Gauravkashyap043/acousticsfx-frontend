@@ -16,11 +16,15 @@ export default function CreativeApproach() {
 
         {/* LEFT CONTENT CARD */}
         <div
-          className="relative z-30 bg-[#FFF3E8] p-6 lg:p-10 shadow-lg flex-shrink-0 w-full lg:w-auto"
-          style={{
-            width: "clamp(500px, 40.9vw, 655px)",
-            height: "clamp(550px, 44.3vw, 709px)",
-          }}
+          className="
+            relative z-30 bg-[#FFF3E8]
+            p-6 lg:p-10
+            shadow-lg
+            w-full
+            lg:w-auto
+            lg:[width:clamp(500px,40.9vw,655px)]
+            lg:[height:clamp(550px,44.3vw,709px)]
+          "
         >
           <p className="text-sm mb-2">#FXacoustic solutions</p>
 
@@ -35,9 +39,7 @@ export default function CreativeApproach() {
               className="flex w-full justify-between items-center font-medium"
             >
               <span>Story & Concept</span>
-              <span className="text-xl">
-                {openIndex === 0 ? "−" : "+"}
-              </span>
+              <span className="text-xl">{openIndex === 0 ? "−" : "+"}</span>
             </button>
 
             {openIndex === 0 && (
@@ -56,9 +58,7 @@ export default function CreativeApproach() {
               className="flex w-full justify-between items-center font-medium"
             >
               <span>Design and Testing</span>
-              <span className="text-xl">
-                {openIndex === 1 ? "−" : "+"}
-              </span>
+              <span className="text-xl">{openIndex === 1 ? "−" : "+"}</span>
             </button>
 
             {openIndex === 1 && (
@@ -76,9 +76,7 @@ export default function CreativeApproach() {
               className="flex w-full justify-between items-center font-medium"
             >
               <span>Revision and Rendering</span>
-              <span className="text-xl">
-                {openIndex === 2 ? "−" : "+"}
-              </span>
+              <span className="text-xl">{openIndex === 2 ? "−" : "+"}</span>
             </button>
 
             {openIndex === 2 && (
@@ -96,17 +94,23 @@ export default function CreativeApproach() {
 
         {/* IMAGES WRAPPER */}
         <div
-          className="relative flex-1 min-w-0 mt-10 lg:mt-0 w-full"
-          style={{ height: "clamp(700px, 56.25vw, 900px)" }}
+          className="
+            relative flex-1 min-w-0 w-full
+            mt-10 lg:mt-0
+            flex flex-col lg:block items-center
+            lg:[height:clamp(700px,56.25vw,900px)]
+          "
         >
-
-          {/* SMALL IMAGE (BACK) */}
+          {/* SMALL IMAGE */}
           <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-0 hidden sm:block"
-            style={{
-              width: "clamp(350px, 31.25vw, 500px)",
-              height: "clamp(525px, 46.875vw, 750px)",
-            }}
+            className="
+              relative lg:absolute
+              right-0 lg:top-1/2 lg:-translate-y-1/2
+              z-0 hidden sm:block
+              mb-6 lg:mb-0
+              lg:[width:clamp(350px,31.25vw,500px)]
+              lg:[height:clamp(525px,46.875vw,750px)]
+            "
           >
             <Image
               src="/assets/home/banTwo.png"
@@ -116,13 +120,16 @@ export default function CreativeApproach() {
             />
           </div>
 
-          {/* BIG IMAGE (FRONT) */}
+          {/* BIG IMAGE */}
           <div
-            className="absolute z-10 top-1/2 -translate-y-1/2 right-0 sm:right-[80px] lg:right-[clamp(180px,16.25vw,260px)]"
-            style={{
-              width: "clamp(320px, 80vw, 667px)",
-              height: "clamp(420px, 90vw, 835px)",
-            }}
+            className="
+              relative lg:absolute z-10
+              lg:top-1/2 lg:-translate-y-1/2
+              right-0 sm:right-auto
+              lg:right-[clamp(180px,16.25vw,260px)]
+              lg:[width:clamp(320px,80vw,667px)]
+              lg:[height:clamp(420px,90vw,835px)]
+            "
           >
             <Image
               src="/assets/home/banImage.png"
@@ -131,7 +138,6 @@ export default function CreativeApproach() {
               className="object-cover"
             />
           </div>
-
         </div>
 
       </div>
