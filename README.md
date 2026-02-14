@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# acousticsfx-frontend
 
-## Getting Started
+Next.js 16 public site for AcousticsFX: marketing, products, resources, contact, and about.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 16 (App Router), React 19
+- **Styling**: Tailwind CSS 4
+- **Fonts**: Google Fonts (Geist, Poppins, Playfair Display, Work Sans, Inter, Plus Jakarta Sans, Manrope, Lato) — configured in `app/layout.tsx`
+- **UI**: Lucide React, React Icons, Swiper, Splide (carousels/sliders)
+
+## Scripts
+
+| Command | Description |
+|--------|-------------|
+| `npm run dev` | Start Next dev server |
+| `npm run build` | Production build |
+| `npm run start` | Run production server |
+| `npm run lint` | ESLint |
+
+## Environment
+
+- **NEXT_PUBLIC_API_URL**: Optional; used by `lib/api/client.ts` for API base URL (default in code: `https://newadmin.quasmoindianmicroscope.com`). Override for local backend.
+
+## Project layout
+
+```
+app/
+├── layout.tsx            # Root layout, fonts, globals.css
+├── page.tsx              # Home
+├── about/page.tsx
+├── contactus/page.tsx
+├── products/
+│   ├── page.tsx         # Products index
+│   └── acoustic/
+│       ├── page.tsx
+│       ├── wood-wool-acoustic-panel/   # + perfomax, microatlas, linearlux, acoslots, acoperf
+│       ├── wood-acoustic-panel/        # same variants
+│       ├── fabric-acoustic-panel/      # same variants
+│       └── baffle-clouds/             # same variants
+└── resources/
+    ├── page.tsx
+    ├── casestudy/page.tsx
+    ├── blogs/[slug]/page.tsx
+    └── blogs-and-articles/[slug]/page.tsx
+
+components/
+├── home/        # Header, Footer, HomeHero, AboutSection, OurProduct, Testimonials, etc.
+├── products/    # ProductHero, ProductSpecification, RelatedProducts, Linearlux*, Wood*, etc.
+├── resources/   # ResourceTabs, BlogDetailLayout, LatestPosts, CaseStudySection, etc.
+├── contact/     # ContactHero, ContactFormSection, LocationsSection, TrustedBySection
+└── about/       # AboutHero, AboutContent, FounderSection, ValuesSection, etc.
+
+lib/
+├── utils.ts           # cn() and helpers (e.g. tailwind-merge + clsx)
+├── products-data.ts  # Static product/data
+└── api/
+    └── client.ts      # Fetch wrapper, ApiClientError, NEXT_PUBLIC_API_URL
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **App Router**: One `page.tsx` per route; dynamic routes use `[slug]`.
+- **Layout**: Single root layout in `app/layout.tsx`; fonts and global CSS are applied there.
+- **Images**: `next.config.ts` allows remote images from `ik.imagekit.io` and `images.unsplash.com`; AVIF/WebP, device sizes and cache TTL are set.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Conventions
 
-## Learn More
+- **Components**: Grouped by section (home, products, resources, contact, about). Reuse existing patterns (Hero, Section, layout components).
+- **Data**: Static data in `lib/` (e.g. `products-data.ts`). For live data use `lib/api/client.ts` and `NEXT_PUBLIC_API_URL`.
+- **Styling**: Tailwind only; use existing utilities and CSS variables/fonts from the layout.
+- **New page**: Add `app/<path>/page.tsx`; use components from `components/` and data from `lib/` as needed.
 
-To learn more about Next.js, take a look at the following resources:
+## Key files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **app/layout.tsx**: Font loading (Geist, Poppins, Playfair, etc.) and root HTML/CSS.
+- **app/globals.css**: Global Tailwind and custom styles.
+- **lib/utils.ts**: `cn()` for class names.
+- **lib/api/client.ts**: Base URL from env, `get()/post()/...`, error handling with `ApiClientError`.
