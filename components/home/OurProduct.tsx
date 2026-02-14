@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
+import { useContent } from "@/hooks/useContent";
+import { HOME_OUR_PRODUCT_KEYS } from "@/lib/content/keys";
 
 /* 🔹 PRODUCT DATA (HAR SLIDE KI ALAG IMAGE) */
 const products = [
@@ -24,6 +27,11 @@ const products = [
 
 export default function ProductsSection() {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const { get } = useContent(HOME_OUR_PRODUCT_KEYS);
+  const heading = get("home.ourProduct.heading");
+  const subheading = get("home.ourProduct.subheading");
+  const body = get("home.ourProduct.body");
+  const ctaLabel = get("home.ourProduct.ctaLabel");
 
   const scrollLeft = () => {
     sliderRef.current?.scrollBy({ left: -600, behavior: "smooth" });
@@ -42,19 +50,20 @@ export default function ProductsSection() {
 
           <div className="max-w-3xl">
             <p className="text-[16px] mb-3 worksans-font font=[700]">
-              Our Products
+              {heading}
             </p>
 
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] axiforma font-bold leading-tight mb-4">
-              We Cut Through Noise to create architects
-              <br />
-              that are thoughtful, timeless & Impactful.
+              {subheading.split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < subheading.split("\n").length - 1 && <br />}
+                </span>
+              ))}
             </h2>
 
             <p className="text-sm text-gray-600 mb-6">
-              Our inspired solutions have helped shape modern acoustic design.
-              Alluring spaces, internationally recognised for their architectural
-              elegance and exceptional sound management live here.
+              {body}
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -70,9 +79,9 @@ export default function ProductsSection() {
             </div>
           </div>
 
-          <button className="border px-5 py-2 text-xs h-fit">
-            VIEW ALL PRODUCTS →
-          </button>
+          <Link href="/products/acoustic" className="border px-5 py-2 text-xs h-fit inline-block">
+            {ctaLabel}
+          </Link>
         </div>
       </div>
 

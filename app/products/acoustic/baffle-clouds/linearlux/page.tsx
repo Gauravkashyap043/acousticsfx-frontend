@@ -13,13 +13,14 @@ import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function LinearluxPage() {
-  const product = getProductBySlug('baffle-clouds')
-  const subProduct = getSubProductData('baffle-clouds', 'linearlux')
-  
+export default async function LinearluxPage() {
+  const product = await getProductBySlug('baffle-clouds')
+  const subProduct = await getSubProductData('baffle-clouds', 'linearlux')
+
   if (!product || !subProduct) {
-    return null
+    notFound()
   }
 
   return (

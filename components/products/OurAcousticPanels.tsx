@@ -1,25 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getProductBySlug } from "@/lib/products-data";
+import type { Product } from "@/lib/products-api";
 
 interface OurAcousticPanelsProps {
+  product?: Product | null;
   productSlug?: string;
 }
 
-export default function OurAcousticPanels({ productSlug }: OurAcousticPanelsProps = {}) {
-  // Get panels from data if productSlug is provided, otherwise use default
+export default function OurAcousticPanels({ product, productSlug }: OurAcousticPanelsProps = {}) {
+  // Get panels from product prop (from API) or legacy productSlug not used when product is passed
   let panels: Array<{ title: string; desc: string; img: string; slug?: string }> = [];
-  
-  if (productSlug) {
-    const product = getProductBySlug(productSlug);
-    if (product && product.subProducts.length > 0) {
-      panels = product.subProducts.map((sub) => ({
-        title: sub.title,
-        desc: sub.description,
-        img: sub.image,
-        slug: sub.slug,
-      }));
-    }
+
+  if (product && product.subProducts.length > 0) {
+    panels = product.subProducts.map((sub) => ({
+      title: sub.title,
+      desc: sub.description,
+      img: sub.image,
+      slug: sub.slug,
+    }));
   }
   
   // Fallback to default panels if no productSlug or no sub-products
@@ -119,12 +117,13 @@ group-hover:rotate-0">
               </div>
             );
 
-            // Wrap in Link if productSlug and slug are available
-            if (productSlug && item.slug) {
+            // Wrap in Link if product and slug are available
+            const slug = product?.slug ?? productSlug;
+            if (slug && item.slug) {
               return (
                 <Link
                   key={index}
-                  href={`/products/acoustic/${productSlug}/${item.slug}`}
+                  href={`/products/acoustic/${slug}/${item.slug}`}
                   className="block"
                 >
                   {CardContent}

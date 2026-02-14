@@ -13,13 +13,14 @@ import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function LinearluxPage() {
-  const product = getProductBySlug('fabric-acoustic-panel')
-  const subProduct = getSubProductData('fabric-acoustic-panel', 'linearlux')
-  
+export default async function LinearluxPage() {
+  const product = await getProductBySlug('fabric-acoustic-panel')
+  const subProduct = await getSubProductData('fabric-acoustic-panel', 'linearlux')
+
   if (!product || !subProduct) {
-    return null
+    notFound()
   }
 
   return (

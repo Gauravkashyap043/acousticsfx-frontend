@@ -13,13 +13,14 @@ import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function PerfomaxPage() {
-  const product = getProductBySlug('wood-acoustic-panel')
-  const subProduct = getSubProductData('wood-acoustic-panel', 'perfomax')
-  
+export default async function PerfomaxPage() {
+  const product = await getProductBySlug('wood-acoustic-panel')
+  const subProduct = await getSubProductData('wood-acoustic-panel', 'perfomax')
+
   if (!product || !subProduct) {
-    return null
+    notFound()
   }
 
   return (

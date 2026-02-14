@@ -13,13 +13,14 @@ import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function MicroatlasPage() {
-  const product = getProductBySlug('fabric-acoustic-panel')
-  const subProduct = getSubProductData('fabric-acoustic-panel', 'microatlas')
-  
+export default async function MicroatlasPage() {
+  const product = await getProductBySlug('fabric-acoustic-panel')
+  const subProduct = await getSubProductData('fabric-acoustic-panel', 'microatlas')
+
   if (!product || !subProduct) {
-    return null
+    notFound()
   }
 
   return (

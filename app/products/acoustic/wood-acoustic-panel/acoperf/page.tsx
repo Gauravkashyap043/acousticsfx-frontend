@@ -13,13 +13,14 @@ import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function AcoperfPage() {
-  const product = getProductBySlug('wood-acoustic-panel')
-  const subProduct = getSubProductData('wood-acoustic-panel', 'acoperf')
-  
+export default async function AcoperfPage() {
+  const product = await getProductBySlug('wood-acoustic-panel')
+  const subProduct = await getSubProductData('wood-acoustic-panel', 'acoperf')
+
   if (!product || !subProduct) {
-    return null
+    notFound()
   }
 
   return (

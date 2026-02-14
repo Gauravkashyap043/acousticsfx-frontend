@@ -10,12 +10,13 @@ import ProductHeroSection from '@/components/products/ProductHeroSection'
 import WhyChooseSection from '@/components/products/WhyChooseSection'
 import { getProductBySlug } from '@/lib/products-data'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function WoodWoolAcousticPanelPage() {
-  const product = getProductBySlug('wood-wool-acoustic-panel')
-  
+export default async function WoodWoolAcousticPanelPage() {
+  const product = await getProductBySlug('wood-wool-acoustic-panel')
+
   if (!product) {
-    return null
+    notFound()
   }
 
   return (
@@ -31,7 +32,7 @@ export default function WoodWoolAcousticPanelPage() {
         title={product.title}
         description={product.description}
       />
-      <OurAcousticPanels productSlug={product.slug} />
+      <OurAcousticPanels product={product} />
       <WhyChooseSection
         title={product.title}
         description={product.description}

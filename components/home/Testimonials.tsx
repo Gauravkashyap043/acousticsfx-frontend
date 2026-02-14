@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useContent } from "@/hooks/useContent";
+import { HOME_TESTIMONIALS_LOGO_KEYS } from "@/lib/content/keys";
+
+const TESTIMONIAL_LOGO_KEYS = [
+  "home.testimonials.logo1",
+  "home.testimonials.logo2",
+  "home.testimonials.logo3",
+  "home.testimonials.logo4",
+] as const;
 
 const testimonials = [
   {
@@ -43,6 +52,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { get } = useContent(HOME_TESTIMONIALS_LOGO_KEYS);
   const [index, setIndex] = useState(0);
 
   const prev = () => setIndex((prev) => Math.max(prev - 1, 0));
@@ -73,7 +83,7 @@ export default function Testimonials() {
               {/* COMPANY LOGO */}
               <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6">
                 <Image
-                  src={item.companyLogo}
+                  src={get(TESTIMONIAL_LOGO_KEYS[i]) || item.companyLogo}
                   alt={item.company}
                   fill
                   className="object-contain"

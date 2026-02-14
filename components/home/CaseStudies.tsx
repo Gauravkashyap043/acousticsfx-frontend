@@ -1,40 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import type { Splide as SplideType } from "@splidejs/splide";
 import "@splidejs/react-splide/css";
+import { api } from "@/lib/api/client";
+import { useContent } from "@/hooks/useContent";
+import { HOME_CASE_STUDIES_KEYS } from "@/lib/content/keys";
+
+interface CaseStudyItem {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+const FALLBACK_CASE_STUDIES: { slug: string; image: string; title: string; desc: string }[] = [
+  { slug: "1", image: "/assets/home/image 5.png", title: "Architecture", desc: "The interior of the apartments." },
+  { slug: "2", image: "/assets/home/Image.png", title: "Acoustic Design", desc: "Custom acoustic panels for offices." },
+  { slug: "3", image: "/assets/home/image 6.png", title: "Workspace", desc: "Modern workspace noise solutions." },
+  { slug: "4", image: "/assets/home/image 5.png", title: "Auditorium", desc: "Sound clarity for large auditoriums." },
+];
 
 export default function CaseStudies() {
   const splideRef = useRef<SplideType | null>(null);
+  const { get } = useContent(HOME_CASE_STUDIES_KEYS);
+  const sectionHeading = get("home.caseStudies.heading");
+  const sectionSubheading = get("home.caseStudies.subheading");
+  const ctaLabel = get("home.caseStudies.ctaLabel");
+  const [caseStudies, setCaseStudies] = useState<{ slug: string; image: string; title: string; desc: string }[]>(FALLBACK_CASE_STUDIES);
 
-  const caseStudies = [
-    {
-      id: 1,
-      image: "/assets/home/image 5.png",
-      title: "Architecture",
-      desc: "The interior of the apartments.",
-    },
-    {
-      id: 2,
-      image: "/assets/home/Image.png",
-      title: "Acoustic Design",
-      desc: "Custom acoustic panels for offices.",
-    },
-    {
-      id: 3,
-      image: "/assets/home/image 6.png",
-      title: "Workspace",
-      desc: "Modern workspace noise solutions.",
-    },
-    {
-      id: 4,
-      image: "/assets/home/image 5.png",
-      title: "Auditorium",
-      desc: "Sound clarity for large auditoriums.",
-    },
-  ];
+  useEffect(() => {
+    api
+      .get<{ caseStudies: CaseStudyItem[] }>("/api/resources")
+      .then((res) => {
+        const list = res?.caseStudies ?? [];
+        if (list.length > 0) {
+          setCaseStudies(
+            list.map((c) => ({
+              slug: c.slug,
+              image: c.image || "/assets/home/image 5.png",
+              title: c.title,
+              desc: c.description || "",
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="py-[80px] lg:py-[100px] bg-white overflow-hidden">
@@ -44,20 +59,22 @@ export default function CaseStudies() {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
           
           <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] font-[400] leading-tight axiforma max-w-xl">
-            CASE STUDIES THAT <br /> INSPIRE US
+            {sectionHeading.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < sectionHeading.split("\n").length - 1 && <br />}
+              </span>
+            ))}
           </h2>
 
           <div className="max-w-md">
             <p className="text-[16px] sm:text-[18px] lg:text-[21px] font-[500] text-gray-600 leading-relaxed mb-6 jakarta">
-              A premium workspace faced disruptive noise and poor sound clarity.
-              We designed and installed bespoke acoustic panels tailored to their
-              architecture. The result: enhanced productivity, elegant aesthetics,
-              and a healthier environment.
+              {sectionSubheading}
             </p>
 
-            <button className="border px-4 py-2 text-xs">
-              VIEW ALL CASESTUDIES →
-            </button>
+            <Link href="/resources/casestudy" className="border px-4 py-2 text-xs inline-block">
+              {ctaLabel}
+            </Link>
           </div>
         </div>
       </div>
@@ -82,9 +99,8 @@ export default function CaseStudies() {
           }}
         >
           {caseStudies.map((item) => (
-            <SplideSlide key={item.id}>
-              <div className="max-w-[420px]">
-
+            <SplideSlide key={item.slug}>
+              <Link href={`/resources/casestudy#${item.slug}`} className="block max-w-[420px]">
                 {/* IMAGE */}
                 <div className="relative h-[220px] sm:h-[240px] lg:h-[260px] w-full mb-4">
                   <Image
@@ -94,7 +110,6 @@ export default function CaseStudies() {
                     className="object-cover"
                   />
                 </div>
-
                 {/* TEXT */}
                 <h3 className="font-semibold text-lg mb-1">
                   {item.title}
@@ -102,7 +117,7 @@ export default function CaseStudies() {
                 <p className="text-sm text-gray-600">
                   {item.desc}
                 </p>
-              </div>
+              </Link>
             </SplideSlide>
           ))}
         </Splide>

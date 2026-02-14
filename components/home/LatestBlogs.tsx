@@ -1,41 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { api } from "@/lib/api/client";
+import { useContent } from "@/hooks/useContent";
+import { HOME_LATEST_BLOGS_KEYS } from "@/lib/content/keys";
 
-const blogs = [
-  {
-    id: 1,
-    tag: "Insights",
-    date: "May 30, 2025",
-    title: "The Power of Restraint in Architecture",
-    desc:
-      "A look at how simplicity can sharpen communication, increase impact, and build longer-lasting brands.",
-    image: "/assets/home/Container2.png",
-  },
-  {
-    id: 2,
-    tag: "Digital Architect",
-    date: "May 23, 2025",
-    title: "Architecting for Calm: UX Beyond the Screen",
-    desc:
-      "An exploration of how subtle interaction, whitespace, and visual pacing shape user emotion.",
-    image: "/assets/home/Container.png",
-  },
-  {
-    id: 3,
-    tag: "Strategy",
-    date: "May 16, 2025",
-    title: "Building a Timeless Identity",
-    desc:
-      "A guide to creating brands that transcend trends, focusing on core values instead.",
-    image: "/assets/home/Container3.png",
-  },
+interface BlogItem {
+  _id: string;
+  slug: string;
+  title: string;
+  excerpt?: string;
+  heroImage: string;
+  authorName?: string;
+  publishedAt?: string;
+  createdAt?: string;
+}
+
+const FALLBACK_BLOGS: { id: string; slug: string; tag: string; date: string; title: string; desc: string; image: string }[] = [
+  { id: "1", slug: "fallback-1", tag: "Insights", date: "May 30, 2025", title: "The Power of Restraint in Architecture", desc: "A look at how simplicity can sharpen communication.", image: "/assets/home/Container2.png" },
+  { id: "2", slug: "fallback-2", tag: "Digital Architect", date: "May 23, 2025", title: "Architecting for Calm: UX Beyond the Screen", desc: "An exploration of how subtle interaction shapes user emotion.", image: "/assets/home/Container.png" },
+  { id: "3", slug: "fallback-3", tag: "Strategy", date: "May 16, 2025", title: "Building a Timeless Identity", desc: "A guide to creating brands that transcend trends.", image: "/assets/home/Container3.png" },
 ];
 
 export default function LatestBlogs() {
+  const { get } = useContent(HOME_LATEST_BLOGS_KEYS);
+  const sectionHeading = get("home.latestBlogs.heading");
+  const sectionSubheading = get("home.latestBlogs.subheading");
+  const ctaLabel = get("home.latestBlogs.ctaLabel");
+  const [blogs, setBlogs] = useState<{ id: string; slug: string; tag: string; date: string; title: string; desc: string; image: string }[]>(FALLBACK_BLOGS);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    api
+      .get<{ success: boolean; blogs: BlogItem[] }>("/api/blogs")
+      .then((res) => {
+        if (res?.success && res.blogs?.length > 0) {
+          setBlogs(
+            res.blogs.slice(0, 9).map((b) => ({
+              id: b._id,
+              slug: b.slug,
+              tag: b.tags?.[0] ?? "Blog",
+              date: b.publishedAt ? new Date(b.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : b.createdAt ? new Date(b.createdAt).toLocaleDateString() : "",
+              title: b.title,
+              desc: b.excerpt ?? "",
+              image: b.heroImage || "/assets/home/Container2.png",
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const activeBlog = blogs[activeIndex];
+  if (!activeBlog) return null;
 
   const next = () =>
     setActiveIndex((prev) => (prev + 1) % blogs.length);
@@ -52,18 +71,17 @@ export default function LatestBlogs() {
       <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12">
         <div>
           <p className="text-[16px] font-bold mb-3 worksans-font">
-            Our Latest Blogs
+            {sectionHeading}
           </p>
 
           <h2 className="text-[26px] sm:text-[30px] lg:text-[35px] axiforma font-bold max-w-2xl">
-            A place to share knowledge about acoustic, noise & flooring
-            solutions.
+            {sectionSubheading}
           </h2>
         </div>
 
-        <button className="border px-5 py-2 text-sm h-fit">
-          VIEW ALL BLOGS →
-        </button>
+        <Link href="/resources?tab=blogs" className="border px-5 py-2 text-sm h-fit inline-block">
+          {ctaLabel}
+        </Link>
       </div>
 
       {/* ================= CONTENT ================= */}
@@ -102,14 +120,14 @@ export default function LatestBlogs() {
           {blogs
             .filter((_, i) => i !== activeIndex)
             .map((blog) => (
-              <div
+              <Link
                 key={blog.id}
-                className="cursor-pointer"
-                onClick={() =>
-                  setActiveIndex(
-                    blogs.findIndex((b) => b.id === blog.id)
-                  )
-                }
+                href={`/resources/blogs/${blog.slug}`}
+                className="cursor-pointer block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveIndex(blogs.findIndex((b) => b.id === blog.id));
+                }}
               >
                 <div className="relative h-[160px] rounded-xl overflow-hidden mb-3">
                   <Image
@@ -132,7 +150,7 @@ export default function LatestBlogs() {
                 <p className="text-sm text-gray-600">
                   {blog.desc}
                 </p>
-              </div>
+              </Link>
             ))}
         </div>
       </div>

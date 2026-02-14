@@ -45,7 +45,7 @@ export default function GallerySection() {
           Gallery
         </h2>
 
-        <button className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition">
+        <button className="flex items-center gap-2 bg-[#EA8E39] text-white px-5 py-2 rounded-full text-sm hover:bg-[#d97d2e] transition">
           Get Quote
           <Image
             src="/assets/home/universalvector.svg"
