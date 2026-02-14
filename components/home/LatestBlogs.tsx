@@ -18,18 +18,12 @@ interface BlogItem {
   createdAt?: string;
 }
 
-const FALLBACK_BLOGS: { id: string; slug: string; tag: string; date: string; title: string; desc: string; image: string }[] = [
-  { id: "1", slug: "fallback-1", tag: "Insights", date: "May 30, 2025", title: "The Power of Restraint in Architecture", desc: "A look at how simplicity can sharpen communication.", image: "/assets/home/Container2.png" },
-  { id: "2", slug: "fallback-2", tag: "Digital Architect", date: "May 23, 2025", title: "Architecting for Calm: UX Beyond the Screen", desc: "An exploration of how subtle interaction shapes user emotion.", image: "/assets/home/Container.png" },
-  { id: "3", slug: "fallback-3", tag: "Strategy", date: "May 16, 2025", title: "Building a Timeless Identity", desc: "A guide to creating brands that transcend trends.", image: "/assets/home/Container3.png" },
-];
-
 export default function LatestBlogs() {
   const { get } = useContent(HOME_LATEST_BLOGS_KEYS);
   const sectionHeading = get("home.latestBlogs.heading");
   const sectionSubheading = get("home.latestBlogs.subheading");
   const ctaLabel = get("home.latestBlogs.ctaLabel");
-  const [blogs, setBlogs] = useState<{ id: string; slug: string; tag: string; date: string; title: string; desc: string; image: string }[]>(FALLBACK_BLOGS);
+  const [blogs, setBlogs] = useState<{ id: string; slug: string; tag: string; date: string; title: string; desc: string; image: string }[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -45,15 +39,16 @@ export default function LatestBlogs() {
               date: b.publishedAt ? new Date(b.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : b.createdAt ? new Date(b.createdAt).toLocaleDateString() : "",
               title: b.title,
               desc: b.excerpt ?? "",
-              image: b.heroImage || "/assets/home/Container2.png",
+              image: b.heroImage || "",
             }))
           );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const activeBlog = blogs[activeIndex];
+  if (blogs.length === 0) return null;
   if (!activeBlog) return null;
 
   const next = () =>

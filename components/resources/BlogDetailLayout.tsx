@@ -223,38 +223,9 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
           {/* TEXT CONTENT */}
           <div className="mt-4 sm:mt-5 lg:mt-6 space-y-4 sm:space-y-5 lg:space-y-6 text-gray-700 leading-relaxed">
             {typeof blog.content === 'string' ? (
-              // Render HTML content directly - replace all images with product images
               <div
                 className="prose max-w-none prose-headings:mt-4 sm:prose-headings:mt-5 lg:prose-headings:mt-6 prose-headings:mb-3 sm:prose-headings:mb-4 prose-p:mb-3 sm:prose-p:mb-4 prose-img:rounded-lg sm:prose-img:rounded-xl prose-img:w-full prose-img:my-4 sm:prose-img:my-5 lg:prose-img:my-6 prose-a:text-blue-600 prose-a:underline prose-strong:font-bold prose-em:italic inter-font text-base sm:text-lg lg:text-[18px] font-[400] leading-relaxed text-gray-700"
-                dangerouslySetInnerHTML={{
-                  __html: (() => {
-                    const productImages = [
-                      "/assets/product/product-card-1.png",
-                      "/assets/product/product-card-2.png",
-                      "/assets/product/product-card-3.png",
-                      "/assets/product/product-card-4.png",
-                      "/assets/product/product-card-5.png",
-                      "/assets/product/product-card-6.png",
-                      "/assets/product/product-feature-1.png",
-                      "/assets/product/product-feature-2.png",
-                      "/assets/product/product-feature-3.png",
-                      "/assets/product/product-feature-4.png",
-                    ];
-                    let imageCounter = 0;
-                    return blog.content.replace(
-                      /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
-                      (match, src) => {
-                        // Replace all images (except data URIs) with product images
-                        if (src && !src.startsWith('data:')) {
-                          const replacementImage = productImages[imageCounter % productImages.length];
-                          imageCounter++;
-                          return match.replace(src, replacementImage);
-                        }
-                        return match;
-                      }
-                    );
-                  })()
-                }}
+                dangerouslySetInnerHTML={{ __html: blog.content }}
               />
             ) : (
               // Render legacy ContentBlock array - images already replaced in renderContentBlock

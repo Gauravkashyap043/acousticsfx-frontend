@@ -45,17 +45,17 @@ export default function WhyChooseUs() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
         {CARDS.map((card, i) => (
-        <div key={card.title} className="group rounded-2xl border border-gray-100 p-6 shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#eaf4f6] group-hover:bg-[#3090A3] transition-all duration-300 flex items-center justify-center mb-4">
-            <Image src={get(ICON_KEYS[i]) || `/assets/home/quaone.svg`} alt={card.title} width={32} height={30} />
+          <div key={card.title} className="group rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="w-12 h-12 rounded-full bg-[#eaf4f6] group-hover:bg-[#3090A3] transition-all duration-300 flex items-center justify-center mb-4">
+              <Image src={get(ICON_KEYS[i]) || `/assets/home/quaone.svg`} alt={card.title} width={32} height={30} />
+            </div>
+            <h3 className="font-bold text-[25px] mb-2 text-[#1F6775] inter-font">
+              {card.title}
+            </h3>
+            <p className="text-[18px] text-gray-600 leading-relaxed inter-font font-[400]">
+              {card.body}
+            </p>
           </div>
-          <h3 className="font-bold text-[25px] mb-2 text-[#1F6775] inter-font">
-            {card.title}
-          </h3>
-          <p className="text-[18px] text-gray-600 leading-relaxed inter-font font-[400]">
-            {card.body}
-          </p>
-        </div>
         ))}
 
       </div>

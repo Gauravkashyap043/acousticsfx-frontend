@@ -21,7 +21,7 @@ export default async function WoodWoolAcousticPanelPage() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <ProductHeroSection
         title={product.title}
         description={product.description}
@@ -37,11 +37,11 @@ export default async function WoodWoolAcousticPanelPage() {
         title={product.title}
         description={product.description}
       />
-      <StoryInnovation/>
-      <LatestBlogs/>
-      <Testimonials/>
-      <ConnectWithExperts/>
-      <Footer/>
+      <StoryInnovation />
+      <LatestBlogs />
+      <Testimonials />
+      <ConnectWithExperts />
+      <Footer />
     </>
   )
 }

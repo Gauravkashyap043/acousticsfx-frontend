@@ -25,23 +25,23 @@ export default async function AcoperfPage() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <LinearluxHero
         productTitle={product.title}
         subProductTitle={subProduct.title}
         description={subProduct.description}
       />
-      <LinearluxGrid/>
-      <ProductSpecification/>
-      <GallerySection/>
-      <SubstratesSection/>
-      <AboutProduct/>
-      <CertificationsSection/>
-      <FinishesShades/>
-      <Testimonials/>
-      <RelatedProducts/>
-      <ConnectWithExperts/>
-      <Footer/>
+      <LinearluxGrid />
+      <ProductSpecification />
+      <GallerySection />
+      <SubstratesSection />
+      <AboutProduct />
+      <CertificationsSection />
+      <FinishesShades />
+      <Testimonials />
+      <RelatedProducts />
+      <ConnectWithExperts />
+      <Footer />
     </>
   )
 }

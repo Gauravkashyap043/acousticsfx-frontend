@@ -19,7 +19,7 @@ export default function OurAcousticPanels({ product, productSlug }: OurAcousticP
       slug: sub.slug,
     }));
   }
-  
+
   // Fallback to default panels if no productSlug or no sub-products
   if (panels.length === 0) {
     panels = [

@@ -48,7 +48,7 @@ export default function CaseStudies() {
           );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   return (
@@ -57,7 +57,7 @@ export default function CaseStudies() {
       {/* TOP CONTENT */}
       <div className="px-6 sm:px-10 lg:px-[200px] mb-14">
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
-          
+
           <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] font-[400] leading-tight axiforma max-w-xl">
             {sectionHeading.split("\n").map((line, i) => (
               <span key={i}>
