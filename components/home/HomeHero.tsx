@@ -1,13 +1,28 @@
+"use client";
+
 import Image from "next/image";
+import { useContent } from "@/hooks/useContent";
+import { HOME_HERO_KEYS } from "@/lib/content/keys";
+import ConnectWithUsButton from "@/components/about/ConnectWithUsButton";
+import GetQuoteButton from "@/components/about/GetQuoteButton";
 
 export default function HomeHero() {
+  const { get } = useContent(HOME_HERO_KEYS);
+
+  const title = get("home.hero.title");
+  const subtitle = get("home.hero.subtitle");
+  const backgroundImage = get("home.hero.backgroundImage");
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('../../assets/home/background.png')" }}
+        style={{
+          backgroundImage: backgroundImage
+            ? `url('${backgroundImage}')`
+            : "url('/assets/home/background.png')",
+        }}
       />
 
       {/* Overlay */}
@@ -15,28 +30,20 @@ export default function HomeHero() {
 
       {/* Content Wrapper */}
       <div className="relative z-10 flex min-h-screen flex-col items-center px-4 pt-[110px] sm:pt-[130px] lg:pt-[143px] text-center text-white">
-
         {/* Main Text */}
         <h1 className="max-w-7xl leading-[42px] sm:leading-[60px] lg:leading-[85px]
           text-[28px] sm:text-[40px] md:text-5xl lg:text-[76px] font-bold playfair-display">
-          We take pride in building stylish and featured acoustic solution.
+          {title}
         </h1>
 
         <p className="mt-6 max-w-2xl text-[14px] sm:text-[15px] md:text-base font-[400] text-gray-200 poppins-font">
-          Our solutions are engineered for clarity, comfort, and visual harmony.
-          Whether it’s a studio, auditorium, or workspace, we bring together
-          design precision and acoustic mastery to elevate every square foot.
+          {subtitle}
         </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <button className="border poppins-font font-[400] border-white px-6 py-3 text-[16px] sm:text-[18px] transition hover:bg-white hover:text-black">
-            Get Quote →
-          </button>
-
-          <button className="bg-[#EA8E39] px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] transition hover:bg-orange-600">
-            Connect With Us →
-          </button>
+          <GetQuoteButton />
+          <ConnectWithUsButton className="bg-[#EA8E39]" />
         </div>
 
         {/* Spacer */}
@@ -45,7 +52,6 @@ export default function HomeHero() {
         {/* Feature Boxes */}
         <div className="mb-[80px] sm:mb-[100px] lg:mb-[120px] w-full">
           <div className="mx-auto flex max-w-[1200px] flex-wrap justify-center gap-6">
-
             {/* Box 1 */}
             <div className="relative h-[230px] sm:h-[250px] w-full sm:w-[360px] bg-black/50 px-6 py-6">
               <span className="absolute left-0 top-0 h-full w-[3px] bg-yellow-400" />
@@ -111,10 +117,8 @@ export default function HomeHero() {
                 quiet confidence.
               </p>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

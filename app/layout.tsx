@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import QueryProvider from "@/components/providers/QueryProvider";
 import { Geist, Geist_Mono } from "next/font/google";
 import {
   Poppins,
@@ -104,7 +105,7 @@ export default function RootLayout({
           antialiased
         `}
       >
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

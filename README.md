@@ -8,6 +8,7 @@ Next.js 16 public site for AcousticsFX: marketing, products, resources, contact,
 - **Styling**: Tailwind CSS 4
 - **Fonts**: Google Fonts (Geist, Poppins, Playfair Display, Work Sans, Inter, Plus Jakarta Sans, Manrope, Lato) — configured in `app/layout.tsx`
 - **UI**: Lucide React, React Icons, Swiper, Splide (carousels/sliders)
+- **Data**: TanStack React Query for content API; `lib/content/` (keys, defaults, api) + `hooks/useContent.ts`
 
 ## Scripts
 
@@ -20,7 +21,7 @@ Next.js 16 public site for AcousticsFX: marketing, products, resources, contact,
 
 ## Environment
 
-- **NEXT_PUBLIC_API_URL**: Optional; used by `lib/api/client.ts` for API base URL (default in code: `https://newadmin.quasmoindianmicroscope.com`). Override for local backend.
+- **NEXT_PUBLIC_API_URL**: Backend base URL for API and content. Used by `lib/api/client.ts` and `lib/content/api.ts`. Set to `http://localhost:8080` for local backend; production should point at your API origin.
 
 ## Project layout
 
@@ -54,8 +55,15 @@ components/
 lib/
 ├── utils.ts           # cn() and helpers (e.g. tailwind-merge + clsx)
 ├── products-data.ts  # Static product/data
-└── api/
-    └── client.ts      # Fetch wrapper, ApiClientError, NEXT_PUBLIC_API_URL
+├── api/
+│   └── client.ts      # Fetch wrapper, ApiClientError, NEXT_PUBLIC_API_URL
+└── content/
+    ├── keys.ts        # Content key constants (HOME_HERO_KEYS, ABOUT_HERO_KEYS)
+    ├── defaults.ts    # Fallback values when API returns no value
+    └── api.ts         # fetchContentByKeys() → GET /api/content?keys=...
+
+hooks/
+└── useContent.ts      # useContent(keys) — React Query hook; .get(key, fallback)
 ```
 
 ## Routing
@@ -67,7 +75,7 @@ lib/
 ## Conventions
 
 - **Components**: Grouped by section (home, products, resources, contact, about). Reuse existing patterns (Hero, Section, layout components).
-- **Data**: Static data in `lib/` (e.g. `products-data.ts`). For live data use `lib/api/client.ts` and `NEXT_PUBLIC_API_URL`.
+- **Data**: Static data in `lib/` (e.g. `products-data.ts`). Editable site content: use `useContent(keys)` from `hooks/useContent.ts`; keys and fallbacks in `lib/content/keys.ts` and `lib/content/defaults.ts`. Content is fetched from backend `GET /api/content?keys=...` (see docs/content-keys.md). Add new editable sections by extending keys and defaults and using the same hook.
 - **Styling**: Tailwind only; use existing utilities and CSS variables/fonts from the layout.
 - **New page**: Add `app/<path>/page.tsx`; use components from `components/` and data from `lib/` as needed.
 

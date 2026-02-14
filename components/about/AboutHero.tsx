@@ -1,12 +1,24 @@
 "use client";
 
+import { useContent } from "@/hooks/useContent";
+import { ABOUT_HERO_KEYS } from "@/lib/content/keys";
+import ConnectWithUsButton from "./ConnectWithUsButton";
+import GetQuoteButton from "./GetQuoteButton";
+
 export default function AboutHero() {
+  const { get } = useContent(ABOUT_HERO_KEYS);
+
+  const heading = get("about.hero.heading");
+  const subtitle = get("about.hero.subtitle");
+  const backgroundImage = get("about.hero.backgroundImage");
+
   return (
     <section
       className="relative w-full min-h-[65vh] sm:min-h-[72vh] lg:min-h-[80vh] bg-cover bg-center"
       style={{
-        backgroundImage:
-          "url('/assets/about/empty-flat-interrior-with-elements-decoration 1 (1).png')",
+        backgroundImage: backgroundImage
+          ? `url('${backgroundImage}')`
+          : "url('/assets/about/empty-flat-interrior-with-elements-decoration 1 (1).png')",
       }}
     >
       {/* Dark Overlay */}
@@ -25,24 +37,18 @@ export default function AboutHero() {
       >
         {/* Heading */}
         <h1 className="text-[36px] sm:text-[56px] md:text-[72px] lg:text-[90px] font-bold leading-tight max-w-9xl playfair-display">
-          Partner in Future Readiness
+          {heading}
         </h1>
 
         {/* Subtitle */}
         <p className="mt-6 text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] poppins-font font-[400] max-w-2xl text-white/90">
-          Empowering tomorrow’s spaces with acoustic solutions that blend
-          precision, elegance, and performance.
+          {subtitle}
         </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="border border-white px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-white hover:text-black transition">
-            Get Quote →
-          </button>
-
-          <button className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition">
-            Connect With Us →
-          </button>
+          <GetQuoteButton />
+          <ConnectWithUsButton />
         </div>
       </div>
     </section>
