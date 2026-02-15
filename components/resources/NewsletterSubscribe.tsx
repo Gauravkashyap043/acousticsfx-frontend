@@ -1,28 +1,33 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 import { api, ApiClientError } from "@/lib/api/client";
 
 export default function NewsletterSubscribe() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const trimmed = email.trim();
-    if (!trimmed) return;
-    setStatus("loading");
-    setMessage("");
-    try {
-      await api.post<{ ok: boolean; message?: string }>("/api/newsletter", { email: trimmed });
-      setStatus("success");
-      setMessage("Thanks for subscribing.");
-      setEmail("");
-    } catch (err: unknown) {
+    const value = email.trim();
+    if (!value) {
       setStatus("error");
-      setMessage(err instanceof ApiClientError ? err.message : "Something went wrong.");
+      setErrorMessage("Please enter your email address.");
+      return;
+    }
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      await api.post("/api/newsletter", { email: value });
+      setStatus("success");
+      setEmail("");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof ApiClientError ? err.message : "Something went wrong. Please try again."
+      );
     }
   }
 
@@ -41,30 +46,40 @@ export default function NewsletterSubscribe() {
               Get stories in your <br className="hidden sm:block" /> inbox twice a month.
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <form
+              action="#"
+              onSubmit={(e) => {
+                e.preventDefault();
+                void handleSubmit(e);
+              }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
+              noValidate
+            >
               <input
                 type="email"
                 placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={status === "loading"}
-                className="w-full sm:w-[260px] h-[44px] px-4 text-sm border border-gray-300 rounded-md outline-none focus:border-gray-500"
                 required
+                className="w-full sm:w-[260px] h-[44px] px-4 text-sm border border-gray-300 rounded-md outline-none focus:border-gray-500"
               />
 
               <button
                 type="submit"
-                disabled={status === "loading"}
-                className="h-[44px] px-6 bg-[#1E6F73] text-white text-sm rounded-md hover:opacity-90 transition disabled:opacity-70"
+                disabled={status === "sending"}
+                className="h-[44px] px-6 bg-[#1E6F73] text-white text-sm rounded-md hover:opacity-90 transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {status === "loading" ? "Subscribing…" : "Subscribe"}
+                {status === "sending" ? "Subscribing…" : "Subscribe"}
               </button>
             </form>
-            {message && (
-              <p className={`mt-2 text-sm ${status === "error" ? "text-red-600" : "text-gray-600"}`}>
-                {message}
-              </p>
-            )}
+            <div className="mt-2 min-h-[1.5rem]" role="alert" aria-live="polite">
+              {status === "success" && (
+                <p className="text-green-600 text-sm font-medium">Thanks for subscribing.</p>
+              )}
+              {status === "error" && (
+                <p className="text-red-600 text-sm font-medium">{errorMessage}</p>
+              )}
+            </div>
           </div>
 
           {/* Right Illustration */}

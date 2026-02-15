@@ -4,7 +4,18 @@
  * You can extend this with React Query hooks in the api folder
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://newadmin.quasmoindianmicroscope.com";
+const FALLBACK_API_URL = "http://localhost:8080";
+
+function getApiBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    const w = window as unknown as { __NEXT_PUBLIC_API_URL__?: string };
+    if (w.__NEXT_PUBLIC_API_URL__ && w.__NEXT_PUBLIC_API_URL__.trim()) {
+      return w.__NEXT_PUBLIC_API_URL__.trim();
+    }
+  }
+  const envUrl = typeof process !== "undefined" && process.env?.NEXT_PUBLIC_API_URL;
+  return envUrl && envUrl.trim() ? envUrl.trim() : FALLBACK_API_URL;
+}
 
 export interface ApiError {
   message: string;
@@ -51,39 +62,45 @@ async function handleResponse<T>(response: Response): Promise<T> {
   }
 }
 
+const FETCH_TIMEOUT_MS = 15000;
+
 export async function apiClient<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const url = endpoint.startsWith("http") ? endpoint : `${API_BASE_URL}${endpoint}`;
+  const base = getApiBaseUrl();
+  const url = endpoint.startsWith("http") ? endpoint : `${base}${endpoint}`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   const config: RequestInit = {
+    ...options,
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,
     },
-    ...options,
+    signal: controller.signal,
   };
 
   try {
     const response = await fetch(url, config);
+    clearTimeout(timeoutId);
     return handleResponse<T>(response);
   } catch (error) {
-    // If it's already an ApiClientError, re-throw it
+    clearTimeout(timeoutId);
+    if (error instanceof Error && error.name === "AbortError") {
+      throw new ApiClientError("Request timed out. Please try again.", 408);
+    }
     if (error instanceof ApiClientError) {
       throw error;
     }
-    
-    // Handle network errors (fetch failures)
-    if (error instanceof TypeError && error.message === 'Failed to fetch') {
-      // This usually means CORS, network issue, or server not reachable
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
       throw new ApiClientError(
-        `Network error: Unable to reach the server. Please check your connection or try again later.`,
-        0 // Status 0 indicates network error
+        "Network error: Unable to reach the server. Please check your connection or try again later.",
+        0
       );
     }
-    
-    // Handle other errors
     throw new ApiClientError(
       error instanceof Error ? error.message : "An unknown error occurred"
     );

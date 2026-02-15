@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { api } from "@/lib/api/client";
+import { api, ApiClientError } from "@/lib/api/client";
 
 const SUBJECTS = ["General Inquiry", "Help & Support", "Become Partner", "Other"] as const;
 
@@ -12,19 +12,26 @@ export default function ContactFormSection() {
   const [subject, setSubject] = useState<(typeof SUBJECTS)[number]>("General Inquiry");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    if (!trimmedName || !trimmedEmail) {
+      setStatus("error");
+      setErrorMessage("Please enter your name and email.");
+      return;
+    }
     setStatus("sending");
-    setErrorMsg("");
+    setErrorMessage("");
     try {
-      await api.post<{ ok: boolean; message?: string }>("/api/contact", {
-        name: name.trim(),
-        email: email.trim(),
+      await api.post("/api/contact", {
+        name: trimmedName,
+        email: trimmedEmail,
         phone: phone.trim() || undefined,
         subject,
-        message: message.trim(),
+        message: message.trim() || undefined,
       });
       setStatus("success");
       setName("");
@@ -32,12 +39,10 @@ export default function ContactFormSection() {
       setPhone("");
       setSubject("General Inquiry");
       setMessage("");
-    } catch (err: unknown) {
+    } catch (err) {
       setStatus("error");
-      setErrorMsg(
-        err && typeof err === "object" && "message" in err
-          ? String((err as { message: string }).message)
-          : "Failed to send message. Please try again."
+      setErrorMessage(
+        err instanceof ApiClientError ? err.message : "Something went wrong. Please try again."
       );
     }
   }
@@ -65,16 +70,15 @@ export default function ContactFormSection() {
             Any question or remarks? Just write us a message!
           </p>
 
-          {status === "success" && (
-            <p className="mb-6 p-4 rounded bg-green-100 text-green-800 text-sm">
-              Thank you for your message. We&apos;ll get back to you soon.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="mb-6 p-4 rounded bg-red-100 text-red-800 text-sm">{errorMsg}</p>
-          )}
-
-          <form className="space-y-8" onSubmit={handleSubmit}>
+          <form
+            action="#"
+            className="space-y-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void handleSubmit(e);
+            }}
+            noValidate
+          >
 
             {/* Full Name */}
             <div>
@@ -84,9 +88,9 @@ export default function ContactFormSection() {
               <input
                 type="text"
                 placeholder="Enter your name"
-                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
                 className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
               />
             </div>
@@ -100,9 +104,9 @@ export default function ContactFormSection() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
                 />
               </div>
@@ -156,12 +160,21 @@ export default function ContactFormSection() {
               />
             </div>
 
+            <div className="min-h-[1.5rem]" role="alert" aria-live="polite">
+              {status === "success" && (
+                <p className="text-green-600 text-sm font-medium">Thank you for your message. We&apos;ll get back to you soon.</p>
+              )}
+              {status === "error" && (
+                <p className="text-red-600 text-sm font-medium">{errorMessage}</p>
+              )}
+            </div>
+
             {/* Button */}
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 transition disabled:opacity-60"
+                className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? "Sending…" : "Send Message"}
               </button>

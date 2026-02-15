@@ -89,8 +89,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "";
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__NEXT_PUBLIC_API_URL__ = ${JSON.stringify(apiUrl)};`,
+          }}
+        />
+      </head>
       <body
         className={`
           ${geistSans.variable}
