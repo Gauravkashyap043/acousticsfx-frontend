@@ -8,6 +8,7 @@ import FinishesShades from '@/components/products/FinishesShades'
 import GallerySection from '@/components/products/GallerySection'
 import LinearluxGrid from '@/components/products/LinearluxGrid'
 import LinearluxHero from '@/components/products/LinearluxHero'
+import Product3DViewer from '@/components/products/Product3DViewer'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/substrates '
@@ -33,6 +34,7 @@ export default function PerfomaxPage() {
       <LinearluxGrid/>
       <ProductSpecification/>
       <GallerySection/>
+      <Product3DViewer/>
       <SubstratesSection/>
       <AboutProduct/>
       <CertificationsSection/>
