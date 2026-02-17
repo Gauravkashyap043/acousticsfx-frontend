@@ -1,40 +1,65 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { fetchTrustedPartners, type TrustedPartner } from "@/lib/trusted-partners-api";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = ["contact.trustedBy.title", "contact.trustedBy.description"];
+
+const DEFAULTS: Record<string, string> = {
+  "contact.trustedBy.title": "Trusted By Industry Leaders",
+  "contact.trustedBy.description":
+    "Join our roster of satisfied clients and experience the exceptional results and service that have earned us the trust of industry leaders worldwide.",
+};
+
+const FALLBACK_LOGOS: { name: string; logo: string }[] = [
+  { name: "REET Global Advisors", logo: "/assets/about/image 7.png" },
+  { name: "Pidilite", logo: "/assets/about/image 5 (1).png" },
+  { name: "Goldman Sachs", logo: "/assets/about/image 3.png" },
+  { name: "Norwest Venture Partners", logo: "/assets/about/image 1 (1).png" },
+  { name: "BI", logo: "/assets/about/image 2.png" },
+];
+
+function val(content: ContentMap, key: string) {
+  return content[key]?.value ?? DEFAULTS[key] ?? "";
+}
+
 export default function TrustedBySection() {
+  const [content, setContent] = useState<ContentMap>({});
+  const [partners, setPartners] = useState(FALLBACK_LOGOS);
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+    fetchTrustedPartners()
+      .then((data) => {
+        if (data.length > 0) {
+          setPartners(data.map((p) => ({ name: p.name, logo: p.logo })));
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-white text-center">
 
-      {/* ================= Heading ================= */}
       <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-[#111] mb-4 poppins">
-        Trusted By Industry Leaders
+        {val(content, "contact.trustedBy.title")}
       </h2>
 
       <p className="text-gray-500 max-w-2xl worksans-font font-[400] text-[16px] sm:text-[18px] lg:text-[20px] mx-auto mb-10 sm:mb-12 lg:mb-14 leading-relaxed">
-        Join our roster of satisfied clients and experience the exceptional
-        results and service that have earned us the trust of industry leaders
-        worldwide.
+        {val(content, "contact.trustedBy.description")}
       </p>
 
-      {/* ================= Logos ================= */}
       <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 sm:gap-10 lg:gap-12">
-        <LogoItem src="/assets/about/image 7.png" alt="REET Global Advisors" />
-        <LogoItem src="/assets/about/image 5 (1).png" alt="Pidilite" />
-        <LogoItem src="/assets/about/image 3.png" alt="Goldman Sachs" />
-        <LogoItem src="/assets/about/image 1 (1).png" alt="Norwest Venture Partners" />
-        <LogoItem src="/assets/about/image 2.png" alt="BI" />
+        {partners.map((p, i) => (
+          <LogoItem key={i} src={p.logo} alt={p.name} />
+        ))}
       </div>
     </section>
   );
 }
 
-/* ================= Logo Item ================= */
-function LogoItem({
-  src,
-  alt,
-}: {
-  src: string;
-  alt: string;
-}) {
+function LogoItem({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex items-center justify-center transition">
       <img
