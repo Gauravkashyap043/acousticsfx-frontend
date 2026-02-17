@@ -1,8 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { fetchClients, type ClientLogo } from "@/lib/clients-api";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
 
-const allLogos = [
+const CONTENT_KEYS = ["home.clients.title", "home.clients.backgroundImage"];
+
+const DEFAULTS: Record<string, string> = {
+  "home.clients.title": "Our Valuable Clients",
+  "home.clients.backgroundImage": "/assets/home/mask.jpg",
+};
+
+const FALLBACK_LOGOS = [
   "/assets/home/client_1.svg",
   "/assets/home/client_1 (1).svg",
   "/assets/home/client_1 (2).svg",
@@ -14,14 +24,35 @@ const allLogos = [
   "/assets/home/client_1 (4).svg",
 ];
 
+function val(content: ContentMap, key: string) {
+  return content[key]?.value ?? DEFAULTS[key] ?? "";
+}
+
 export default function OurClients() {
+  const [content, setContent] = useState<ContentMap>({});
+  const [logos, setLogos] = useState<string[]>(FALLBACK_LOGOS);
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+    fetchClients()
+      .then((clients) => {
+        if (clients.length > 0) {
+          setLogos(clients.map((c) => c.logo));
+        }
+      })
+      .catch(console.error);
+  }, []);
+
+  const bgImage = val(content, "home.clients.backgroundImage");
+  const title = val(content, "home.clients.title");
+
   return (
     <section className="relative h-[420px] sm:h-[500px] lg:h-[580px] overflow-hidden">
 
       {/* BACKGROUND */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/home/mask.jpg"
+          src={bgImage}
           alt="Clients Background"
           fill
           className="object-cover"
@@ -38,20 +69,20 @@ export default function OurClients() {
       <div className="relative z-10 h-full px-6 sm:px-10 lg:px-[340px] flex flex-col justify-center">
 
         <h2 className="text-center text-white text-2xl font-semibold mb-10 sm:mb-14 lg:mb-16">
-          Our Valuable Clients
+          {title}
         </h2>
 
         {/* ================= DESKTOP (STATIC) ================= */}
         <div className="hidden lg:flex flex-col items-center gap-[91px]">
 
           <div className="flex justify-center gap-[91px]">
-            {allLogos.slice(0, 5).map((logo, index) => (
+            {logos.slice(0, Math.ceil(logos.length / 2)).map((logo, index) => (
               <LogoCard key={index} logo={logo} />
             ))}
           </div>
 
           <div className="flex justify-center gap-[91px]">
-            {allLogos.slice(5).map((logo, index) => (
+            {logos.slice(Math.ceil(logos.length / 2)).map((logo, index) => (
               <LogoCard key={index} logo={logo} />
             ))}
           </div>
@@ -61,7 +92,7 @@ export default function OurClients() {
         {/* ================= MOBILE / TABLET (SLIDER) ================= */}
         <div className="lg:hidden overflow-hidden">
           <div className="flex w-max animate-client-marquee gap-6 sm:gap-10">
-            {[...allLogos, ...allLogos].map((logo, index) => (
+            {[...logos, ...logos].map((logo, index) => (
               <LogoCard key={index} logo={logo} />
             ))}
           </div>
