@@ -1,7 +1,5 @@
 import StoryInnovation from '@/components/about/StoryInnovation'
 import ConnectWithExperts from '@/components/home/ConnectWithExperts'
-import Footer from '@/components/home/Footer'
-import Header from '@/components/home/Header'
 import LatestBlogs from '@/components/home/LatestBlogs'
 import Testimonials from '@/components/home/Testimonials'
 import OurAcousticPanels from '@/components/products/OurAcousticPanels'
@@ -20,7 +18,6 @@ export default function BaffleCloudsPage() {
 
   return (
     <>
-      <Header/>
       <ProductHeroSection
         title={product.title}
         description={product.description}
@@ -40,7 +37,6 @@ export default function BaffleCloudsPage() {
       <LatestBlogs/>
       <Testimonials/>
       <ConnectWithExperts/>
-      <Footer/>
     </>
   )
 }

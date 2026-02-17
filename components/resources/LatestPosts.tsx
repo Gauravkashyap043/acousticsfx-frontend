@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { slugify } from '@/lib/utils';
 import { api } from "@/lib/api/client";
+import Spinner from "@/components/shared/Spinner";
 
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
@@ -85,8 +86,9 @@ export default function LatestPosts() {
         </h2>
 
         {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <div className="text-gray-500">Loading blogs...</div>
+          <div className="flex items-center justify-center gap-3 py-12">
+            <Spinner size="sm" />
+            <span className="text-sm text-gray-500">Loading blogs…</span>
           </div>
         ) : blogs.length === 0 ? (
           <div className="flex items-center justify-center py-12">

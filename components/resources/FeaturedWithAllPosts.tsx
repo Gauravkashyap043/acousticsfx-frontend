@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { api } from "@/lib/api/client";
+import { useAsyncData } from "@/hooks/useAsyncData";
+import Spinner from "@/components/shared/Spinner";
 
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
@@ -20,27 +21,11 @@ interface Blog {
 }
 
 export default function FeaturedWithAllPosts() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    api
-      .get<{ success: boolean; blogs: Blog[] }>("/api/blogs")
-      .then((res) => {
-        if (!cancelled && res.success && res.blogs) setBlogs(res.blogs);
-      })
-      .catch(() => {
-        if (!cancelled) setBlogs([]);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { data, loading } = useAsyncData(async () => {
+    const res = await api.get<{ success: boolean; blogs: Blog[] }>("/api/blogs");
+    return res.success && res.blogs ? res.blogs : [];
+  });
+  const blogs = data ?? [];
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return "";
@@ -58,7 +43,10 @@ export default function FeaturedWithAllPosts() {
     return (
       <section className="w-full bg-white py-14 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-gray-500 text-center py-12">Loading posts...</div>
+          <div className="flex items-center justify-center gap-3 py-12">
+            <Spinner size="sm" />
+            <span className="text-sm text-gray-500">Loading posts…</span>
+          </div>
         </div>
       </section>
     );

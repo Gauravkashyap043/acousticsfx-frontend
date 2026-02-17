@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { api } from "@/lib/api/client";
+import Spinner from "@/components/shared/Spinner";
 import NewsletterSubscribe from "./NewsletterSubscribe";
 
 // Placeholder image as data URI
@@ -142,8 +143,9 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
     return (
       <div className="w-full py-6 sm:py-8 lg:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6">
-          <div className="flex items-center justify-center py-12 sm:py-16 lg:py-20">
-            <div className="text-gray-500 text-sm sm:text-base">Loading blog...</div>
+          <div className="flex items-center justify-center gap-3 py-12 sm:py-16 lg:py-20">
+            <Spinner size="sm" />
+            <span className="text-sm text-gray-500">Loading blog…</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,3 @@
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import CaseStudySection from '@/components/resources/CaseStudySection';
 import Testimonials from '@/components/home/Testimonials';
 import ConnectWithExperts from '@/components/home/ConnectWithExperts';
@@ -7,8 +5,6 @@ import ConnectWithExperts from '@/components/home/ConnectWithExperts';
 export default function CaseStudiesPage() {
   return (
     <>
-      <Header />
-      
       {/* First Case Study - White background */}
       <CaseStudySection 
         image="/assets/product/product-hero.png"
@@ -35,8 +31,6 @@ export default function CaseStudiesPage() {
 
       {/* Connect With Experts */}
       <ConnectWithExperts />
-
-      <Footer />
     </>
   );
 }

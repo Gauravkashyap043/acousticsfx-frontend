@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   {
@@ -62,9 +63,9 @@ export default function RelatedProducts() {
           </p>
         </div>
 
-        <button className="border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
+        <Link href="/products/acoustic" className="border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer no-underline text-black">
           VIEW ALL PRODUCTS →
-        </button>
+        </Link>
       </div>
 
       {/* Products Slider */}

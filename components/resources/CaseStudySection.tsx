@@ -35,7 +35,7 @@ export default function CaseStudySection({
           </p>
 
           <Link
-            href="#"
+            href="/resources/casestudy"
             className="inline-flex items-center gap-2 border border-gray-300 px-5 py-2 text-sm rounded-full hover:bg-gray-100 transition cursor-pointer"
           >
             Get the Full Rundown →
@@ -73,7 +73,7 @@ export default function CaseStudySection({
             </p>
 
             <Link
-              href="#"
+              href="/resources/casestudy"
               className="text-blue-600 font-medium text-sm hover:underline cursor-pointer"
             >
               Explore Case Study →

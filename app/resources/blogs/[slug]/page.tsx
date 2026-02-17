@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { use } from 'react';
 import { BlogArticlesHero, BlogDetailLayout } from '@/components/resources';
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import { api } from '@/lib/api/client';
 
 interface BlogSlugPageProps {
@@ -42,7 +40,6 @@ export default function BlogSlugPage({ params }: BlogSlugPageProps) {
 
   return (
     <>
-      <Header />
       {/* Hero section - no parallax for stability */}
       <BlogArticlesHero 
         blogTitle={blogTitle || undefined} 
@@ -54,7 +51,6 @@ export default function BlogSlugPage({ params }: BlogSlugPageProps) {
       <div className="relative z-10">
         <BlogDetailLayout slug={slug} />
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactFormSection from '@/components/contact/ContactFormSection';
 import LocationsSection from '@/components/contact/LocationsSection';
@@ -12,7 +10,6 @@ import Testimonials from '@/components/home/Testimonials';
 const page = () => {
   return (
     <>
-    <Header/>
     <ContactHero/>
     <ContactFormSection/>
     <LocationsSection/>
@@ -20,7 +17,6 @@ const page = () => {
     <TrustedBySection/>
     <Testimonials/>
     <ConnectWithExperts/>
-    <Footer/>
     </>
   )
 }

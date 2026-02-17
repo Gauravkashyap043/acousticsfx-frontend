@@ -1,6 +1,4 @@
 import ConnectWithExperts from '@/components/home/ConnectWithExperts'
-import Footer from '@/components/home/Footer'
-import Header from '@/components/home/Header'
 import Testimonials from '@/components/home/Testimonials'
 import AboutProduct from '@/components/products/AboutProduct'
 import CertificationsSection from '@/components/products/CertificationsSection'
@@ -25,7 +23,6 @@ export default function LinearluxPage() {
 
   return (
     <>
-      <Header/>
       <LinearluxHero
         productTitle={product.title}
         subProductTitle={subProduct.title}
@@ -42,7 +39,6 @@ export default function LinearluxPage() {
       <Testimonials/>
       <RelatedProducts/>
       <ConnectWithExperts/>
-      <Footer/>
     </>
   )
 }

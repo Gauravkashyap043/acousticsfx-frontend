@@ -10,7 +10,8 @@ export default function ConnectWithExperts() {
   const [email, setEmail] = useState("");
   const [sending, setSending] = useState(false);
 
-  const nameInputRef = useRef<HTMLInputElement>(null);
+  const nameInputDesktopRef = useRef<HTMLInputElement>(null);
+  const nameInputMobileRef = useRef<HTMLInputElement>(null);
 
   // Contact form state
   const [contactName, setContactName] = useState("");
@@ -87,8 +88,10 @@ export default function ConnectWithExperts() {
           <button
             type="button"
             onClick={() => {
-              nameInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-              setTimeout(() => nameInputRef.current?.focus(), 400);
+              const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+              const target = isDesktop ? nameInputDesktopRef.current : nameInputMobileRef.current;
+              target?.scrollIntoView({ behavior: "smooth", block: "center" });
+              setTimeout(() => target?.focus(), 400);
             }}
             className="bg-white text-black px-6 py-3 w-fit text-sm font-medium cursor-pointer"
           >
@@ -130,7 +133,7 @@ export default function ConnectWithExperts() {
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-5 text-sm">
               <input
-                ref={nameInputRef}
+                ref={nameInputDesktopRef}
                 className="bg-transparent border-b border-black/60 outline-none pb-2 placeholder:text-gray-800"
                 placeholder="Your Name*"
                 value={contactName}
@@ -177,6 +180,66 @@ export default function ConnectWithExperts() {
             </button>
           </form>
         </div>
+      </div>
+
+      {/* ================= MOBILE CONTACT FORM ================= */}
+      <div className="px-6 sm:px-10 py-8 lg:hidden">
+        <form
+          onSubmit={handleContactSubmit}
+          className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-6 sm:p-8 w-full"
+        >
+          <p className="text-xs mb-6 text-white/70">
+            Fill out this form and our team will get back to you.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5 text-sm">
+            <input
+              ref={nameInputMobileRef}
+              className="bg-transparent border-b border-white/40 outline-none pb-2 placeholder:text-white/60"
+              placeholder="Your Name*"
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              className="bg-transparent border-b border-white/40 outline-none pb-2 placeholder:text-white/60"
+              placeholder="Your Email Address*"
+              value={contactEmail}
+              onChange={(e) => setContactEmail(e.target.value)}
+              required
+            />
+            <input
+              className="bg-transparent border-b border-white/40 outline-none pb-2 placeholder:text-white/60"
+              placeholder="Company name"
+              value={contactCompany}
+              onChange={(e) => setContactCompany(e.target.value)}
+            />
+            <input
+              className="bg-transparent border-b border-white/40 outline-none pb-2 placeholder:text-white/60"
+              placeholder="Your Phone number*"
+              value={contactPhone}
+              onChange={(e) => setContactPhone(e.target.value)}
+              required
+            />
+            <textarea
+              className="sm:col-span-2 bg-transparent border-b border-white/40 outline-none resize-none pb-2 placeholder:text-white/60"
+              placeholder="Your message*"
+              rows={2}
+              value={contactMessage}
+              onChange={(e) => setContactMessage(e.target.value)}
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={contactSending}
+            className="mt-6 bg-white text-[#1f2528] px-8 py-3 text-sm font-medium cursor-pointer hover:bg-gray-100 transition disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {contactSending ? "Sending…" : "Submit →"}
+          </button>
+        </form>
       </div>
 
       {/* ================= BOTTOM SUBSCRIBE ================= */}

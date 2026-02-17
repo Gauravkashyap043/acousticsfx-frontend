@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Header from "@/components/home/Header";
-import Footer from "@/components/home/Footer";
 import HomeHero from "@/components/home/HomeHero";
 import ServiceProvider from "@/components/home/ServiceProvider";
 import AboutSection from "@/components/home/AboutSection";
@@ -17,7 +15,6 @@ import ConnectWithExperts from "@/components/home/ConnectWithExperts";
 export default function Home() {
   return (
     <>
-      <Header />
       <HomeHero />
       <ServiceProvider />
       <AboutSection />
@@ -30,7 +27,6 @@ export default function Home() {
       <LatestBlogs/>
       <Testimonials/>
       <ConnectWithExperts/>
-      <Footer/>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 /* 🔹 PRODUCT DATA (HAR SLIDE KI ALAG IMAGE) */
@@ -58,21 +59,21 @@ export default function ProductsSection() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <button className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px] cursor-pointer">
+              <Link href="/products/acoustic" className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px] cursor-pointer no-underline">
                 ACOUSTIC SOLUTION
-              </button>
-              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer">
+              </Link>
+              <Link href="/products" className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer no-underline text-black">
                 FLOORING SOLUTION
-              </button>
-              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer">
+              </Link>
+              <Link href="/products" className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer no-underline text-black">
                 SOUND PROOFING SOLUTION
-              </button>
+              </Link>
             </div>
           </div>
 
-          <button className="border px-5 py-2 text-xs h-fit cursor-pointer">
+          <Link href="/products" className="border px-5 py-2 text-xs h-fit cursor-pointer no-underline text-black hover:bg-gray-100 transition">
             VIEW ALL PRODUCTS →
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -127,9 +128,9 @@ export default function ProductsSection() {
                   </div>
                 </div>
 
-                <button className="border border-orange-500 text-orange-500 px-6 py-2 text-sm mb-4 cursor-pointer">
+                <Link href="/products/acoustic" className="inline-block border border-orange-500 text-orange-500 px-6 py-2 text-sm mb-4 cursor-pointer hover:bg-orange-50 transition no-underline">
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           ))}

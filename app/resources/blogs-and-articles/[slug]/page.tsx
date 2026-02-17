@@ -5,8 +5,6 @@ import { BlogDetailLayout } from '@/components/resources';
 import BlogDetailHero from '@/components/resources/BlogDetailHero';
 import Testimonials from '@/components/home/Testimonials';
 import ConnectWithExperts from '@/components/home/ConnectWithExperts';
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import { api } from '@/lib/api/client';
 
 interface BlogSlugPageProps {
@@ -45,7 +43,6 @@ export default function BlogSlugPage({ params }: BlogSlugPageProps) {
 
   return (
     <>
-      <Header />
       {/* Hero section - similar to Wood Acoustic Panel Hero */}
       <BlogDetailHero 
         blogTitle={blogTitle || undefined}
@@ -62,8 +59,6 @@ export default function BlogSlugPage({ params }: BlogSlugPageProps) {
 
       {/* Connect With Experts */}
       <ConnectWithExperts />
-
-      <Footer />
     </>
   );
 }

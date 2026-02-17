@@ -1,35 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { fetchTestimonials, type Testimonial } from "@/lib/testimonials-api";
+import { useAsyncData } from "@/hooks/useAsyncData";
+import Spinner from "@/components/shared/Spinner";
 
 export default function Testimonials() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: testimonials, loading, error } = useAsyncData<Testimonial[]>(fetchTestimonials);
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
-    fetchTestimonials()
-      .then((data) => {
-        if (!cancelled) setTestimonials(data);
-      })
-      .catch((e) => {
-        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load");
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => { cancelled = true; };
-  }, []);
-
+  const items = testimonials ?? [];
   const prev = () => setIndex((i) => Math.max(i - 1, 0));
   const next = () =>
-    setIndex((i) => Math.min(i + 1, Math.max(0, testimonials.length - 1)));
+    setIndex((i) => Math.min(i + 1, Math.max(0, items.length - 1)));
 
   if (loading) {
     return (
@@ -37,7 +21,10 @@ export default function Testimonials() {
         <h2 className="text-left lg:text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
           Loved by the world&apos;s best teams
         </h2>
-        <p className="text-gray-500 text-center">Loading testimonials…</p>
+        <div className="flex items-center justify-center gap-3 py-12">
+          <Spinner size="sm" />
+          <span className="text-sm text-gray-500">Loading testimonials…</span>
+        </div>
       </section>
     );
   }
@@ -53,7 +40,7 @@ export default function Testimonials() {
     );
   }
 
-  if (testimonials.length === 0) {
+  if (items.length === 0) {
     return null;
   }
 
@@ -74,7 +61,7 @@ export default function Testimonials() {
             transform: `translateX(-${index * cardWidth}px)`,
           }}
         >
-          {testimonials.map((item) => (
+          {items.map((item) => (
             <div
               key={item._id}
               className="min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] border rounded-2xl p-6 sm:p-7 lg:p-8 bg-white"
@@ -129,7 +116,7 @@ export default function Testimonials() {
         <button
           type="button"
           onClick={prev}
-          disabled={testimonials.length <= 1}
+          disabled={items.length <= 1}
           className="absolute left-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image
@@ -144,7 +131,7 @@ export default function Testimonials() {
         <button
           type="button"
           onClick={next}
-          disabled={testimonials.length <= 1}
+          disabled={items.length <= 1}
           className="absolute right-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image

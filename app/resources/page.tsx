@@ -3,8 +3,6 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { LatestPosts } from '@/components/resources';
 import FeaturedWithAllPosts from '@/components/resources/FeaturedWithAllPosts';
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import WoodAcousticHero from '@/components/products/WoodAcousticHero';
 import Testimonials from '@/components/home/Testimonials';
 import ConnectWithExperts from '@/components/home/ConnectWithExperts';
@@ -16,7 +14,6 @@ function ResourcesContent() {
 
   return (
     <>
-      <Header />
       <WoodAcousticHero />
       
       {/* Show content based on active tab */}
@@ -31,8 +28,6 @@ function ResourcesContent() {
       
       {/* Connect With Experts */}
       <ConnectWithExperts />
-      
-      <Footer />
     </>
   );
 }

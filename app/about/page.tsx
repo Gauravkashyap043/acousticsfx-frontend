@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '@/components/home/Header';
-import Footer from '@/components/home/Footer';
 import AboutHero from '@/components/about/AboutHero';
 import StatsSection from '@/components/about/StatsSection';
 import AboutContent from '@/components/about/AboutContent';
@@ -17,7 +15,6 @@ import ConnectWithExperts from '@/components/home/ConnectWithExperts';
 const page = () => {
   return (
     <>
-    <Header/>
     <AboutHero/>
     <StatsSection/>
     <AboutContent/>
@@ -30,7 +27,6 @@ const page = () => {
     <LatestBlogs/>
     <Testimonials/>
     <ConnectWithExperts/>
-    <Footer/>
     </>
   )
 }

@@ -23,16 +23,16 @@ const DEFAULTS: Record<string, string> = {
 };
 
 const FALLBACK_SERVICES: FooterLink[] = [
-  { _id: "1", section: "services", label: "Acoustic Solution" },
-  { _id: "2", section: "services", label: "Sound Proofing" },
-  { _id: "3", section: "services", label: "Floor Solution" },
+  { _id: "1", section: "services", label: "Acoustic Solution", href: "/products/acoustic" },
+  { _id: "2", section: "services", label: "Sound Proofing", href: "/products" },
+  { _id: "3", section: "services", label: "Floor Solution", href: "/products" },
 ];
 
 const FALLBACK_RESOURCES: FooterLink[] = [
   { _id: "1", section: "resources", label: "Case Study", href: "/resources/casestudy" },
-  { _id: "2", section: "resources", label: "Careers" },
-  { _id: "3", section: "resources", label: "FX Acoustic In News" },
-  { _id: "4", section: "resources", label: "Blogs", href: "/resources/blogs" },
+  { _id: "2", section: "resources", label: "Careers", href: "/contactus" },
+  { _id: "3", section: "resources", label: "FX Acoustic In News", href: "/resources?tab=blogs" },
+  { _id: "4", section: "resources", label: "Blogs", href: "/resources?tab=blogs" },
 ];
 
 function val(c: ContentMap, key: string) {
@@ -74,13 +74,22 @@ export default function Footer() {
               {val(content, "footer.about")}
             </p>
             <div className="flex gap-3">
-              {["facebook", "twitter", "instagram", "linkedin"].map((icon) => (
-                <div
-                  key={icon}
-                  className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-white text-sm cursor-pointer hover:bg-orange-600 transition"
+              {[
+                { icon: "F", href: "https://facebook.com", label: "Facebook" },
+                { icon: "X", href: "https://twitter.com", label: "Twitter" },
+                { icon: "I", href: "https://instagram.com", label: "Instagram" },
+                { icon: "L", href: "https://linkedin.com", label: "LinkedIn" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-white text-sm cursor-pointer hover:bg-orange-600 transition no-underline"
                 >
-                  {icon[0].toUpperCase()}
-                </div>
+                  {s.icon}
+                </a>
               ))}
             </div>
           </div>
@@ -117,7 +126,11 @@ export default function Footer() {
           <div className="text-left">
             <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Contact Us</h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
-              <li>{val(content, "footer.contactEmail")}</li>
+              <li>
+                <a href={`mailto:${val(content, "footer.contactEmail")}`} className="hover:underline text-gray-700">
+                  {val(content, "footer.contactEmail")}
+                </a>
+              </li>
               <li>{val(content, "footer.contactAddress1")}</li>
               <li>{val(content, "footer.contactAddress2")}</li>
             </ul>
@@ -130,8 +143,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[15px] axiforma font-[500] text-left">
           <span className="text-left">{val(content, "footer.copyright")}</span>
           <div className="flex gap-6 sm:gap-8 text-[15px] axiforma font-[500] text-left">
-            <Link href="/privacy-policy" className="hover:underline text-left cursor-pointer">Privacy Policy</Link>
-            <Link href="/terms" className="hover:underline text-left cursor-pointer">Terms & Conditions</Link>
+            <Link href="/contactus" className="hover:underline text-left cursor-pointer">Privacy Policy</Link>
+            <Link href="/contactus" className="hover:underline text-left cursor-pointer">Terms & Conditions</Link>
           </div>
         </div>
       </div>

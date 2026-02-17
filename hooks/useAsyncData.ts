@@ -1,0 +1,50 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+
+interface UseAsyncDataResult<T> {
+  data: T | null;
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}
+
+/**
+ * Generic hook for fetching data with loading/error state.
+ * Handles cancellation on unmount and dependency changes.
+ */
+export function useAsyncData<T>(
+  fetcher: () => Promise<T>,
+  deps: unknown[] = []
+): UseAsyncDataResult<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [trigger, setTrigger] = useState(0);
+
+  const refetch = useCallback(() => setTrigger((t) => t + 1), []);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+
+    fetcher()
+      .then((result) => {
+        if (!cancelled) setData(result);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger, ...deps]);
+
+  return { data, loading, error, refetch };
+}
