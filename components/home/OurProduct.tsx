@@ -58,19 +58,19 @@ export default function ProductsSection() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <button className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px]">
+              <button className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px] cursor-pointer">
                 ACOUSTIC SOLUTION
               </button>
-              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold">
+              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer">
                 FLOORING SOLUTION
               </button>
-              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold">
+              <button className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer">
                 SOUND PROOFING SOLUTION
               </button>
             </div>
           </div>
 
-          <button className="border px-5 py-2 text-xs h-fit">
+          <button className="border px-5 py-2 text-xs h-fit cursor-pointer">
             VIEW ALL PRODUCTS →
           </button>
         </div>
@@ -127,7 +127,7 @@ export default function ProductsSection() {
                   </div>
                 </div>
 
-                <button className="border border-orange-500 text-orange-500 px-6 py-2 text-sm mb-4">
+                <button className="border border-orange-500 text-orange-500 px-6 py-2 text-sm mb-4 cursor-pointer">
                   View Details
                 </button>
               </div>
@@ -137,7 +137,7 @@ export default function ProductsSection() {
 
         {/* IMAGE ARROWS */}
         <div className="flex justify-center gap-8 mt-10">
-          <button onClick={scrollLeft}>
+          <button onClick={scrollLeft} className="cursor-pointer">
             <Image
               src="/assets/home/Vector.svg"
               alt="Previous"
@@ -147,7 +147,7 @@ export default function ProductsSection() {
             />
           </button>
 
-          <button onClick={scrollRight}>
+          <button onClick={scrollRight} className="cursor-pointer">
             <Image
               src="/assets/home/Vector.svg"
               alt="Next"

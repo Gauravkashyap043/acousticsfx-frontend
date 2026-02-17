@@ -45,7 +45,7 @@ export default function GallerySection() {
           Gallery
         </h2>
 
-        <button className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition">
+        <button className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
           Get Quote
           <Image
             src="/assets/home/universalvector.svg"
@@ -84,7 +84,7 @@ export default function GallerySection() {
       <div className="flex items-center justify-center gap-6 mt-6 sm:mt-8 text-sm text-gray-500">
         <button
           onClick={prev}
-          className="hover:opacity-70 transition"
+          className="hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -97,7 +97,7 @@ export default function GallerySection() {
         <span>{currentIndex + 1} / {totalSlides}</span>
         <button
           onClick={next}
-          className="hover:opacity-70 transition"
+          className="hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"

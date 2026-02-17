@@ -1,6 +1,42 @@
 "use client";
 
+import { useState } from "react";
+import {
+  submitContactForm,
+  CONTACT_SUBJECTS,
+  type ContactSubject,
+} from "@/lib/contact-api";
+
 export default function ContactFormSection() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState<ContactSubject>("General Inquiry");
+  const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setSending(true);
+    try {
+      await submitContactForm({ name, email, phone, subject, message });
+      setSuccess(true);
+      setName("");
+      setEmail("");
+      setPhone("");
+      setSubject("General Inquiry");
+      setMessage("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send message");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[30px] sm:py-[40px] lg:py-[50px] bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
@@ -24,7 +60,16 @@ export default function ContactFormSection() {
             Any question or remarks? Just write us a message!
           </p>
 
-          <form className="space-y-8">
+          {success && (
+            <p className="mb-6 text-green-600 font-medium">
+              Thank you for your message. We&apos;ll get back to you soon.
+            </p>
+          )}
+          {error && (
+            <p className="mb-6 text-red-600 font-medium">{error}</p>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-8">
 
             {/* Full Name */}
             <div>
@@ -34,6 +79,9 @@ export default function ContactFormSection() {
               <input
                 type="text"
                 placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
                 className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
               />
             </div>
@@ -47,6 +95,9 @@ export default function ContactFormSection() {
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
                 />
               </div>
@@ -58,6 +109,8 @@ export default function ContactFormSection() {
                 <input
                   type="tel"
                   placeholder="+91 012 3456 789"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
                 />
               </div>
@@ -70,25 +123,18 @@ export default function ContactFormSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 text-[13px] font-[400] poppins-font text-gray-600">
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="subject" defaultChecked />
-                  General Inquiry
-                </label>
-
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="subject" />
-                  Help & Support
-                </label>
-
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="subject" />
-                  Become Partner
-                </label>
-
-                <label className="flex items-center gap-2">
-                  <input type="radio" name="subject" />
-                  Other
-                </label>
+                {CONTACT_SUBJECTS.map((s) => (
+                  <label key={s} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="subject"
+                      value={s}
+                      checked={subject === s}
+                      onChange={() => setSubject(s)}
+                    />
+                    {s}
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -98,8 +144,10 @@ export default function ContactFormSection() {
                 Message
               </label>
               <textarea
-                rows={1}
+                rows={3}
                 placeholder="Write your message..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2 resize-none"
               />
             </div>
@@ -108,9 +156,10 @@ export default function ContactFormSection() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 transition"
+                disabled={sending}
+                className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 transition cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Send Message
+                {sending ? "Sending…" : "Send Message"}
               </button>
             </div>
 

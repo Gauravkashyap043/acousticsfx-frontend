@@ -34,7 +34,7 @@ export default function ServiceProvider() {
             transform spaces into high-functioning, visually striking environments.
           </p>
 
-          <button className="bg-[#EA8E39] text-white px-6 py-3 worksans-font font-semibold text-[19px]">
+          <button className="bg-[#EA8E39] text-white px-6 py-3 worksans-font font-semibold text-[19px] cursor-pointer">
             Learn More
           </button>
         </div>

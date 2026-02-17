@@ -44,7 +44,7 @@ export default function Header() {
           <ul className="flex items-center gap-8 xl:gap-[55px] text-sm font-medium text-gray-800">
 
             <li>
-              <Link href="/about" className="hover:text-orange-500 transition">
+              <Link href="/about" className="hover:text-orange-500 transition cursor-pointer">
                 About
               </Link>
             </li>
@@ -57,7 +57,7 @@ export default function Header() {
             >
               <Link
                 href="/products"
-                className={`flex items-center gap-1 transition py-5
+                className={`flex items-center gap-1 transition py-5 cursor-pointer
                   ${pathname?.startsWith("/products")
                     ? "text-orange-500"
                     : "hover:text-orange-500"
@@ -75,14 +75,14 @@ export default function Header() {
                   <h3 className="text-[24px] font-[400] mb-4">Our Products</h3>
 
                   {[
-                    { name: "Acoustic Solutions", link: "/products/productId" },
-                    { name: "Flooring Solutions", link: "/products/productId/InsideProduct" },
-                    { name: "Noise Solution", link: "/products/noise-solutions" },
+                    { name: "Acoustic Solutions", link: "/products/acoustic" },
+                    { name: "Flooring Solutions", link: "/products" },
+                    { name: "Noise Solution", link: "/products" },
                   ].map((item) => (
                     <Link
                       key={item.name}
                       href={item.link}
-                      className="group flex items-center justify-between px-4 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition"
+                      className="group flex items-center justify-between px-4 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition cursor-pointer"
                     >
                       <span className="font-medium">{item.name}</span>
 
@@ -113,7 +113,7 @@ export default function Header() {
             >
               <Link
                 href="/resources"
-                className={`flex items-center gap-1 transition py-5
+                className={`flex items-center gap-1 transition py-5 cursor-pointer
                   ${pathname?.startsWith("/resources")
                     ? "text-blue-600"
                     : "hover:text-blue-500"
@@ -138,7 +138,7 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.link}
-                      className="group flex items-center justify-between px-3 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition"
+                      className="group flex items-center justify-between px-3 py-3 border-b border-[#eee] hover:bg-[#FFF5EB] transition cursor-pointer"
                     >
                       <span className="font-medium">{item.name}</span>
 
@@ -162,7 +162,7 @@ export default function Header() {
             </li>
 
             <li>
-              <Link href="/contactus" className="hover:text-orange-500 transition">
+              <Link href="/contactus" className="hover:text-orange-500 transition cursor-pointer">
                 Contact Us
               </Link>
             </li>
@@ -173,7 +173,7 @@ export default function Header() {
         <div className="hidden lg:flex flex-shrink-0">
           <Link
             href="/get-quote"
-            className="bg-[#EA8E39] text-white px-4 py-3 text-sm font-[400] hover:bg-orange-600 transition rounded"
+            className="bg-[#EA8E39] text-white px-4 py-3 text-sm font-[400] hover:bg-orange-600 transition rounded cursor-pointer"
           >
             Get Quote
           </Link>
@@ -182,7 +182,7 @@ export default function Header() {
         {/* HAMBURGER MENU BUTTON - Mobile & Tablet */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden z-50 p-2 text-gray-800 hover:text-orange-500 transition"
+          className="lg:hidden z-50 p-2 text-gray-800 hover:text-orange-500 transition cursor-pointer"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -191,7 +191,7 @@ export default function Header() {
         {/* MOBILE MENU OVERLAY */}
         {mobileMenuOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden cursor-pointer"
             onClick={() => setMobileMenuOpen(false)}
           />
         )}
@@ -214,7 +214,7 @@ export default function Header() {
                   <Link
                     href="/about"
                     onClick={handleLinkClick}
-                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium"
+                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer"
                   >
                     About
                   </Link>
@@ -224,7 +224,7 @@ export default function Header() {
                 <li>
                   <button
                     onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium
+                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer
                       ${pathname?.startsWith("/products") ? "text-orange-500 bg-orange-50" : ""}
                     `}
                   >
@@ -238,15 +238,15 @@ export default function Header() {
                   {mobileProductsOpen && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {[
-                        { name: "Acoustic Solutions", link: "/products/productId" },
-                        { name: "Flooring Solutions", link: "/products/productId/InsideProduct" },
-                        { name: "Noise Solution", link: "/products/noise-solutions" },
+                        { name: "Acoustic Solutions", link: "/products/acoustic" },
+                        { name: "Flooring Solutions", link: "/products" },
+                        { name: "Noise Solution", link: "/products" },
                       ].map((item) => (
                         <li key={item.name}>
                           <Link
                             href={item.link}
                             onClick={handleLinkClick}
-                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg"
+                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg cursor-pointer"
                           >
                             {item.name}
                           </Link>
@@ -260,7 +260,7 @@ export default function Header() {
                 <li>
                   <button
                     onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium
+                    className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer
                       ${pathname?.startsWith("/resources") ? "text-blue-600 bg-blue-50" : ""}
                     `}
                   >
@@ -282,7 +282,7 @@ export default function Header() {
                           <Link
                             href={item.link}
                             onClick={handleLinkClick}
-                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-lg"
+                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-lg cursor-pointer"
                           >
                             {item.name}
                           </Link>
@@ -297,7 +297,7 @@ export default function Header() {
                   <Link
                     href="/contactus"
                     onClick={handleLinkClick}
-                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium"
+                    className="block px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer"
                   >
                     Contact Us
                   </Link>
@@ -308,7 +308,7 @@ export default function Header() {
                   <Link
                     href="/get-quote"
                     onClick={handleLinkClick}
-                    className="block w-full bg-[#EA8E39] text-white text-center px-4 py-3 rounded-lg font-medium hover:bg-orange-600 transition"
+                    className="block w-full bg-[#EA8E39] text-white text-center px-4 py-3 rounded-lg font-medium hover:bg-orange-600 transition cursor-pointer"
                   >
                     Get Quote
                   </Link>

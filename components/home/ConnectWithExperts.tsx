@@ -1,8 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { subscribeNewsletter } from "@/lib/newsletter-api";
 
 export default function ConnectWithExperts() {
+  const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setSending(true);
+    try {
+      await subscribeNewsletter(email);
+      setSuccess(true);
+      setEmail("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to subscribe");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section className="relative bg-[#1f2528] py-10 text-white overflow-hidden">
 
@@ -27,7 +50,7 @@ export default function ConnectWithExperts() {
             at Roax.
           </p>
 
-          <button className="bg-white text-black px-6 py-3 w-fit text-sm font-medium">
+          <button className="bg-white text-black px-6 py-3 w-fit text-sm font-medium cursor-pointer">
             Get in touch →
           </button>
         </div>
@@ -98,18 +121,35 @@ export default function ConnectWithExperts() {
             Join our mailing list and get the latest Roax news, insights,
             updates, and exclusive articles delivered to your inbox.
           </p>
+          {success && (
+            <p className="mt-2 text-green-400 text-sm font-medium">Thanks for subscribing!</p>
+          )}
+          {error && (
+            <p className="mt-2 text-red-300 text-sm font-medium">{error}</p>
+          )}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+        <form
+          onSubmit={handleSubscribe}
+          className="flex flex-col sm:flex-row gap-4 w-full md:w-auto"
+        >
           <input
-            className="px-5 py-3 bg-white text-black text-[14px] w-full md:w-[280px] outline-none inter-font font-[400] border border-white/40 placeholder:text-[#EA8E39]"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
+            required
+            className="px-5 py-3 bg-white text-black text-[14px] w-full md:w-[280px] outline-none inter-font font-[400] border border-white/40 placeholder:text-[#EA8E39]"
           />
 
-          <button className="bg-white text-[#097F98] px-6 py-3 text-[14px] inter-font font-bold whitespace-nowrap">
-            Subscribe Now →
+          <button
+            type="submit"
+            disabled={sending}
+            className="bg-white text-[#097F98] px-6 py-3 text-[14px] inter-font font-bold whitespace-nowrap cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {sending ? "Subscribing…" : "Subscribe Now →"}
           </button>
-        </div>
+        </form>
       </div>
     </section>
   );

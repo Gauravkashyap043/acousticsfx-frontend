@@ -53,7 +53,7 @@ export default function AboutSection() {
               that inspire focus, comfort, and performance.
             </p>
 
-            <button className="bg-orange-500 px-6 py-3 text-white text-[14px] sm:text-[15px]">
+            <button className="bg-orange-500 px-6 py-3 text-white text-[14px] sm:text-[15px] cursor-pointer">
               Learn More
             </button>
           </div>

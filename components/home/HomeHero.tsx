@@ -30,11 +30,11 @@ export default function HomeHero() {
 
         {/* Buttons */}
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <button className="border poppins-font font-[400] border-white px-6 py-3 text-[16px] sm:text-[18px] transition hover:bg-white hover:text-black">
+          <button className="border poppins-font font-[400] border-white px-6 py-3 text-[16px] sm:text-[18px] transition hover:bg-white hover:text-black cursor-pointer">
             Get Quote →
           </button>
 
-          <button className="bg-[#EA8E39] px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] transition hover:bg-orange-600">
+          <button className="bg-[#EA8E39] px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] transition hover:bg-orange-600 cursor-pointer">
             Connect With Us →
           </button>
         </div>

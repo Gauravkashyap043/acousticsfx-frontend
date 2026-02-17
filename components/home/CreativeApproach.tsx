@@ -36,7 +36,7 @@ export default function CreativeApproach() {
           <div className="border-t border-gray-300 py-4">
             <button
               onClick={() => toggleAccordion(0)}
-              className="flex w-full justify-between items-center font-medium"
+              className="flex w-full justify-between items-center font-medium cursor-pointer"
             >
               <span>Story & Concept</span>
               <span className="text-xl">{openIndex === 0 ? "−" : "+"}</span>
@@ -55,7 +55,7 @@ export default function CreativeApproach() {
           <div className="border-t border-gray-300 py-4">
             <button
               onClick={() => toggleAccordion(1)}
-              className="flex w-full justify-between items-center font-medium"
+              className="flex w-full justify-between items-center font-medium cursor-pointer"
             >
               <span>Design and Testing</span>
               <span className="text-xl">{openIndex === 1 ? "−" : "+"}</span>
@@ -73,7 +73,7 @@ export default function CreativeApproach() {
           <div className="border-t border-b border-gray-300 py-4">
             <button
               onClick={() => toggleAccordion(2)}
-              className="flex w-full justify-between items-center font-medium"
+              className="flex w-full justify-between items-center font-medium cursor-pointer"
             >
               <span>Revision and Rendering</span>
               <span className="text-xl">{openIndex === 2 ? "−" : "+"}</span>
@@ -87,7 +87,7 @@ export default function CreativeApproach() {
             )}
           </div>
 
-          <button className="mt-6 bg-orange-500 text-white px-6 py-3 text-sm">
+          <button className="mt-6 bg-orange-500 text-white px-6 py-3 text-sm cursor-pointer">
             Learn More
           </button>
         </div>

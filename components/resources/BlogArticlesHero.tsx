@@ -107,7 +107,7 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
                     <div className="bg-[#F5F5FF] border border-[#ffff] border-solid border-6 rounded-t-lg shadow-md p-2 inline-flex gap-4 sm:gap-6">
                         <button
                             onClick={() => setActiveTabState('blogs')}
-                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative ${activeTabState === 'blogs'
+                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === 'blogs'
                                 ? 'text-blue-600'
                                 : 'text-gray-600 hover:text-gray-900'
                                 }`}
@@ -119,7 +119,7 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
                         </button>
                         <button
                             onClick={() => setActiveTabState('news')}
-                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative ${activeTabState === 'news'
+                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === 'news'
                                 ? 'text-blue-600'
                                 : 'text-gray-600 hover:text-gray-900'
                                 }`}
@@ -131,7 +131,7 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
                         </button>
                         <button
                             onClick={() => setActiveTabState('events')}
-                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative ${activeTabState === 'events'
+                            className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === 'events'
                                 ? 'text-blue-600'
                                 : 'text-gray-600 hover:text-gray-900'
                                 }`}
@@ -147,7 +147,7 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
 
             {/* ENQUIRE NOW BUTTON - Right side (only show on list page, not detail page) */}
             {!isDetailPage && (
-                <button className="absolute right-[-28px] sm:right-[-37px] top-1/2 -translate-y-1/2 bg-[#0052CC] text-white px-4 py-2 text-sm font-medium rotate-90 rounded-b-lg shadow-lg z-10">
+                <button className="absolute right-[-28px] sm:right-[-37px] top-1/2 -translate-y-1/2 bg-[#0052CC] text-white px-4 py-2 text-sm font-medium rotate-90 rounded-b-lg shadow-lg z-10 cursor-pointer">
                     Enquire Now
                 </button>
             )}

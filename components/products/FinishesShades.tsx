@@ -104,7 +104,7 @@ export default function FinishesShades() {
             <button
               onClick={prev}
               disabled={index === 0}
-              className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               <Image
                 src="/assets/home/universalvector.svg"
@@ -117,7 +117,7 @@ export default function FinishesShades() {
             <button
               onClick={next}
               disabled={index >= finishes.length - 4}
-              className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               <Image
                 src="/assets/home/universalvector.svg"

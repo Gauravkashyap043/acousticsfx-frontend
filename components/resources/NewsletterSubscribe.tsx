@@ -1,6 +1,31 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { subscribeNewsletter } from "@/lib/newsletter-api";
 
 export default function NewsletterSubscribe() {
+  const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setSending(true);
+    try {
+      await subscribeNewsletter(email);
+      setSuccess(true);
+      setEmail("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to subscribe");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -16,17 +41,36 @@ export default function NewsletterSubscribe() {
               Get stories in your <br className="hidden sm:block" /> inbox twice a month.
             </h2>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            {success && (
+              <p className="mb-4 text-green-600 text-sm font-medium">
+                Thanks for subscribing!
+              </p>
+            )}
+            {error && (
+              <p className="mb-4 text-red-600 text-sm font-medium">{error}</p>
+            )}
+
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
+            >
               <input
                 type="email"
                 placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full sm:w-[260px] h-[44px] px-4 text-sm border border-gray-300 rounded-md outline-none focus:border-gray-500"
               />
 
-              <button className="h-[44px] px-6 bg-[#1E6F73] text-white text-sm rounded-md hover:opacity-90 transition">
-                Subscribe
+              <button
+                type="submit"
+                disabled={sending}
+                className="h-[44px] px-6 bg-[#1E6F73] text-white text-sm rounded-md hover:opacity-90 transition cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {sending ? "Subscribing…" : "Subscribe"}
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Right Illustration */}

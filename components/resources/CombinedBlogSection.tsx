@@ -51,7 +51,7 @@ export default function CombinedBlogSection() {
                                         nec quis sem. Maecen.
                                     </p>
 
-                                    <button className="text-sm font-semibold text-gray-900 hover:text-blue-600 border-b border-gray-900 hover:border-blue-600 pb-0.5 w-fit transition">
+                                    <button className="text-sm font-semibold text-gray-900 hover:text-blue-600 border-b border-gray-900 hover:border-blue-600 pb-0.5 w-fit transition cursor-pointer">
                                         View Post
                                     </button>
                                 </div>

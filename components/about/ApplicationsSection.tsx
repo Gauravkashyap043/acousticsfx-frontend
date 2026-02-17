@@ -97,7 +97,7 @@ export default function ApplicationsSection() {
         <button
           onClick={prev}
           disabled={index === 0}
-          className="absolute left-0 sm:left-[-10px] lg:left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute left-0 sm:left-[-10px] lg:left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -111,7 +111,7 @@ export default function ApplicationsSection() {
         <button
           onClick={next}
           disabled={index >= applications.length - 3}
-          className="absolute right-0 sm:right-[-10px] lg:right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute right-0 sm:right-[-10px] lg:right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"

@@ -1,60 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-
-const testimonials = [
-  {
-    company: "vmware",
-    companyLogo: "/assets/about/vmware.svg.svg",
-    text:
-      "When the pandemic hit, those of us who thrive on in-person collaboration were worried that our creativity and productivity would suffer. Miro was the perfect tool to help us with collaboration, whiteboarding, and retrospectives while remote.",
-    name: "Roxanne Mustafa",
-    role: "Design Team Lead at VMware",
-    avatar: "/avatar-1.jpg",
-  },
-  {
-    company: "DocuSign",
-    companyLogo: "/assets/about/Docusign-Testimonials-280-60-Baseline.svg.svg",
-    text:
-      "Miro helps solve one of the major gaps in product design: how to manage tasks across product designers whose projects are in different tools.",
-    name: "Jane Ashley",
-    role: "Head of Design at DocuSign",
-    avatar: "/avatar-2.jpg",
-  },
-  {
-    company: "frog",
-    companyLogo: "/assets/about/frog.svg.svg",
-    text:
-      "As we used Miro we moved from skepticism to belief to innovation, and now we have a tool that's at the core of what we do and will continue to extend into the future.",
-    name: "Laura Baird",
-    role: "Associate Design Director at frog",
-    avatar: "/avatar-3.jpg",
-  },
-  {
-    company: "Atlassian",
-    companyLogo: "/assets/about/vmware.svg.svg",
-    text:
-      "FX Acoustics transformed our workspace with elegant acoustic solutions. The panels not only improved sound quality but also enhanced our office aesthetics significantly.",
-    name: "Michael Chen",
-    role: "Workspace Design Lead at Atlassian",
-    avatar: "/avatar-1.jpg",
-  },
-];
+import { fetchTestimonials, type Testimonial } from "@/lib/testimonials-api";
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [index, setIndex] = useState(0);
 
-  const prev = () => setIndex((prev) => Math.max(prev - 1, 0));
-  const next = () =>
-    setIndex((prev) => Math.min(prev + 1, testimonials.length - 1));
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    fetchTestimonials()
+      .then((data) => {
+        if (!cancelled) setTestimonials(data);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
 
+  const prev = () => setIndex((i) => Math.max(i - 1, 0));
+  const next = () =>
+    setIndex((i) => Math.min(i + 1, Math.max(0, testimonials.length - 1)));
+
+  if (loading) {
+    return (
+      <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white relative">
+        <h2 className="text-left lg:text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
+          Loved by the world&apos;s best teams
+        </h2>
+        <p className="text-gray-500 text-center">Loading testimonials…</p>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white relative">
+        <h2 className="text-left lg:text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
+          Loved by the world&apos;s best teams
+        </h2>
+        <p className="text-gray-500 text-center">{error}</p>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
+
+  const cardWidth = 420;
   return (
     <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white relative">
 
       {/* HEADING */}
       <h2 className="text-left lg:text-center text-[32px] sm:text-[44px] lg:text-[60px] inter-font font-bold mb-12 lg:mb-16">
-        Loved by the world's best teams
+        Loved by the world&apos;s best teams
       </h2>
 
       {/* SLIDER */}
@@ -62,47 +71,54 @@ export default function Testimonials() {
         <div
           className="flex gap-6 sm:gap-8 transition-transform duration-500"
           style={{
-            transform: `translateX(-${index * 420}px)`,
+            transform: `translateX(-${index * cardWidth}px)`,
           }}
         >
-          {testimonials.map((item, i) => (
+          {testimonials.map((item) => (
             <div
-              key={i}
+              key={item._id}
               className="min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] border rounded-2xl p-6 sm:p-7 lg:p-8 bg-white"
             >
               {/* COMPANY LOGO */}
-              <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6">
-                <Image
-                  src={item.companyLogo}
-                  alt={item.company}
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              {item.companyLogo && (
+                <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6">
+                  <Image
+                    src={item.companyLogo}
+                    alt={item.company}
+                    fill
+                    className="object-contain"
+                    unoptimized={item.companyLogo.startsWith("http")}
+                  />
+                </div>
+              )}
 
               {/* TEXT */}
               <p className="text-gray-600 mb-10 leading-relaxed text-left">
-                "{item.text}"
+                &quot;{item.text}&quot;
               </p>
 
               {/* USER */}
               <div className="flex items-center gap-4 text-left">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden">
-                  <Image
-                    src={item.avatar}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="text-left">
+                {item.avatar && (
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
+                    <Image
+                      src={item.avatar}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      unoptimized={item.avatar.startsWith("http")}
+                    />
+                  </div>
+                )}
+                <div className="text-left min-w-0">
                   <p className="font-medium text-sm text-left">
                     {item.name}
                   </p>
-                  <p className="text-xs text-gray-500 text-left">
-                    {item.role}
-                  </p>
+                  {item.role && (
+                    <p className="text-xs text-gray-500 text-left">
+                      {item.role}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -111,8 +127,10 @@ export default function Testimonials() {
 
         {/* ARROWS */}
         <button
+          type="button"
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition"
+          disabled={testimonials.length <= 1}
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-gray-300 rounded-md flex items-center justify-center hover:opacity-80 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -124,8 +142,10 @@ export default function Testimonials() {
         </button>
 
         <button
+          type="button"
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition"
+          disabled={testimonials.length <= 1}
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-black rounded-md flex items-center justify-center hover:opacity-80 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Image
             src="/assets/home/universalvector.svg"

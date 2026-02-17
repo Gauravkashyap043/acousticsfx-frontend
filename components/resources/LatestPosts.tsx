@@ -99,8 +99,8 @@ export default function LatestPosts() {
               return (
                 <Link
                   key={blog._id}
-                  href={`/resources/blogs-and-articles/${blogSlug}`}
-                  className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition p-4 block"
+                  href={`/resources/blogs/${blogSlug}`}
+                  className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition p-4 block cursor-pointer"
                   data-aos="fade-up"
                   data-aos-delay={200 + idx * 100}
                 >

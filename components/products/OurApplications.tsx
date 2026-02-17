@@ -36,7 +36,7 @@ export default function OurApplications() {
         <div className="relative flex items-center">
 
           {/* Left Arrow */}
-          <button className="absolute -left-6 sm:-left-10 lg:-left-16 w-10 sm:w-12 h-10 sm:h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition">
+          <button className="absolute -left-6 sm:-left-10 lg:-left-16 w-10 sm:w-12 h-10 sm:h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition cursor-pointer">
             <Image
               src="/assets/home/universalvector.svg"
               alt="Previous"
@@ -103,7 +103,7 @@ export default function OurApplications() {
           </div>
 
           {/* Right Arrow */}
-          <button className="absolute -right-6 sm:-right-10 lg:-right-16 w-10 sm:w-12 h-10 sm:h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition">
+          <button className="absolute -right-6 sm:-right-10 lg:-right-16 w-10 sm:w-12 h-10 sm:h-12 bg-white/30 flex items-center justify-center hover:opacity-80 transition cursor-pointer">
             <Image
               src="/assets/home/universalvector.svg"
               alt="Next"

@@ -8,15 +8,15 @@ export default function AcousticSolutions() {
 
         {/* Top Tabs */}
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12 lg:mb-16">
-          <Link href="/products/acoustic">
-            <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-[#1F6775] bg-[#1F6775] text-white">
+          <Link href="/products/acoustic" className="cursor-pointer">
+            <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-[#1F6775] bg-[#1F6775] text-white cursor-pointer">
               ACOUSTIC SOLUTIONS
             </button>
           </Link>
-          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600">
+          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
             FLOORMOUNT SOLUTIONS
           </button>
-          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600">
+          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
             SOUND PROOFING SOLUTIONS
           </button>
         </div>
@@ -38,7 +38,7 @@ export default function AcousticSolutions() {
           <div className="flex flex-col gap-y-16 sm:gap-y-20">
 
             {/* Card 1 */}
-            <Link href="/products/acoustic/wood-acoustic-panel" className="block">
+            <Link href="/products/acoustic/wood-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-1.png"
                 alt=""
@@ -66,7 +66,7 @@ export default function AcousticSolutions() {
             </Link>
 
             {/* Card 3 */}
-            <Link href="/products/acoustic/baffle-clouds" className="block">
+            <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-3.png"
                 alt=""
@@ -94,7 +94,7 @@ export default function AcousticSolutions() {
             </Link>
 
             {/* Card 5 */}
-            <Link href="/products/acoustic/baffle-clouds" className="block">
+            <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-4.png"
                 alt=""
@@ -126,7 +126,7 @@ export default function AcousticSolutions() {
           <div className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
 
             {/* Card 2 */}
-            <Link href="/products/acoustic/fabric-acoustic-panel" className="block">
+            <Link href="/products/acoustic/fabric-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-2.png"
                 alt=""
@@ -154,7 +154,7 @@ export default function AcousticSolutions() {
             </Link>
 
             {/* Card 4 */}
-            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block">
+            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-7.png"
                 alt=""
@@ -182,7 +182,7 @@ export default function AcousticSolutions() {
             </Link>
 
             {/* Card 6 */}
-            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block">
+            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-5.png"
                 alt=""

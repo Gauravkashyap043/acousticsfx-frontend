@@ -60,7 +60,7 @@ export default function AboutProduct() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 sm:px-5 lg:px-6 py-2 text-[14px] sm:text-[15px] lg:text-[16px] axiforma font-[400] border-r last:border-r-0 border-[#f0b07a]
+            className={`px-4 sm:px-5 lg:px-6 py-2 text-[14px] sm:text-[15px] lg:text-[16px] axiforma font-[400] border-r last:border-r-0 border-[#f0b07a] cursor-pointer
               ${
                 activeTab === tab
                   ? "bg-[#f09a4a] text-white"

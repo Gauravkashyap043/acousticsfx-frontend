@@ -42,7 +42,7 @@ export default function FAQSection() {
             and how we work.
           </p>
 
-          <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font">
+          <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font cursor-pointer">
             Contact Us
           </button>
 
@@ -70,7 +70,7 @@ export default function FAQSection() {
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
-                  className="w-full flex justify-between items-center p-4 sm:p-5 text-left"
+                  className="w-full flex justify-between items-center p-4 sm:p-5 text-left cursor-pointer"
                 >
                   <span className="font-medium inter-font text-[16px] sm:text-[18px] lg:text-[20px]">
                     {index + 1}. {item.q}

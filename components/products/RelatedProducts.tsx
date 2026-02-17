@@ -62,7 +62,7 @@ export default function RelatedProducts() {
           </p>
         </div>
 
-        <button className="border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition">
+        <button className="border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
           VIEW ALL PRODUCTS →
         </button>
       </div>
@@ -108,7 +108,7 @@ export default function RelatedProducts() {
           <button
             onClick={prev}
             disabled={index === 0}
-            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             <Image
               src="/assets/home/universalvector.svg"
@@ -121,7 +121,7 @@ export default function RelatedProducts() {
           <button
             onClick={next}
             disabled={index >= products.length - 3}
-            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             <Image
               src="/assets/home/universalvector.svg"

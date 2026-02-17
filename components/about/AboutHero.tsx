@@ -36,11 +36,11 @@ export default function AboutHero() {
 
         {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="border border-white px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-white hover:text-black transition">
+          <button className="border border-white px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-white hover:text-black transition cursor-pointer">
             Get Quote →
           </button>
 
-          <button className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition">
+          <button className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition cursor-pointer">
             Connect With Us →
           </button>
         </div>

@@ -110,7 +110,7 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
                 >
                     <button
                         onClick={() => handleTabClick("blogs")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative ${
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
                             activeTabState === "blogs"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"
@@ -124,7 +124,7 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
 
                     <button
                         onClick={() => handleTabClick("news")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative ${
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
                             activeTabState === "news"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"
@@ -138,7 +138,7 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
 
                     <button
                         onClick={() => handleTabClick("events")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative ${
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
                             activeTabState === "events"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"

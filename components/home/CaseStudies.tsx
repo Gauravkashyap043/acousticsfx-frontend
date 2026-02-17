@@ -55,7 +55,7 @@ export default function CaseStudies() {
               and a healthier environment.
             </p>
 
-            <button className="border px-4 py-2 text-xs">
+            <button className="border px-4 py-2 text-xs cursor-pointer">
               VIEW ALL CASESTUDIES →
             </button>
           </div>
@@ -111,7 +111,7 @@ export default function CaseStudies() {
         <div className="flex justify-center gap-8 mt-10">
           <button
             onClick={() => splideRef.current?.go("<")}
-            className="flex items-center justify-center"
+            className="flex items-center justify-center cursor-pointer"
           >
             <Image
               src="/assets/home/Vector.svg"
@@ -124,7 +124,7 @@ export default function CaseStudies() {
 
           <button
             onClick={() => splideRef.current?.go(">")}
-            className="flex items-center justify-center"
+            className="flex items-center justify-center cursor-pointer"
           >
             <Image
               src="/assets/home/Vector.svg"

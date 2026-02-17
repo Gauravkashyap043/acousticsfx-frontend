@@ -40,7 +40,7 @@ export default function StoryInnovation() {
         <button
           className="
             absolute inset-0
-            flex items-center justify-center
+            flex items-center justify-center cursor-pointer
           "
           aria-label="Play video"
         >

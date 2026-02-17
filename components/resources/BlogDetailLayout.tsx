@@ -156,7 +156,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6">
           <div className="flex flex-col items-center justify-center py-12 sm:py-16 lg:py-20">
             <div className="text-gray-500 mb-4 text-sm sm:text-base">{error || "Blog not found"}</div>
-            <Link href="/resources" className="text-blue-600 hover:underline text-sm sm:text-base">
+            <Link href="/resources" className="text-blue-600 hover:underline text-sm sm:text-base cursor-pointer">
               ← Back to Resources
             </Link>
           </div>
@@ -284,7 +284,7 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
 
         {/* RIGHT COLUMN - RECENT BLOGS */}
         <div className="space-y-5 sm:space-y-6 lg:space-y-8">
-          <button className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md">
+          <button className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md cursor-pointer">
             Recent Blogs
           </button>
 
@@ -294,8 +294,8 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
             recentBlogs.map((recentBlog) => (
               <Link
                 key={recentBlog._id}
-                href={`/resources/blogs-and-articles/${recentBlog.slug}`}
-                className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm block hover:shadow-md transition"
+                href={`/resources/blogs/${recentBlog.slug}`}
+                className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm block hover:shadow-md transition cursor-pointer"
               >
                 <img
                   src={imgErrors[`recent-${recentBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-1.png"}
@@ -367,8 +367,8 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
               {recentBlogs.slice(0, 4).map((insightBlog) => (
                 <Link
                   key={insightBlog._id}
-                  href={`/resources/blogs-and-articles/${insightBlog.slug}`}
-                  className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+                  href={`/resources/blogs/${insightBlog.slug}`}
+                  className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
                 >
                   <div className="relative">
                     <Image

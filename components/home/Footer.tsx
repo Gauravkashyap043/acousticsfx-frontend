@@ -90,10 +90,10 @@ export default function Footer() {
           </span>
 
           <div className="flex gap-6 sm:gap-8 text-[15px] axiforma font-[500] text-left">
-            <Link href="/privacy-policy" className="hover:underline text-left">
+            <Link href="/privacy-policy" className="hover:underline text-left cursor-pointer">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:underline text-left">
+            <Link href="/terms" className="hover:underline text-left cursor-pointer">
               Terms & Conditions
             </Link>
           </div>

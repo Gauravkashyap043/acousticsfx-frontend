@@ -61,7 +61,7 @@ export default function LatestBlogs() {
           </h2>
         </div>
 
-        <button className="border px-5 py-2 text-sm h-fit">
+        <button className="border px-5 py-2 text-sm h-fit cursor-pointer">
           VIEW ALL BLOGS →
         </button>
       </div>
@@ -141,7 +141,7 @@ export default function LatestBlogs() {
       <div className="flex justify-center lg:justify-end gap-4 mt-10">
         <button
           onClick={prev}
-          className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center"
+          className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -154,7 +154,7 @@ export default function LatestBlogs() {
 
         <button
           onClick={next}
-          className="w-12 h-12 bg-black rounded-md flex items-center justify-center"
+          className="w-12 h-12 bg-black rounded-md flex items-center justify-center cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
