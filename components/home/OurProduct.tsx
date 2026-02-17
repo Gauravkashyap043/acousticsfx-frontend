@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
-/* 🔹 PRODUCT DATA (HAR SLIDE KI ALAG IMAGE) */
+/* Product slide data */
 const products = [
   {
     id: 1,
