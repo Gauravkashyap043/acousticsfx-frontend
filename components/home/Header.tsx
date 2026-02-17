@@ -306,7 +306,7 @@ export default function Header() {
                 {/* Get Quote Button - Mobile */}
                 <li className="pt-4">
                   <Link
-                    href="/get-quote"
+                    href="/contactus"
                     onClick={handleLinkClick}
                     className="block w-full bg-[#EA8E39] text-white text-center px-4 py-3 rounded-lg font-medium hover:bg-orange-600 transition cursor-pointer"
                   >

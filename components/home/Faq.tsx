@@ -1,34 +1,83 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { getFaqs, type FaqItem } from "@/lib/api/faqs-api";
+
+const FALLBACK_FAQS: FaqItem[] = [
+  {
+    _id: "f1",
+    question: "What kind of clients do you work with?",
+    answer:
+      "We work with architects, interior designers, corporate offices, hospitality projects, educational institutions, and healthcare facilities. Our acoustic solutions are tailored to meet the unique requirements of each space and client.",
+    order: 1,
+  },
+  {
+    _id: "f2",
+    question: "What services do you offer?",
+    answer:
+      "We offer a comprehensive range of acoustic solutions including acoustic panels, ceiling baffles, wall treatments, flooring solutions, and custom acoustic design consultation.",
+    order: 2,
+  },
+  {
+    _id: "f3",
+    question: "How do you price your projects?",
+    answer:
+      "Pricing depends on the scope, materials, and complexity of the project. We provide detailed quotes after an initial site assessment or consultation. Contact us for a free estimate.",
+    order: 3,
+  },
+  {
+    _id: "f4",
+    question: "What is your typical project timeline?",
+    answer:
+      "Timelines vary based on project size and complexity. Standard installations take 2–4 weeks from order confirmation. Custom solutions may require 4–8 weeks.",
+    order: 4,
+  },
+  {
+    _id: "f5",
+    question: "Can we collaborate remotely?",
+    answer:
+      "Absolutely. We support remote consultations via video call and can work from architectural drawings, photos, and measurements.",
+    order: 5,
+  },
+  {
+    _id: "f6",
+    question: "Do you accept one-off architect tasks or only full projects?",
+    answer:
+      "We welcome both. Whether you need a single acoustic panel for a conference room or a full building-wide acoustic treatment, we are happy to help.",
+    order: 6,
+  },
+  {
+    _id: "f7",
+    question: "How many concepts or revisions are included?",
+    answer:
+      "Our standard consultation includes up to 3 design concepts with 2 rounds of revisions. Additional iterations can be accommodated.",
+    order: 7,
+  },
+];
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [faqs, setFaqs] = useState<FaqItem[]>(FALLBACK_FAQS);
 
-  const faqs = [
-    {
-      q: "What kind of clients do you work with?",
-      a: "Read on how we make awesome projects from scratch, through several series of testing and refining to make our awesome masterclass.",
-    },
-    { q: "What services do you offer?", a: "Answer content here." },
-    { q: "How do you price your projects?", a: "Answer content here." },
-    { q: "What is your typical project timeline?", a: "Answer content here." },
-    { q: "Can we collaborate remotely?", a: "Answer content here." },
-    {
-      q: "Do you accept one-off architect tasks or only full projects?",
-      a: "Answer content here.",
-    },
-    {
-      q: "How many concepts or revisions are included?",
-      a: "Answer content here.",
-    },
-  ];
+  useEffect(() => {
+    let cancelled = false;
+    getFaqs()
+      .then((data) => {
+        if (!cancelled && data.length > 0) setFaqs(data);
+      })
+      .catch(() => {
+        /* keep fallback */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-
         {/* LEFT CONTENT */}
         <div className="w-full lg:w-1/2">
           <p className="text-[16px] mb-3 inter-font font-[500]">FAQs</p>
@@ -38,13 +87,15 @@ export default function FAQSection() {
           </h2>
 
           <p className="text-[16px] text-gray-600 mb-6 max-w-md inter-font font-[500]">
-            Answers to common questions about our process, services,
-            and how we work.
+            Answers to common questions about our process, services, and how we
+            work.
           </p>
 
-          <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font cursor-pointer">
-            Contact Us
-          </button>
+          <Link href="/contactus">
+            <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font cursor-pointer">
+              Contact Us
+            </button>
+          </Link>
 
           {/* IMAGE */}
           <div className="relative overflow-hidden w-full max-w-[551.55px] aspect-[551.55/443.52]">
@@ -62,10 +113,7 @@ export default function FAQSection() {
         <div className="w-full lg:w-1/2">
           <div className="space-y-4">
             {faqs.map((item, index) => (
-              <div
-                key={index}
-                className="border rounded-xl overflow-hidden"
-              >
+              <div key={item._id} className="border rounded-xl overflow-hidden">
                 <button
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
@@ -73,7 +121,7 @@ export default function FAQSection() {
                   className="w-full flex justify-between items-center p-4 sm:p-5 text-left cursor-pointer"
                 >
                   <span className="font-medium inter-font text-[16px] sm:text-[18px] lg:text-[20px]">
-                    {index + 1}. {item.q}
+                    {index + 1}. {item.question}
                   </span>
                   <span className="text-xl">
                     {openIndex === index ? "—" : "+"}
@@ -82,14 +130,13 @@ export default function FAQSection() {
 
                 {openIndex === index && (
                   <div className="px-5 pb-5 text-[16px] sm:text-[17px] lg:text-[18px] axiforma text-gray-600">
-                    {item.a}
+                    {item.answer}
                   </div>
                 )}
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

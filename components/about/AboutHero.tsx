@@ -42,9 +42,9 @@ export default function AboutHero() {
             Get Quote →
           </Link>
 
-          <button className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition cursor-pointer">
+          <Link href="/contactus" className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition cursor-pointer inline-block">
             Connect With Us →
-          </button>
+          </Link>
         </div>
       </div>
     </section>

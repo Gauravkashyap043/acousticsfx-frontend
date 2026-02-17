@@ -13,12 +13,16 @@ export default function AcousticSolutions() {
               ACOUSTIC SOLUTIONS
             </button>
           </Link>
-          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
-            FLOORMOUNT SOLUTIONS
-          </button>
-          <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
-            SOUND PROOFING SOLUTIONS
-          </button>
+          <Link href="/products/flooring" className="cursor-pointer">
+            <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
+              FLOORMOUNT SOLUTIONS
+            </button>
+          </Link>
+          <Link href="/products/noise-solutions" className="cursor-pointer">
+            <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-gray-300 text-gray-600 cursor-pointer">
+              SOUND PROOFING SOLUTIONS
+            </button>
+          </Link>
         </div>
 
         {/* Heading */}

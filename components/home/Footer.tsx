@@ -1,14 +1,66 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+import { fetchFooterLinks, type FooterLink } from "@/lib/footer-api";
+
+const CONTENT_KEYS = [
+  "footer.about",
+  "footer.copyright",
+  "footer.contactEmail",
+  "footer.contactAddress1",
+  "footer.contactAddress2",
+];
+
+const DEFAULTS: Record<string, string> = {
+  "footer.about": "Its your premier destination for luxury and modern interior design",
+  "footer.copyright": "© Copyright 2025 FX Acoustic Solution — All Rights Reserved.",
+  "footer.contactEmail": "email@gmail.com",
+  "footer.contactAddress1": "Design Avenue Cityville, CA 90210 United States",
+  "footer.contactAddress2": "Design Avenue Cityville, CA 90210 United States",
+};
+
+const FALLBACK_SERVICES: FooterLink[] = [
+  { _id: "1", section: "services", label: "Acoustic Solution" },
+  { _id: "2", section: "services", label: "Sound Proofing" },
+  { _id: "3", section: "services", label: "Floor Solution" },
+];
+
+const FALLBACK_RESOURCES: FooterLink[] = [
+  { _id: "1", section: "resources", label: "Case Study", href: "/resources/casestudy" },
+  { _id: "2", section: "resources", label: "Careers" },
+  { _id: "3", section: "resources", label: "FX Acoustic In News" },
+  { _id: "4", section: "resources", label: "Blogs", href: "/resources/blogs" },
+];
+
+function val(c: ContentMap, key: string) {
+  return c[key]?.value ?? DEFAULTS[key] ?? "";
+}
 
 export default function Footer() {
+  const [content, setContent] = useState<ContentMap>({});
+  const [services, setServices] = useState(FALLBACK_SERVICES);
+  const [resources, setResources] = useState(FALLBACK_RESOURCES);
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+    fetchFooterLinks()
+      .then(({ services: s, resources: r }) => {
+        if (s.length > 0) setServices(s);
+        if (r.length > 0) setResources(r);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <footer className="w-full bg-white">
 
       {/* TOP FOOTER */}
       <div className="px-6 sm:px-10 lg:px-[100px] py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-[90px]">
-          
+
           {/* LOGO + ABOUT */}
           <div className="text-left">
             <Image
@@ -18,12 +70,9 @@ export default function Footer() {
               height={50}
               className="mb-4"
             />
-
             <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6 text-left">
-              Its your premier destination for luxury and modern interior design
+              {val(content, "footer.about")}
             </p>
-
-            {/* Social Icons */}
             <div className="flex gap-3">
               {["facebook", "twitter", "instagram", "linkedin"].map((icon) => (
                 <div
@@ -38,64 +87,51 @@ export default function Footer() {
 
           {/* OUR SERVICES */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">
-              Our Services
-            </h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Our Services</h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
-              <li>Acoustic Solution</li>
-              <li>Sound Proofing</li>
-              <li>Floor Solution</li>
+              {services.map((s) =>
+                s.href ? (
+                  <li key={s._id}><Link href={s.href} className="hover:underline text-gray-700">{s.label}</Link></li>
+                ) : (
+                  <li key={s._id}>{s.label}</li>
+                )
+              )}
             </ul>
           </div>
 
           {/* RESOURCES */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">
-              Resources
-            </h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Resources</h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
-              <li>Case Study</li>
-              <li>Careers</li>
-              <li>FX Acoustic In News</li>
-              <li>Blogs</li>
+              {resources.map((r) =>
+                r.href ? (
+                  <li key={r._id}><Link href={r.href} className="hover:underline text-gray-700">{r.label}</Link></li>
+                ) : (
+                  <li key={r._id}>{r.label}</li>
+                )
+              )}
             </ul>
           </div>
 
           {/* CONTACT */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">
-              Contact Us
-            </h4>
+            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Contact Us</h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
-              <li>email@gmail.com</li>
-              <li>
-                Design Avenue Cityville, <br />
-                CA 90210 United States
-              </li>
-              <li>
-                Design Avenue Cityville, <br />
-                CA 90210 United States
-              </li>
+              <li>{val(content, "footer.contactEmail")}</li>
+              <li>{val(content, "footer.contactAddress1")}</li>
+              <li>{val(content, "footer.contactAddress2")}</li>
             </ul>
           </div>
-
         </div>
       </div>
 
       {/* BOTTOM BAR */}
       <div className="bg-[#1f5e67] text-white px-6 sm:px-10 lg:px-[100px] py-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[15px] axiforma font-[500] text-left">
-          <span className="text-left">
-            © Copyright 2025 FX Acoustic Solution — All Rights Reserved.
-          </span>
-
+          <span className="text-left">{val(content, "footer.copyright")}</span>
           <div className="flex gap-6 sm:gap-8 text-[15px] axiforma font-[500] text-left">
-            <Link href="/privacy-policy" className="hover:underline text-left cursor-pointer">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:underline text-left cursor-pointer">
-              Terms & Conditions
-            </Link>
+            <Link href="/privacy-policy" className="hover:underline text-left cursor-pointer">Privacy Policy</Link>
+            <Link href="/terms" className="hover:underline text-left cursor-pointer">Terms & Conditions</Link>
           </div>
         </div>
       </div>
