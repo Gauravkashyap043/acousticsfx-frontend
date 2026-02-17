@@ -31,7 +31,7 @@ export default function CaseStudies() {
           <div>
             <Image
               src="/assets/product/case-study-1.jpg"
-              alt=""
+              alt="Symmetry in architectural acoustic design"
               width={500}
               height={400}
               className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
@@ -49,7 +49,7 @@ export default function CaseStudies() {
           <div>
             <Image
               src="/assets/product/product-card-6.png"
-              alt=""
+              alt="Smart acoustic solutions for residential spaces"
               width={500}
               height={400}
               className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
@@ -67,7 +67,7 @@ export default function CaseStudies() {
           <div>
             <Image
               src="/assets/product/product-card-1.png"
-              alt=""
+              alt="Texture and materials in acoustic architecture"
               width={500}
               height={400}
               className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
