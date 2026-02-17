@@ -1,6 +1,37 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = [
+  "home.hero.title",
+  "home.hero.subtitle",
+  "home.hero.button1Label",
+  "home.hero.button2Label",
+];
+
+const DEFAULTS: Record<string, string> = {
+  "home.hero.title":
+    "We take pride in building stylish and featured acoustic solution.",
+  "home.hero.subtitle":
+    "Our solutions are engineered for clarity, comfort, and visual harmony. Whether it's a studio, auditorium, or workspace, we bring together design precision and acoustic mastery to elevate every square foot.",
+  "home.hero.button1Label": "Get Quote →",
+  "home.hero.button2Label": "Connect With Us →",
+};
+
+function val(content: ContentMap, key: string) {
+  return content[key]?.value ?? DEFAULTS[key] ?? "";
+}
 
 export default function HomeHero() {
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
 
@@ -19,24 +50,28 @@ export default function HomeHero() {
         {/* Main Text */}
         <h1 className="max-w-7xl leading-[42px] sm:leading-[60px] lg:leading-[85px]
           text-[28px] sm:text-[40px] md:text-5xl lg:text-[76px] font-bold playfair-display">
-          We take pride in building stylish and featured acoustic solution.
+          {val(content, "home.hero.title")}
         </h1>
 
         <p className="mt-6 max-w-2xl text-[14px] sm:text-[15px] md:text-base font-[400] text-gray-200 poppins-font">
-          Our solutions are engineered for clarity, comfort, and visual harmony.
-          Whether it’s a studio, auditorium, or workspace, we bring together
-          design precision and acoustic mastery to elevate every square foot.
+          {val(content, "home.hero.subtitle")}
         </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <button className="border poppins-font font-[400] border-white px-6 py-3 text-[16px] sm:text-[18px] transition hover:bg-white hover:text-black cursor-pointer">
-            Get Quote →
-          </button>
+          <Link
+            href="/contactus"
+            className="border poppins-font font-[400] border-white px-6 py-3 text-[16px] sm:text-[18px] transition hover:bg-white hover:text-black cursor-pointer"
+          >
+            {val(content, "home.hero.button1Label")}
+          </Link>
 
-          <button className="bg-[#EA8E39] px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] transition hover:bg-orange-600 cursor-pointer">
-            Connect With Us →
-          </button>
+          <Link
+            href="/contactus"
+            className="bg-[#EA8E39] px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] transition hover:bg-orange-600 cursor-pointer"
+          >
+            {val(content, "home.hero.button2Label")}
+          </Link>
         </div>
 
         {/* Spacer */}

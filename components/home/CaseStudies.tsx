@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import type { Splide as SplideType } from "@splidejs/splide";
 import "@splidejs/react-splide/css";
 
 export default function CaseStudies() {
-  const splideRef = useRef<SplideType | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const splideRef = useRef<any>(null);
 
   const caseStudies = [
     {
@@ -55,9 +56,9 @@ export default function CaseStudies() {
               and a healthier environment.
             </p>
 
-            <button className="border px-4 py-2 text-xs cursor-pointer">
+            <Link href="/resources/casestudy" className="border px-4 py-2 text-xs cursor-pointer">
               VIEW ALL CASESTUDIES →
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -66,20 +67,19 @@ export default function CaseStudies() {
       <div className="relative pl-6 sm:pl-10 lg:pl-[360px]">
         <Splide
           options={{
+            type: "loop",
             perPage: 3,
+            perMove: 1,
             gap: "24px",
             arrows: false,
             pagination: false,
             drag: true,
-            trimSpace: false,
             breakpoints: {
               1024: { perPage: 2 },
               640: { perPage: 1 },
             },
           }}
-          onMounted={(splide) => {
-            splideRef.current = splide;
-          }}
+          ref={splideRef}
         >
           {caseStudies.map((item) => (
             <SplideSlide key={item.id}>
@@ -110,7 +110,7 @@ export default function CaseStudies() {
         {/* CUSTOM IMAGE ARROWS */}
         <div className="flex justify-center gap-8 mt-10">
           <button
-            onClick={() => splideRef.current?.go("<")}
+            onClick={() => splideRef.current?.splide?.go("<")}
             className="flex items-center justify-center cursor-pointer"
           >
             <Image
@@ -123,7 +123,7 @@ export default function CaseStudies() {
           </button>
 
           <button
-            onClick={() => splideRef.current?.go(">")}
+            onClick={() => splideRef.current?.splide?.go(">")}
             className="flex items-center justify-center cursor-pointer"
           >
             <Image
