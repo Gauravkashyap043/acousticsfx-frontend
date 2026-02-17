@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const galleryImages = [
   {
@@ -45,7 +46,7 @@ export default function GallerySection() {
           Gallery
         </h2>
 
-        <button className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
+        <Link href="/contactus" className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
           Get Quote
           <Image
             src="/assets/home/universalvector.svg"
@@ -53,7 +54,7 @@ export default function GallerySection() {
             width={34}
             height={14}
           />
-        </button>
+        </Link>
       </div>
 
       {/* Gallery Grid */}
