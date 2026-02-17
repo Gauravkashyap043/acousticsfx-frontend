@@ -172,7 +172,7 @@ export default function Header() {
         {/* RIGHT : CTA - Desktop */}
         <div className="hidden lg:flex flex-shrink-0">
           <Link
-            href="/get-quote"
+            href="/contactus"
             className="bg-[#EA8E39] text-white px-4 py-3 text-sm font-[400] hover:bg-orange-600 transition rounded cursor-pointer"
           >
             Get Quote
@@ -208,7 +208,7 @@ export default function Header() {
           <div className="p-6 pt-20">
             <nav>
               <ul className="space-y-2">
-                
+
                 {/* About */}
                 <li>
                   <Link
@@ -234,7 +234,7 @@ export default function Header() {
                       className={`transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`}
                     />
                   </button>
-                  
+
                   {mobileProductsOpen && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {[
@@ -270,7 +270,7 @@ export default function Header() {
                       className={`transition-transform ${mobileResourcesOpen ? "rotate-180" : ""}`}
                     />
                   </button>
-                  
+
                   {mobileResourcesOpen && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {[
