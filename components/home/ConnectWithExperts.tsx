@@ -2,14 +2,13 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
 import { submitContactForm } from "@/lib/contact-api";
 
 export default function ConnectWithExperts() {
   const [email, setEmail] = useState("");
   const [sending, setSending] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -20,13 +19,9 @@ export default function ConnectWithExperts() {
   const [contactPhone, setContactPhone] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [contactSending, setContactSending] = useState(false);
-  const [contactSuccess, setContactSuccess] = useState(false);
-  const [contactError, setContactError] = useState<string | null>(null);
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setContactError(null);
-    setContactSuccess(false);
     setContactSending(true);
     try {
       await submitContactForm({
@@ -38,14 +33,14 @@ export default function ConnectWithExperts() {
           ? `[Company: ${contactCompany}] ${contactMessage}`
           : contactMessage,
       });
-      setContactSuccess(true);
+      toast.success("Message sent! We'll get back to you shortly.");
       setContactName("");
       setContactEmail("");
       setContactCompany("");
       setContactPhone("");
       setContactMessage("");
     } catch (err) {
-      setContactError(err instanceof Error ? err.message : "Failed to send");
+      toast.error(err instanceof Error ? err.message : "Failed to send message. Please try again.");
     } finally {
       setContactSending(false);
     }
@@ -53,15 +48,13 @@ export default function ConnectWithExperts() {
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
     setSending(true);
     try {
       await subscribeNewsletter(email);
-      setSuccess(true);
+      toast.success("You're subscribed! Thanks for joining our newsletter.");
       setEmail("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to subscribe");
+      toast.error(err instanceof Error ? err.message : "Failed to subscribe. Please try again.");
     } finally {
       setSending(false);
     }
@@ -125,7 +118,7 @@ export default function ConnectWithExperts() {
           </div>
         </div>
 
-        {/* FORM CARD — DESKTOP ONLY (UNCHANGED) */}
+        {/* FORM CARD — DESKTOP ONLY */}
         <div className="absolute right-[200px] top-1/2 -translate-y-1/2 z-20 hidden lg:block">
           <form
             onSubmit={handleContactSubmit}
@@ -175,13 +168,6 @@ export default function ConnectWithExperts() {
               />
             </div>
 
-            {contactSuccess && (
-              <p className="mt-4 text-green-700 text-sm font-medium">Message sent successfully!</p>
-            )}
-            {contactError && (
-              <p className="mt-4 text-red-600 text-sm font-medium">{contactError}</p>
-            )}
-
             <button
               type="submit"
               disabled={contactSending}
@@ -203,12 +189,6 @@ export default function ConnectWithExperts() {
             Join our mailing list and get the latest Roax news, insights,
             updates, and exclusive articles delivered to your inbox.
           </p>
-          {success && (
-            <p className="mt-2 text-green-400 text-sm font-medium">Thanks for subscribing!</p>
-          )}
-          {error && (
-            <p className="mt-2 text-red-300 text-sm font-medium">{error}</p>
-          )}
         </div>
 
         <form

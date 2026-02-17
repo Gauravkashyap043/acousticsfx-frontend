@@ -2,25 +2,22 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
 
 export default function NewsletterSubscribe() {
   const [email, setEmail] = useState("");
   const [sending, setSending] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
     setSending(true);
     try {
       await subscribeNewsletter(email);
-      setSuccess(true);
+      toast.success("You're subscribed! Thanks for joining our newsletter.");
       setEmail("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to subscribe");
+      toast.error(err instanceof Error ? err.message : "Failed to subscribe. Please try again.");
     } finally {
       setSending(false);
     }
@@ -40,15 +37,6 @@ export default function NewsletterSubscribe() {
             <h2 className="text-[26px] sm:text-[28px] lg:text-[32px] leading-snug font-semibold text-gray-900 mb-8 text-left">
               Get stories in your <br className="hidden sm:block" /> inbox twice a month.
             </h2>
-
-            {success && (
-              <p className="mb-4 text-green-600 text-sm font-medium">
-                Thanks for subscribing!
-              </p>
-            )}
-            {error && (
-              <p className="mb-4 text-red-600 text-sm font-medium">{error}</p>
-            )}
 
             <form
               onSubmit={handleSubmit}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   submitContactForm,
   CONTACT_SUBJECTS,
@@ -14,24 +15,20 @@ export default function ContactFormSection() {
   const [subject, setSubject] = useState<ContactSubject>("General Inquiry");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
     setSending(true);
     try {
       await submitContactForm({ name, email, phone, subject, message });
-      setSuccess(true);
+      toast.success("Message sent! We'll get back to you shortly.");
       setName("");
       setEmail("");
       setPhone("");
       setSubject("General Inquiry");
       setMessage("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to send message");
+      toast.error(err instanceof Error ? err.message : "Failed to send message. Please try again.");
     } finally {
       setSending(false);
     }
@@ -59,15 +56,6 @@ export default function ContactFormSection() {
           <p className="text-gray-500 mb-8 sm:mb-10 poppins-font font-[500] text-[16px] sm:text-[18px] lg:text-[20px]">
             Any question or remarks? Just write us a message!
           </p>
-
-          {success && (
-            <p className="mb-6 text-green-600 font-medium">
-              Thank you for your message. We&apos;ll get back to you soon.
-            </p>
-          )}
-          {error && (
-            <p className="mb-6 text-red-600 font-medium">{error}</p>
-          )}
 
           <form onSubmit={handleSubmit} className="space-y-8">
 

@@ -9,6 +9,7 @@ import {
   Manrope,
   Lato,
 } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 /* ================= Geist ================= */
@@ -105,6 +106,7 @@ export default function RootLayout({
         `}
       >
         {children}
+        <Toaster position="bottom-right" richColors closeButton />
       </body>
     </html>
   );
