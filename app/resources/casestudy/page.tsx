@@ -13,21 +13,21 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* First Case Study - White background */}
-      <CaseStudySection 
+      <CaseStudySection
         image="/assets/product/product-hero.png"
         bgColor="white"
         reverse={false}
       />
 
       {/* Second Case Study - Light blue background */}
-      <CaseStudySection 
+      <CaseStudySection
         image="/assets/product/product-card-1.png"
         bgColor="light-blue"
         reverse={true}
       />
 
       {/* Third Case Study - White background */}
-      <CaseStudySection 
+      <CaseStudySection
         image="/assets/product/product-card-6.png"
         bgColor="white"
         reverse={false}

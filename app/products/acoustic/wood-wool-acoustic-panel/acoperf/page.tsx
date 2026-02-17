@@ -10,12 +10,10 @@ import LinearluxHero from '@/components/products/LinearluxHero'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/SubstratesSection'
-import { getProductBySlug, getSubProductData } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedSubProduct } from '@/lib/products-data'
 
-export default function AcoperfPage() {
-  const product = getProductBySlug('wood-wool-acoustic-panel')
-  const subProduct = getSubProductData('wood-wool-acoustic-panel', 'acoperf')
+export default async function AcoperfPage() {
+  const { product, subProduct } = await fetchMergedSubProduct('wood-wool-acoustic-panel', 'acoperf')
   
   if (!product || !subProduct) {
     return null

@@ -10,12 +10,10 @@ import Product3DViewer from '@/components/products/Product3DViewer'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/SubstratesSection'
-import { getProductBySlug, getSubProductData } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedSubProduct } from '@/lib/products-data'
 
-export default function AcoslotsPage() {
-  const product = getProductBySlug('wood-acoustic-panel')
-  const subProduct = getSubProductData('wood-acoustic-panel', 'acoslots')
+export default async function AcoslotsPage() {
+  const { product, subProduct } = await fetchMergedSubProduct('wood-acoustic-panel', 'acoslots')
   
   if (!product || !subProduct) {
     return null

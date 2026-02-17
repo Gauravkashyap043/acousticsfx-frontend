@@ -1,3 +1,8 @@
+import {
+  fetchProductBySlug as apiFetchProduct,
+  fetchSubProduct as apiFetchSubProduct,
+} from "./products-api";
+
 // Product and Sub-Product Data Structure
 // Maps slugs to product/sub-product information
 
@@ -159,4 +164,52 @@ export function getSubProductData(
   
   // Fallback to default sub-products
   return defaultSubProducts.find((sub) => sub.slug === subProductSlug);
+}
+
+// ---------------------------------------------------------------------------
+// Async API-aware helpers: fetch from backend, merge with static data.
+// Admin-uploaded images (ImageKit URLs) override the static defaults.
+// ---------------------------------------------------------------------------
+
+export async function fetchMergedProduct(
+  slug: string
+): Promise<Product | undefined> {
+  const staticProduct = getProductBySlug(slug);
+  try {
+    const apiProduct = await apiFetchProduct(slug);
+    if (!apiProduct) return staticProduct;
+    return {
+      slug: apiProduct.slug,
+      title: apiProduct.title || staticProduct?.title || "",
+      description: apiProduct.description || staticProduct?.description || "",
+      image: apiProduct.image || staticProduct?.image || "",
+      heroImage: apiProduct.heroImage || staticProduct?.heroImage,
+      subProducts:
+        apiProduct.subProducts?.length > 0
+          ? apiProduct.subProducts
+          : staticProduct?.subProducts ?? [],
+    };
+  } catch {
+    return staticProduct;
+  }
+}
+
+export async function fetchMergedSubProduct(
+  productSlug: string,
+  subProductSlug: string
+): Promise<{ product: Product | undefined; subProduct: SubProduct | undefined }> {
+  const staticProduct = getProductBySlug(productSlug);
+  const staticSub = getSubProductData(productSlug, subProductSlug);
+  try {
+    const apiResult = await apiFetchSubProduct(productSlug, subProductSlug);
+    const mergedSub: SubProduct = {
+      slug: apiResult.subProduct.slug,
+      title: apiResult.subProduct.title || staticSub?.title || "",
+      description: apiResult.subProduct.description || staticSub?.description || "",
+      image: apiResult.subProduct.image || staticSub?.image || "",
+    };
+    return { product: staticProduct, subProduct: mergedSub };
+  } catch {
+    return { product: staticProduct, subProduct: staticSub };
+  }
 }

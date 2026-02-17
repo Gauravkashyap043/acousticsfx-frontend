@@ -69,31 +69,31 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
                             <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full relative flex flex-col justify-center items-center">
                                 {/* CENTERED TITLE TEXT - Aligned with header logo */}
                                 <div className="w-full flex justify-center" data-aos="fade-up" data-aos-delay="200">
-                                  <h1
-                                    style={{
-                                      fontFamily: 'Manrope',
-                                      fontWeight: 300,
-                                      fontSize: '70px',
-                                      lineHeight: '84px',
-                                      letterSpacing: '-0.7px',
-                                      color: '#fff',
-                                      textAlign: 'center',
-                                      maxWidth: '1200px',
-                                      margin: '0 auto',
-                                      whiteSpace: 'normal'
-                                    }}
-                                  >
-                                    {blogTitle ? (
-                                      blogTitle
-                                    ) : (
-                                      <>
-                                        The Impact of Technology on the Workplace:<br />
-                                        <span style={{ fontWeight: 700 }}>
-                                          How Technology is Changing
-                                        </span>
-                                      </>
-                                    )}
-                                  </h1>
+                                    <h1
+                                        style={{
+                                            fontFamily: 'Manrope',
+                                            fontWeight: 300,
+                                            fontSize: '70px',
+                                            lineHeight: '84px',
+                                            letterSpacing: '-0.7px',
+                                            color: '#fff',
+                                            textAlign: 'center',
+                                            maxWidth: '1200px',
+                                            margin: '0 auto',
+                                            whiteSpace: 'normal'
+                                        }}
+                                    >
+                                        {blogTitle ? (
+                                            blogTitle
+                                        ) : (
+                                            <>
+                                                The Impact of Technology on the Workplace:<br />
+                                                <span style={{ fontWeight: 700 }}>
+                                                    How Technology is Changing
+                                                </span>
+                                            </>
+                                        )}
+                                    </h1>
                                 </div>
                             </div>
                         </div>

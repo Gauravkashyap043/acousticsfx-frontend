@@ -1,7 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
+import { fetchProducts, type Product } from "@/lib/products-api";
+import { products as staticProducts } from "@/lib/products-data";
 
-export default function AcousticSolutions() {
+const FALLBACK_CARDS = staticProducts.map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  image: p.image,
+}));
+
+export default async function AcousticSolutions() {
+  let cards: Array<{ slug: string; title: string; description: string; image: string }>;
+
+  try {
+    const { products } = await fetchProducts("acoustic");
+    cards =
+      products.length > 0
+        ? products.map((p: Product) => ({
+            slug: p.slug,
+            title: p.title,
+            description: p.description,
+            image: p.image,
+          }))
+        : FALLBACK_CARDS;
+  } catch {
+    cards = FALLBACK_CARDS;
+  }
+
+  const leftCards = cards.filter((_, i) => i % 2 === 0);
+  const rightCards = cards.filter((_, i) => i % 2 === 1);
+
   return (
     <section className="w-full bg-white">
       <div className="px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px]">
@@ -27,7 +56,7 @@ export default function AcousticSolutions() {
 
         {/* Heading */}
         <div className="mb-10 sm:mb-12 lg:mb-14">
-          <p className="text-[16px] sm:text-[18px] manrope font-[500] text-[#1F6775] text-gray-500 mb-2">
+          <p className="text-[16px] sm:text-[18px] manrope font-medium text-[#1F6775] mb-2">
             Acoustic Solutions
           </p>
           <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
@@ -40,183 +69,49 @@ export default function AcousticSolutions() {
 
           {/* LEFT COLUMN */}
           <div className="flex flex-col gap-y-16 sm:gap-y-20">
-
-            {/* Card 1 */}
-            <Link href="/products/acoustic/wood-acoustic-panel" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-1.png"
-                alt="Wood Acoustic Panel"
-                width={600}
-                height={600}
-                className="w-full max-w-[600px] h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Wood Acoustic Panel
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
-
-            {/* Card 3 */}
-            <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-3.png"
-                alt="Baffle & Clouds acoustic solutions"
-                width={600}
-                height={450}
-                className="w-[600px] max-w-full h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Baffle & Clouds
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
-
-            {/* Card 5 */}
-            <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-4.png"
-                alt="Baffle & Clouds acoustic panel variant"
-                width={600}
-                height={450}
-                className="w-[600px] max-w-full h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Baffle & Clouds
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
+            {leftCards.map((card) => (
+              <ProductCard key={card.slug} card={card} />
+            ))}
           </div>
 
           {/* RIGHT COLUMN (60px DOWN) */}
           <div className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
-
-            {/* Card 2 */}
-            <Link href="/products/acoustic/fabric-acoustic-panel" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-2.png"
-                alt="Fabric Acoustic Panel"
-                width={600}
-                height={450}
-                className="w-[600px] max-w-full h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Fabric Acoustic Panel
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
-
-            {/* Card 4 */}
-            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-7.png"
-                alt="Wood Wool Acoustic Panel"
-                width={600}
-                height={450}
-                className="w-[600px] max-w-full h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Wood Wool Acoustic Panel
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
-
-            {/* Card 6 */}
-            <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
-              <Image
-                src="/assets/product/product-card-5.png"
-                alt="Wood Wool Acoustic Panel variant"
-                width={600}
-                height={450}
-                className="w-[600px] max-w-full h-auto object-cover"
-              />
-              <p className="mt-4 text-[18px] manrope text-[#EA8E39] font-[400] text-orange-500">
-                • Wood Wool Acoustic Panel
-              </p>
-              <p className="mt-2 text-[18px] manrope font-[400] text-gray-500 leading-relaxed">
-                Acoustic wall panels made of wood stops reverberation and spreading
-                sound waves better than panels made of steel and glass or concrete.
-              </p>
-              <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/home/universalvector.svg"
-                  alt="Arrow"
-                  width={20}
-                  height={8}
-                  className="brightness-0"
-                  style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-                />
-              </div>
-            </Link>
-
+            {rightCards.map((card) => (
+              <ProductCard key={card.slug} card={card} />
+            ))}
           </div>
         </div>
 
       </div>
     </section>
+  );
+}
+
+function ProductCard({ card }: { card: { slug: string; title: string; description: string; image: string } }) {
+  return (
+    <Link href={`/products/acoustic/${card.slug}`} className="block cursor-pointer">
+      <Image
+        src={card.image}
+        alt={card.title}
+        width={600}
+        height={450}
+        className="w-[600px] max-w-full h-auto object-cover"
+      />
+      <p className="mt-4 text-[18px] manrope font-normal text-[#EA8E39]">
+        &bull; {card.title}
+      </p>
+      <p className="mt-2 text-[18px] manrope font-normal text-gray-500 leading-relaxed">
+        {card.description}
+      </p>
+      <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
+        <Image
+          src="/assets/home/universalvector.svg"
+          alt="Arrow"
+          width={20}
+          height={8}
+          style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
+        />
+      </div>
+    </Link>
   );
 }

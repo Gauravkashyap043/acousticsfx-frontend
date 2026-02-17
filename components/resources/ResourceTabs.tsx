@@ -8,7 +8,7 @@ interface ResourceTabsProps {
 }
 
 const PLACEHOLDER_IMAGE =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
 
 export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsProps) {
     const [imgError, setImgError] = useState(false);
@@ -110,11 +110,10 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
                 >
                     <button
                         onClick={() => handleTabClick("blogs")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
-                            activeTabState === "blogs"
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === "blogs"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"
-                        }`}
+                            }`}
                     >
                         Blogs & Articles
                         {activeTabState === "blogs" && (
@@ -124,11 +123,10 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
 
                     <button
                         onClick={() => handleTabClick("news")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
-                            activeTabState === "news"
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === "news"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"
-                        }`}
+                            }`}
                     >
                         FX Acoustics In News
                         {activeTabState === "news" && (
@@ -138,11 +136,10 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
 
                     <button
                         onClick={() => handleTabClick("events")}
-                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${
-                            activeTabState === "events"
+                        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-all duration-300 relative cursor-pointer ${activeTabState === "events"
                                 ? "text-blue-600"
                                 : "text-gray-600 hover:text-gray-900"
-                        }`}
+                            }`}
                     >
                         Events
                         {activeTabState === "events" && (

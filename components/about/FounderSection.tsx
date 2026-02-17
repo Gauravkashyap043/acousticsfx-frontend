@@ -1,7 +1,22 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = ["about.founder.image"];
+
+const DEFAULT_IMAGE = "/assets/about/Image (5).png";
 
 export default function FounderSection() {
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  const founderImage = content["about.founder.image"]?.value ?? DEFAULT_IMAGE;
+
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center">
@@ -10,7 +25,7 @@ export default function FounderSection() {
         <div className="relative">
           <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] rounded-lg overflow-hidden">
             <Image
-              src="/assets/about/Image (5).png"
+              src={founderImage}
               alt="Rahul, Founder & Creative Lead of FX Acoustics"
               fill
               className="object-cover"
@@ -87,7 +102,7 @@ export default function FounderSection() {
           </p>
 
           <p className="text-gray-600 lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed mb-4">
-            We don’t just build acoustic products — we craft experiences.
+            We don&apos;t just build acoustic products &mdash; we craft experiences.
             Experiences that empower architects, designers, and businesses to
             imagine spaces that are thoughtful, timeless, and future-ready.
             Our promise is rooted in integrity, innovation, and collaboration.
@@ -100,7 +115,7 @@ export default function FounderSection() {
           </p>
 
           <p className="text-sm text-[#EA8E39] font-medium lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] italic">
-            — Rahul, Founder & Creative Lead
+            &mdash; Rahul, Founder &amp; Creative Lead
           </p>
         </div>
       </div>

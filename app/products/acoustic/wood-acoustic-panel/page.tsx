@@ -6,12 +6,11 @@ import OurAcousticPanels from '@/components/products/OurAcousticPanels'
 import ProductContentSection from '@/components/products/ProductContentSection'
 import ProductHeroSection from '@/components/products/ProductHeroSection'
 import WhyChooseSection from '@/components/products/WhyChooseSection'
-import { getProductBySlug } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedProduct } from '@/lib/products-data'
 
-export default function WoodAcousticPanelPage() {
-  const product = getProductBySlug('wood-acoustic-panel')
-  
+export default async function WoodAcousticPanelPage() {
+  const product = await fetchMergedProduct('wood-acoustic-panel')
+
   if (!product) {
     return null
   }
