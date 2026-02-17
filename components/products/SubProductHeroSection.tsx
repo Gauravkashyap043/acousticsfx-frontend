@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import SocialIcons from "@/components/shared/SocialIcons";
 
 interface SubProductHeroSectionProps {
   productTitle: string;
@@ -27,11 +27,12 @@ export default function SubProductHeroSection({
       <div className="relative z-10 h-full px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[40px] sm:py-[60px] lg:py-[80px] flex">
         
         {/* Left Social Icons */}
-        <div className="hidden sm:flex flex-col gap-6 mt-24 mr-10 text-[#f59e0b]">
-          <FaFacebookF className="cursor-pointer hover:opacity-70" />
-          <FaInstagram className="cursor-pointer hover:opacity-70" />
-          <FaTwitter className="cursor-pointer hover:opacity-70" />
-        </div>
+        <SocialIcons
+          direction="vertical"
+          variant="plain"
+          className="hidden sm:flex flex-col gap-6 mt-24 mr-10"
+          iconClassName="text-[#f59e0b] text-base"
+        />
 
         {/* Main Content */}
         <div className="flex flex-col justify-center max-w-2xl">
