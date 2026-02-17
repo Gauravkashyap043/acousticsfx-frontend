@@ -1,14 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
+import { submitContactForm } from "@/lib/contact-api";
 
 export default function ConnectWithExperts() {
   const [email, setEmail] = useState("");
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
+  // Contact form state
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactCompany, setContactCompany] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [contactSending, setContactSending] = useState(false);
+  const [contactSuccess, setContactSuccess] = useState(false);
+  const [contactError, setContactError] = useState<string | null>(null);
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setContactError(null);
+    setContactSuccess(false);
+    setContactSending(true);
+    try {
+      await submitContactForm({
+        name: contactName,
+        email: contactEmail,
+        phone: contactPhone || undefined,
+        subject: "General Inquiry",
+        message: contactCompany
+          ? `[Company: ${contactCompany}] ${contactMessage}`
+          : contactMessage,
+      });
+      setContactSuccess(true);
+      setContactName("");
+      setContactEmail("");
+      setContactCompany("");
+      setContactPhone("");
+      setContactMessage("");
+    } catch (err) {
+      setContactError(err instanceof Error ? err.message : "Failed to send");
+    } finally {
+      setContactSending(false);
+    }
+  };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +91,14 @@ export default function ConnectWithExperts() {
             at Roax.
           </p>
 
-          <button className="bg-white text-black px-6 py-3 w-fit text-sm font-medium cursor-pointer">
+          <button
+            type="button"
+            onClick={() => {
+              nameInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+              setTimeout(() => nameInputRef.current?.focus(), 400);
+            }}
+            className="bg-white text-black px-6 py-3 w-fit text-sm font-medium cursor-pointer"
+          >
             Get in touch →
           </button>
         </div>
@@ -79,35 +127,69 @@ export default function ConnectWithExperts() {
 
         {/* FORM CARD — DESKTOP ONLY (UNCHANGED) */}
         <div className="absolute right-[200px] top-1/2 -translate-y-1/2 z-20 hidden lg:block">
-          <div className="bg-white/40 backdrop-blur-[0px] text-black rounded-2xl p-8 w-[550px] shadow-xl">
+          <form
+            onSubmit={handleContactSubmit}
+            className="bg-white/40 backdrop-blur-[0px] text-black rounded-2xl p-8 w-[550px] shadow-xl"
+          >
             <p className="text-xs mb-6 text-gray-800">
               Fill out this form and our team will get back to you.
             </p>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-5 text-sm">
               <input
+                ref={nameInputRef}
                 className="bg-transparent border-b border-black/60 outline-none pb-2 placeholder:text-gray-800"
                 placeholder="Your Name*"
+                value={contactName}
+                onChange={(e) => setContactName(e.target.value)}
+                required
               />
               <input
+                type="email"
                 className="bg-transparent border-b border-black/60 outline-none pb-2 placeholder:text-gray-800"
                 placeholder="Your Email Address*"
+                value={contactEmail}
+                onChange={(e) => setContactEmail(e.target.value)}
+                required
               />
               <input
                 className="bg-transparent border-b border-black/60 outline-none pb-2 placeholder:text-gray-800"
                 placeholder="Company name"
+                value={contactCompany}
+                onChange={(e) => setContactCompany(e.target.value)}
               />
               <input
                 className="bg-transparent border-b border-black/60 outline-none pb-2 placeholder:text-gray-800"
                 placeholder="Your Phone number*"
+                value={contactPhone}
+                onChange={(e) => setContactPhone(e.target.value)}
+                required
               />
               <textarea
                 className="col-span-2 bg-transparent border-b border-black/60 outline-none resize-none pb-2 placeholder:text-gray-800"
                 placeholder="Your message*"
                 rows={2}
+                value={contactMessage}
+                onChange={(e) => setContactMessage(e.target.value)}
+                required
               />
             </div>
-          </div>
+
+            {contactSuccess && (
+              <p className="mt-4 text-green-700 text-sm font-medium">Message sent successfully!</p>
+            )}
+            {contactError && (
+              <p className="mt-4 text-red-600 text-sm font-medium">{contactError}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={contactSending}
+              className="mt-6 bg-[#1f2528] text-white px-8 py-3 text-sm font-medium cursor-pointer hover:bg-black transition disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {contactSending ? "Sending…" : "Submit →"}
+            </button>
+          </form>
         </div>
       </div>
 
