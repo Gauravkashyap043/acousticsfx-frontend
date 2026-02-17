@@ -8,11 +8,14 @@ export default function FounderSection() {
 
         {/* ================= Left Image ================= */}
         <div className="relative">
-          <img
-            src="/assets/about/Image (5).png"
-            alt="Founder"
-            className="w-full h-[360px] sm:h-[440px] lg:h-[520px] object-cover rounded-lg"
-          />
+          <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] rounded-lg overflow-hidden">
+            <Image
+              src="/assets/about/Image (5).png"
+              alt="Rahul, Founder & Creative Lead of FX Acoustics"
+              fill
+              className="object-cover"
+            />
+          </div>
 
           {/* Award Badge */}
           <div className="absolute -bottom-6 sm:-bottom-8 lg:-bottom-10 -right-4 sm:-right-6 lg:-right-10">

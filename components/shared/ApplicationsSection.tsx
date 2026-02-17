@@ -45,17 +45,19 @@ export default function ApplicationsSection() {
   return (
     <section className="relative px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[75px] lg:py-[90px] overflow-hidden">
 
-      {/* ================= Background Image + Fade ================= */}
+      {/* Background Image + Fade */}
       <div className="absolute inset-0 -z-10">
-        <img
+        <Image
           src="/assets/about/sliderbg.jpg"
-          alt="Applications Background"
-          className="w-full h-full object-cover"
+          alt=""
+          fill
+          className="object-cover"
+          aria-hidden="true"
         />
         <div className="absolute inset-0 bg-white/85"></div>
       </div>
 
-      {/* ================= Heading ================= */}
+      {/* Heading */}
       <div className="flex flex-col lg:flex-row justify-between items-start mb-8 gap-6">
         <h2 className="text-[30px] sm:text-[38px] lg:text-[45px] worksans-font font-bold text-[#111]">
           Our Applications
@@ -69,7 +71,7 @@ export default function ApplicationsSection() {
         </p>
       </div>
 
-      {/* ================= Cards + Arrows ================= */}
+      {/* Cards + Arrows */}
       <div className="relative mt-6 px-0 sm:px-10 lg:px-20">
         <div className="relative overflow-hidden">
           <div
@@ -93,7 +95,7 @@ export default function ApplicationsSection() {
           </div>
         </div>
 
-        {/* ================= Navigation Arrows ================= */}
+        {/* Navigation Arrows */}
         <button
           onClick={prev}
           disabled={index === 0}
@@ -125,7 +127,6 @@ export default function ApplicationsSection() {
   );
 }
 
-/* ================= Reusable Card ================= */
 function ApplicationCard({
   title,
   subtitle,
@@ -137,10 +138,11 @@ function ApplicationCard({
 }) {
   return (
     <div className="relative h-[260px] sm:h-[300px] lg:h-[320px] overflow-hidden group">
-      <img
+      <Image
         src={image}
-        alt={title}
-        className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        alt={`${title} — acoustic solutions for ${title.toLowerCase()} spaces`}
+        fill
+        className="object-cover group-hover:scale-105 transition duration-500"
       />
 
       {/* Dark Overlay */}

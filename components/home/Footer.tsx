@@ -15,11 +15,11 @@ const CONTENT_KEYS = [
 ];
 
 const DEFAULTS: Record<string, string> = {
-  "footer.about": "Its your premier destination for luxury and modern interior design",
-  "footer.copyright": "© Copyright 2025 FX Acoustic Solution — All Rights Reserved.",
-  "footer.contactEmail": "email@gmail.com",
-  "footer.contactAddress1": "Design Avenue Cityville, CA 90210 United States",
-  "footer.contactAddress2": "Design Avenue Cityville, CA 90210 United States",
+  "footer.about": "Premium acoustic solutions blending cutting-edge sound control with elegant design",
+  "footer.copyright": `© Copyright ${new Date().getFullYear()} FX Acoustics Inc. — All Rights Reserved.`,
+  "footer.contactEmail": "info@fxacoustics.com",
+  "footer.contactAddress1": "",
+  "footer.contactAddress2": "",
 };
 
 const FALLBACK_SERVICES: FooterLink[] = [

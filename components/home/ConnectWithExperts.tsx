@@ -74,15 +74,15 @@ export default function ConnectWithExperts() {
           </h2>
 
           <div className="flex flex-wrap justify-start gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
-            <span>🔒 IP Awards</span>
-            <span>👨‍💼 Experienced Experts</span>
-            <span>📈 Success Rate</span>
+            <span>🏆 NRC Certified</span>
+            <span>👨‍💼 Acoustic Experts</span>
+            <span>📈 500+ Projects</span>
           </div>
 
           <p className="text-[14px] inter-font font-[400] text-white/80 mb-8 leading-relaxed text-left">
-            Reach Out to Our Expert Team for Tailored Solutions, Consultations,
-            and Unparalleled Support. Your IP Success Starts with a Conversation
-            at Roax.
+            Reach out to our expert team for tailored acoustic solutions,
+            consultations, and unparalleled support. Your journey to perfect
+            sound starts with a conversation at FX Acoustics.
           </p>
 
           <button
@@ -249,7 +249,7 @@ export default function ConnectWithExperts() {
             Subscribe to our Latest News
           </h3>
           <p className="text-[14px] inter-font font-[400] text-white/70 max-w-md leading-relaxed text-left">
-            Join our mailing list and get the latest Roax news, insights,
+            Join our mailing list and get the latest FX Acoustics news, insights,
             updates, and exclusive articles delivered to your inbox.
           </p>
         </div>

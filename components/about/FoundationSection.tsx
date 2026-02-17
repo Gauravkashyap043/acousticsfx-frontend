@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function FoundationSection() {
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
@@ -40,10 +42,11 @@ export default function FoundationSection() {
 
         {/* -------- Card 02 (Image Card) -------- */}
         <div className="relative h-[300px] sm:h-[360px] lg:h-[420px] overflow-hidden">
-          <img
+          <Image
             src="/assets/about/bgfoundation.png"
-            alt="Our Vision"
-            className="w-full h-full object-cover"
+            alt="Our Vision — innovative acoustic environments"
+            fill
+            className="object-cover"
           />
 
           {/* Overlay */}

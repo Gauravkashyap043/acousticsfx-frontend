@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function StoryInnovation() {
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] pt-[60px] sm:pt-[80px] lg:pt-[100px] bg-[#F5F5F5]">
@@ -19,19 +21,22 @@ export default function StoryInnovation() {
 
         {/* Right Text */}
         <p className="text-gray-600 leading-relaxed lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] max-w-xl">
-          Circuit is flexible and affordable and offers you exceptional support
-          to achieve your career goals. Circuit is a Global training provider
-          based across the UK that specialises.
+          From a bold vision to an industry-leading brand, FX Acoustics has
+          pioneered acoustic solutions that blend craftsmanship with cutting-edge
+          technology — transforming how spaces sound and feel.
         </p>
       </div>
 
       {/* ================= Image / Video Section ================= */}
       <div className="relative w-full overflow-hidden rounded-lg">
-        <img
-          src="/innovation-video.jpg"
-          alt="Innovation Auditorium"
-          className="w-full h-[280px] sm:h-[400px] lg:h-[520px] object-cover"
-        />
+        <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[520px]">
+          <Image
+            src="/innovation-video.jpg"
+            alt="FX Acoustics innovation auditorium showcase"
+            fill
+            className="object-cover"
+          />
+        </div>
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/30"></div>

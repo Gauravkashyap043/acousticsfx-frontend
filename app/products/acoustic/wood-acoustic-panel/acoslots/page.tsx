@@ -9,7 +9,7 @@ import LinearluxHero from '@/components/products/LinearluxHero'
 import Product3DViewer from '@/components/products/Product3DViewer'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
-import SubstratesSection from '@/components/products/substrates '
+import SubstratesSection from '@/components/products/SubstratesSection'
 import { getProductBySlug, getSubProductData } from '@/lib/products-data'
 import React from 'react'
 

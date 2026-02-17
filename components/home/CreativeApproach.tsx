@@ -87,9 +87,9 @@ export default function CreativeApproach() {
             )}
           </div>
 
-          <button className="mt-6 bg-orange-500 text-white px-6 py-3 text-sm cursor-pointer">
+          <a href="/about" className="inline-block mt-6 bg-orange-500 text-white px-6 py-3 text-sm cursor-pointer no-underline hover:opacity-90 transition">
             Learn More
-          </button>
+          </a>
         </div>
 
         {/* IMAGES WRAPPER */}

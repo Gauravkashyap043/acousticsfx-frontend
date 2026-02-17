@@ -21,17 +21,17 @@ export default function CaseStudySection({
         {/* HEADER CONTENT */}
         <div className="max-w-3xl mb-10 sm:mb-12">
           <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] axiforma font-bold mb-4 text-gray-900">
-            Case Study Header to be placed here
+            Acoustic Transformations in Action
           </h2>
 
           <p className="text-[18px] sm:text-[19px] lg:text-[20px] inter-font font-[400] text-gray-600 mb-4 leading-relaxed">
-            Revolutionizing technology by exceeding industry benchmarks.
+            Real-world projects showcasing the impact of precision acoustic design.
           </p>
 
           <p className="text-[15px] sm:text-[16px] inter-font font-[400] text-gray-500 mb-6 leading-relaxed">
-            Harness the power of AI to automate and enhance business processes.
-            We utilize cutting-edge AI technologies to develop intelligent systems
-            that improve efficiency and drive innovation.
+            Explore how FX Acoustics solutions have transformed commercial offices,
+            auditoriums, hospitality spaces, and educational institutions — delivering
+            measurable improvements in sound clarity, noise reduction, and aesthetic appeal.
           </p>
 
           <Link
@@ -63,13 +63,13 @@ export default function CaseStudySection({
           {/* CONTENT */}
           <div className="w-full lg:w-1/2">
             <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] axiforma font-bold mb-3 text-gray-900">
-              Website Design for SCFC Canada
+              Corporate Office Acoustic Retrofit
             </h3>
 
             <p className="text-[16px] sm:text-[17px] lg:text-[18px] inter-font font-[400] text-gray-600 mb-6 leading-relaxed">
-              Born out of vision, a single-minded objective that puts service before
-              everything else, SMH Clearance and Forwarding Corp, using fortis to deliver
-              cost-effective shipping and logistics solutions.
+              A complete acoustic overhaul of a 50,000 sq ft corporate headquarters,
+              using our wood acoustic panels and baffles to reduce reverberation
+              time by 60% while maintaining a modern, elegant aesthetic.
             </p>
 
             <Link

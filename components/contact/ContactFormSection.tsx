@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import Image from "next/image";
 import {
   submitContactForm,
   CONTACT_SUBJECTS,
@@ -40,10 +41,12 @@ export default function ContactFormSection() {
 
         {/* ================= Left Illustration ================= */}
         <div className="flex justify-center">
-          <img
+          <Image
             src="/assets/contacts/8690678_3969584 1.svg"
-            alt="Contact Illustration"
-            className="max-w-xs sm:max-w-sm md:max-w-md w-full"
+            alt="Contact us illustration — person sending messages"
+            width={400}
+            height={400}
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto"
           />
         </div>
 

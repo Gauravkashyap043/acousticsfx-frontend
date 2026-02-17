@@ -34,9 +34,9 @@ export default function ServiceProvider() {
             transform spaces into high-functioning, visually striking environments.
           </p>
 
-          <button className="bg-[#EA8E39] text-white px-6 py-3 worksans-font font-semibold text-[19px] cursor-pointer">
+          <a href="/about" className="inline-block bg-[#EA8E39] text-white px-6 py-3 worksans-font font-semibold text-[19px] cursor-pointer no-underline hover:opacity-90 transition">
             Learn More
-          </button>
+          </a>
         </div>
 
       </div>

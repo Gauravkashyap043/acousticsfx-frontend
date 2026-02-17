@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { fetchTrustedPartners, type TrustedPartner } from "@/lib/trusted-partners-api";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -61,11 +62,12 @@ export default function TrustedBySection() {
 
 function LogoItem({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex items-center justify-center transition">
-      <img
+    <div className="flex items-center justify-center transition relative h-12 sm:h-14 lg:h-15 w-[120px] sm:w-[140px]">
+      <Image
         src={src}
         alt={alt}
-        className="max-h-12 sm:max-h-14 lg:max-h-15 object-contain"
+        fill
+        className="object-contain"
       />
     </div>
   );

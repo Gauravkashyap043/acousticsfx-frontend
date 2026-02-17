@@ -45,7 +45,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/wood-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-1.png"
-                alt=""
+                alt="Wood Acoustic Panel"
                 width={600}
                 height={600}
                 className="w-full max-w-[600px] h-auto object-cover"
@@ -73,7 +73,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-3.png"
-                alt=""
+                alt="Baffle & Clouds acoustic solutions"
                 width={600}
                 height={450}
                 className="w-[600px] max-w-full h-auto object-cover"
@@ -101,7 +101,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/baffle-clouds" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-4.png"
-                alt=""
+                alt="Baffle & Clouds acoustic panel variant"
                 width={600}
                 height={450}
                 className="w-[600px] max-w-full h-auto object-cover"
@@ -133,7 +133,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/fabric-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-2.png"
-                alt=""
+                alt="Fabric Acoustic Panel"
                 width={600}
                 height={450}
                 className="w-[600px] max-w-full h-auto object-cover"
@@ -161,7 +161,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-7.png"
-                alt=""
+                alt="Wood Wool Acoustic Panel"
                 width={600}
                 height={450}
                 className="w-[600px] max-w-full h-auto object-cover"
@@ -189,7 +189,7 @@ export default function AcousticSolutions() {
             <Link href="/products/acoustic/wood-wool-acoustic-panel" className="block cursor-pointer">
               <Image
                 src="/assets/product/product-card-5.png"
-                alt=""
+                alt="Wood Wool Acoustic Panel variant"
                 width={600}
                 height={450}
                 className="w-[600px] max-w-full h-auto object-cover"

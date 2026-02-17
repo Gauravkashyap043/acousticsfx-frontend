@@ -60,9 +60,9 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
                         data-aos="fade-up"
                         data-aos-delay="200"
                     >
-                        <span className="font-light">Empowering Discovery: </span>
+                        <span className="font-light">Shaping Spaces: </span>
                         <span className="font-bold">
-                            The Role of Precision Instruments in Modern Science
+                            Insights & Innovations in Acoustic Design
                         </span>
                     </h1>
                 </div>
@@ -130,7 +130,7 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
                                 : "text-gray-600 hover:text-gray-900"
                         }`}
                     >
-                        Quasmo In News
+                        FX Acoustics In News
                         {activeTabState === "news" && (
                             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600" />
                         )}

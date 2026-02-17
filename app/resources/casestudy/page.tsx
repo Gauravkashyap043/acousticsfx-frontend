@@ -1,6 +1,13 @@
-import CaseStudySection from '@/components/resources/CaseStudySection';
-import Testimonials from '@/components/home/Testimonials';
-import ConnectWithExperts from '@/components/home/ConnectWithExperts';
+import type { Metadata } from "next";
+import CaseStudySection from "@/components/resources/CaseStudySection";
+import Testimonials from "@/components/home/Testimonials";
+import ConnectWithExperts from "@/components/home/ConnectWithExperts";
+
+export const metadata: Metadata = {
+  title: "Case Studies",
+  description:
+    "Explore real-world acoustic transformation projects by FX Acoustics — from corporate offices to hospitality spaces.",
+};
 
 export default function CaseStudiesPage() {
   return (

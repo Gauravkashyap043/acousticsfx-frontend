@@ -53,9 +53,9 @@ export default function AboutSection() {
               that inspire focus, comfort, and performance.
             </p>
 
-            <button className="bg-orange-500 px-6 py-3 text-white text-[14px] sm:text-[15px] cursor-pointer">
+            <a href="/about" className="inline-block bg-orange-500 px-6 py-3 text-white text-[14px] sm:text-[15px] cursor-pointer no-underline hover:opacity-90 transition">
               Learn More
-            </button>
+            </a>
           </div>
         </div>
 
