@@ -10,12 +10,10 @@ import LinearluxHero from '@/components/products/LinearluxHero'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/SubstratesSection'
-import { getProductBySlug, getSubProductData } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedSubProduct } from '@/lib/products-data'
 
-export default function PerfomaxPage() {
-  const product = getProductBySlug('wood-wool-acoustic-panel')
-  const subProduct = getSubProductData('wood-wool-acoustic-panel', 'perfomax')
+export default async function PerfomaxPage() {
+  const { product, subProduct } = await fetchMergedSubProduct('wood-wool-acoustic-panel', 'perfomax')
   
   if (!product || !subProduct) {
     return null

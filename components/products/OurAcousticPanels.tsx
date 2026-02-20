@@ -1,17 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getProductBySlug } from "@/lib/products-data";
+import { fetchMergedProduct } from "@/lib/products-data";
 
 interface OurAcousticPanelsProps {
   productSlug?: string;
 }
 
-export default function OurAcousticPanels({ productSlug }: OurAcousticPanelsProps = {}) {
-  // Get panels from data if productSlug is provided, otherwise use default
+const FALLBACK_PANELS = [
+  { title: "Linerlux", desc: "Grooved Acoustical Panels", img: "/assets/panels/linerlux.png", slug: "linearlux" },
+  { title: "Acoperf", desc: "Perforated Acoustical Panels", img: "/assets/panels/acoperf.png", slug: "acoperf" },
+  { title: "Microatlas", desc: "Micro Perforated Acoustical Panels", img: "/assets/panels/microatlas.png", slug: "microatlas" },
+  { title: "Acoslots", desc: "Slotted Acoustical Panels", img: "/assets/panels/acoslots.png", slug: "acoslots" },
+  { title: "Perfomax", desc: "Max Perforated Acoustical Panels", img: "/assets/panels/perfomax.png", slug: "perfomax" },
+];
+
+export default async function OurAcousticPanels({ productSlug }: OurAcousticPanelsProps = {}) {
   let panels: Array<{ title: string; desc: string; img: string; slug?: string }> = [];
-  
+
   if (productSlug) {
-    const product = getProductBySlug(productSlug);
+    const product = await fetchMergedProduct(productSlug);
     if (product && product.subProducts.length > 0) {
       panels = product.subProducts.map((sub) => ({
         title: sub.title,
@@ -21,41 +28,9 @@ export default function OurAcousticPanels({ productSlug }: OurAcousticPanelsProp
       }));
     }
   }
-  
-  // Fallback to default panels if no productSlug or no sub-products
+
   if (panels.length === 0) {
-    panels = [
-      {
-        title: "Linerlux",
-        desc: "Grooved Acoustical Panels",
-        img: "/assets/panels/linerlux.png",
-        slug: "linearlux",
-      },
-      {
-        title: "Acoperf",
-        desc: "Perforated Acoustical Panels",
-        img: "/assets/panels/acoperf.png",
-        slug: "acoperf",
-      },
-      {
-        title: "Microatlas",
-        desc: "Micro Perforated Acoustical Panels",
-        img: "/assets/panels/microatlas.png",
-        slug: "microatlas",
-      },
-      {
-        title: "Acoslots",
-        desc: "Slotted Acoustical Panels",
-        img: "/assets/panels/acoslots.png",
-        slug: "acoslots",
-      },
-      {
-        title: "Perfomax",
-        desc: "Max Perforated Acoustical Panels",
-        img: "/assets/panels/perfomax.png",
-        slug: "perfomax",
-      },
-    ];
+    panels = FALLBACK_PANELS;
   }
 
   return (

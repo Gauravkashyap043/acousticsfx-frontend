@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SocialIcons from "@/components/shared/SocialIcons";
 
 export default function ProductHero() {
   return (
@@ -15,11 +16,12 @@ export default function ProductHero() {
       <div className="relative px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] text-center">
 
         {/* Social Icons */}
-        <div className="hidden sm:flex absolute left-[16px] sm:left-[32px] lg:left-[60px] top-1/2 -translate-y-1/2 flex-col gap-4 text-orange-500">
-          <span className="cursor-pointer">f</span>
-          <span className="cursor-pointer">◎</span>
-          <span className="cursor-pointer">t</span>
-        </div>
+        <SocialIcons
+          direction="vertical"
+          variant="plain"
+          className="hidden sm:flex absolute left-[16px] sm:left-[32px] lg:left-[60px] top-1/2 -translate-y-1/2 flex-col gap-4"
+          iconClassName="text-orange-500 text-base"
+        />
 
         {/* Heading */}
         <h1 className="text-[36px] sm:text-[56px] lg:text-[86px] font-[500] playfair-display text-gray-800">

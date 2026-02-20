@@ -2,29 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
 
-/* Product slide data */
-const products = [
-  {
-    id: 1,
-    title: "Slat",
-    image: "/assets/home/homeone.png",
-  },
-  {
-    id: 2,
-    title: "Wave Panel",
-    image: "/assets/home/hometwo.png",
-  },
-  {
-    id: 3,
-    title: "Groove Panel",
-    image: "/assets/home/homethree.png",
-  },
+const CONTENT_KEYS = [
+  "home.ourProduct.product1Image",
+  "home.ourProduct.product1Title",
+  "home.ourProduct.product2Image",
+  "home.ourProduct.product2Title",
+  "home.ourProduct.product3Image",
+  "home.ourProduct.product3Title",
+];
+
+const DEFAULT_PRODUCTS = [
+  { id: 1, title: "Slat", image: "/assets/home/homeone.png" },
+  { id: 2, title: "Wave Panel", image: "/assets/home/hometwo.png" },
+  { id: 3, title: "Groove Panel", image: "/assets/home/homethree.png" },
 ];
 
 export default function ProductsSection() {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  const products = DEFAULT_PRODUCTS.map((p, i) => ({
+    ...p,
+    image: content[`home.ourProduct.product${i + 1}Image`]?.value ?? p.image,
+    title: content[`home.ourProduct.product${i + 1}Title`]?.value ?? p.title,
+  }));
 
   const scrollLeft = () => {
     sliderRef.current?.scrollBy({ left: -600, behavior: "smooth" });

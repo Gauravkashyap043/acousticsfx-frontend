@@ -1,10 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = [
+  "home.creative.mainImage",
+  "home.creative.secondaryImage",
+];
+
+const DEFAULTS: Record<string, string> = {
+  "home.creative.mainImage": "/assets/home/banImage.png",
+  "home.creative.secondaryImage": "/assets/home/banTwo.png",
+};
+
+function val(c: ContentMap, key: string) {
+  return c[key]?.value ?? DEFAULTS[key] ?? "";
+}
 
 export default function CreativeApproach() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -113,7 +133,7 @@ export default function CreativeApproach() {
             "
           >
             <Image
-              src="/assets/home/banTwo.png"
+              src={val(content, "home.creative.secondaryImage")}
               alt="Interior"
               fill
               className="object-cover grayscale"
@@ -132,7 +152,7 @@ export default function CreativeApproach() {
             "
           >
             <Image
-              src="/assets/home/banImage.png"
+              src={val(content, "home.creative.mainImage")}
               alt="Creative Space"
               fill
               className="object-cover"

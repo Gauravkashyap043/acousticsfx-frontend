@@ -6,12 +6,11 @@ import OurAcousticPanels from '@/components/products/OurAcousticPanels'
 import ProductContentSection from '@/components/products/ProductContentSection'
 import ProductHeroSection from '@/components/products/ProductHeroSection'
 import WhyChooseSection from '@/components/products/WhyChooseSection'
-import { getProductBySlug } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedProduct } from '@/lib/products-data'
 
-export default function FabricAcousticPanelPage() {
-  const product = getProductBySlug('fabric-acoustic-panel')
-  
+export default async function FabricAcousticPanelPage() {
+  const product = await fetchMergedProduct('fabric-acoustic-panel')
+
   if (!product) {
     return null
   }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import { fetchFooterLinks, type FooterLink } from "@/lib/footer-api";
+import SocialIcons from "@/components/shared/SocialIcons";
 
 const CONTENT_KEYS = [
   "footer.about",
@@ -73,25 +74,7 @@ export default function Footer() {
             <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6 text-left">
               {val(content, "footer.about")}
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: "F", href: "#", label: "Facebook" },
-                { icon: "X", href: "#", label: "Twitter" },
-                { icon: "I", href: "#", label: "Instagram" },
-                { icon: "L", href: "#", label: "LinkedIn" },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-white text-sm cursor-pointer hover:bg-orange-600 transition no-underline"
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
+            <SocialIcons direction="horizontal" variant="filled" />
           </div>
 
           {/* OUR SERVICES */}

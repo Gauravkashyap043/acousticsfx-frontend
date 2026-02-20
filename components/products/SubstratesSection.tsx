@@ -44,7 +44,7 @@ export default function SubstratesSection() {
 
   return (
     <section className="w-full bg-white pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] py-[60px] sm:py-[70px] lg:py-[80px]">
-      
+
       {/* Header */}
       <div className="max-w-2xl mb-8 sm:mb-10">
         <h2 className="text-[28px] sm:text-[32px] lg:text-[38px] font-bold axiforma mb-3">
@@ -67,7 +67,7 @@ export default function SubstratesSection() {
         >
           {substrates.map((item, idx) => (
             <div key={idx} className="min-w-[260px] sm:min-w-[300px] lg:min-w-[350px]">
-              
+
               {/* Image */}
               <div className="h-[260px] sm:h-[300px] lg:h-[350px] rounded-xl overflow-hidden mb-4 relative">
                 <Image

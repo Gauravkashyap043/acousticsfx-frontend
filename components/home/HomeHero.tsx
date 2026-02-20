@@ -10,6 +10,8 @@ const CONTENT_KEYS = [
   "home.hero.subtitle",
   "home.hero.button1Label",
   "home.hero.button2Label",
+  "home.hero.backgroundImage",
+  "home.hero.featureBoxes",
 ];
 
 const DEFAULTS: Record<string, string> = {
@@ -19,10 +21,59 @@ const DEFAULTS: Record<string, string> = {
     "Our solutions are engineered for clarity, comfort, and visual harmony. Whether it's a studio, auditorium, or workspace, we bring together design precision and acoustic mastery to elevate every square foot.",
   "home.hero.button1Label": "Get Quote →",
   "home.hero.button2Label": "Connect With Us →",
+  "home.hero.backgroundImage": "/assets/home/background.png",
+};
+
+interface FeatureBox {
+  title: string;
+  description: string;
+  image: string;
+  accentColor: string;
+}
+
+const DEFAULT_FEATURE_BOXES: FeatureBox[] = [
+  {
+    title: "Acoustic Solution",
+    description:
+      "Ideal for auditoriums, studios, and performance spaces where sound precision is non-negotiable.",
+    image: "/assets/home/fi_11062015.png",
+    accentColor: "yellow-400",
+  },
+  {
+    title: "Floor Solution",
+    description:
+      "Perfect for gyms, halls, and high-traffic zones — combining aesthetics with acoustic synergy.",
+    image: "/assets/home/fi_7821525.png",
+    accentColor: "orange-400",
+  },
+  {
+    title: "Sound Proofing",
+    description:
+      "Custom solutions for homes, offices, and commercial spaces that demand quiet confidence.",
+    image: "/assets/home/fi_17991697.png",
+    accentColor: "blue-400",
+  },
+];
+
+const ACCENT_MAP: Record<string, { border: string; text: string }> = {
+  "yellow-400": { border: "bg-yellow-400", text: "text-yellow-400" },
+  "orange-400": { border: "bg-orange-400", text: "text-orange-400" },
+  "blue-400": { border: "bg-blue-400", text: "text-blue-400" },
 };
 
 function val(content: ContentMap, key: string) {
   return content[key]?.value ?? DEFAULTS[key] ?? "";
+}
+
+function parseFeatureBoxes(content: ContentMap): FeatureBox[] {
+  const raw = content["home.hero.featureBoxes"]?.value;
+  if (!raw) return DEFAULT_FEATURE_BOXES;
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : DEFAULT_FEATURE_BOXES;
+  } catch {
+    return DEFAULT_FEATURE_BOXES;
+  }
 }
 
 export default function HomeHero() {
@@ -32,14 +83,22 @@ export default function HomeHero() {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
   }, []);
 
+  const bgImage = val(content, "home.hero.backgroundImage");
+  const featureBoxes = parseFeatureBoxes(content);
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
 
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('../../assets/home/background.png')" }}
-      />
+      <div className="absolute inset-0">
+        <Image
+          src={bgImage}
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60" />
@@ -80,73 +139,33 @@ export default function HomeHero() {
         {/* Feature Boxes */}
         <div className="mb-[80px] sm:mb-[100px] lg:mb-[120px] w-full">
           <div className="mx-auto flex max-w-[1200px] flex-wrap justify-center gap-6">
+            {featureBoxes.map((box) => {
+              const accent = ACCENT_MAP[box.accentColor] ?? ACCENT_MAP["yellow-400"];
+              return (
+                <div
+                  key={box.title}
+                  className="relative h-[230px] sm:h-[250px] w-full sm:w-[360px] bg-black/50 px-6 py-6"
+                >
+                  <span className={`absolute left-0 top-0 h-full w-[3px] ${accent.border}`} />
 
-            {/* Box 1 */}
-            <div className="relative h-[230px] sm:h-[250px] w-full sm:w-[360px] bg-black/50 px-6 py-6">
-              <span className="absolute left-0 top-0 h-full w-[3px] bg-yellow-400" />
+                  <Image
+                    src={box.image}
+                    alt={box.title}
+                    width={52}
+                    height={52}
+                    className="mb-4"
+                  />
 
-              <Image
-                src="/assets/home/fi_11062015.png"
-                alt="Acoustic Solution"
-                width={52}
-                height={52}
-                className="mb-4"
-              />
+                  <h3 className={`mb-3 text-[14px] font-[700] poppins-font text-left ${accent.text}`}>
+                    {box.title}
+                  </h3>
 
-              <h3 className="mb-3 text-[14px] font-[700] poppins-font text-left text-yellow-400">
-                Acoustic Solution
-              </h3>
-
-              <p className="text-[14px] font-[400] poppins-font text-left text-gray-300">
-                Ideal for auditoriums, studios, and performance spaces where sound
-                precision is non-negotiable.
-              </p>
-            </div>
-
-            {/* Box 2 */}
-            <div className="relative h-[230px] sm:h-[250px] w-full sm:w-[360px] bg-black/50 px-6 py-6">
-              <span className="absolute left-0 top-0 h-full w-[3px] bg-orange-400" />
-
-              <Image
-                src="/assets/home/fi_7821525.png"
-                alt="Floor Solution"
-                width={52}
-                height={52}
-                className="mb-4"
-              />
-
-              <h3 className="mb-3 text-[14px] font-[700] poppins-font text-left text-orange-400">
-                Floor Solution
-              </h3>
-
-              <p className="text-[14px] font-[400] poppins-font text-left text-gray-300">
-                Perfect for gyms, halls, and high-traffic zones — combining aesthetics
-                with acoustic synergy.
-              </p>
-            </div>
-
-            {/* Box 3 */}
-            <div className="relative h-[230px] sm:h-[250px] w-full sm:w-[360px] bg-black/50 px-6 py-6">
-              <span className="absolute left-0 top-0 h-full w-[3px] bg-blue-400" />
-
-              <Image
-                src="/assets/home/fi_17991697.png"
-                alt="Sound Proofing"
-                width={52}
-                height={52}
-                className="mb-4"
-              />
-
-              <h3 className="mb-3 text-[14px] font-[700] poppins-font text-left text-blue-400">
-                Sound Proofing
-              </h3>
-
-              <p className="text-[14px] font-[400] poppins-font text-left text-gray-300">
-                Custom solutions for homes, offices, and commercial spaces that demand
-                quiet confidence.
-              </p>
-            </div>
-
+                  <p className="text-[14px] font-[400] poppins-font text-left text-gray-300">
+                    {box.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 

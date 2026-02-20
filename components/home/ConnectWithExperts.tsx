@@ -1,10 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
 import { submitContactForm } from "@/lib/contact-api";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CMS_KEYS = ["home.connectExperts.image"];
+const DEFAULT_EXPERT_IMAGE = "/assets/about/glassimg.jpg";
 
 export default function ConnectWithExperts() {
   const [email, setEmail] = useState("");
@@ -20,6 +24,13 @@ export default function ConnectWithExperts() {
   const [contactPhone, setContactPhone] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [contactSending, setContactSending] = useState(false);
+  const [cmsContent, setCmsContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CMS_KEYS).then(setCmsContent).catch(console.error);
+  }, []);
+
+  const expertImage = cmsContent["home.connectExperts.image"]?.value ?? DEFAULT_EXPERT_IMAGE;
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,7 +114,7 @@ export default function ConnectWithExperts() {
         <div className="relative lg:absolute right-0 top-1/2 lg:-translate-y-1/2 mt-10 lg:mt-0">
           <div className="relative w-full lg:w-[600px] h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden">
             <Image
-              src="/assets/about/glassimg.jpg"
+              src={expertImage}
               alt="Expert"
               fill
               className="object-cover"

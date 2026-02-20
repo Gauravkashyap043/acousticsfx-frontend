@@ -30,9 +30,9 @@ export default function Home() {
       <CreativeApproach />
       <FAQSection />
       <OurClients />
-      <LatestBlogs/>
-      <Testimonials/>
-      <ConnectWithExperts/>
+      <LatestBlogs />
+      <Testimonials />
+      <ConnectWithExperts />
     </>
   );
 }

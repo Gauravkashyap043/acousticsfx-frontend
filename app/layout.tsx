@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 /* ================= Poppins ================= */
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300","400","500","600","700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -36,7 +36,7 @@ const poppins = Poppins({
 /* ================= Playfair Display ================= */
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400","500","600","700","800","900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-playfair",
   display: "swap",
 });
@@ -44,7 +44,7 @@ const playfair = Playfair_Display({
 /* ================= Work Sans ================= */
 const worksans = Work_Sans({
   subsets: ["latin"],
-  weight: ["300","400","500","600","700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-worksans",
   display: "swap",
 });
@@ -52,7 +52,7 @@ const worksans = Work_Sans({
 /* ================= Inter ================= */
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300","400","500","600","700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -60,7 +60,7 @@ const inter = Inter({
 /* ================= Plus Jakarta Sans ================= */
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["200","300","400","500","600","700","800"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   variable: "--font-plusjakarta",
   display: "swap",
 });
@@ -68,7 +68,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 /* ================= Manrope ================= */
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["200","300","400","500","600","700","800"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   variable: "--font-manrope",
   display: "swap",
 });
@@ -76,7 +76,7 @@ const manrope = Manrope({
 /* ================= Lato ================= */
 const lato = Lato({
   subsets: ["latin"],
-  weight: ["100","300","400","700","900"],
+  weight: ["100", "300", "400", "700", "900"],
   variable: "--font-lato",
   display: "swap",
 });

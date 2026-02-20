@@ -2,40 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { fetchCaseStudies, type CaseStudy } from "@/lib/case-studies-api";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = [
+  "home.caseStudies.heading",
+  "home.caseStudies.subheading",
+  "home.caseStudies.ctaLabel",
+];
+
+const DEFAULTS: Record<string, string> = {
+  "home.caseStudies.heading": "CASE STUDIES THAT \nINSPIRE US",
+  "home.caseStudies.subheading":
+    "A premium workspace faced disruptive noise and poor sound clarity. We designed and installed bespoke acoustic panels tailored to their architecture. The result: enhanced productivity, elegant aesthetics, and a healthier environment.",
+  "home.caseStudies.ctaLabel": "VIEW ALL CASESTUDIES →",
+};
+
+const FALLBACK_STUDIES = [
+  { slug: "1", image: "/assets/home/image 5.png", title: "Architecture", description: "The interior of the apartments." },
+  { slug: "2", image: "/assets/home/Image.png", title: "Acoustic Design", description: "Custom acoustic panels for offices." },
+  { slug: "3", image: "/assets/home/image 6.png", title: "Workspace", description: "Modern workspace noise solutions." },
+  { slug: "4", image: "/assets/home/image 5.png", title: "Auditorium", description: "Sound clarity for large auditoriums." },
+];
+
+function val(c: ContentMap, key: string) {
+  return c[key]?.value ?? DEFAULTS[key] ?? "";
+}
 
 export default function CaseStudies() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const splideRef = useRef<any>(null);
+  const [studies, setStudies] = useState<CaseStudy[]>(FALLBACK_STUDIES);
+  const [content, setContent] = useState<ContentMap>({});
 
-  const caseStudies = [
-    {
-      id: 1,
-      image: "/assets/home/image 5.png",
-      title: "Architecture",
-      desc: "The interior of the apartments.",
-    },
-    {
-      id: 2,
-      image: "/assets/home/Image.png",
-      title: "Acoustic Design",
-      desc: "Custom acoustic panels for offices.",
-    },
-    {
-      id: 3,
-      image: "/assets/home/image 6.png",
-      title: "Workspace",
-      desc: "Modern workspace noise solutions.",
-    },
-    {
-      id: 4,
-      image: "/assets/home/image 5.png",
-      title: "Auditorium",
-      desc: "Sound clarity for large auditoriums.",
-    },
-  ];
+  useEffect(() => {
+    fetchCaseStudies()
+      .then((data) => { if (data.length > 0) setStudies(data); })
+      .catch(console.error);
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  const heading = val(content, "home.caseStudies.heading");
 
   return (
     <section className="py-[80px] lg:py-[100px] bg-white overflow-hidden">
@@ -45,19 +55,21 @@ export default function CaseStudies() {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
           
           <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] font-[400] leading-tight axiforma max-w-xl">
-            CASE STUDIES THAT <br /> INSPIRE US
+            {heading.split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
 
           <div className="max-w-md">
             <p className="text-[16px] sm:text-[18px] lg:text-[21px] font-[500] text-gray-600 leading-relaxed mb-6 jakarta">
-              A premium workspace faced disruptive noise and poor sound clarity.
-              We designed and installed bespoke acoustic panels tailored to their
-              architecture. The result: enhanced productivity, elegant aesthetics,
-              and a healthier environment.
+              {val(content, "home.caseStudies.subheading")}
             </p>
 
             <Link href="/resources/casestudy" className="border px-4 py-2 text-xs cursor-pointer">
-              VIEW ALL CASESTUDIES →
+              {val(content, "home.caseStudies.ctaLabel")}
             </Link>
           </div>
         </div>
@@ -81,8 +93,8 @@ export default function CaseStudies() {
           }}
           ref={splideRef}
         >
-          {caseStudies.map((item) => (
-            <SplideSlide key={item.id}>
+          {studies.map((item) => (
+            <SplideSlide key={item.slug}>
               <div className="max-w-[420px]">
 
                 {/* IMAGE */}
@@ -100,7 +112,7 @@ export default function CaseStudies() {
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  {item.desc}
+                  {item.description}
                 </p>
               </div>
             </SplideSlide>

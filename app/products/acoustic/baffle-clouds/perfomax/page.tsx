@@ -10,12 +10,10 @@ import LinearluxHero from '@/components/products/LinearluxHero'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/SubstratesSection'
-import { getProductBySlug, getSubProductData } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedSubProduct } from '@/lib/products-data'
 
-export default function PerfomaxPage() {
-  const product = getProductBySlug('baffle-clouds')
-  const subProduct = getSubProductData('baffle-clouds', 'perfomax')
+export default async function PerfomaxPage() {
+  const { product, subProduct } = await fetchMergedSubProduct('baffle-clouds', 'perfomax')
   
   if (!product || !subProduct) {
     return null

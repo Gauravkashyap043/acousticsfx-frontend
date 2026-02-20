@@ -1,8 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = ["about.innovation.image"];
+const DEFAULT_IMAGE = "/innovation-video.jpg";
 
 export default function StoryInnovation() {
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  const innovationImage = content["about.innovation.image"]?.value ?? DEFAULT_IMAGE;
+
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] pt-[60px] sm:pt-[80px] lg:pt-[100px] bg-[#F5F5F5]">
 
@@ -23,7 +36,7 @@ export default function StoryInnovation() {
         <p className="text-gray-600 leading-relaxed lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] max-w-xl">
           From a bold vision to an industry-leading brand, FX Acoustics has
           pioneered acoustic solutions that blend craftsmanship with cutting-edge
-          technology — transforming how spaces sound and feel.
+          technology &mdash; transforming how spaces sound and feel.
         </p>
       </div>
 
@@ -31,7 +44,7 @@ export default function StoryInnovation() {
       <div className="relative w-full overflow-hidden rounded-lg">
         <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[520px]">
           <Image
-            src="/innovation-video.jpg"
+            src={innovationImage}
             alt="FX Acoustics innovation auditorium showcase"
             fill
             className="object-cover"

@@ -7,13 +7,13 @@ type CaseStudyProps = {
   bgColor?: "white" | "light-blue";
 };
 
-export default function CaseStudySection({ 
-  reverse = false, 
+export default function CaseStudySection({
+  reverse = false,
   image,
   bgColor = "white"
 }: CaseStudyProps) {
   const bgClass = bgColor === "light-blue" ? "bg-[#F4F6FF]" : "bg-white";
-  
+
   return (
     <section className={`w-full py-16 sm:py-20 lg:py-24 ${bgClass}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -44,9 +44,8 @@ export default function CaseStudySection({
 
         {/* CARD */}
         <div
-          className={`flex flex-col ${
-            reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-          } gap-8 lg:gap-10 items-center bg-[#F4F6FF] rounded-2xl p-6 sm:p-8`}
+          className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+            } gap-8 lg:gap-10 items-center bg-[#F4F6FF] rounded-2xl p-6 sm:p-8`}
         >
           {/* IMAGE */}
           <div className="w-full lg:w-1/2">

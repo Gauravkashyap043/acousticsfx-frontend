@@ -1,8 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { fetchContent, type ContentMap } from "@/lib/content-api";
+
+const CONTENT_KEYS = ["about.foundation.image"];
+const DEFAULT_IMAGE = "/assets/about/bgfoundation.png";
 
 export default function FoundationSection() {
+  const [content, setContent] = useState<ContentMap>({});
+
+  useEffect(() => {
+    fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  const foundationImage = content["about.foundation.image"]?.value ?? DEFAULT_IMAGE;
+
   return (
     <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
 
@@ -10,7 +23,7 @@ export default function FoundationSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-start">
 
         <h2 className="text-[28px] sm:text-[34px] lg:text-4xl font-semibold text-[#111] leading-tight">
-          Our Foundation of Trust & Innovation
+          Our Foundation of Trust &amp; Innovation
         </h2>
 
         <p className="text-gray-600 leading-relaxed max-w-xl">
@@ -43,7 +56,7 @@ export default function FoundationSection() {
         {/* -------- Card 02 (Image Card) -------- */}
         <div className="relative h-[300px] sm:h-[360px] lg:h-[420px] overflow-hidden">
           <Image
-            src="/assets/about/bgfoundation.png"
+            src={foundationImage}
             alt="Our Vision — innovative acoustic environments"
             fill
             className="object-cover"
@@ -58,7 +71,7 @@ export default function FoundationSection() {
             <h3 className="mt-3 text-xl font-semibold">Our Vision</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/90">
               At FX Acoustics, we envision becoming the foremost provider of
-              innovative and decorative acoustic solutions — transforming spaces
+              innovative and decorative acoustic solutions &mdash; transforming spaces
               into environments that are both aesthetically striking and
               acoustically perfected.
             </p>

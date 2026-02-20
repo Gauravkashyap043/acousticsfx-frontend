@@ -10,12 +10,10 @@ import LinearluxHero from '@/components/products/LinearluxHero'
 import ProductSpecification from '@/components/products/ProductSpecification'
 import RelatedProducts from '@/components/products/RelatedProducts'
 import SubstratesSection from '@/components/products/SubstratesSection'
-import { getProductBySlug, getSubProductData } from '@/lib/products-data'
-import React from 'react'
+import { fetchMergedSubProduct } from '@/lib/products-data'
 
-export default function LinearluxPage() {
-  const product = getProductBySlug('wood-acoustic-panel')
-  const subProduct = getSubProductData('wood-acoustic-panel', 'linearlux')
+export default async function LinearluxPage() {
+  const { product, subProduct } = await fetchMergedSubProduct('wood-acoustic-panel', 'linearlux')
   
   if (!product || !subProduct) {
     return null
