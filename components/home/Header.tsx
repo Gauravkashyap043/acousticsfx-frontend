@@ -131,9 +131,9 @@ export default function Header() {
                   <h3 className="text-[24px] font-[400] mb-4">Resources</h3>
 
                   {[
-                    { name: "Blogs & Articles", link: "/resources?tab=blogs" },
+                    { name: "Blogs & Articles", link: "/resources/blogs" },
                     { name: "Case Studies", link: "/resources/casestudy" },
-                    { name: "Events", link: "/resources?tab=events" },
+                    { name: "Events", link: "/resources/events" },
                   ].map((item) => (
                     <Link
                       key={item.name}
@@ -274,9 +274,9 @@ export default function Header() {
                   {mobileResourcesOpen && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {[
-                        { name: "Blogs & Articles", link: "/resources?tab=blogs" },
+                        { name: "Blogs & Articles", link: "/resources/blogs" },
                         { name: "Case Studies", link: "/resources/casestudy" },
-                        { name: "Events", link: "/resources?tab=events" },
+                        { name: "Events", link: "/resources/events" },
                       ].map((item) => (
                         <li key={item.name}>
                           <Link
