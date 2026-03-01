@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 const CONTENT_KEYS = [
@@ -46,14 +47,16 @@ export default function AboutSection() {
     >
 
       {/* ================= Background Image ================= */}
-      <div className="absolute inset-0">
-        <Image
-          src={bgImage}
-          alt="Background"
-          fill
-          className="object-cover opacity-90"
-          priority
-        />
+      <div className="absolute inset-0 overflow-hidden">
+        <ParallaxImage offset={35} className="absolute inset-0">
+          <Image
+            src={bgImage}
+            alt="Background"
+            fill
+            className="object-cover opacity-90"
+            priority
+          />
+        </ParallaxImage>
       </div>
 
       {/* ================= Overlay ================= */}
@@ -101,15 +104,17 @@ export default function AboutSection() {
           className="w-full lg:w-1/2 flex items-center 
           px-6 sm:px-10 lg:px-0 mt-12 lg:mt-0"
         >
-          <div className="relative w-full">
-            <Image
-              src={image}
-              alt="Auditorium"
-              width={1019}
-              height={679}
-              className="w-full h-auto object-cover"
-              priority
-            />
+          <div className="relative w-full overflow-hidden">
+            <ParallaxImage offset={25}>
+              <Image
+                src={image}
+                alt="Auditorium"
+                width={1019}
+                height={679}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </ParallaxImage>
           </div>
         </div>
 

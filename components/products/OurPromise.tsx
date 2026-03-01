@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 export default function OurPromise() {
   return (
@@ -27,12 +28,14 @@ export default function OurPromise() {
           {/* Item 1 */}
           <div>
             <div className="w-12 h-12 mb-6 relative">
-              <Image
-                src="/assets/product/icon-1.svg"
-                alt="Growth"
-                width={81}
-                height={81}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/icon-1.svg"
+                  alt="Growth"
+                  width={81}
+                  height={81}
+                />
+              </ParallaxImage>
             </div>
             <h4 className="text-[15px] inter-font font-semibold mb-3">
               Growth
@@ -45,12 +48,14 @@ export default function OurPromise() {
           {/* Item 2 */}
           <div>
             <div className="w-12 h-12 mb-6 relative">
-              <Image
-                src="/assets/product/icon-default.svg"
-                alt="Growth"
-                width={81}
-                height={81}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/icon-default.svg"
+                  alt="Growth"
+                  width={81}
+                  height={81}
+                />
+              </ParallaxImage>
             </div>
             <h4 className="text-[15px] inter-font font-semibold mb-3">
               Dedicated support contact
@@ -63,12 +68,14 @@ export default function OurPromise() {
           {/* Item 3 */}
           <div>
             <div className="w-12 h-12 mb-6 relative">
-              <Image
-                src="/assets/product/icon-2.svg"
-                alt="Growth"
-                width={81}
-                height={81}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/icon-2.svg"
+                  alt="Growth"
+                  width={81}
+                  height={81}
+                />
+              </ParallaxImage>
             </div>
             <h4 className="text-[15px] inter-font font-semibold mb-3">
               Exposure
@@ -81,12 +88,14 @@ export default function OurPromise() {
           {/* Item 4 */}
           <div>
             <div className="w-12 h-12 mb-6 relative">
-              <Image
-                src="/assets/product/icon-3.svg"
-                alt="Growth"
-                width={81}
-                height={81}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/icon-3.svg"
+                  alt="Growth"
+                  width={81}
+                  height={81}
+                />
+              </ParallaxImage>
             </div>
             <h4 className="text-[15px] inter-font font-semibold mb-3">
               Services & reporting

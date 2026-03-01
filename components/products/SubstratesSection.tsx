@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 const substrates = [
   {
@@ -70,12 +71,14 @@ export default function SubstratesSection() {
 
               {/* Image */}
               <div className="h-[260px] sm:h-[300px] lg:h-[350px] rounded-xl overflow-hidden mb-4 relative">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
 
               {/* Text */}
@@ -97,25 +100,29 @@ export default function SubstratesSection() {
           disabled={index === 0}
           className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Previous"
-            width={34}
-            height={14}
-            className="rotate-180"
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={34}
+              height={14}
+              className="rotate-180"
+            />
+          </ParallaxImage>
         </button>
         <button
           onClick={next}
           disabled={index >= substrates.length - 3}
           className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Next"
-            width={34}
-            height={14}
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={34}
+              height={14}
+            />
+          </ParallaxImage>
         </button>
       </div>
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchTrustedPartners, type TrustedPartner } from "@/lib/trusted-partners-api";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -62,13 +63,15 @@ export default function TrustedBySection() {
 
 function LogoItem({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex items-center justify-center transition relative h-12 sm:h-14 lg:h-15 w-[120px] sm:w-[140px]">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-contain"
-      />
+    <div className="flex items-center justify-center transition relative h-12 sm:h-14 lg:h-15 w-[120px] sm:w-[140px] overflow-hidden">
+      <ParallaxImage offset={15} className="h-full w-full">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+        />
+      </ParallaxImage>
     </div>
   );
 }

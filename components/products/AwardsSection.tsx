@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 export default function AwardsSection() {
   return (
@@ -18,14 +19,16 @@ export default function AwardsSection() {
 
             {/* Award 1 */}
             <div className="flex items-center gap-4">
-              <Image
-                src="/assets/product/german-design-award.svg"
-                alt="Award"
-                width={1}
-                height={1}
-                unoptimized
-                style={{ width: "auto", height: "auto" }}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/german-design-award.svg"
+                  alt="Award"
+                  width={1}
+                  height={1}
+                  unoptimized
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </ParallaxImage>
               <div className="text-white">
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">German Design Award</p>
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">2021</p>
@@ -34,14 +37,16 @@ export default function AwardsSection() {
 
             {/* Award 2 */}
             <div className="flex items-center gap-4">
-              <Image
-                src="/assets/product/a-design-award.svg"
-                alt="Award"
-                width={1}
-                height={1}
-                unoptimized
-                style={{ width: "auto", height: "auto" }}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/a-design-award.svg"
+                  alt="Award"
+                  width={1}
+                  height={1}
+                  unoptimized
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </ParallaxImage>
               <div className="text-white">
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">Gold A’ Design Award</p>
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">2021</p>
@@ -50,14 +55,16 @@ export default function AwardsSection() {
 
             {/* Award 3 */}
             <div className="flex items-center gap-4">
-              <Image
-                src="/assets/product/if-design-award.svg"
-                alt="Award"
-                width={1}
-                height={1}
-                unoptimized
-                style={{ width: "auto", height: "auto" }}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/if-design-award.svg"
+                  alt="Award"
+                  width={1}
+                  height={1}
+                  unoptimized
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </ParallaxImage>
               <div className="text-white">
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">IF Design Award</p>
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">2020</p>
@@ -66,14 +73,16 @@ export default function AwardsSection() {
 
             {/* Award 4 */}
             <div className="flex items-center gap-4">
-              <Image
-                src="/assets/product/good-design-award.svg"
-                alt="Award"
-                width={1}
-                height={1}
-                unoptimized
-                style={{ width: "auto", height: "auto" }}
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src="/assets/product/good-design-award.svg"
+                  alt="Award"
+                  width={1}
+                  height={1}
+                  unoptimized
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </ParallaxImage>
               <div className="text-white">
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">Good Design Award</p>
                 <p className="font-[400] inter-font text-[16px] sm:text-[18px]">2019</p>

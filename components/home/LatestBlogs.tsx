@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useScroll, useTransform, motion } from "motion/react";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchLatestBlogs, type BlogSummary } from "@/lib/blogs-api";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -77,9 +79,17 @@ function val(content: ContentMap, key: string) {
 }
 
 export default function LatestBlogs() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [blogs, setBlogs] = useState<BlogCard[]>(FALLBACK_BLOGS);
   const [content, setContent] = useState<ContentMap>({});
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const featuredY = useTransform(scrollYProgress, [0, 0.5, 1], [56, 0, -56]);
+  const sideY = useTransform(scrollYProgress, [0, 0.5, 1], [36, 0, -36]);
 
   useEffect(() => {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
@@ -99,7 +109,7 @@ export default function LatestBlogs() {
   const prev = () => setActiveIndex((prev) => (prev === 0 ? blogs.length - 1 : prev - 1));
 
   return (
-    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
+    <section ref={sectionRef} className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
 
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12">
@@ -126,12 +136,14 @@ export default function LatestBlogs() {
           href={`/resources/blogs/${activeBlog.slug}`}
           className="relative rounded-2xl overflow-hidden h-[320px] sm:h-[380px] lg:h-[420px] block"
         >
-          <Image
-            src={activeBlog.image}
-            alt={activeBlog.title}
-            fill
-            className="object-cover"
-          />
+          <motion.div className="absolute inset-0" style={{ y: featuredY }}>
+            <Image
+              src={activeBlog.image}
+              alt={activeBlog.title}
+              fill
+              className="object-cover"
+            />
+          </motion.div>
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
@@ -165,12 +177,14 @@ export default function LatestBlogs() {
                 }
               >
                 <div className="relative h-[160px] rounded-xl overflow-hidden mb-3">
-                  <Image
-                    src={blog.image}
-                    alt={blog.title}
-                    fill
-                    className="object-cover"
-                  />
+                  <motion.div className="absolute inset-0" style={{ y: sideY }}>
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
                   <span className="absolute top-3 right-3 bg-white text-xs px-3 py-1 rounded-full">
                     {blog.tag}
                   </span>
@@ -190,26 +204,30 @@ export default function LatestBlogs() {
           onClick={prev}
           className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Previous"
-            width={34}
-            height={14}
-            className="rotate-180"
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={34}
+              height={14}
+              className="rotate-180"
+            />
+          </ParallaxImage>
         </button>
 
         <button
           onClick={next}
           className="w-12 h-12 bg-black rounded-md flex items-center justify-center cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Next"
-            width={34}
-            height={14}
-            className="invert"
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={34}
+              height={14}
+              className="invert"
+            />
+          </ParallaxImage>
         </button>
       </div>
     </section>

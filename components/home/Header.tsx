@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -46,14 +47,16 @@ export default function Header() {
         {/* LEFT : LOGO */}
         <div className="flex-shrink-0 z-50">
           <Link href="/" className="cursor-pointer inline-block" onClick={handleLinkClick}>
-            <Image
-              src="/assets/home/Group 34.svg"
-              alt="FX Acoustic Inc"
-              width={150}
-              height={40}
-              className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[210px] h-auto"
-              priority
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Group 34.svg"
+                alt="FX Acoustic Inc"
+                width={150}
+                height={40}
+                className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[210px] h-auto"
+                priority
+              />
+            </ParallaxImage>
           </Link>
         </div>
 
@@ -102,17 +105,19 @@ export default function Header() {
                         <span className="font-medium">{cat.name}</span>
 
                         <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
-                          <Image
-                            src="/assets/home/headervector.svg"
-                            alt="arrow"
-                            width={16}
-                            height={16}
-                            className="
-                              transition-all duration-300 ease-in-out
-                              transform rotate-[-45deg]
-                              group-hover:rotate-0
-                            "
-                          />
+                          <ParallaxImage offset={8} className="inline-block">
+                            <Image
+                              src="/assets/home/headervector.svg"
+                              alt="arrow"
+                              width={16}
+                              height={16}
+                              className="
+                                transition-all duration-300 ease-in-out
+                                transform rotate-[-45deg]
+                                group-hover:rotate-0
+                              "
+                            />
+                          </ParallaxImage>
                         </div>
                       </Link>
                     ))
@@ -123,13 +128,15 @@ export default function Header() {
                     >
                       <span className="font-medium">View all products</span>
                       <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
-                        <Image
-                          src="/assets/home/headervector.svg"
-                          alt="arrow"
-                          width={16}
-                          height={16}
-                          className="transition-all duration-300 ease-in-out transform rotate-[-45deg] group-hover:rotate-0"
-                        />
+                        <ParallaxImage offset={8} className="inline-block">
+                          <Image
+                            src="/assets/home/headervector.svg"
+                            alt="arrow"
+                            width={16}
+                            height={16}
+                            className="transition-all duration-300 ease-in-out transform rotate-[-45deg] group-hover:rotate-0"
+                          />
+                        </ParallaxImage>
                       </div>
                     </Link>
                   )}
@@ -175,17 +182,19 @@ export default function Header() {
                       <span className="font-medium">{item.name}</span>
 
                       <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
-                        <Image
-                          src="/assets/home/headervector.svg"
-                          alt="arrow"
-                          width={16}
-                          height={16}
-                          className="
-                            transition-all duration-300 ease-in-out
-                            transform rotate-[-45deg]
-                            group-hover:rotate-0
-                          "
-                        />
+                        <ParallaxImage offset={8} className="inline-block">
+                          <Image
+                            src="/assets/home/headervector.svg"
+                            alt="arrow"
+                            width={16}
+                            height={16}
+                            className="
+                              transition-all duration-300 ease-in-out
+                              transform rotate-[-45deg]
+                              group-hover:rotate-0
+                            "
+                          />
+                        </ParallaxImage>
                       </div>
                     </Link>
                   ))}

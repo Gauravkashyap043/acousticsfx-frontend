@@ -3,27 +3,23 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
-const galleryImages = [
-  {
-    large: "/assets/product/gallery-image-2.png",
-    small: "/assets/product/gallery-image-1.jpg",
-  },
-  {
-    large: "/assets/product/gallery-image-1.jpg",
-    small: "/assets/product/gallery-image-2.png",
-  },
-  {
-    large: "/assets/product/gallery-image-2.png",
-    small: "/assets/product/gallery-image-1.jpg",
-  },
-  {
-    large: "/assets/product/gallery-image-1.jpg",
-    small: "/assets/product/gallery-image-2.png",
-  },
+const DEFAULT_GALLERY = [
+  { large: "/assets/product/gallery-image-2.png", small: "/assets/product/gallery-image-1.jpg" },
+  { large: "/assets/product/gallery-image-1.jpg", small: "/assets/product/gallery-image-2.png" },
+  { large: "/assets/product/gallery-image-2.png", small: "/assets/product/gallery-image-1.jpg" },
+  { large: "/assets/product/gallery-image-1.jpg", small: "/assets/product/gallery-image-2.png" },
 ];
 
-export default function GallerySection() {
+type GallerySlide = { large: string; small: string };
+
+interface GallerySectionProps {
+  gallerySlides?: GallerySlide[] | null;
+}
+
+export default function GallerySection({ gallerySlides }: GallerySectionProps) {
+  const galleryImages = gallerySlides?.length ? gallerySlides : DEFAULT_GALLERY;
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = galleryImages.length;
 
@@ -48,12 +44,14 @@ export default function GallerySection() {
 
         <Link href="/contactus" className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
           Get Quote
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Arrow"
-            width={34}
-            height={14}
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Arrow"
+              width={34}
+              height={14}
+            />
+          </ParallaxImage>
         </Link>
       </div>
 
@@ -62,22 +60,26 @@ export default function GallerySection() {
         
         {/* Big Image (Left) */}
         <div className="col-span-1 sm:col-span-2 h-[280px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden relative">
-          <Image
-            src={currentSlide.large}
-            alt="Gallery Large"
-            fill
-            className="object-cover"
-          />
+          <ParallaxImage offset={25} className="h-full w-full">
+            <Image
+              src={currentSlide.large}
+              alt="Gallery Large"
+              fill
+              className="object-cover"
+            />
+          </ParallaxImage>
         </div>
 
         {/* Right Tall Image */}
         <div className="h-[280px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden relative">
-          <Image
-            src={currentSlide.small}
-            alt="Gallery Tall"
-            fill
-            className="object-cover"
-          />
+          <ParallaxImage offset={25} className="h-full w-full">
+            <Image
+              src={currentSlide.small}
+              alt="Gallery Tall"
+              fill
+              className="object-cover"
+            />
+          </ParallaxImage>
         </div>
       </div>
 
@@ -87,25 +89,29 @@ export default function GallerySection() {
           onClick={prev}
           className="hover:opacity-70 transition cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Previous"
-            width={34}
-            height={14}
-            className="rotate-180"
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={34}
+              height={14}
+              className="rotate-180"
+            />
+          </ParallaxImage>
         </button>
         <span>{currentIndex + 1} / {totalSlides}</span>
         <button
           onClick={next}
           className="hover:opacity-70 transition cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Next"
-            width={34}
-            height={14}
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={34}
+              height={14}
+            />
+          </ParallaxImage>
         </button>
       </div>
 

@@ -28,9 +28,9 @@ export default async function ProductDetailPage({ params }: Props) {
         subProductTitle={subProduct.title}
         description={subProduct.description}
       />
-      <LinearluxGrid/>
-      <ProductSpecification/>
-      <GallerySection/>
+      <LinearluxGrid gridIntro={subProduct.gridIntro} gridImages={subProduct.gridImages} />
+      <ProductSpecification specDescription={subProduct.specDescription} specs={subProduct.specs} />
+      <GallerySection gallerySlides={subProduct.gallerySlides} />
       <Product3DViewer/>
       <SubstratesSection/>
       <AboutProduct/>

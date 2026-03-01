@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 export default function CombinedBlogSection() {
     return (
@@ -27,14 +28,16 @@ export default function CombinedBlogSection() {
                                     className="overflow-hidden rounded-md w-full"
                                     style={{ minHeight: "180px", aspectRatio: "493/237" }}
                                 >
-                                    <Image
-                                        src="/resources/74654a8f67369b797c8fb2e96a533fd515fb2939 (1).jpg"
-                                        alt="Featured"
-                                        width={493}
-                                        height={238}
-                                        className="w-full h-full object-cover"
-                                        priority
-                                    />
+                                    <ParallaxImage offset={25} className="h-full w-full">
+                                        <Image
+                                            src="/resources/74654a8f67369b797c8fb2e96a533fd515fb2939 (1).jpg"
+                                            alt="Featured"
+                                            width={493}
+                                            height={238}
+                                            className="w-full h-full object-cover"
+                                            priority
+                                        />
+                                    </ParallaxImage>
                                 </div>
 
                                 <div className="pt-0 flex flex-col justify-start">
@@ -69,13 +72,15 @@ export default function CombinedBlogSection() {
                                         <div
                                             className="overflow-hidden rounded-md flex-shrink-0 w-[100px] h-[70px]"
                                         >
-                                            <Image
-                                                src={item.img}
-                                                alt={item.title}
-                                                width={118}
-                                                height={82}
-                                                className="w-full h-full object-cover"
-                                            />
+                                            <ParallaxImage offset={15} className="h-full w-full">
+                                                <Image
+                                                    src={item.img}
+                                                    alt={item.title}
+                                                    width={118}
+                                                    height={82}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </ParallaxImage>
                                         </div>
                                         <div>
                                             <p className="text-[15px] font-semibold leading-snug text-gray-900">
@@ -111,13 +116,15 @@ export default function CombinedBlogSection() {
                             ].map((src, i) => (
                                 <div key={i} className="flex gap-4">
                                     <div className="overflow-hidden rounded-md flex-shrink-0 w-[180px] h-[85px]">
-                                        <Image
-                                            src={src}
-                                            alt="read"
-                                            width={222}
-                                            height={99}
-                                            className="w-full h-full object-cover"
-                                        />
+                                        <ParallaxImage offset={15} className="h-full w-full">
+                                            <Image
+                                                src={src}
+                                                alt="read"
+                                                width={222}
+                                                height={99}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </ParallaxImage>
                                     </div>
                                     <div className="flex-1">
                                         <p className="text-[15px] font-semibold text-gray-900 leading-snug">

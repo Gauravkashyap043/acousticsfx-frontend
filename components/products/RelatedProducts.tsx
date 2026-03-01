@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 const products = [
   {
@@ -82,13 +83,15 @@ export default function RelatedProducts() {
               className="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] h-[480px] sm:h-[520px] lg:h-[550px] bg-white rounded-2xl overflow-hidden flex flex-col"
             >
               {/* Image */}
-              <div className="h-[240px] sm:h-[280px] lg:h-[320px] relative">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+              <div className="h-[240px] sm:h-[280px] lg:h-[320px] relative overflow-hidden">
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
 
               {/* Content */}
@@ -111,25 +114,29 @@ export default function RelatedProducts() {
             disabled={index === 0}
             className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
-            <Image
-              src="/assets/home/universalvector.svg"
-              alt="Previous"
-              width={34}
-              height={14}
-              className="rotate-180"
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/universalvector.svg"
+                alt="Previous"
+                width={34}
+                height={14}
+                className="rotate-180"
+              />
+            </ParallaxImage>
           </button>
           <button
             onClick={next}
             disabled={index >= products.length - 3}
             className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
-            <Image
-              src="/assets/home/universalvector.svg"
-              alt="Next"
-              width={34}
-              height={14}
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/universalvector.svg"
+                alt="Next"
+                width={34}
+                height={14}
+              />
+            </ParallaxImage>
           </button>
         </div>
       </div>

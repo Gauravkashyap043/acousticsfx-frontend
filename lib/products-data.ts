@@ -6,11 +6,37 @@ import {
 // Product and Sub-Product Data Structure
 // Maps slugs to product/sub-product information
 
+export interface SubProductGridIntro {
+  title?: string;
+  subtitle?: string;
+  body?: string;
+}
+
+export interface SubProductGridImage {
+  url: string;
+  alt?: string;
+}
+
+export interface SubProductSpec {
+  label: string;
+  value: string;
+}
+
+export interface SubProductGallerySlide {
+  large: string;
+  small: string;
+}
+
 export interface SubProduct {
   slug: string;
   title: string;
   description: string;
   image: string;
+  gridIntro?: SubProductGridIntro;
+  gridImages?: SubProductGridImage[];
+  specDescription?: string;
+  specs?: SubProductSpec[];
+  gallerySlides?: SubProductGallerySlide[];
 }
 
 export interface Product {
@@ -20,6 +46,8 @@ export interface Product {
   image: string;
   heroImage?: string;
   subProducts: SubProduct[];
+  panelsSectionTitle?: string;
+  panelsSectionDescription?: string;
 }
 
 // Main Products Data
@@ -188,6 +216,8 @@ export async function fetchMergedProduct(
         apiProduct.subProducts?.length > 0
           ? apiProduct.subProducts
           : staticProduct?.subProducts ?? [],
+      panelsSectionTitle: apiProduct.panelsSectionTitle ?? staticProduct?.panelsSectionTitle,
+      panelsSectionDescription: apiProduct.panelsSectionDescription ?? staticProduct?.panelsSectionDescription,
     };
   } catch {
     return staticProduct;
@@ -207,6 +237,11 @@ export async function fetchMergedSubProduct(
       title: apiResult.subProduct.title || staticSub?.title || "",
       description: apiResult.subProduct.description || staticSub?.description || "",
       image: apiResult.subProduct.image || staticSub?.image || "",
+      gridIntro: apiResult.subProduct.gridIntro,
+      gridImages: apiResult.subProduct.gridImages,
+      specDescription: apiResult.subProduct.specDescription,
+      specs: apiResult.subProduct.specs,
+      gallerySlides: apiResult.subProduct.gallerySlides,
     };
     return { product: staticProduct, subProduct: mergedSub };
   } catch {

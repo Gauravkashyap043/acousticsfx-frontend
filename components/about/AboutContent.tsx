@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 const CONTENT_KEYS = [
@@ -63,23 +64,27 @@ export default function AboutContent() {
         <div className="relative flex justify-center lg:justify-end">
 
           {/* Big Image */}
-          <div className="relative z-10 lg:left-[-200px] w-[320px] sm:w-[420px] lg:w-[525px] h-[566px]">
-            <Image
-              src={val(content, "about.content.storyImage1")}
-              alt="Auditorium with acoustic panels installed"
-              fill
-              className="object-cover"
-            />
+          <div className="relative z-10 lg:left-[-200px] w-[320px] sm:w-[420px] lg:w-[525px] h-[566px] overflow-hidden">
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={val(content, "about.content.storyImage1")}
+                alt="Auditorium with acoustic panels installed"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-12 sm:-bottom-16 right-2 w-[260px] sm:w-[320px] lg:w-[400px] h-[500px]">
-            <Image
-              src={val(content, "about.content.storyImage2")}
-              alt="Modern hallway with acoustic treatment"
-              fill
-              className="object-cover"
-            />
+          <div className="absolute -bottom-12 sm:-bottom-16 right-2 w-[260px] sm:w-[320px] lg:w-[400px] h-[500px] overflow-hidden">
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={val(content, "about.content.storyImage2")}
+                alt="Modern hallway with acoustic treatment"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
         </div>
       </div>
@@ -91,23 +96,27 @@ export default function AboutContent() {
         <div className="relative flex justify-center lg:justify-start">
 
           {/* Big Image */}
-          <div className="relative z-10 w-[300px] sm:w-[420px] lg:w-[505px] h-[466px]">
-            <Image
-              src={val(content, "about.content.craftImage1")}
-              alt="Contemporary interior with acoustic design"
-              fill
-              className="object-cover"
-            />
+          <div className="relative z-10 w-[300px] sm:w-[420px] lg:w-[505px] h-[466px] overflow-hidden">
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={val(content, "about.content.craftImage1")}
+                alt="Contemporary interior with acoustic design"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-12 sm:-bottom-16 left-[40px] sm:left-[80px] lg:left-[100px] w-[240px] sm:w-[300px] lg:w-[350px] h-[400px]">
-            <Image
-              src={val(content, "about.content.craftImage2")}
-              alt="Recording studio with acoustic panels"
-              fill
-              className="object-cover"
-            />
+          <div className="absolute -bottom-12 sm:-bottom-16 left-[40px] sm:left-[80px] lg:left-[100px] w-[240px] sm:w-[300px] lg:w-[350px] h-[400px] overflow-hidden">
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={val(content, "about.content.craftImage2")}
+                alt="Recording studio with acoustic panels"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
         </div>
 

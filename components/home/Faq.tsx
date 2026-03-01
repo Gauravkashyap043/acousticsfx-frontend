@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getFaqs, type FaqItem } from "@/lib/api/faqs-api";
@@ -99,13 +100,15 @@ export default function FAQSection() {
 
           {/* IMAGE */}
           <div className="relative overflow-hidden w-full max-w-[551.55px] aspect-[551.55/443.52]">
-            <Image
-              src="/assets/home/Design.png"
-              alt="FAQ Visual"
-              fill
-              className="object-cover"
-              priority
-            />
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src="/assets/home/Design.png"
+                alt="FAQ Visual"
+                fill
+                className="object-cover"
+                priority
+              />
+            </ParallaxImage>
           </div>
         </div>
 

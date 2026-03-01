@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useEffect, useState } from "react";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -90,14 +91,16 @@ export default function HomeHero() {
     <section className="relative min-h-screen w-full overflow-hidden">
 
       {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src={bgImage}
-          alt="Hero background"
-          fill
-          className="object-cover"
-          priority
-        />
+      <div className="absolute inset-0 overflow-hidden">
+        <ParallaxImage offset={40} className="absolute inset-0">
+          <Image
+            src={bgImage}
+            alt="Hero background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </ParallaxImage>
       </div>
 
       {/* Overlay */}
@@ -148,13 +151,15 @@ export default function HomeHero() {
                 >
                   <span className={`absolute left-0 top-0 h-full w-[3px] ${accent.border}`} />
 
-                  <Image
-                    src={box.image}
-                    alt={box.title}
-                    width={52}
-                    height={52}
-                    className="mb-4"
-                  />
+                  <ParallaxImage offset={12} className="inline-block">
+                    <Image
+                      src={box.image}
+                      alt={box.title}
+                      width={52}
+                      height={52}
+                      className="mb-4"
+                    />
+                  </ParallaxImage>
 
                   <h3 className={`mb-3 text-[14px] font-[700] poppins-font text-left ${accent.text}`}>
                     {box.title}

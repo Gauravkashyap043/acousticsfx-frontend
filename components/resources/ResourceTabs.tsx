@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -80,15 +81,17 @@ export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsP
                     data-aos="fade-left"
                     data-aos-delay="300"
                 >
-                    <div className="relative w-[260px] h-[210px] sm:w-[340px] sm:h-[270px] md:w-[900px] md:h-[700px]">
-                        <Image
-                            src={imgError ? PLACEHOLDER_IMAGE : "/assets/study-blog.png"}
-                            alt="Illustration"
-                            fill
-                            className="object-contain object-center md:object-right"
-                            priority
-                            onError={() => setImgError(true)}
-                        />
+                    <div className="relative w-[260px] h-[210px] sm:w-[340px] sm:h-[270px] md:w-[900px] md:h-[700px] overflow-hidden">
+                        <ParallaxImage offset={25} className="h-full w-full">
+                            <Image
+                                src={imgError ? PLACEHOLDER_IMAGE : "/assets/study-blog.png"}
+                                alt="Illustration"
+                                fill
+                                className="object-contain object-center md:object-right"
+                                priority
+                                onError={() => setImgError(true)}
+                            />
+                        </ParallaxImage>
                     </div>
                 </div>
             </div>

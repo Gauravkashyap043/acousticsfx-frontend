@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 const CONTENT_KEYS = ["about.founder.image"];
@@ -24,12 +25,14 @@ export default function FounderSection() {
         {/* ================= Left Image ================= */}
         <div className="relative">
           <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] rounded-lg overflow-hidden">
-            <Image
-              src={founderImage}
-              alt="Rahul, Founder & Creative Lead of FX Acoustics"
-              fill
-              className="object-cover"
-            />
+            <ParallaxImage offset={30} className="h-full w-full">
+              <Image
+                src={founderImage}
+                alt="Rahul, Founder & Creative Lead of FX Acoustics"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
 
           {/* Award Badge */}
@@ -53,13 +56,15 @@ export default function FounderSection() {
             >
               {/* Icon / Image */}
               <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-[#F2F5F629] flex items-center justify-center p-2">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 relative">
-                  <Image
-                    src="/assets/about/Vector.svg"
-                    alt="Award Icon"
-                    fill
-                    className="object-contain"
-                  />
+                <div className="w-5 h-5 sm:w-6 sm:h-6 relative overflow-hidden">
+                  <ParallaxImage offset={10} className="h-full w-full">
+                    <Image
+                      src="/assets/about/Vector.svg"
+                      alt="Award Icon"
+                      fill
+                      className="object-contain"
+                    />
+                  </ParallaxImage>
                 </div>
               </div>
 

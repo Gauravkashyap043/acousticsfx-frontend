@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { toast } from "sonner";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
 import { submitContactForm } from "@/lib/contact-api";
@@ -113,13 +114,15 @@ export default function ConnectWithExperts() {
         {/* RIGHT IMAGE */}
         <div className="relative lg:absolute right-0 top-1/2 lg:-translate-y-1/2 mt-10 lg:mt-0">
           <div className="relative w-full lg:w-[600px] h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden">
-            <Image
-              src={expertImage}
-              alt="Expert"
-              fill
-              className="object-cover"
-              priority
-            />
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={expertImage}
+                alt="Expert"
+                fill
+                className="object-cover"
+                priority
+              />
+            </ParallaxImage>
 
             {/* LEFT FADE */}
             <div

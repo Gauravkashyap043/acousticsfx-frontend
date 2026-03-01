@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 interface CardData {
@@ -61,13 +62,15 @@ export default function WhyChooseUs() {
         {cards.map((card) => (
           <div key={card.title} className="group rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="w-12 h-12 rounded-full bg-[#eaf4f6] group-hover:bg-[#3090A3] transition-all duration-300 flex items-center justify-center mb-4">
-              <Image
-                src={card.icon}
-                alt={card.title}
-                width={32}
-                height={30}
-                className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-              />
+              <ParallaxImage offset={10} className="inline-block">
+                <Image
+                  src={card.icon}
+                  alt={card.title}
+                  width={32}
+                  height={30}
+                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                />
+              </ParallaxImage>
             </div>
             <h3 className="font-bold text-[25px] mb-2 text-[#1F6775] inter-font">
               {card.title}

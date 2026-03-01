@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchTestimonials, type Testimonial } from "@/lib/testimonials-api";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import Spinner from "@/components/shared/Spinner";
@@ -68,14 +69,16 @@ export default function Testimonials() {
             >
               {/* COMPANY LOGO */}
               {item.companyLogo && (
-                <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6">
-                  <Image
-                    src={item.companyLogo}
-                    alt={item.company}
-                    fill
-                    className="object-contain"
-                    unoptimized={item.companyLogo.startsWith("http")}
-                  />
+                <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[70px] lg:h-[80px] mb-6 overflow-hidden">
+                  <ParallaxImage offset={15} className="h-full w-full">
+                    <Image
+                      src={item.companyLogo}
+                      alt={item.company}
+                      fill
+                      className="object-contain"
+                      unoptimized={item.companyLogo.startsWith("http")}
+                    />
+                  </ParallaxImage>
                 </div>
               )}
 
@@ -88,13 +91,15 @@ export default function Testimonials() {
               <div className="flex items-center gap-4 text-left">
                 {item.avatar && (
                   <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
-                    <Image
-                      src={item.avatar}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                      unoptimized={item.avatar.startsWith("http")}
-                    />
+                    <ParallaxImage offset={10} className="h-full w-full">
+                      <Image
+                        src={item.avatar}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        unoptimized={item.avatar.startsWith("http")}
+                      />
+                    </ParallaxImage>
                   </div>
                 )}
                 <div className="text-left min-w-0">

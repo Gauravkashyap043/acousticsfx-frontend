@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 const CONTENT_KEYS = [
@@ -132,12 +133,14 @@ export default function CreativeApproach() {
               lg:[height:clamp(525px,46.875vw,750px)]
             "
           >
-            <Image
-              src={val(content, "home.creative.secondaryImage")}
-              alt="Interior"
-              fill
-              className="object-cover grayscale"
-            />
+            <ParallaxImage offset={25} className="h-full w-full">
+              <Image
+                src={val(content, "home.creative.secondaryImage")}
+                alt="Interior"
+                fill
+                className="object-cover grayscale"
+              />
+            </ParallaxImage>
           </div>
 
           {/* BIG IMAGE */}
@@ -151,12 +154,14 @@ export default function CreativeApproach() {
               lg:[height:clamp(420px,90vw,835px)]
             "
           >
-            <Image
-              src={val(content, "home.creative.mainImage")}
-              alt="Creative Space"
-              fill
-              className="object-cover"
-            />
+            <ParallaxImage offset={30} className="h-full w-full">
+              <Image
+                src={val(content, "home.creative.mainImage")}
+                alt="Creative Space"
+                fill
+                className="object-cover"
+              />
+            </ParallaxImage>
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { toast } from "sonner";
 import { subscribeNewsletter } from "@/lib/newsletter-api";
 
@@ -62,14 +63,16 @@ export default function NewsletterSubscribe() {
           </div>
 
           {/* Right Illustration */}
-          <div className="hidden md:block">
-            <Image
-              src="/assets/product/newsletter-img.png (1).svg"
-              alt="Newsletter Illustration"
-              width={320}
-              height={260}
-              className="object-contain"
-            />
+          <div className="hidden md:block overflow-hidden">
+            <ParallaxImage offset={20}>
+              <Image
+                src="/assets/product/newsletter-img.png (1).svg"
+                alt="Newsletter Illustration"
+                width={320}
+                height={260}
+                className="object-contain"
+              />
+            </ParallaxImage>
           </div>
 
         </div>

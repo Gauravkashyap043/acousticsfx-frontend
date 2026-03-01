@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 interface WhyChooseSectionProps {
   title: string;
@@ -17,12 +18,14 @@ export default function WhyChooseSection({
           {/* LEFT IMAGE */}
           <div className="col-span-1 lg:col-span-6 flex justify-center lg:justify-start">
             <div className="relative w-[300px] sm:w-[420px] lg:w-[550px] h-[380px] sm:h-[540px] lg:h-[700px] rounded-xl overflow-hidden">
-              <Image
-                src="/assets/product/why-choose-1.jpg"
-                alt={`Why Choose ${title}`}
-                fill
-                className="object-cover"
-              />
+              <ParallaxImage offset={30} className="h-full w-full">
+                <Image
+                  src="/assets/product/why-choose-1.jpg"
+                  alt={`Why Choose ${title}`}
+                  fill
+                  className="object-cover"
+                />
+              </ParallaxImage>
             </div>
           </div>
 

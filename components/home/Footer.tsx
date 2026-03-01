@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import { fetchFooterLinks, type FooterLink } from "@/lib/footer-api";
 import SocialIcons from "@/components/shared/SocialIcons";
@@ -23,11 +24,12 @@ const DEFAULTS: Record<string, string> = {
   "footer.contactAddress2": "",
 };
 
-const FALLBACK_SERVICES: FooterLink[] = [
-  { _id: "1", section: "services", label: "Acoustic Solution", href: "/products/acoustic" },
-  { _id: "2", section: "services", label: "Sound Proofing", href: "/products" },
-  { _id: "3", section: "services", label: "Floor Solution", href: "/products" },
-];
+const API_BASE =
+  typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL
+    ? process.env.NEXT_PUBLIC_API_URL
+    : "http://localhost:8080";
+
+type NavCategory = { slug: string; name: string };
 
 const FALLBACK_RESOURCES: FooterLink[] = [
   { _id: "1", section: "resources", label: "Case Study", href: "/resources/casestudy" },
@@ -42,17 +44,27 @@ function val(c: ContentMap, key: string) {
 
 export default function Footer() {
   const [content, setContent] = useState<ContentMap>({});
-  const [services, setServices] = useState(FALLBACK_SERVICES);
+  const [categories, setCategories] = useState<NavCategory[]>([]);
   const [resources, setResources] = useState(FALLBACK_RESOURCES);
 
   useEffect(() => {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
     fetchFooterLinks()
-      .then(({ services: s, resources: r }) => {
-        if (s.length > 0) setServices(s);
+      .then(({ resources: r }) => {
         if (r.length > 0) setResources(r);
       })
       .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/products/categories`)
+      .then((res) => (res.ok ? res.json() : { categories: [] }))
+      .then((data: { categories?: Array<{ slug: string; name: string; order?: number }> }) => {
+        const list = data.categories ?? [];
+        const sorted = [...list].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setCategories(sorted.map((c) => ({ slug: c.slug, name: c.name })));
+      })
+      .catch(() => setCategories([]));
   }, []);
 
   return (
@@ -64,29 +76,35 @@ export default function Footer() {
 
           {/* LOGO + ABOUT */}
           <div className="text-left">
-            <Image
-              src="/assets/home/Group 34.svg"
-              alt="FX Acoustic Inc"
-              width={210}
-              height={50}
-              className="mb-4"
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Group 34.svg"
+                alt="FX Acoustic Inc"
+                width={210}
+                height={50}
+                className="mb-4"
+              />
+            </ParallaxImage>
             <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6 text-left">
               {val(content, "footer.about")}
             </p>
             <SocialIcons direction="horizontal" variant="filled" />
           </div>
 
-          {/* OUR SERVICES */}
+          {/* OUR SERVICES — same categories as header /products dropdown */}
           <div className="text-left">
             <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Our Services</h4>
             <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
-              {services.map((s) =>
-                s.href ? (
-                  <li key={s._id}><Link href={s.href} className="hover:underline text-gray-700">{s.label}</Link></li>
-                ) : (
-                  <li key={s._id}>{s.label}</li>
-                )
+              {categories.length > 0 ? (
+                categories.map((cat) => (
+                  <li key={cat.slug}>
+                    <Link href={`/products/${cat.slug}`} className="hover:underline text-gray-700">
+                      {cat.name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li><Link href="/products" className="hover:underline text-gray-700">Our Products</Link></li>
               )}
             </ul>
           </div>

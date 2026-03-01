@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
+import { useHeroParallax } from "@/lib/useHeroParallax";
 
 interface ProductHeroSectionProps {
   title: string;
@@ -13,28 +18,37 @@ export default function ProductHeroSection({
   heroImage = "/assets/product/product-hero.png",
   breadcrumbText,
 }: ProductHeroSectionProps) {
+  const { ref: sectionRef, y: bgY } = useHeroParallax(45);
+
   return (
-    <section className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] overflow-hidden"
+    >
       {/* Background Image */}
-      <Image
-        src={heroImage}
-        alt={`${title} Background`}
-        fill
-        priority
-        className="object-cover"
-      />
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <Image
+          src={heroImage}
+          alt={`${title} Background`}
+          fill
+          priority
+          className="object-cover"
+        />
+      </motion.div>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/10"></div>
 
       {/* Vector Line */}
-      <Image
-        src="/assets/product/vector-decoration.svg"
-        alt="Decorative Line"
-        width={420}
-        height={420}
-        className="absolute top-0 right-0 opacity-80 hidden sm:block"
-      />
+      <ParallaxImage offset={20} className="absolute top-0 right-0 hidden sm:block">
+        <Image
+          src="/assets/product/vector-decoration.svg"
+          alt="Decorative Line"
+          width={420}
+          height={420}
+          className="opacity-80"
+        />
+      </ParallaxImage>
 
       {/* Content */}
       <div className="relative z-10 mx-auto px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] h-full flex items-center">

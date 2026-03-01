@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchCaseStudies, type CaseStudy } from "@/lib/case-studies-api";
 
 const FALLBACK = [
@@ -47,14 +48,16 @@ export default async function CaseStudies() {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14">
           {studies.map((item) => (
-            <div key={item.slug}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={500}
-                height={400}
-                className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
-              />
+            <div key={item.slug} className="overflow-hidden">
+              <ParallaxImage offset={25}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={500}
+                  height={400}
+                  className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
+                />
+              </ParallaxImage>
               <h3 className="mt-6 text-[22px] sm:text-[23px] lg:text-[25px] font-semibold text-gray-900">
                 {item.title}
               </h3>

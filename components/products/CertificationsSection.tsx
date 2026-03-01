@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 const certifications = [
   {
@@ -41,14 +42,16 @@ export default function CertificationsSection() {
           <div key={index} className="flex flex-col items-center">
             
             {/* Card */}
-            <div className="w-[260px] sm:w-[280px] lg:w-[300px] h-[260px] sm:h-[280px] lg:h-[300px] border border-gray-200 rounded-xl flex items-center justify-center bg-white">
-              <Image
-                src={item.img}
-                alt={item.title}
-                width={260}
-                height={260}
-                className="object-cover"
-              />
+            <div className="w-[260px] sm:w-[280px] lg:w-[300px] h-[260px] sm:h-[280px] lg:h-[300px] border border-gray-200 rounded-xl flex items-center justify-center bg-white overflow-hidden">
+              <ParallaxImage offset={20} className="inline-block">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={260}
+                  height={260}
+                  className="object-cover"
+                />
+              </ParallaxImage>
             </div>
 
             {/* Label */}

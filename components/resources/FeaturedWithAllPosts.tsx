@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import Link from "next/link";
 import { api } from "@/lib/api/client";
 import { useAsyncData } from "@/hooks/useAsyncData";
@@ -69,14 +70,16 @@ export default function FeaturedWithAllPosts() {
 
             <div className="bg-white">
               <Link href={`/resources/blogs/${featured.slug}`} className="block cursor-pointer">
-                <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] mb-6">
-                  <Image
-                    src={featured.heroImage || PLACEHOLDER_IMAGE}
-                    alt={featured.title}
-                    fill
-                    className="object-cover rounded-lg"
-                    unoptimized={featured.heroImage?.startsWith("http")}
-                  />
+                <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] mb-6 overflow-hidden">
+                  <ParallaxImage offset={25} className="h-full w-full">
+                    <Image
+                      src={featured.heroImage || PLACEHOLDER_IMAGE}
+                      alt={featured.title}
+                      fill
+                      className="object-cover rounded-lg"
+                      unoptimized={featured.heroImage?.startsWith("http")}
+                    />
+                  </ParallaxImage>
                 </div>
               </Link>
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
@@ -98,13 +99,15 @@ export default function CaseStudies() {
               <div className="max-w-[420px]">
 
                 {/* IMAGE */}
-                <div className="relative h-[220px] sm:h-[240px] lg:h-[260px] w-full mb-4">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
+                <div className="relative h-[220px] sm:h-[240px] lg:h-[260px] w-full mb-4 overflow-hidden">
+                  <ParallaxImage offset={25} className="h-full w-full">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </ParallaxImage>
                 </div>
 
                 {/* TEXT */}
@@ -125,26 +128,30 @@ export default function CaseStudies() {
             onClick={() => splideRef.current?.splide?.go("<")}
             className="flex items-center justify-center cursor-pointer"
           >
-            <Image
-              src="/assets/home/Vector.svg"
-              alt="Previous"
-              width={10}
-              height={10}
-              className="rotate-180 block"
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Vector.svg"
+                alt="Previous"
+                width={10}
+                height={10}
+                className="rotate-180 block"
+              />
+            </ParallaxImage>
           </button>
 
           <button
             onClick={() => splideRef.current?.splide?.go(">")}
             className="flex items-center justify-center cursor-pointer"
           >
-            <Image
-              src="/assets/home/Vector.svg"
-              alt="Next"
-              width={10}
-              height={10}
-              className="block"
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Vector.svg"
+                alt="Next"
+                width={10}
+                height={10}
+                className="block"
+              />
+            </ParallaxImage>
           </button>
         </div>
       </div>

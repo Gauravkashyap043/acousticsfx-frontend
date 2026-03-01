@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { use, useState, useEffect } from "react";
+import { use, useState, useEffect, useRef } from "react";
+import { useScroll, useTransform, motion } from "motion/react";
 import { api } from "@/lib/api/client";
 import Spinner from "@/components/shared/Spinner";
 import Testimonials from "@/components/home/Testimonials";
@@ -55,6 +56,13 @@ export default function CaseStudySlugPage({ params }: CaseStudySlugPageProps) {
     fetchCaseStudy();
   }, [slug]);
 
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "45%"]);
+
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center gap-3">
@@ -81,16 +89,18 @@ export default function CaseStudySlugPage({ params }: CaseStudySlugPageProps) {
   return (
     <>
       {/* Hero */}
-      <section className="w-full bg-gray-900 text-white">
-        <div className="relative w-full h-[280px] sm:h-[360px] md:h-[420px]">
-          <Image
-            src={caseStudy.image || PLACEHOLDER_IMAGE}
-            fill
-            alt={caseStudy.title}
-            className="object-cover opacity-90"
-            priority
-            unoptimized={caseStudy.image?.startsWith("http")}
-          />
+      <section ref={heroRef} className="w-full bg-gray-900 text-white">
+        <div className="relative w-full h-[280px] sm:h-[360px] md:h-[420px] overflow-hidden">
+          <motion.div className="absolute inset-0" style={{ y: heroY }}>
+            <Image
+              src={caseStudy.image || PLACEHOLDER_IMAGE}
+              fill
+              alt={caseStudy.title}
+              className="object-cover opacity-90"
+              priority
+              unoptimized={caseStudy.image?.startsWith("http")}
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-end">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-10">
               <Link

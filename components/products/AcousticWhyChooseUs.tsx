@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 export default function AcousticWhyChooseUs() {
   return (
@@ -23,13 +24,15 @@ export default function AcousticWhyChooseUs() {
 
           {/* Left Big Card */}
           <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border bg-gray-100">
-            <div className="relative h-[220px] sm:h-[250px] lg:h-[280px]">
-              <Image
-                src="/assets/product/acoustic-feature-1.jpg"
-                alt="Precision Built"
-                fill
-                className="object-cover"
-              />
+            <div className="relative h-[220px] sm:h-[250px] lg:h-[280px] overflow-hidden">
+              <ParallaxImage offset={25} className="h-full w-full">
+                <Image
+                  src="/assets/product/acoustic-feature-1.jpg"
+                  alt="Precision Built"
+                  fill
+                  className="object-cover"
+                />
+              </ParallaxImage>
             </div>
 
             <div className="p-5 sm:p-6">
@@ -89,12 +92,14 @@ export default function AcousticWhyChooseUs() {
 
           {/* Right Image Card */}
           <div className="col-span-1 lg:col-span-3 rounded-2xl overflow-hidden relative h-[240px] sm:h-[300px] lg:h-auto">
-            <Image
-              src="/assets/product/acoustic-feature-2.jpg"
-              alt="Design with intent"
-              fill
-              className="object-cover grayscale"
-            />
+            <ParallaxImage offset={25} className="h-full w-full absolute inset-0">
+              <Image
+                src="/assets/product/acoustic-feature-2.jpg"
+                alt="Design with intent"
+                fill
+                className="object-cover grayscale"
+              />
+            </ParallaxImage>
             <div className="absolute bottom-6 left-6 text-white font-medium">
               Design with intent.
             </div>

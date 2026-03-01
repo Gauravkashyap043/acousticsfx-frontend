@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
 const CONTENT_KEYS = ["about.innovation.image"];
@@ -42,13 +43,15 @@ export default function StoryInnovation() {
 
       {/* ================= Image / Video Section ================= */}
       <div className="relative w-full overflow-hidden rounded-lg">
-        <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[520px]">
-          <Image
-            src={innovationImage}
-            alt="FX Acoustics innovation auditorium showcase"
-            fill
-            className="object-cover"
-          />
+        <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[520px] overflow-hidden">
+          <ParallaxImage offset={30} className="h-full w-full">
+            <Image
+              src={innovationImage}
+              alt="FX Acoustics innovation auditorium showcase"
+              fill
+              className="object-cover"
+            />
+          </ParallaxImage>
         </div>
 
         {/* Dark overlay */}

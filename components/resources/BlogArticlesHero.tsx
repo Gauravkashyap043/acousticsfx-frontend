@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useScroll, useTransform, motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -15,6 +16,12 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
     const [activeTabState, setActiveTabState] = useState('blogs');
     const [currentSlide, setCurrentSlide] = useState(0);
     const [swiper, setSwiper] = useState<any>(null);
+    const heroRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"],
+    });
+    const detailHeroY = useTransform(scrollYProgress, [0, 1], ["0%", "45%"]);
 
     const slides = [
         { bg: "/resources/rebg.png" },
@@ -30,15 +37,20 @@ export default function BlogArticlesHero({ blogTitle, isDetailPage = false, hero
         }
     }, [swiper]);
 
-    // If it's a detail page with hero image, show single image without heading
+    // If it's a detail page with hero image, show single image with parallax
     if (isDetailPage && heroImage) {
         return (
-            <div className="w-full relative h-[260px] sm:h-[360px] md:h-[500px] lg:h-[600px] overflow-hidden">
-                <img
-                    src={heroImage}
-                    alt="Blog hero"
-                    className="w-full h-full object-cover"
-                />
+            <div
+                ref={heroRef}
+                className="w-full relative h-[260px] sm:h-[360px] md:h-[500px] lg:h-[600px] overflow-hidden"
+            >
+                <motion.div className="absolute inset-0" style={{ y: detailHeroY }}>
+                    <img
+                        src={heroImage}
+                        alt="Blog hero"
+                        className="w-full h-full object-cover"
+                    />
+                </motion.div>
             </div>
         );
     }

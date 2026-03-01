@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import {
   submitContactForm,
   CONTACT_SUBJECTS,
@@ -40,14 +41,16 @@ export default function ContactFormSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
 
         {/* ================= Left Illustration ================= */}
-        <div className="flex justify-center">
-          <Image
-            src="/assets/contacts/8690678_3969584 1.svg"
-            alt="Contact us illustration — person sending messages"
-            width={400}
-            height={400}
-            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto"
-          />
+        <div className="flex justify-center overflow-hidden">
+          <ParallaxImage offset={25}>
+            <Image
+              src="/assets/contacts/8690678_3969584 1.svg"
+              alt="Contact us illustration — person sending messages"
+              width={400}
+              height={400}
+              className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto"
+            />
+          </ParallaxImage>
         </div>
 
         {/* ================= Right Form ================= */}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useEffect, useRef, useState } from "react";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -20,12 +21,31 @@ const DEFAULT_PRODUCTS = [
   { id: 3, title: "Groove Panel", image: "/assets/home/homethree.png" },
 ];
 
+const API_BASE =
+  typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL
+    ? process.env.NEXT_PUBLIC_API_URL
+    : "http://localhost:8080";
+
+type NavCategory = { slug: string; name: string };
+
 export default function ProductsSection() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<ContentMap>({});
+  const [categories, setCategories] = useState<NavCategory[]>([]);
 
   useEffect(() => {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/products/categories`)
+      .then((res) => (res.ok ? res.json() : { categories: [] }))
+      .then((data: { categories?: Array<{ slug: string; name: string; order?: number }> }) => {
+        const list = data.categories ?? [];
+        const sorted = [...list].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setCategories(sorted.map((c) => ({ slug: c.slug, name: c.name })));
+      })
+      .catch(() => setCategories([]));
   }, []);
 
   const products = DEFAULT_PRODUCTS.map((p, i) => ({
@@ -67,15 +87,23 @@ export default function ProductsSection() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Link href="/products/acoustic" className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px] cursor-pointer no-underline">
-                ACOUSTIC SOLUTION
-              </Link>
-              <Link href="/products" className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer no-underline text-black">
-                FLOORING SOLUTION
-              </Link>
-              <Link href="/products" className="bg-[#fff] px-4 py-2 text-[10px] axiforma font-bold cursor-pointer no-underline text-black">
-                SOUND PROOFING SOLUTION
-              </Link>
+              {categories.length > 0 ? (
+                categories.map((cat, i) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/products/${cat.slug}`}
+                    className={`axiforma font-bold px-4 py-2 text-[10px] cursor-pointer no-underline ${
+                      i === 0 ? "bg-[#1F6775] text-white" : "bg-[#fff] text-black"
+                    }`}
+                  >
+                    {cat.name.toUpperCase()}
+                  </Link>
+                ))
+              ) : (
+                <Link href="/products" className="bg-[#1F6775] axiforma font-bold text-white px-4 py-2 text-[10px] cursor-pointer no-underline">
+                  VIEW PRODUCTS
+                </Link>
+              )}
             </div>
           </div>
 
@@ -99,13 +127,15 @@ export default function ProductsSection() {
               className="min-w-[280px] sm:min-w-[420px] lg:min-w-[575px] bg-white"
             >
               {/* IMAGE */}
-              <div className="relative w-full h-[220px] sm:h-[300px] lg:w-[575px] lg:h-[392px]">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-full h-[220px] sm:h-[300px] lg:w-[575px] lg:h-[392px] overflow-hidden">
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
 
               {/* CONTENT */}
@@ -147,22 +177,26 @@ export default function ProductsSection() {
         {/* IMAGE ARROWS */}
         <div className="flex justify-center gap-8 mt-10">
           <button onClick={scrollLeft} className="cursor-pointer">
-            <Image
-              src="/assets/home/Vector.svg"
-              alt="Previous"
-              width={10}
-              height={10}
-              className="rotate-180"
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Vector.svg"
+                alt="Previous"
+                width={10}
+                height={10}
+                className="rotate-180"
+              />
+            </ParallaxImage>
           </button>
 
           <button onClick={scrollRight} className="cursor-pointer">
-            <Image
-              src="/assets/home/Vector.svg"
-              alt="Next"
-              width={10}
-              height={10}
-            />
+            <ParallaxImage offset={10} className="inline-block">
+              <Image
+                src="/assets/home/Vector.svg"
+                alt="Next"
+                width={10}
+                height={10}
+              />
+            </ParallaxImage>
           </button>
         </div>
 

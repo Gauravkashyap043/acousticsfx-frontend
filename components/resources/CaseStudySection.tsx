@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 type CaseStudyProps = {
   reverse?: boolean;
@@ -50,12 +51,14 @@ export default function CaseStudySection({
           {/* IMAGE */}
           <div className="w-full lg:w-1/2">
             <div className="relative w-full h-[220px] sm:h-[260px] rounded-xl overflow-hidden">
-              <Image
-                src={image}
-                alt="Case Study"
-                fill
-                className="object-cover"
-              />
+              <ParallaxImage offset={25} className="h-full w-full">
+                <Image
+                  src={image}
+                  alt="Case Study"
+                  fill
+                  className="object-cover"
+                />
+              </ParallaxImage>
             </div>
           </div>
 

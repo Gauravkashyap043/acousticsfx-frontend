@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import Link from "next/link";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -35,14 +36,16 @@ export default function AboutHero() {
   return (
     <section className="relative w-full min-h-[65vh] sm:min-h-[72vh] lg:min-h-[80vh]">
       {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src={bgImage}
-          alt="About hero background"
-          fill
-          className="object-cover object-center"
-          priority
-        />
+      <div className="absolute inset-0 overflow-hidden">
+        <ParallaxImage offset={40} className="absolute inset-0">
+          <Image
+            src={bgImage}
+            alt="About hero background"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        </ParallaxImage>
       </div>
 
       {/* Dark Overlay */}

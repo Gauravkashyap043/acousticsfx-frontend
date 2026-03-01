@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useState, useEffect } from "react";
 import { api } from "@/lib/api/client";
 import Spinner from "@/components/shared/Spinner";
@@ -372,15 +373,17 @@ export default function BlogDetailLayout({ slug }: BlogDetailLayoutProps) {
                   href={`/resources/blogs/${insightBlog.slug}`}
                   className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
                 >
-                  <div className="relative">
-                    <Image
-                      src={imgErrors[`insight-${insightBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-2.png"}
-                      alt={insightBlog.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-36 sm:h-44 lg:h-48 object-cover"
-                      onError={() => handleImageError(`insight-${insightBlog._id}`)}
-                    />
+                  <div className="relative overflow-hidden">
+                    <ParallaxImage offset={25}>
+                      <Image
+                        src={imgErrors[`insight-${insightBlog._id}`] ? PLACEHOLDER_IMAGE : "/assets/product/product-card-2.png"}
+                        alt={insightBlog.title}
+                        width={400}
+                        height={300}
+                        className="w-full h-36 sm:h-44 lg:h-48 object-cover"
+                        onError={() => handleImageError(`insight-${insightBlog._id}`)}
+                      />
+                    </ParallaxImage>
                     {insightBlog.tags && insightBlog.tags.length > 0 && (
                       <span className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gray-800 text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full">
                         {insightBlog.tags[0].toUpperCase()}

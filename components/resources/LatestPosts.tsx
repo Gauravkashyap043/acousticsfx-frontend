@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { slugify } from '@/lib/utils';
@@ -106,14 +107,16 @@ export default function LatestPosts() {
                   data-aos="fade-up"
                   data-aos-delay={200 + idx * 100}
                 >
-                  <Image
-                    src={imgErrors[idx]?.post ? PLACEHOLDER_IMAGE : blog.heroImage}
-                    width={400}
-                    height={250}
-                    alt={blog.title}
-                    className="rounded-lg w-full h-[180px] sm:h-[200px] object-cover"
-                    onError={() => handleImageError(idx, "post")}
-                  />
+                  <ParallaxImage offset={25} className="rounded-lg overflow-hidden">
+                    <Image
+                      src={imgErrors[idx]?.post ? PLACEHOLDER_IMAGE : blog.heroImage}
+                      width={400}
+                      height={250}
+                      alt={blog.title}
+                      className="rounded-lg w-full h-[180px] sm:h-[200px] object-cover"
+                      onError={() => handleImageError(idx, "post")}
+                    />
+                  </ParallaxImage>
 
                   {blog.tags && blog.tags.length > 0 ? (
                     <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-md mt-3 inline-block">
@@ -131,14 +134,16 @@ export default function LatestPosts() {
 
                   <div className="flex items-center gap-2 mt-4">
                     {blog.authorImage ? (
-                      <Image
-                        src={imgErrors[idx]?.author ? PLACEHOLDER_IMAGE : blog.authorImage}
-                        width={28}
-                        height={28}
-                        alt={blog.authorName}
-                        className="rounded-full object-cover"
-                        onError={() => handleImageError(idx, "author")}
-                      />
+                      <ParallaxImage offset={10} className="inline-block shrink-0">
+                        <Image
+                          src={imgErrors[idx]?.author ? PLACEHOLDER_IMAGE : blog.authorImage}
+                          width={28}
+                          height={28}
+                          alt={blog.authorName}
+                          className="rounded-full object-cover"
+                          onError={() => handleImageError(idx, "author")}
+                        />
+                      </ParallaxImage>
                     ) : (
                       <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-600">
                         {blog.authorName.charAt(0).toUpperCase()}

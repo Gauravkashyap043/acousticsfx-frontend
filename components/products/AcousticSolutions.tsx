@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import Link from "next/link";
 import { fetchCategories, fetchCategoryBySlug, type Product } from "@/lib/products-api";
 import { products as staticProducts } from "@/lib/products-data";
@@ -115,14 +116,16 @@ function ProductCard({
   categorySlug: string;
 }) {
   return (
-    <Link href={`/products/${categorySlug}/${card.slug}`} className="block cursor-pointer">
-      <Image
-        src={card.image}
-        alt={card.title}
-        width={600}
-        height={450}
-        className="w-[600px] max-w-full h-auto object-cover"
-      />
+    <Link href={`/products/${categorySlug}/${card.slug}`} className="block cursor-pointer overflow-hidden">
+      <ParallaxImage offset={25}>
+        <Image
+          src={card.image}
+          alt={card.title}
+          width={600}
+          height={450}
+          className="w-[600px] max-w-full h-auto object-cover"
+        />
+      </ParallaxImage>
       <p className="mt-4 text-[18px] manrope font-normal text-[#EA8E39]">
         &bull; {card.title}
       </p>
@@ -130,13 +133,15 @@ function ProductCard({
         {card.description}
       </p>
       <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-        <Image
-          src="/assets/home/universalvector.svg"
-          alt="Arrow"
-          width={20}
-          height={8}
-          style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-        />
+        <ParallaxImage offset={10} className="inline-block">
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Arrow"
+            width={20}
+            height={8}
+            style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
+          />
+        </ParallaxImage>
       </div>
     </Link>
   );

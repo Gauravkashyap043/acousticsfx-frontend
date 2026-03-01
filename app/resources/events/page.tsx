@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useState, useEffect } from "react";
 import { api } from "@/lib/api/client";
 import Spinner from "@/components/shared/Spinner";
@@ -91,14 +92,16 @@ export default function EventsListPage() {
                   href={`/resources/events/${event.slug}`}
                   className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition overflow-hidden block"
                 >
-                  <div className="relative w-full h-[200px] sm:h-[220px] bg-gray-100">
-                    <Image
-                      src={event.image || PLACEHOLDER_IMAGE}
-                      fill
-                      alt={event.title}
-                      className="object-cover"
-                      unoptimized={event.image?.startsWith("http")}
-                    />
+                  <div className="relative w-full h-[200px] sm:h-[220px] bg-gray-100 overflow-hidden">
+                    <ParallaxImage offset={25} className="h-full w-full">
+                      <Image
+                        src={event.image || PLACEHOLDER_IMAGE}
+                        fill
+                        alt={event.title}
+                        className="object-cover"
+                        unoptimized={event.image?.startsWith("http")}
+                      />
+                    </ParallaxImage>
                   </div>
                   <div className="p-5">
                     {event.eventDate && (

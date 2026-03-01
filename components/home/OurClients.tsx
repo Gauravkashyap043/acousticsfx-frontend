@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { useHeroParallax } from "@/lib/useHeroParallax";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { fetchClients, type ClientLogo } from "@/lib/clients-api";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -45,12 +48,14 @@ export default function OurClients() {
 
   const bgImage = val(content, "home.clients.backgroundImage");
   const title = val(content, "home.clients.title");
+  const { ref: sectionRef, y: bgY } = useHeroParallax(45);
 
   return (
-    <section className="relative h-[420px] sm:h-[500px] lg:h-[580px] overflow-hidden">
-
-      {/* BACKGROUND */}
-      <div className="absolute inset-0">
+    <section
+      ref={sectionRef}
+      className="relative h-[420px] sm:h-[500px] lg:h-[580px] overflow-hidden"
+    >
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <Image
           src={bgImage}
           alt="Clients Background"
@@ -58,7 +63,7 @@ export default function OurClients() {
           className="object-cover"
           priority
         />
-      </div>
+      </motion.div>
 
       {/* OVERLAYS */}
       <div className="absolute inset-0 bg-[#1d4a77]/40" />
@@ -109,8 +114,10 @@ function LogoCard({ logo }: { logo: string }) {
       className="bg-white rounded-lg flex items-center justify-center shadow-sm p-4 shrink-0"
       style={{ width: "185px", height: "90px" }}
     >
-      <div className="relative w-full h-full">
-        <Image src={logo} alt="Client Logo" fill className="object-contain" />
+      <div className="relative w-full h-full overflow-hidden">
+        <ParallaxImage offset={15} className="h-full w-full">
+          <Image src={logo} alt="Client Logo" fill className="object-contain" />
+        </ParallaxImage>
       </div>
     </div>
   );

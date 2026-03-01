@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 import { useEffect, useState } from "react";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 
@@ -46,15 +47,17 @@ export default function ServiceProvider() {
       <div className="flex flex-col lg:flex-row items-center gap-10">
 
         {/* Left Image */}
-        <div className="w-full lg:w-1/2">
-          <Image
-            src={image}
-            alt="Library"
-            width={800}
-            height={500}
-            className="w-full h-auto object-cover"
-            priority
-          />
+        <div className="w-full lg:w-1/2 overflow-hidden">
+          <ParallaxImage offset={25}>
+            <Image
+              src={image}
+              alt="Library"
+              width={800}
+              height={500}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </ParallaxImage>
         </div>
 
         {/* Right Content */}

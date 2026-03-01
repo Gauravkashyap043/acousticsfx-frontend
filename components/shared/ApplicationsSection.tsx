@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 const applications = [
   {
@@ -46,14 +47,16 @@ export default function ApplicationsSection() {
     <section className="relative px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[75px] lg:py-[90px] overflow-hidden">
 
       {/* Background Image + Fade */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/assets/about/sliderbg.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          aria-hidden="true"
-        />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <ParallaxImage offset={30} className="absolute inset-0">
+          <Image
+            src="/assets/about/sliderbg.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            aria-hidden="true"
+          />
+        </ParallaxImage>
         <div className="absolute inset-0 bg-white/85"></div>
       </div>
 
@@ -101,13 +104,15 @@ export default function ApplicationsSection() {
           disabled={index === 0}
           className="absolute left-0 sm:left-[-10px] lg:left-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Previous"
-            width={24}
-            height={10}
-            className="rotate-180"
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Previous"
+              width={24}
+              height={10}
+              className="rotate-180"
+            />
+          </ParallaxImage>
         </button>
 
         <button
@@ -115,12 +120,14 @@ export default function ApplicationsSection() {
           disabled={index >= applications.length - 3}
           className="absolute right-0 sm:right-[-10px] lg:right-[-0px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow flex items-center justify-center hover:bg-white transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Next"
-            width={24}
-            height={10}
-          />
+          <ParallaxImage offset={10} className="inline-block">
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt="Next"
+              width={24}
+              height={10}
+            />
+          </ParallaxImage>
         </button>
       </div>
     </section>
@@ -138,12 +145,14 @@ function ApplicationCard({
 }) {
   return (
     <div className="relative h-[260px] sm:h-[300px] lg:h-[320px] overflow-hidden group">
-      <Image
-        src={image}
-        alt={`${title} — acoustic solutions for ${title.toLowerCase()} spaces`}
-        fill
-        className="object-cover group-hover:scale-105 transition duration-500"
-      />
+      <ParallaxImage offset={25} className="h-full w-full">
+        <Image
+          src={image}
+          alt={`${title} — acoustic solutions for ${title.toLowerCase()} spaces`}
+          fill
+          className="object-cover group-hover:scale-105 transition duration-500"
+        />
+      </ParallaxImage>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/35"></div>

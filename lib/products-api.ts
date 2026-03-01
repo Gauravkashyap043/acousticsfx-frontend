@@ -3,11 +3,37 @@
  * Base URL: NEXT_PUBLIC_API_URL or VITE_API_URL or http://localhost:8080
  */
 
+export interface SubProductGridIntro {
+  title?: string;
+  subtitle?: string;
+  body?: string;
+}
+
+export interface SubProductGridImage {
+  url: string;
+  alt?: string;
+}
+
+export interface SubProductSpec {
+  label: string;
+  value: string;
+}
+
+export interface SubProductGallerySlide {
+  large: string;
+  small: string;
+}
+
 export interface SubProduct {
   slug: string;
   title: string;
   description: string;
   image: string;
+  gridIntro?: SubProductGridIntro;
+  gridImages?: SubProductGridImage[];
+  specDescription?: string;
+  specs?: SubProductSpec[];
+  gallerySlides?: SubProductGallerySlide[];
 }
 
 export interface Product {
@@ -18,6 +44,8 @@ export interface Product {
   heroImage?: string;
   subProducts: SubProduct[];
   categorySlug?: string;
+  panelsSectionTitle?: string;
+  panelsSectionDescription?: string;
 }
 
 export interface ProductCategory {

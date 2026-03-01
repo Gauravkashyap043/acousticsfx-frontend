@@ -34,10 +34,10 @@ export default async function SubcategoryPage({ params }: Props) {
         title={product.title}
         description={product.description}
       />
-      <StoryInnovation/>
-      <LatestBlogs/>
-      <Testimonials/>
-      <ConnectWithExperts/>
+      <StoryInnovation />
+      <LatestBlogs />
+      <Testimonials />
+      <ConnectWithExperts />
     </>
   )
 }

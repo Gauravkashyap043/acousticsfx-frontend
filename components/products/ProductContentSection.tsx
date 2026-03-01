@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 interface ProductContentSectionProps {
   title: string;
@@ -13,7 +14,7 @@ export default function ProductContentSection({
     <section className="w-full bg-white">
       <div className="mx-auto py-[60px] sm:py-[80px] lg:py-[100px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
+
           {/* LEFT CONTENT – 100px padding */}
           <div className="col-span-1 lg:col-span-6 px-[24px] sm:px-[40px] md:px-[60px] lg:pl-[100px] lg:pr-0">
             <h2 className="text-[36px] sm:text-[48px] lg:text-[65px] playfair-display text-black mb-6">
@@ -27,49 +28,57 @@ export default function ProductContentSection({
 
           {/* RIGHT IMAGES */}
           <div className="col-span-1 lg:col-span-6 px-[24px] sm:px-[40px] md:px-[60px] lg:px-0 grid grid-cols-3 gap-x-4 gap-y-2">
-            
+
             {/* COLUMN 1 */}
             <div className="flex items-center">
               <div className="relative w-full aspect-[240/340] rounded-2xl overflow-hidden">
-                <Image
-                  src="/assets/product/product-feature-2.png"
-                  alt="Acoustic"
-                  fill
-                  className="object-cover"
-                />
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src="/assets/product/product-feature-2.png"
+                    alt="Acoustic"
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
             </div>
 
             {/* COLUMN 2 – TWO SEPARATE IMAGES */}
             <div className="flex flex-col gap-2">
               <div className="relative w-full aspect-[240/340] rounded-2xl overflow-hidden">
-                <Image
-                  src="/assets/product/product-feature-1.png"
-                  alt="Acoustic Top"
-                  fill
-                  className="object-cover"
-                />
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src="/assets/product/product-feature-1.png"
+                    alt="Acoustic Top"
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
 
               <div className="relative w-full aspect-[240/340] rounded-2xl overflow-hidden">
-                <Image
-                  src="/assets/product/product-feature-3.png"
-                  alt="Acoustic Bottom"
-                  fill
-                  className="object-cover"
-                />
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src="/assets/product/product-feature-3.png"
+                    alt="Acoustic Bottom"
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
             </div>
 
             {/* COLUMN 3 */}
             <div className="flex items-center">
               <div className="relative w-full aspect-[240/340] rounded-2xl overflow-hidden">
-                <Image
-                  src="/assets/product/product-feature-4.png"
-                  alt="Acoustic"
-                  fill
-                  className="object-cover"
-                />
+                <ParallaxImage offset={25} className="h-full w-full">
+                  <Image
+                    src="/assets/product/product-feature-4.png"
+                    alt="Acoustic"
+                    fill
+                    className="object-cover"
+                  />
+                </ParallaxImage>
               </div>
             </div>
 

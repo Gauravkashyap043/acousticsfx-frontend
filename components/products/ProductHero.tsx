@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SocialIcons from "@/components/shared/SocialIcons";
+import { ParallaxImage } from "@/components/shared/ParallaxImage";
 
 export default function ProductHero() {
   return (
@@ -36,14 +37,16 @@ export default function ProductHero() {
       </div>
 
       {/* Image */}
-      <div className="px-[0px] pb-[0px]">
-        <Image
-          src="/assets/product/product-hero-alt.jpg"
-          alt="Interior Design"
-          width={1920}
-          height={900}
-          className="w-full h-[280px] sm:h-[380px] lg:h-[500px] object-cover"
-        />
+      <div className="px-[0px] pb-[0px] overflow-hidden">
+        <ParallaxImage offset={30}>
+          <Image
+            src="/assets/product/product-hero-alt.jpg"
+            alt="Interior Design"
+            width={1920}
+            height={900}
+            className="w-full h-[280px] sm:h-[380px] lg:h-[500px] object-cover"
+          />
+        </ParallaxImage>
       </div>
     </section>
   );
