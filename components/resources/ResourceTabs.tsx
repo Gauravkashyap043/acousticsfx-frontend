@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface ResourceTabsProps {
@@ -10,21 +10,14 @@ interface ResourceTabsProps {
 const PLACEHOLDER_IMAGE =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e5e7eb' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%239ca3af'%3ENo Image%3C/text%3E%3C/svg%3E";
 
-export default function ResourceTabs({ activeTab: propActiveTab }: ResourceTabsProps) {
+export default function ResourceTabs({}: ResourceTabsProps) {
     const [imgError, setImgError] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const urlTab = searchParams.get("tab") || "blogs";
-    const [activeTabState, setActiveTabState] = useState(urlTab);
-
-    useEffect(() => {
-        const tab = searchParams.get("tab") || "blogs";
-        setActiveTabState(tab);
-    }, [searchParams]);
+    const activeTabState = searchParams.get("tab") || "blogs";
 
     const handleTabClick = (tab: string) => {
-        setActiveTabState(tab);
         const params = new URLSearchParams(searchParams.toString());
         params.set("tab", tab);
         router.push(`/resources?${params.toString()}`, { scroll: false });
