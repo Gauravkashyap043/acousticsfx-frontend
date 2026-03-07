@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchProducts, type Product } from "@/lib/products-api";
 import { products as staticProducts } from "@/lib/products-data";
+import { FadeIn, StaggerContainer, StaggerItem, HoverScale } from "@/components/animations";
 
 const FALLBACK_CARDS = staticProducts.map((p) => ({
   slug: p.slug,
@@ -36,7 +37,7 @@ export default async function AcousticSolutions() {
       <div className="px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px]">
 
         {/* Top Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12 lg:mb-16">
+        <FadeIn direction="up" className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12 lg:mb-16">
           <Link href="/products/acoustic" className="cursor-pointer">
             <button className="px-5 sm:px-6 py-2 text-[10px] axiforma border border-[#1F6775] bg-[#1F6775] text-white cursor-pointer">
               ACOUSTIC SOLUTIONS
@@ -52,34 +53,41 @@ export default async function AcousticSolutions() {
               SOUND PROOFING SOLUTIONS
             </button>
           </Link>
-        </div>
+        </FadeIn>
 
         {/* Heading */}
-        <div className="mb-10 sm:mb-12 lg:mb-14">
+        <FadeIn direction="up" delay={0.1} className="mb-10 sm:mb-12 lg:mb-14">
           <p className="text-[16px] sm:text-[18px] manrope font-medium text-[#1F6775] mb-2">
             Acoustic Solutions
           </p>
           <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
             Explore Our Acoustic <br /> Masterpieces
           </h2>
-        </div>
+        </FadeIn>
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 sm:gap-y-20 lg:gap-x-20 lg:gap-y-20">
-
           {/* LEFT COLUMN */}
-          <div className="flex flex-col gap-y-16 sm:gap-y-20">
+          <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20">
             {leftCards.map((card) => (
-              <ProductCard key={card.slug} card={card} />
+              <StaggerItem key={card.slug} direction="up">
+                <HoverScale>
+                  <ProductCard card={card} />
+                </HoverScale>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* RIGHT COLUMN (60px DOWN) */}
-          <div className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
+          <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
             {rightCards.map((card) => (
-              <ProductCard key={card.slug} card={card} />
+              <StaggerItem key={card.slug} direction="up">
+                <HoverScale>
+                  <ProductCard card={card} />
+                </HoverScale>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
 
       </div>
