@@ -56,7 +56,7 @@ export default function LinearluxGrid({ gridIntro, gridImages }: LinearluxGridPr
               <div className="relative h-[420px] rounded-xl overflow-hidden">
                 <Image
                   src={image.url}
-                  alt={image.alt}
+                  alt={image.alt ?? ""}
                   fill
                   className="object-cover"
                 />
