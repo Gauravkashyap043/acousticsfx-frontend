@@ -96,8 +96,8 @@ export default async function AcousticSolutions({
           <p className="text-[16px] sm:text-[18px] manrope font-medium text-[#1F6775] mb-2">
             {categoryName}
           </p>
-          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
-            Explore Our {categoryName} <br /> Masterpieces
+          <h2 className="text-[22px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
+            Explore Our {categoryName} Masterpieces
           </h2>
         </FadeIn>
 

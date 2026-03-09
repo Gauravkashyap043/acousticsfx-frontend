@@ -221,16 +221,24 @@ input[type="reset"]:not(:disabled),
   animation: marquee-right 35s linear infinite;
 }
 
+.awards-scroll-track {
+  display: flex;
+  width: max-content;
+  animation: awardsMovieScroll 22s linear infinite;
+}
 
-@keyframes awardScroll {
+.awards-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 40px;
+}
+
+@keyframes awardsMovieScroll {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
   }
-}
-
-.animate-award-scroll {
-  animation: awardScroll 2s linear infinite;
 }
