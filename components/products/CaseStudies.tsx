@@ -32,6 +32,7 @@ export default async function CaseStudies() {
             <p className="text-[18px] sm:text-[21px] manrope text-[#EA8E39] font-medium mb-3">
               Case Studies
             </p>
+
             <h2 className="text-[32px] sm:text-[42px] lg:text-[55px] font-semibold manrope leading-snug text-gray-900">
               Exploring the Intersection of <br /> Form &amp; Function
             </h2>
@@ -39,21 +40,32 @@ export default async function CaseStudies() {
 
           <Link
             href="/resources/casestudy"
-            className="flex items-center gap-3 text-orange-500 cursor-pointer mt-0 lg:mt-2"
+            className="flex items-center gap-3 text-orange-500 cursor-pointer group mt-0 lg:mt-2"
           >
             <span className="text-sm">View All</span>
+
             <span className="w-8 h-8 border border-orange-400 rounded-full flex items-center justify-center">
-              &nearr;
+              <Image
+                src="/assets/contacts/Vector.svg"
+                alt="arrow"
+                width={14}
+                height={14}
+                className="rotate-[0deg] transition-transform duration-300 group-hover:rotate-45"
+              />
             </span>
+
           </Link>
         </FadeIn>
 
         {/* Cards */}
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-14">
+
           {studies.map((item) => (
             <StaggerItem key={item.slug} direction="up">
+
               <HoverScale>
                 <div>
+
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -61,18 +73,37 @@ export default async function CaseStudies() {
                     height={400}
                     className="w-full h-[260px] sm:h-[300px] lg:h-[320px] object-cover"
                   />
+
                   <h3 className="mt-6 text-[22px] sm:text-[23px] lg:text-[25px] font-semibold text-gray-900">
                     {item.title}
                   </h3>
-                  <div className="mt-4 flex items-center gap-2 text-[#EA8E39] text-[18px] sm:text-[20px] font-medium manrope cursor-pointer">
+
+                  <div className="mt-4 flex items-center gap-3 text-[#EA8E39] text-[18px] sm:text-[20px] font-medium manrope cursor-pointer group">
+
                     <span>Read More</span>
-                    <span>&nearr;</span>
+
+                    <span className="w-7 h-7 border border-orange-400 rounded-full flex items-center justify-center">
+
+                      <Image
+                        src="/assets/contacts/Vector.svg"
+                        alt="arrow"
+                        width={14}
+                        height={14}
+                        className="rotate-[0deg] transition-transform duration-300 group-hover:rotate-45"
+                      />
+
+                    </span>
+
                   </div>
+
                 </div>
               </HoverScale>
+
             </StaggerItem>
           ))}
+
         </StaggerContainer>
+
       </div>
     </section>
   );

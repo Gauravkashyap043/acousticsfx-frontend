@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FadeIn } from "@/components/animations";
 
 export default function AwardsSection() {
+
   const awards = [
     {
       img: "/assets/product/german-design-award.svg",
@@ -27,68 +28,61 @@ export default function AwardsSection() {
 
   return (
     <section className="w-full bg-[#1F6775] overflow-hidden">
-      <div className="px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[20px] sm:py-[24px] lg:py-[30px]">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-0">
+
+      <div className="px-[20px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[10px] sm:py-[14px] lg:py-[20px]">
+
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-0">
 
           {/* Left Vertical Text */}
           <FadeIn direction="up" className="flex items-center">
-            <span className="rotate-0 lg:rotate-[-90deg] text-white/60 tracking-widest text-sm">
+
+            <span className="rotate-0 lg:rotate-[-90deg] text-white/60 tracking-widest text-[11px] sm:text-xs">
               Awards
             </span>
+
           </FadeIn>
 
-          {/* MOBILE CAROUSEL */}
-          <div className="w-full lg:hidden overflow-hidden">
-            <div className="flex gap-12 animate-award-scroll">
+          {/* MOVIE STYLE SCROLL */}
+          <div className="w-full overflow-hidden">
+
+            <div className="awards-scroll-track">
+
               {[...awards, ...awards].map((award, i) => (
-                <div key={i} className="flex items-center gap-4 min-w-max">
+
+                <div key={i} className="flex items-center gap-2 awards-item">
+
                   <Image
                     src={award.img}
                     alt="Award"
-                    width={1}
-                    height={1}
-                    unoptimized
-                    style={{ width: "auto", height: "auto" }}
+                    width={70}
+                    height={40}
+                    className="object-contain"
                   />
-                  <div className="text-white">
-                    <p className="font-[400] inter-font text-[16px]">
+
+                  <div className="text-white leading-tight">
+
+                    <p className="font-[400] inter-font text-[12px] sm:text-[14px] lg:text-[16px]">
                       {award.title}
                     </p>
-                    <p className="font-[400] inter-font text-[16px]">
+
+                    <p className="font-[400] inter-font text-[11px] sm:text-[13px] lg:text-[16px]">
                       {award.year}
                     </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* DESKTOP NORMAL LAYOUT */}
-          <div className="hidden lg:flex items-center gap-16">
-            {awards.map((award, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <Image
-                  src={award.img}
-                  alt="Award"
-                  width={1}
-                  height={1}
-                  unoptimized
-                  style={{ width: "auto", height: "auto" }}
-                />
-                <div className="text-white">
-                  <p className="font-[400] inter-font text-[18px]">
-                    {award.title}
-                  </p>
-                  <p className="font-[400] inter-font text-[18px]">
-                    {award.year}
-                  </p>
+                  </div>
+
                 </div>
-              </div>
-            ))}
+
+              ))}
+
+            </div>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
   );
 }
