@@ -7,6 +7,8 @@ export default function VoicePlug() {
 
   const [wavesurfer, setWavesurfer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // toggle OFF by default
   const [withAcoustic, setWithAcoustic] = useState(false);
 
   const onReady = (ws: any) => {
@@ -22,17 +24,19 @@ export default function VoicePlug() {
 
     if (!wavesurfer) return;
 
-    const media = wavesurfer.getMediaElement();
+    const newState = !withAcoustic;
+    setWithAcoustic(newState);
 
-    if (!media) return;
+    const newAudio = newState
+      ? "/audio/demo.mp3"   // toggle ON → normal
+      : "/audio/echo.mp3";  // toggle OFF → echo
 
-    if (!withAcoustic) {
-      media.preservesPitch = true;
-    } else {
-      media.preservesPitch = false;
-    }
+    wavesurfer.load(newAudio);
 
-    setWithAcoustic(!withAcoustic);
+    wavesurfer.once("ready", () => {
+      wavesurfer.play();
+    });
+
   };
 
   return (
@@ -41,12 +45,10 @@ export default function VoicePlug() {
 
       <div className="w-full max-w-xl p-4">
 
-        {/* Top Text */}
-        <p className="text-center text-gray-600 text-sm mb-6">
+        <p className="text-center text-gray-600 text-[30px] font-medium leading-tight font-sans mb-6">
           Experience the difference between normal and acoustic enhanced sound
         </p>
 
-        {/* Play + Waveform */}
         <div className="flex items-center gap-5">
 
           <button
@@ -63,7 +65,7 @@ export default function VoicePlug() {
               progressColor="#6b7280"
               barWidth={3}
               barGap={2}
-              url="/audio/demo.mp3"
+              url="/audio/echo.mp3"   // default echo
               onReady={onReady}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
@@ -72,7 +74,6 @@ export default function VoicePlug() {
 
         </div>
 
-        {/* Toggle */}
         <div className="flex flex-col items-center mt-6">
 
           <div className="flex items-center gap-3">
@@ -98,7 +99,6 @@ export default function VoicePlug() {
 
           </div>
 
-          {/* Transcript */}
           <p className="text-xs text-gray-500 mt-3 cursor-pointer hover:text-gray-700">
             Show Transcript
           </p>
