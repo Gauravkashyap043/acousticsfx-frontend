@@ -74,6 +74,8 @@ export interface SubProduct {
   title: string;
   description: string;
   image: string;
+  /** If true, display "™" after the title (trademark registered) */
+  showTrademark?: boolean;
   specDescription?: string;
   specs?: SubProductSpec[];
   /** Deprecated: old shape. Still optional for compatibility. */

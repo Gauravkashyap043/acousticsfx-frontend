@@ -14,6 +14,7 @@ export interface SubProduct {
   title: string;
   description: string;
   image: string;
+  showTrademark?: boolean;
 }
 
 export interface Product {
@@ -65,6 +66,7 @@ export async function fetchMergedProduct(slug: string): Promise<Product | undefi
 
 /** Full sub-product for detail page (includes specs, gallerySlides, etc. from API) */
 export interface SubProductMerged extends SubProduct {
+  showTrademark?: boolean;
   specDescription?: string;
   specs?: ApiSubProduct["specs"];
   galleryImages?: ApiSubProduct["galleryImages"];
@@ -87,6 +89,7 @@ export async function fetchMergedSubProduct(
       title: apiResult.subProduct.title,
       description: apiResult.subProduct.description ?? "",
       image: apiResult.subProduct.image ?? "",
+      showTrademark: apiResult.subProduct.showTrademark,
       specDescription: apiResult.subProduct.specDescription,
       specs: apiResult.subProduct.specs,
       galleryImages: apiResult.subProduct.galleryImages,

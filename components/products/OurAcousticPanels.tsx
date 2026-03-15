@@ -18,7 +18,7 @@ export default async function OurAcousticPanels({ productSlug, categorySlug = "a
     const product = await fetchMergedProduct(productSlug);
     if (product && product.subProducts.length > 0) {
       panels = product.subProducts.map((sub) => ({
-        title: sub.title,
+        title: sub.showTrademark ? `${sub.title}™` : sub.title,
         desc: sub.description,
         img: sub.image,
         slug: sub.slug,

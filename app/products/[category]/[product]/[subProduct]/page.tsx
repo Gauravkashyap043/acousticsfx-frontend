@@ -61,7 +61,7 @@ export default async function SubProductDetailPage({ params }: Props) {
     <>
       <LinearluxHero
         productTitle={product.title}
-        subProductTitle={subProduct.title}
+        subProductTitle={subProduct.showTrademark ? `${subProduct.title}™` : subProduct.title}
         description={subProduct.description}
       />
       <ProductSpecification
