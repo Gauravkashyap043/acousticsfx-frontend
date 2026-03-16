@@ -32,7 +32,7 @@ export default function WhyChooseSection({
               Why Choose {title}
             </h2>
 
-            <p className="text-gray-600 text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[400] leading-[24px] sm:leading-[26px] lg:leading-[28px] mb-8 sm:mb-10 max-w-md">
+            <p className="product-body-text text-gray-600 inter-font font-[400] mb-8 sm:mb-10 max-w-md">
               {description}
             </p>
 

@@ -46,7 +46,7 @@ export default function LinearluxHero({ productTitle, subProductTitle, descripti
           </h1>
 
           {/* Description */}
-          <p className="text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[400] leading-relaxed text-gray-300">
+          <p className="product-body-text inter-font font-[400] text-gray-300">
             {description}
           </p>
 

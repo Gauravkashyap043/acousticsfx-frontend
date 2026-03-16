@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,6 +28,15 @@ export default function RelatedProducts({ products, categorySlug }: RelatedProdu
   const next = () => {
     setIndex((prev) => Math.min(prev + 1, products.length - 3));
   };
+
+  // autoplay slider (all viewports)
+  useEffect(() => {
+    if (products.length <= 3) return;
+    const id = setInterval(() => {
+      setIndex((prev) => (prev >= products.length - 3 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(id);
+  }, [products.length]);
 
   return (
     <section className="w-full bg-[#faf7f2] pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] pr-0 py-[60px] sm:py-[75px] lg:py-[90px]">
@@ -91,9 +100,9 @@ export default function RelatedProducts({ products, categorySlug }: RelatedProdu
           ))}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows (desktop/tablet only) */}
         {products.length > 3 && (
-          <div className="flex justify-center gap-8 mt-6 sm:mt-8">
+          <div className="hidden sm:flex justify-center gap-8 mt-6 sm:mt-8">
             <button
               onClick={prev}
               disabled={index === 0}

@@ -20,7 +20,7 @@ export default function ProductContentSection({
               {title}
             </h2>
 
-            <p className="text-[18px] sm:text-[24px] lg:text-[32px] poppins-font font-[400] leading-[28px] sm:leading-[36px] lg:leading-[45px] text-gray-600 ">
+            <p className="product-body-text poppins-font font-[400] text-gray-600 ">
               {description}
             </p>
           </div>

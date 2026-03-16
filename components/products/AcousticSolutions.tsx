@@ -103,14 +103,24 @@ export default async function AcousticSolutions({
             {/* LEFT COLUMN */}
             <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20">
               {leftCards.map((card) => (
-                <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
+                <ProductCard
+                  key={card.slug}
+                  card={card}
+                  categorySlug={categorySlug}
+                  isLanding={showMasterCategoryTabs}
+                />
               ))}
             </StaggerContainer>
 
             {/* RIGHT COLUMN (60px DOWN) */}
             <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
               {rightCards.map((card) => (
-                <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
+                <ProductCard
+                  key={card.slug}
+                  card={card}
+                  categorySlug={categorySlug}
+                  isLanding={showMasterCategoryTabs}
+                />
               ))}
             </StaggerContainer>
           </div>
@@ -124,19 +134,34 @@ export default async function AcousticSolutions({
 function ProductCard({
   card,
   categorySlug,
+  isLanding,
 }: {
   card: { slug: string; title: string; description: string; image: string };
   categorySlug: string;
+  /** When true, use updated image sizing for /products landing page only. */
+  isLanding?: boolean;
 }) {
   return (
     <Link href={`/products/${categorySlug}/${card.slug}`} className="block cursor-pointer">
-      <Image
-        src={card.image}
-        alt={card.title}
-        width={600}
-        height={450}
-        className="w-[600px] max-w-full h-auto object-cover"
-      />
+      {isLanding ? (
+        <div className="relative w-[450px] max-w-full aspect-[9/10] lg:w-[450px] xl:w-[500px]">
+          <Image
+            src={card.image}
+            alt={card.title}
+            fill
+            sizes="(min-width:1280px) 500px, (min-width:1024px) 450px, 100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <Image
+          src={card.image}
+          alt={card.title}
+          width={600}
+          height={450}
+          className="w-[600px] max-w-full h-auto object-cover"
+        />
+      )}
       <p className="mt-4 text-[18px] manrope font-normal text-[#EA8E39]">
         &bull; {card.title}
       </p>

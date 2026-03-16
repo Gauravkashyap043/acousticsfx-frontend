@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FadeIn, HoverScale } from "@/components/animations";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -76,11 +76,16 @@ export default function ApplicationsSection() {
       <div className="relative mt-6">
 
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           navigation={{
             nextEl: ".applications-next",
             prevEl: ".applications-prev",
           }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          loop
           spaceBetween={24}
           slidesPerView={1}
           slidesPerGroup={1}
@@ -116,10 +121,11 @@ export default function ApplicationsSection() {
 
         </Swiper>
 
-        {/* LEFT ARROW */}
+        {/* LEFT ARROW (desktop only) */}
         <button
           className="
           applications-prev
+          hidden sm:flex
           absolute
           left-0
           top-1/2
@@ -128,7 +134,6 @@ export default function ApplicationsSection() {
           h-10
           bg-white/90
           shadow
-          flex
           items-center
           justify-center
           z-10
@@ -143,10 +148,11 @@ export default function ApplicationsSection() {
           />
         </button>
 
-        {/* RIGHT ARROW */}
+        {/* RIGHT ARROW (desktop only) */}
         <button
           className="
           applications-next
+          hidden sm:flex
           absolute
           right-0
           top-1/2
@@ -155,7 +161,6 @@ export default function ApplicationsSection() {
           h-10
           bg-white/90
           shadow
-          flex
           items-center
           justify-center
           z-10
