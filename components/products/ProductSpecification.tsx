@@ -26,7 +26,7 @@ export default function ProductSpecification({ specDescription, specs }: Product
       <h2 className="text-[26px] sm:text-[28px] lg:text-[32px] inter-font font-medium mb-4">
         Product Specification
       </h2>
-      <p className="max-w-3xl text-[14px] sm:text-[15px] lg:text-[16px] poppins-font font-[400] leading-relaxed text-gray-600 mb-8 sm:mb-10">
+      <p className="product-body-text max-w-3xl poppins-font font-[400] text-gray-600 mb-8 sm:mb-10">
         {description}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-8 lg:gap-y-10">

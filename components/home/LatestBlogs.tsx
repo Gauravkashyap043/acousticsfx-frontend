@@ -118,6 +118,15 @@ export default function LatestBlogs() {
       prev === 0 ? blogs.length - 1 : prev - 1
     );
 
+  // autoplay carousel (all viewports)
+  useEffect(() => {
+    if (!blogs.length) return;
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % blogs.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, [blogs.length]);
+
   return (
     <section className="px-6 lg:px-[100px] sm:py-[100px] py-[50px] bg-white">
 
@@ -173,7 +182,7 @@ export default function LatestBlogs() {
           </span>
         </div>
 
-        <div className="flex justify-center gap-4 mt-6">
+        <div className="hidden sm:flex justify-center gap-4 mt-6">
           <button
             onClick={prev}
             className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center"

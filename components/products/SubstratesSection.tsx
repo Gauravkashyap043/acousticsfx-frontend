@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { SubProductSubstratesSection } from "@/lib/products-api";
 
@@ -59,6 +59,15 @@ export default function SubstratesSection({
     setIndex((prev) => Math.min(prev + 1, items.length - 3));
   };
 
+  // autoplay slider (all viewports)
+  useEffect(() => {
+    if (items.length <= 3) return;
+    const id = setInterval(() => {
+      setIndex((prev) => (prev >= items.length - 3 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(id);
+  }, [items.length]);
+
   return (
     <section className="w-full bg-white pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] py-[60px] sm:py-[70px] lg:py-[80px]">
 
@@ -67,7 +76,7 @@ export default function SubstratesSection({
         <h2 className="text-[28px] sm:text-[32px] lg:text-[38px] font-bold axiforma mb-3">
           {title}
         </h2>
-        <p className="text-[14px] sm:text-[15px] inter-font font-[400] text-gray-600">
+        <p className="product-body-text inter-font font-[400] text-gray-600">
           {description}
         </p>
       </div>
@@ -106,7 +115,7 @@ export default function SubstratesSection({
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center gap-8 mt-6 sm:mt-8 items-center">
+      <div className="hidden sm:flex justify-center gap-8 mt-6 sm:mt-8 items-center">
         <button
           onClick={prev}
           disabled={index === 0}

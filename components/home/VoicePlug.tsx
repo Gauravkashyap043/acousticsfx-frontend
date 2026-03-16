@@ -82,14 +82,12 @@ export default function VoicePlug() {
 
             <button
               onClick={toggleAcoustic}
-              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${
-                withAcoustic ? "bg-gray-700" : "bg-gray-400"
-              }`}
+              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${withAcoustic ? "bg-gray-700" : "bg-gray-400"
+                }`}
             >
               <div
-                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${
-                  withAcoustic ? "left-[26px]" : "left-[2px]"
-                }`}
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${withAcoustic ? "left-[26px]" : "left-[2px]"
+                  }`}
               />
             </button>
 

@@ -51,7 +51,7 @@ export default function ProductHeroSection({
           </h1>
 
           {/* Description */}
-          <p className="text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[300] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-white max-w-[65ch]">
+          <p className="product-body-text inter-font font-[300] text-white max-w-[65ch]">
             {description}
           </p>
         </div>

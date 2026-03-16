@@ -166,7 +166,7 @@ export default function Product3DViewer({
           <h2 className="text-[28px] sm:text-[32px] lg:text-[35px] axiforma font-bold mb-3 text-white">
             {title}
           </h2>
-          <p className="text-[14px] sm:text-[15px] inter-font font-[400] text-gray-300 leading-relaxed max-w-md">
+          <p className="product-body-text inter-font font-[400] text-gray-300 max-w-md">
             {description}
           </p>
           {selected?.size && (

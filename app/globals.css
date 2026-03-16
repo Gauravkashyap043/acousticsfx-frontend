@@ -97,6 +97,23 @@ input[type="reset"]:not(:disabled),
   font-family: "Axiforma", sans-serif;
 }
 
+.product-body-text {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .product-body-text {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-body-text {
+    font-size: 20px;
+  }
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

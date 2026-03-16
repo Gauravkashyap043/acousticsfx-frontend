@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { SubProductGalleryImage } from "@/lib/products-api";
 
@@ -27,6 +27,15 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % total);
   };
+
+  // autoplay gallery (all viewports)
+  useEffect(() => {
+    if (total <= 1) return;
+    const id = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % total);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [total]);
 
   const large = images[currentIndex];
   const small = images[(currentIndex + 1) % total] ?? large;
@@ -63,7 +72,7 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
       <div className="flex items-center justify-center gap-6 mt-6 sm:mt-8 text-sm text-gray-500">
         <button
           onClick={prev}
-          className="hover:opacity-70 transition cursor-pointer"
+          className="hidden sm:inline-flex hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -76,7 +85,7 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
         <span>{currentIndex + 1} / {total}</span>
         <button
           onClick={next}
-          className="hover:opacity-70 transition cursor-pointer"
+          className="hidden sm:inline-flex hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"

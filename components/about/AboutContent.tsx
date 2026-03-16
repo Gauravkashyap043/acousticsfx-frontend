@@ -89,7 +89,7 @@ export default function AboutContent() {
         {/* Left Images */}
         <SlideIn direction="left" className="relative flex justify-center lg:justify-start">
           {/* Big Image */}
-          <div className="relative z-10 w-[300px] sm:w-[420px] lg:w-[505px] h-[466px]">
+          <div className="relative z-10 w-[300px] sm:w-[420px] lg:w-[430px] h-[436px]">
             <Image
               src={val(content, "about.content.craftImage1")}
               alt="Contemporary interior with acoustic design"
@@ -99,7 +99,7 @@ export default function AboutContent() {
           </div>
 
           {/* Small Overlap Image */}
-          <div className="absolute -bottom-12 sm:-bottom-16 left-[40px] sm:left-[80px] lg:left-[100px] w-[240px] sm:w-[300px] lg:w-[350px] h-[400px]">
+          <div className="absolute -bottom-12 sm:-bottom-16 left-[40px] sm:left-[80px] lg:left-[300px] w-[240px] sm:w-[300px] lg:w-[350px] h-[400px]">
             <Image
               src={val(content, "about.content.craftImage2")}
               alt="Recording studio with acoustic panels"

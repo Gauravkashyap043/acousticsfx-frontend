@@ -7,7 +7,7 @@ import Spinner from "@/components/shared/Spinner";
 import { FadeIn } from "@/components/animations";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -52,11 +52,16 @@ export default function Testimonials() {
 
         {/* SLIDER */}
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           navigation={{
             nextEl: ".testimonial-next",
             prevEl: ".testimonial-prev",
           }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          loop
           spaceBetween={30}
           slidesPerView={1}
           slidesPerGroup={1}
