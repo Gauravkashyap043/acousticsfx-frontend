@@ -20,23 +20,31 @@ export default function VoicePlug() {
     wavesurfer.playPause();
   };
 
-  const toggleAcoustic = () => {
-
+  const toggleAcoustic = async () => {
     if (!wavesurfer) return;
+
+    const currentTime = wavesurfer.getCurrentTime();
+    const wasPlaying = wavesurfer.isPlaying();
 
     const newState = !withAcoustic;
     setWithAcoustic(newState);
 
     const newAudio = newState
-      ? "/audio/demo.mp3"   // toggle ON → normal
-      : "/audio/echo.mp3";  // toggle OFF → echo
+      ? "/audio/demo.mp3" // With Acoustic → normal
+      : "/audio/echo.mp3"; // Without → echo
 
-    wavesurfer.load(newAudio);
+    await wavesurfer.load(newAudio);
 
-    wavesurfer.once("ready", () => {
-      wavesurfer.play();
-    });
+    const duration = wavesurfer.getDuration();
+    const seekTime =
+      duration > 0
+        ? Math.min(Math.max(0, currentTime), duration)
+        : currentTime;
 
+    wavesurfer.setTime(seekTime);
+    if (wasPlaying) {
+      await wavesurfer.play();
+    }
   };
 
   return (
@@ -82,12 +90,14 @@ export default function VoicePlug() {
 
             <button
               onClick={toggleAcoustic}
-              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${withAcoustic ? "bg-gray-700" : "bg-gray-400"
-                }`}
+              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${
+                withAcoustic ? "bg-gray-700" : "bg-gray-400"
+              }`}
             >
               <div
-                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${withAcoustic ? "left-[26px]" : "left-[2px]"
-                  }`}
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${
+                  withAcoustic ? "left-[26px]" : "left-[2px]"
+                }`}
               />
             </button>
 
