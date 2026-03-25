@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 import { fetchCategories, fetchCategoryBySlug, fetchProducts, type Product } from "@/lib/products-api";
-import { FadeIn, StaggerContainer } from "@/components/animations";
+import { products as staticProducts } from "@/lib/products-data";
+
+const FALLBACK_CARDS = staticProducts.map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  image: p.image,
+}));
 
 interface AcousticSolutionsProps {
   /** Master category slug (e.g. acoustic, flooring). From route /products/[category] or first category on /products. */
@@ -14,7 +22,7 @@ export default async function AcousticSolutions({
   categorySlug,
   showMasterCategoryTabs = false,
 }: AcousticSolutionsProps) {
-  let cards: Array<{ slug: string; title: string; description: string; image: string }>;
+  let cards: Array<{ slug: string; title: string; description: string; image: string; showTrademark?: boolean }>;
   let categoryName = "Solutions";
   let categories: Array<{ slug: string; name: string }> = [];
 
@@ -34,8 +42,9 @@ export default async function AcousticSolutions({
               title: p.title,
               description: p.shortDescription || p.description,
               image: p.image,
+              showTrademark: p.showTrademark === true,
             }))
-          : [];
+          : FALLBACK_CARDS;
     } else {
       const { products } = await fetchProducts(categorySlug).catch(() => ({ products: [] }));
       cards =
@@ -45,11 +54,12 @@ export default async function AcousticSolutions({
               title: p.title,
               description: p.shortDescription || p.description,
               image: p.image,
+              showTrademark: p.showTrademark === true,
             }))
-          : [];
+          : FALLBACK_CARDS;
     }
   } catch {
-    cards = [];
+    cards = FALLBACK_CARDS;
   }
 
   const leftCards = cards.filter((_, i) => i % 2 === 0);
@@ -84,47 +94,32 @@ export default async function AcousticSolutions({
         )}
 
         {/* Heading */}
-        <FadeIn direction="up" delay={0.1} className="mb-10 sm:mb-12 lg:mb-14">
+        <div className="mb-10 sm:mb-12 lg:mb-14">
           <p className="text-[16px] sm:text-[18px] manrope font-medium text-[#1F6775] mb-2">
             {categoryName}
           </p>
-          <h2 className="text-[22px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
-            Explore Our {categoryName} Masterpieces
+          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
+            Explore Our {categoryName} <br /> Masterpieces
           </h2>
-        </FadeIn>
+        </div>
 
-        {/* Grid or empty state */}
-        {cards.length === 0 ? (
-          <p className="text-gray-500 text-center py-12">
-            No products in this category yet.
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 sm:gap-y-20 lg:gap-x-20 lg:gap-y-20">
-            {/* LEFT COLUMN */}
-            <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20">
-              {leftCards.map((card) => (
-                <ProductCard
-                  key={card.slug}
-                  card={card}
-                  categorySlug={categorySlug}
-                  isLanding={showMasterCategoryTabs}
-                />
-              ))}
-            </StaggerContainer>
+        {/* Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 sm:gap-y-20 lg:gap-x-20 lg:gap-y-20">
 
-            {/* RIGHT COLUMN (60px DOWN) */}
-            <StaggerContainer className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
-              {rightCards.map((card) => (
-                <ProductCard
-                  key={card.slug}
-                  card={card}
-                  categorySlug={categorySlug}
-                  isLanding={showMasterCategoryTabs}
-                />
-              ))}
-            </StaggerContainer>
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col gap-y-16 sm:gap-y-20">
+            {leftCards.map((card) => (
+              <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
+            ))}
           </div>
-        )}
+
+          {/* RIGHT COLUMN (60px DOWN) */}
+          <div className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
+            {rightCards.map((card) => (
+              <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
+            ))}
+          </div>
+        </div>
 
       </div>
     </section>
@@ -134,36 +129,22 @@ export default async function AcousticSolutions({
 function ProductCard({
   card,
   categorySlug,
-  isLanding,
 }: {
-  card: { slug: string; title: string; description: string; image: string };
+  card: { slug: string; title: string; description: string; image: string; showTrademark?: boolean };
   categorySlug: string;
-  /** When true, use updated image sizing for /products landing page only. */
-  isLanding?: boolean;
 }) {
   return (
     <Link href={`/products/${categorySlug}/${card.slug}`} className="block cursor-pointer">
-      {isLanding ? (
-        <div className="relative w-[450px] max-w-full aspect-[9/10] lg:w-[450px] xl:w-[500px]">
-          <Image
-            src={card.image}
-            alt={card.title}
-            fill
-            sizes="(min-width:1280px) 500px, (min-width:1024px) 450px, 100vw"
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <Image
-          src={card.image}
-          alt={card.title}
-          width={600}
-          height={450}
-          className="w-[600px] max-w-full h-auto object-cover"
-        />
-      )}
+      <Image
+        src={card.image}
+        alt={card.title}
+        width={600}
+        height={450}
+        className="w-[600px] max-w-full h-auto object-cover"
+      />
       <p className="mt-4 text-[18px] manrope font-normal text-[#EA8E39]">
-        &bull; {card.title}
+        &bull;{" "}
+        <TrademarkTitle title={card.title} showTrademark={card.showTrademark} className="inline" />
       </p>
       <p className="mt-2 text-[18px] manrope font-normal text-gray-500 leading-relaxed">
         {card.description}

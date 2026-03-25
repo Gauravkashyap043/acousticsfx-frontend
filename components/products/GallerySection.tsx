@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { SubProductGalleryImage } from "@/lib/products-api";
 
 const DEFAULT_GALLERY: SubProductGalleryImage[] = [
@@ -28,24 +29,32 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
     setCurrentIndex((prev) => (prev + 1) % total);
   };
 
-  // autoplay gallery (all viewports)
-  useEffect(() => {
-    if (total <= 1) return;
-    const id = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % total);
-    }, 5000);
-    return () => clearInterval(id);
-  }, [total]);
-
   const large = images[currentIndex];
   const small = images[(currentIndex + 1) % total] ?? large;
 
   return (
     <section className="w-full bg-white px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[48px] sm:py-[64px] lg:py-[80px]">
+      
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+        <h2 className="text-[28px] sm:text-[32px] lg:text-[35px] manrope font-bold">
+          Gallery
+        </h2>
+
+        <Link href="/contactus" className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
+          Get Quote
+          <Image
+            src="/assets/home/universalvector.svg"
+            alt="Arrow"
+            width={34}
+            height={14}
+          />
+        </Link>
+      </div>
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-
+        
         {/* Big Image (Left) */}
         <div className="col-span-1 sm:col-span-2 h-[280px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden relative">
           <Image
@@ -65,14 +74,13 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
             className="object-cover"
           />
         </div>
-
       </div>
 
       {/* Pagination */}
       <div className="flex items-center justify-center gap-6 mt-6 sm:mt-8 text-sm text-gray-500">
         <button
           onClick={prev}
-          className="hidden sm:inline-flex hover:opacity-70 transition cursor-pointer"
+          className="hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -85,7 +93,7 @@ export default function GallerySection({ galleryImages }: GallerySectionProps = 
         <span>{currentIndex + 1} / {total}</span>
         <button
           onClick={next}
-          className="hidden sm:inline-flex hover:opacity-70 transition cursor-pointer"
+          className="hover:opacity-70 transition cursor-pointer"
         >
           <Image
             src="/assets/home/universalvector.svg"

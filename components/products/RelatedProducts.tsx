@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 
 export interface RelatedProductItem {
   slug: string;
   title: string;
   description: string;
   image: string;
+  showTrademark?: boolean;
 }
 
 interface RelatedProductsProps {
@@ -90,7 +92,7 @@ export default function RelatedProducts({ products, categorySlug }: RelatedProdu
               {/* Content */}
               <div className="p-5 sm:p-6 flex flex-col">
                 <h3 className="text-[22px] sm:text-[26px] lg:text-[30px] manrope font-bold mb-3">
-                  {item.title}
+                  <TrademarkTitle title={item.title} showTrademark={item.showTrademark} />
                 </h3>
                 <p className="text-[14px] sm:text-[15px] lg:text-[16px] manrope font-[400] text-gray-600 leading-relaxed">
                   {item.description}

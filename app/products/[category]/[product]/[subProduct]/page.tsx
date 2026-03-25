@@ -11,8 +11,7 @@ import ProductSpecification from "@/components/products/ProductSpecification";
 import Product3DViewer from "@/components/products/Product3DViewer";
 import RelatedProducts from "@/components/products/RelatedProducts";
 import SubstratesSection from "@/components/products/SubstratesSection";
-import { fetchMergedSubProduct } from "@/lib/products-data";
-import { fetchProducts } from "@/lib/products-api";
+import { fetchMergedSubProduct, fetchRelatedProductsForCategory } from "@/lib/products-data";
 
 type Props = {
   params: Promise<{ category: string; product: string; subProduct: string }>;
@@ -40,31 +39,19 @@ export default async function SubProductDetailPage({ params }: Props) {
 
   if (!product || !subProduct) notFound();
 
-  // Fetch related products from API (same category, exclude current product); limit 5
-  let relatedProducts: Array<{ slug: string; title: string; description: string; image: string }> = [];
-  try {
-    const { products } = await fetchProducts(product.categorySlug ?? undefined);
-    relatedProducts = (products ?? [])
-      .filter((p) => p.slug !== productSlug)
-      .slice(0, 5)
-      .map((p) => ({
-        slug: p.slug,
-        title: p.title,
-        description: p.shortDescription ?? p.description ?? "",
-        image: p.image,
-      }));
-  } catch {
-    // leave empty
-  }
+  const relatedProducts = await fetchRelatedProductsForCategory(category, productSlug);
 
   return (
     <>
       <LinearluxHero
         productTitle={product.title}
-        subProductTitle={subProduct.showTrademark ? `${subProduct.title}™` : subProduct.title}
+        productShowTrademark={product.showTrademark === true}
+        subProductTitle={subProduct.title}
+        subProductShowTrademark={subProduct.showTrademark === true}
         description={subProduct.description}
       />
       <ProductSpecification
+        sectionTitle={subProduct.specSectionTitle}
         specDescription={subProduct.specDescription}
         specs={subProduct.specs}
       />
@@ -72,13 +59,14 @@ export default async function SubProductDetailPage({ params }: Props) {
       <Product3DViewer profilesSection={subProduct.profilesSection} />
       <SubstratesSection substratesSection={subProduct.substratesSection} />
       <AboutProduct aboutTabs={subProduct.aboutTabs} />
-      <CertificationsSection certifications={subProduct.certifications} />
+      <CertificationsSection
+        certifications={subProduct.certifications}
+        sectionTitle={subProduct.certificationsSectionTitle}
+        sectionDescription={subProduct.certificationsSectionDescription}
+      />
       <FinishesShades finishesSection={subProduct.finishesSection} />
       <Testimonials />
-      <RelatedProducts
-        products={relatedProducts}
-        categorySlug={category}
-      />
+      <RelatedProducts products={relatedProducts} categorySlug={category} />
       <ConnectWithExperts />
     </>
   );

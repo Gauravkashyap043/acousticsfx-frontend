@@ -32,12 +32,14 @@ export default async function ProductPage({ params }: Props) {
     <>
       <ProductHeroSection
         title={product.title}
+        showTrademark={product.showTrademark === true}
         description={product.description}
         heroImage={product.heroImage}
         breadcrumbText={product.title}
       />
       <ProductContentSection
         title={product.title}
+        showTrademark={product.showTrademark === true}
         description={product.description}
       />
       <OurAcousticPanels
@@ -46,6 +48,7 @@ export default async function ProductPage({ params }: Props) {
       />
       <WhyChooseSection
         title={product.title}
+        showTrademark={product.showTrademark === true}
         description={product.description}
       />
       <StoryInnovation />

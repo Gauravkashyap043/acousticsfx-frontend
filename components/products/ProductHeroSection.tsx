@@ -1,7 +1,9 @@
 import Image from "next/image";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 
 interface ProductHeroSectionProps {
   title: string;
+  showTrademark?: boolean;
   description: string;
   heroImage?: string;
   breadcrumbText?: string;
@@ -9,6 +11,7 @@ interface ProductHeroSectionProps {
 
 export default function ProductHeroSection({
   title,
+  showTrademark,
   description,
   heroImage = "/assets/product/product-hero.png",
   breadcrumbText,
@@ -42,12 +45,14 @@ export default function ProductHeroSection({
           {/* Breadcrumb */}
           <p className="text-sm text-white/70 mb-4">
             Our Products <span className="mx-2">•</span>
-            <span className="text-[#EA8E39]">{breadcrumbText || title}</span>
+            <span className="text-[#EA8E39]">
+              <TrademarkTitle title={breadcrumbText || title} showTrademark={showTrademark} />
+            </span>
           </p>
 
           {/* Heading */}
           <h1 className="playfair-display font-[800] text-[42px] sm:text-[64px] lg:text-[90px] leading-tight mb-6">
-            {title}
+            <TrademarkTitle title={title} showTrademark={showTrademark} />
           </h1>
 
           {/* Description */}

@@ -1,6 +1,6 @@
 /**
  * Products API client – fetches categories and products from the backend.
- * Base URL: NEXT_PUBLIC_API_URL or VITE_API_URL or https://api.themoonlit.in
+ * Base URL: NEXT_PUBLIC_API_URL or VITE_API_URL or http://localhost:8080
  */
 
 export interface SubProductSpec {
@@ -74,8 +74,8 @@ export interface SubProduct {
   title: string;
   description: string;
   image: string;
-  /** If true, display "™" after the title (trademark registered) */
   showTrademark?: boolean;
+  specSectionTitle?: string;
   specDescription?: string;
   specs?: SubProductSpec[];
   /** Deprecated: old shape. Still optional for compatibility. */
@@ -85,6 +85,8 @@ export interface SubProduct {
   profilesSection?: SubProductProfilesSection;
   substratesSection?: SubProductSubstratesSection;
   aboutTabs?: SubProductAboutTab[];
+  certificationsSectionTitle?: string;
+  certificationsSectionDescription?: string;
   certifications?: SubProductCertification[];
   finishesSection?: SubProductFinishesSection;
 }
@@ -97,6 +99,7 @@ export interface Product {
   heroImage?: string;
   subProducts: SubProduct[];
   categorySlug?: string;
+  showTrademark?: boolean;
   panelsSectionTitle?: string;
   panelsSectionDescription?: string;
   shortDescription?: string;
@@ -116,7 +119,7 @@ export interface ProductCategory {
 }
 
 const getBaseUrl = (): string => {
-  return (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_URL) || 'https://api.themoonlit.in';
+  return (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_URL) || 'http://localhost:8080';
 };
 
 async function request<T>(path: string): Promise<T> {
@@ -158,7 +161,7 @@ export function fetchSubProduct(
   productSlug: string,
   subProductSlug: string
 ): Promise<{
-  product: { slug: string; title: string; categorySlug?: string };
+  product: { slug: string; title: string; categorySlug?: string; showTrademark?: boolean };
   subProduct: SubProduct;
 }> {
   return request(

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 import { fetchMergedProduct } from "@/lib/products-data";
 
 interface OurAcousticPanelsProps {
@@ -8,8 +9,17 @@ interface OurAcousticPanelsProps {
   categorySlug?: string;
 }
 
+const FALLBACK_PANELS = [
+  { title: "Linerlux", desc: "Grooved Acoustical Panels", img: "/assets/panels/linerlux.png", slug: "linearlux" },
+  { title: "Acoperf", desc: "Perforated Acoustical Panels", img: "/assets/panels/acoperf.png", slug: "acoperf" },
+  { title: "Microatlas", desc: "Micro Perforated Acoustical Panels", img: "/assets/panels/microatlas.png", slug: "microatlas" },
+  { title: "Acoslots", desc: "Slotted Acoustical Panels", img: "/assets/panels/acoslots.png", slug: "acoslots" },
+  { title: "Perfomax", desc: "Max Perforated Acoustical Panels", img: "/assets/panels/perfomax.png", slug: "perfomax" },
+];
+
 export default async function OurAcousticPanels({ productSlug, categorySlug = "acoustic" }: OurAcousticPanelsProps = {}) {
-  let panels: Array<{ title: string; desc: string; img: string; slug?: string }> = [];
+  let panels: Array<{ title: string; desc: string; img: string; slug?: string; showTrademark?: boolean }> =
+    [];
   let panelsTitle = "OUR ACOUSTIC PANELS";
   let panelsDescription =
     "A premium workspace faced disruptive noise and poor sound clarity. We designed and installed bespoke acoustic panels tailored to their architecture. The result: enhanced productivity, elegant aesthetics, and a healthier environment. Proof that purposeful design delivers measurable impact.";
@@ -18,10 +28,11 @@ export default async function OurAcousticPanels({ productSlug, categorySlug = "a
     const product = await fetchMergedProduct(productSlug);
     if (product && product.subProducts.length > 0) {
       panels = product.subProducts.map((sub) => ({
-        title: sub.showTrademark ? `${sub.title}™` : sub.title,
+        title: sub.title,
         desc: sub.description,
         img: sub.image,
         slug: sub.slug,
+        showTrademark: sub.showTrademark === true,
       }));
     }
     if (product?.panelsSectionTitle) panelsTitle = product.panelsSectionTitle;
@@ -29,7 +40,7 @@ export default async function OurAcousticPanels({ productSlug, categorySlug = "a
   }
 
   if (panels.length === 0) {
-    return null;
+    panels = FALLBACK_PANELS;
   }
 
   return (
@@ -64,7 +75,7 @@ export default async function OurAcousticPanels({ productSlug, categorySlug = "a
                 {/* CONTENT */}
                 <div className="p-4 sm:p-5">
                   <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] axiforma font-bold mb-1">
-                    {item.title}
+                    <TrademarkTitle title={item.title} showTrademark={item.showTrademark} />
                   </h3>
                   <p className="text-[16px] sm:text-[17px] lg:text-[18px] inter-font font-[400] text-gray-500">
                     {item.desc}
@@ -89,15 +100,21 @@ group-hover:rotate-0">
               </div>
             );
 
-            return (
-              <Link
-                key={index}
-                href={`/products/${categorySlug}/${productSlug}/${item.slug}`}
-                className="block"
-              >
-                {CardContent}
-              </Link>
-            );
+            // Wrap in Link if productSlug, categorySlug and slug are available
+            if (productSlug && categorySlug && item.slug) {
+              return (
+                <Link
+                  key={index}
+                  href={`/products/${categorySlug}/${productSlug}/${item.slug}`}
+                  className="block"
+                >
+                  {CardContent}
+                </Link>
+              );
+            }
+
+            // For static fallback, wrap in div
+            return <div key={index}>{CardContent}</div>;
           })}
         </div>
 

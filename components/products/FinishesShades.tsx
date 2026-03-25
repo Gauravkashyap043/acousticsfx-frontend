@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import type { SubProductFinishesSection } from "@/lib/products-api";
 
@@ -64,15 +64,6 @@ export default function FinishesShades({
     setIndex((prev) => Math.min(prev + 1, items.length - 4));
   };
 
-  // autoplay slider (all viewports)
-  useEffect(() => {
-    if (items.length <= 4) return;
-    const id = setInterval(() => {
-      setIndex((prev) => (prev >= items.length - 4 ? 0 : prev + 1));
-    }, 4000);
-    return () => clearInterval(id);
-  }, [items.length]);
-
   return (
     <section className="w-full bg-[#faf7f2] pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] py-[48px] sm:py-[64px] lg:py-[80px]">
       
@@ -83,7 +74,7 @@ export default function FinishesShades({
           <h2 className="text-[28px] sm:text-[30px] lg:text-[34px] inter-font font-medium mb-4">
             {title}
           </h2>
-          <p className="product-body-text inter-font font-[500] text-gray-600 mb-8">
+          <p className="text-[15px] sm:text-[16px] inter-font font-[500] text-gray-600 mb-8">
             {description}
           </p>
         </div>
@@ -126,7 +117,7 @@ export default function FinishesShades({
           </div>
 
           {/* Navigation Buttons - Centered Below */}
-          <div className="hidden sm:flex justify-center gap-6 items-center mt-8">
+          <div className="flex justify-center gap-6 items-center mt-8">
             <button
               onClick={prev}
               disabled={index === 0}

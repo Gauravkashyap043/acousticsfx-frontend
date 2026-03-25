@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FadeIn, SlideIn } from "@/components/animations";
 
 interface ResourceTabsProps {
     activeTab?: string;
@@ -30,8 +29,7 @@ export default function ResourceTabs({}: ResourceTabsProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6 h-full relative">
 
                 {/* TEXT CONTENT */}
-                <FadeIn
-                    direction="up"
+                <div
                     className="
                         relative md:absolute
                         left-0 md:left-6
@@ -44,23 +42,26 @@ export default function ResourceTabs({}: ResourceTabsProps) {
                 >
                     <p
                         className="text-blue-600 font-bold text-[14px] md:text-[16px] mb-2"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
                     >
                         Home • Resources
                     </p>
 
                     <h1
                         className="font-manrope text-[22px] sm:text-[26px] md:text-[44px] text-[#1C1C1C] leading-snug"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
                     >
                         <span className="font-light">Shaping Spaces: </span>
                         <span className="font-bold">
                             Insights & Innovations in Acoustic Design
                         </span>
                     </h1>
-                </FadeIn>
+                </div>
 
                 {/* IMAGE */}
-                <SlideIn
-                    direction="right"
+                <div
                     className="
                         relative md:absolute
                         right-0
@@ -69,6 +70,8 @@ export default function ResourceTabs({}: ResourceTabsProps) {
                         flex justify-center md:justify-end
                         mt-6 md:mt-0
                     "
+                    data-aos="fade-left"
+                    data-aos-delay="300"
                 >
                     <div className="relative w-[260px] h-[210px] sm:w-[340px] sm:h-[270px] md:w-[900px] md:h-[700px]">
                         <Image
@@ -80,7 +83,7 @@ export default function ResourceTabs({}: ResourceTabsProps) {
                             onError={() => setImgError(true)}
                         />
                     </div>
-                </SlideIn>
+                </div>
             </div>
 
             {/* TAB NAVIGATION */}

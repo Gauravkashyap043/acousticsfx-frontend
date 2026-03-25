@@ -1,12 +1,15 @@
 import Image from "next/image";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 
 interface ProductContentSectionProps {
   title: string;
+  showTrademark?: boolean;
   description: string;
 }
 
 export default function ProductContentSection({
   title,
+  showTrademark,
   description,
 }: ProductContentSectionProps) {
   return (
@@ -17,7 +20,7 @@ export default function ProductContentSection({
           {/* LEFT CONTENT – 100px padding */}
           <div className="col-span-1 lg:col-span-6 px-[24px] sm:px-[40px] md:px-[60px] lg:pl-[100px] lg:pr-0">
             <h2 className="text-[36px] sm:text-[48px] lg:text-[65px] playfair-display text-black mb-6">
-              {title}
+              <TrademarkTitle title={title} showTrademark={showTrademark} />
             </h2>
 
             <p className="product-body-text poppins-font font-[400] text-gray-600 ">

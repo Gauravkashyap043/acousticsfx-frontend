@@ -1,12 +1,15 @@
 import Image from "next/image";
+import TrademarkTitle from "@/components/shared/TrademarkTitle";
 
 interface WhyChooseSectionProps {
   title: string;
+  showTrademark?: boolean;
   description: string;
 }
 
 export default function WhyChooseSection({
   title,
+  showTrademark,
   description,
 }: WhyChooseSectionProps) {
   return (
@@ -29,7 +32,8 @@ export default function WhyChooseSection({
           {/* RIGHT CONTENT */}
           <div className="col-span-1 lg:col-span-6">
             <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] inter-font font-medium leading-tight mb-4">
-              Why Choose {title}
+              Why Choose{" "}
+              <TrademarkTitle title={title} showTrademark={showTrademark} className="inline" />
             </h2>
 
             <p className="product-body-text text-gray-600 inter-font font-[400] mb-8 sm:mb-10 max-w-md">
