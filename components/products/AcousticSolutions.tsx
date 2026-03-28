@@ -1,7 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import TrademarkTitle from "@/components/shared/TrademarkTitle";
-import { fetchCategories, fetchCategoryBySlug, fetchProducts, type Product } from "@/lib/products-api";
+import {
+  CategoryProductsProvider,
+  CategoryTabs,
+  CategoryExploreHeading,
+  CategoryProductCarousel,
+} from "@/components/products/category-products-explorer";
+import { ProductListingCard } from "@/components/products/ProductListingCard";
+import { fetchCategoryBySlug, fetchProducts, type Product } from "@/lib/products-api";
 import { products as staticProducts } from "@/lib/products-data";
 
 const FALLBACK_CARDS = staticProducts.map((p) => ({
@@ -23,22 +27,35 @@ export default async function AcousticSolutions({
   categorySlug,
   showMasterCategoryTabs = false,
 }: AcousticSolutionsProps) {
+  if (showMasterCategoryTabs) {
+    return (
+      <section className="w-full bg-white">
+        <div className="px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px]">
+          <CategoryProductsProvider initialCategorySlug={categorySlug}>
+            <CategoryTabs
+              variant="center"
+              className="gap-3 sm:gap-4 mb-10 sm:mb-12 lg:mb-16"
+            />
+            <CategoryExploreHeading />
+            <CategoryProductCarousel layout="products" />
+          </CategoryProductsProvider>
+        </div>
+      </section>
+    );
+  }
+
   let cards: Array<{
     slug: string;
     title: string;
     description: string;
     image: string;
     showTrademark?: boolean;
+    specs?: Product["specs"];
   }>;
   let categoryName = "Solutions";
-  let categories: Array<{ slug: string; name: string }> = [];
 
   try {
-    const [categoriesRes, categoryRes] = await Promise.all([
-      fetchCategories(),
-      fetchCategoryBySlug(categorySlug).catch(() => null),
-    ]);
-    categories = (categoriesRes.categories ?? []).map((c) => ({ slug: c.slug, name: c.name }));
+    const categoryRes = await fetchCategoryBySlug(categorySlug).catch(() => null);
     if (categoryRes?.category) {
       categoryName = categoryRes.category.name;
       const products = categoryRes.products ?? [];
@@ -50,6 +67,7 @@ export default async function AcousticSolutions({
             description: p.shortDescription || p.description,
             image: p.image,
             showTrademark: p.showTrademark === true,
+            specs: p.specs,
           }))
           : FALLBACK_CARDS;
     } else {
@@ -62,6 +80,7 @@ export default async function AcousticSolutions({
             description: p.shortDescription || p.description,
             image: p.image,
             showTrademark: p.showTrademark === true,
+            specs: p.specs,
           }))
           : FALLBACK_CARDS;
     }
@@ -69,107 +88,37 @@ export default async function AcousticSolutions({
     cards = FALLBACK_CARDS;
   }
 
-  const leftCards = cards.filter((_, i) => i % 2 === 0);
-  const rightCards = cards.filter((_, i) => i % 2 === 1);
-  const activeSlug = categorySlug.toLowerCase();
-
   return (
-    <section className="w-full bg-white">
-      <div className="px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px]">
-
-        {/* Master category tabs — only on /products landing */}
-        {showMasterCategoryTabs && categories.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12 lg:mb-16">
-            {categories.map((cat) => {
-              const isActive = cat.slug.toLowerCase() === activeSlug;
-              return (
-                <Link key={cat.slug} href={`/products/${cat.slug}`} className="cursor-pointer">
-                  <button
-                    type="button"
-                    className={`px-5 sm:px-6 py-2 text-[10px] axiforma border cursor-pointer ${isActive
-                      ? "border-[#1F6775] bg-[#1F6775] text-white"
-                      : "border-gray-300 text-gray-600"
-                      }`}
-                  >
-                    {cat.name.toUpperCase()}
-                  </button>
-                </Link>
-              );
-            })}
-          </div>
-        )}
-
+    <section className="w-full bg-[#F4F5F4]">
+      <div className="px-4 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-[100px] lg:py-[88px]">
         {/* Heading */}
-        <div className="mb-10 sm:mb-12 lg:mb-14">
-          <p className="text-[16px] sm:text-[18px] manrope font-medium text-[#1F6775] mb-2">
+        <div className="mx-auto mb-8 max-w-4xl sm:mb-10 lg:mb-12">
+          <p className="mb-2 text-[15px] font-medium text-[#1F6775] manrope sm:text-[17px]">
             {categoryName}
           </p>
-          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] font-semibold manrope leading-tight">
+          <h2 className="text-[28px] font-semibold leading-[1.15] tracking-tight text-neutral-900 manrope sm:text-[34px] lg:text-[40px]">
             Explore Our {categoryName} <br /> Masterpieces
           </h2>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 sm:gap-y-20 lg:gap-x-20 lg:gap-y-20">
-
-          {/* LEFT COLUMN */}
-          <div className="flex flex-col gap-y-16 sm:gap-y-20">
-            {leftCards.map((card) => (
-              <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
-            ))}
-          </div>
-
-          {/* RIGHT COLUMN (60px DOWN) */}
-          <div className="flex flex-col gap-y-16 sm:gap-y-20 lg:mt-[60px]">
-            {rightCards.map((card) => (
-              <ProductCard key={card.slug} card={card} categorySlug={categorySlug} />
-            ))}
-          </div>
+        {/* 1 col → 2 col (md) → 3 col (lg+) */}
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-3 lg:gap-6 xl:gap-8">
+          {cards.map((card) => (
+            <div key={card.slug} className="min-w-0">
+              <ProductListingCard
+                href={`/products/${categorySlug}/${card.slug}`}
+                title={card.title}
+                description={card.description}
+                image={card.image}
+                showTrademark={card.showTrademark}
+                specs={card.specs}
+                className="h-full"
+                variant="grid"
+              />
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
-  );
-}
-
-function ProductCard({
-  card,
-  categorySlug,
-}: {
-  card: {
-    slug: string;
-    title: string;
-    description: string;
-    image: string;
-    showTrademark?: boolean;
-  };
-  categorySlug: string;
-}) {
-  return (
-    <Link href={`/products/${categorySlug}/${card.slug}`} className="block cursor-pointer">
-      <Image
-        src={card.image}
-        alt={card.title}
-        width={600}
-        height={450}
-        className="w-[600px] max-w-full h-auto object-cover"
-      />
-      <p className="mt-4 text-[18px] manrope font-normal text-[#EA8E39]">
-        &bull;{" "}
-        <TrademarkTitle title={card.title} showTrademark={card.showTrademark} className="inline" />
-      </p>
-      <p className="mt-2 text-[18px] manrope font-normal text-gray-500 leading-relaxed">
-        {card.description}
-      </p>
-      <div className="mt-4 w-10 h-10 border border-orange-400 rounded-full flex items-center justify-center">
-        <Image
-          src="/assets/home/universalvector.svg"
-          alt="Arrow"
-          width={20}
-          height={8}
-          style={{ filter: "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2171%) hue-rotate(7deg)" }}
-        />
-      </div>
-    </Link>
   );
 }
