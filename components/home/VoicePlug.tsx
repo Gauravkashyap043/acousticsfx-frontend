@@ -55,41 +55,41 @@ export default function VoicePlug() {
 
         <p className="text-center text-gray-600 text-[25px] worksans-font font-[400] leading-tight font-sans mb-6">
           Where Sound, Space &amp; Structure Meet Luxury
-          
+
           Precision-Engineered Acoustical Panels, Architectural Interiors, and
           Exterior Facade Systems.
-        
+
           Crafted in India. Trusted Worldwide
         </p>
 
         <div className="flex justify-center">
 
-<div className="flex items-center gap-5 w-[50%]">
+          <div className="flex items-center gap-5 w-[50%]">
 
-  <button
-    onClick={togglePlay}
-    className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-200 text-black text-lg"
-  >
-    {isPlaying ? "❚❚" : "▶"}
-  </button>
+            <button
+              onClick={togglePlay}
+              className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-200 text-black text-lg"
+            >
+              {isPlaying ? "❚❚" : "▶"}
+            </button>
 
-  <div className="flex-1">
-    <WavesurferPlayer
-      height={70}
-      waveColor="#cbd5e1"
-      progressColor="#6b7280"
-      barWidth={3}
-      barGap={2}
-      url="/audio/echo.mp3"
-      onReady={onReady}
-      onPlay={() => setIsPlaying(true)}
-      onPause={() => setIsPlaying(false)}
-    />
-  </div>
+            <div className="flex-1">
+              <WavesurferPlayer
+                height={70}
+                waveColor="#cbd5e1"
+                progressColor="#6b7280"
+                barWidth={3}
+                barGap={2}
+                url="/audio/echo.mp3"
+                onReady={onReady}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              />
+            </div>
 
-</div>
+          </div>
 
-</div>
+        </div>
 
         <div className="flex flex-col items-center mt-6">
 
@@ -99,14 +99,12 @@ export default function VoicePlug() {
 
             <button
               onClick={toggleAcoustic}
-              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${
-                withAcoustic ? "bg-gray-700" : "bg-gray-400"
-              }`}
+              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${withAcoustic ? "bg-gray-700" : "bg-gray-400"
+                }`}
             >
               <div
-                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${
-                  withAcoustic ? "left-[26px]" : "left-[2px]"
-                }`}
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${withAcoustic ? "left-[26px]" : "left-[2px]"
+                  }`}
               />
             </button>
 
