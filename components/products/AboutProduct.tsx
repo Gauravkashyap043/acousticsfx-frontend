@@ -57,7 +57,7 @@ export default function AboutProduct({
 
   return (
     <section className="w-full bg-[#faf7f2] px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[40px] sm:py-[60px] lg:py-[80px]">
-      
+
       {/* Header */}
       <div className="max-w-2xl mb-8">
         <h2 className="text-[28px] sm:text-[30px] md:text-[32px] lg:text-[34px] axiforma font-bold mb-3">
@@ -77,10 +77,9 @@ export default function AboutProduct({
             key={tab.key}
             onClick={() => setActiveTab(tab.title)}
             className={`px-4 sm:px-5 lg:px-6 py-2 text-[14px] sm:text-[15px] lg:text-[16px] axiforma font-[400] border-r last:border-r-0 border-[#f0b07a] cursor-pointer
-              ${
-                activeTab === tab.title
-                  ? "bg-[#f09a4a] text-white"
-                  : "bg-white text-gray-700 hover:bg-[#fff1e5]"
+              ${activeTab === tab.title
+                ? "bg-[#f09a4a] text-white"
+                : "bg-white text-gray-700 hover:bg-[#fff1e5]"
               }`}
           >
             {tab.title}

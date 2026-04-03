@@ -38,11 +38,11 @@ export default function ServiceProvider() {
   const textRef = useRef<HTMLSpanElement>(null);
 
   const words = [
-    "Manufacturers",
-    "Designers of Silence",
-    "Consultants",
-    "Facades Design to execution",
-    "Project Managers",
+    " Manufacturers",
+    " Designers of Silence",
+    " Consultants",
+    " Facades Design to execution",
+    " project Managers",
   ];
 
   // Fetch CMS Content
@@ -51,6 +51,8 @@ export default function ServiceProvider() {
   }, []);
 
   // Animation Logic
+  // Animation Logic (Clean Text Change Like Video)
+  // Animation Logic (Instant Text Change Like Video)
   useEffect(() => {
     let index = 0;
     let animationTimer: gsap.core.Tween | null = null;
@@ -58,30 +60,17 @@ export default function ServiceProvider() {
     const animate = () => {
       if (!textRef.current) return;
 
-      gsap.to(textRef.current, {
-        duration: 1.2, // Consistent duration for all words
-        scrambleText: {
-          text: words[index],
-          chars: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-          revealDelay: 0.1,
-          speed: 0.5,       // Uniform shuffle speed
-          tweenLength: true, // Crucial: maintains visual flow during length changes
-        },
-        ease: "power2.out",
-        onComplete: () => {
-          index = (index + 1) % words.length;
-          // Use delayedCall instead of setTimeout for better React/GSAP sync
-          animationTimer = gsap.delayedCall(1.5, animate);
-        },
-      });
+      // Direct instant change (no transition)
+      textRef.current.textContent = words[index];
+
+      index = (index + 1) % words.length;
+
+      animationTimer = gsap.delayedCall(1.5, animate);
     };
 
-    // Start the loop
     animate();
 
-    // Cleanup to prevent "doubling up" or ghost animations
     return () => {
-      if (textRef.current) gsap.killTweensOf(textRef.current);
       if (animationTimer) animationTimer.kill();
     };
   }, []);
@@ -95,7 +84,7 @@ export default function ServiceProvider() {
   return (
     <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px]">
       <div className="flex flex-col lg:flex-row items-center gap-10">
-        
+
         {/* Left Side: Image */}
         <SlideIn direction="left" className="w-full lg:w-1/2">
           <Image
