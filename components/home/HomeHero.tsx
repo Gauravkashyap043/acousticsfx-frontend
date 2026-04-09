@@ -15,7 +15,7 @@ const CONTENT_KEYS = [
   "home.hero.subtitle",
   "home.hero.button1Label",
   "home.hero.button2Label",
-  "home.hero.backgroundVideo",
+  "home.hero.backgroundImage",
   "home.hero.featureBoxes",
 ];
 
@@ -26,7 +26,7 @@ const DEFAULTS: Record<string, string> = {
     "Our solutions are engineered for clarity, comfort, and visual harmony. Whether it's a studio, auditorium, or workspace, we bring together design precision and acoustic mastery to elevate every square foot.",
   "home.hero.button1Label": "Get Quote →",
   "home.hero.button2Label": "Connect With Us →",
-  "home.hero.backgroundVideo": "/assets/home/hero.mp4",
+  "home.hero.backgroundImage": "/assets/home/background.png",
 };
 
 interface FeatureBox {
@@ -47,7 +47,7 @@ const DEFAULT_FEATURE_BOXES: FeatureBox[] = [
   {
     title: "Hard wood Flooring",
     description:
-      "Timeless, elegant, and crafted for durability, our hardwood flooring brings natural warmth and architectural luxury to any interior. Designed for high-end homes, hospitality spaces, offices, and premium commercial environments, Fx Acoustics' real wooden flooring delivers refined aesthetics with exceptional performance and long-lasting comfort.",
+      "Timeless, elegant, and crafted for durability, our hardwood flooring brings natural warmth and architectural luxury to any interior. Designed for high-end homes, hospitality spaces, offices, and premium commercial environments, Fx Acoustics’ real wooden flooring delivers refined aesthetics with exceptional performance and long-lasting comfort.",
     image: "/assets/home/fi_7821525.png",
     accentColor: "orange-400",
   },
@@ -78,20 +78,19 @@ export default function HomeHero() {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
   }, []);
 
-  const bgVideo = val(content, "home.hero.backgroundVideo");
+  const bgImage = val(content, "home.hero.backgroundImage");
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
 
-      {/* Background Video */}
+      {/* Background */}
       <div className="absolute inset-0">
-        <video
-          src={bgVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
+        <Image
+          src={bgImage}
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
         />
       </div>
 
@@ -101,10 +100,11 @@ export default function HomeHero() {
 
         {/* Heading */}
         <FadeIn direction="up">
-          <h1 className="max-w-7xl text-[28px]  leading-tight sm:text-[40px] lg:text-[76px] font-bold playfair-display">
+          <h1 className="max-w-7xl text-[28px] sm:text-[40px] lg:text-[76px] font-bold playfair-display">
             {val(content, "home.hero.title")}
           </h1>
 
+          {/* ✅ CENTERED SUBTITLE */}
           <p className="mt-6 max-w-2xl mx-auto text-center text-gray-200">
             {val(content, "home.hero.subtitle")}
           </p>
@@ -144,8 +144,8 @@ export default function HomeHero() {
 
                   <div
                     className={`text-[14px] font-[400] poppins-font text-left text-gray-300 transition-all duration-300 ${isExpanded
-                      ? "max-h-[90px] overflow-y-auto pr-1"
-                      : "max-h-[42px] overflow-hidden"
+                        ? "max-h-[90px] overflow-y-auto pr-1"
+                        : "max-h-[42px] overflow-hidden"
                       }`}
                   >
                     {box.description}
