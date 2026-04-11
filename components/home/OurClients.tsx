@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { fetchClients, type ClientLogo } from "@/lib/clients-api";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import { FadeIn } from "@/components/animations";
 
 const CONTENT_KEYS = ["home.clients.title", "home.clients.backgroundImage"];
 
@@ -25,20 +25,26 @@ const FALLBACK_LOGOS = [
   "/assets/home/client_1 (4).svg",
 ];
 
+const FALLBACK_CLIENTS: ClientLogo[] = FALLBACK_LOGOS.map((logo, i) => ({
+  _id: `fallback-${i}`,
+  name: `Partner brand ${i + 1}`,
+  logo,
+}));
+
 function val(content: ContentMap, key: string) {
   return content[key]?.value ?? DEFAULTS[key] ?? "";
 }
 
 export default function OurClients() {
   const [content, setContent] = useState<ContentMap>({});
-  const [logos, setLogos] = useState<string[]>(FALLBACK_LOGOS);
+  const [clients, setClients] = useState<ClientLogo[]>(FALLBACK_CLIENTS);
 
   useEffect(() => {
     fetchContent(CONTENT_KEYS).then(setContent).catch(console.error);
     fetchClients()
-      .then((clients) => {
-        if (clients.length > 0) {
-          setLogos(clients.map((c) => c.logo));
+      .then((list) => {
+        if (list.length > 0) {
+          setClients(list);
         }
       })
       .catch(console.error);
@@ -53,10 +59,10 @@ export default function OurClients() {
       <div className="absolute inset-0">
         <Image
           src={bgImage}
-          alt="Clients Background"
+          alt="Muted blue abstract background behind partner company logos"
           fill
           className="object-cover"
-          priority
+          sizes="100vw"
         />
       </div>
 
@@ -80,8 +86,8 @@ export default function OurClients() {
   {/* ROW 1 (Left → Right) */}
   <div className="overflow-hidden w-full">
     <div className="flex w-max animate-marquee-left gap-[91px]">
-      {[...logos.slice(0, Math.ceil(logos.length / 2)), ...logos.slice(0, Math.ceil(logos.length / 2))].map((logo, index) => (
-        <LogoCard key={index} logo={logo} />
+      {[...clients.slice(0, Math.ceil(clients.length / 2)), ...clients.slice(0, Math.ceil(clients.length / 2))].map((c, index) => (
+        <LogoCard key={`${c._id}-${index}`} logo={c.logo} name={c.name} />
       ))}
     </div>
   </div>
@@ -89,8 +95,8 @@ export default function OurClients() {
   {/* ROW 2 (Right → Left) */}
   <div className="overflow-hidden w-full">
     <div className="flex w-max animate-marquee-right gap-[91px]">
-      {[...logos.slice(Math.ceil(logos.length / 2)), ...logos.slice(Math.ceil(logos.length / 2))].map((logo, index) => (
-        <LogoCard key={index} logo={logo} />
+      {[...clients.slice(Math.ceil(clients.length / 2)), ...clients.slice(Math.ceil(clients.length / 2))].map((c, index) => (
+        <LogoCard key={`${c._id}-r-${index}`} logo={c.logo} name={c.name} />
       ))}
     </div>
   </div>
@@ -102,8 +108,8 @@ export default function OurClients() {
           {/* ROW 1 (Left → Right) */}
           <div className="overflow-hidden">
             <div className="flex w-max animate-marquee-left gap-6">
-              {[...logos, ...logos].map((logo, index) => (
-                <LogoCard key={index} logo={logo} small />
+              {[...clients, ...clients].map((c, index) => (
+                <LogoCard key={`${c._id}-m-${index}`} logo={c.logo} name={c.name} small />
               ))}
             </div>
           </div>
@@ -111,8 +117,8 @@ export default function OurClients() {
           {/* ROW 2 (Right → Left) */}
           <div className="overflow-hidden">
             <div className="flex w-max animate-marquee-right gap-6">
-              {[...logos, ...logos].map((logo, index) => (
-                <LogoCard key={index} logo={logo} small />
+              {[...clients, ...clients].map((c, index) => (
+                <LogoCard key={`${c._id}-m2-${index}`} logo={c.logo} name={c.name} small />
               ))}
             </div>
           </div>
@@ -122,7 +128,15 @@ export default function OurClients() {
   );
 }
 
-function LogoCard({ logo, small }: { logo: string; small?: boolean }) {
+function LogoCard({
+  logo,
+  name,
+  small,
+}: {
+  logo: string;
+  name: string;
+  small?: boolean;
+}) {
   return (
     <div
       className="bg-white rounded-lg flex items-center justify-center shadow-sm shrink-0"
@@ -133,7 +147,13 @@ height: small ? "60px" : "90px",
       }}
     >
       <div className="relative w-full h-full">
-        <Image src={logo} alt="Client Logo" fill className="object-contain" />
+        <Image
+          src={logo}
+          alt={`${name} logo — FX Acoustics partner`}
+          fill
+          className="object-contain"
+          sizes={small ? "120px" : "185px"}
+        />
       </div>
     </div>
   );

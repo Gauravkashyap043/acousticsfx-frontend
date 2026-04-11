@@ -11,11 +11,18 @@ import TrustedBySection from "@/components/contact/TrustedBySection";
 import LatestBlogs from "@/components/home/LatestBlogs";
 import Testimonials from "@/components/home/Testimonials";
 import ConnectWithExperts from "@/components/home/ConnectWithExperts";
+import { SITE_URL } from "@/lib/site-url";
+import { SEO_KEYWORDS_ABOUT } from "@/lib/seo-keywords";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title:
+    "About FX Acoustics | 15+ Years of Acoustic Engineering Excellence",
   description:
-    "Learn about FX Acoustics Inc. — our story, mission, values, and commitment to crafting premium acoustic solutions that transform spaces.",
+    "Meet FX Acoustics—India’s trusted acoustic panels and soundproofing partner with 15+ years of engineering-led design, manufacturing rigor, and turnkey delivery for premium spaces.",
+  keywords: SEO_KEYWORDS_ABOUT,
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {

@@ -1,15 +1,21 @@
 import Image from "next/image";
 import SocialIcons from "@/components/shared/SocialIcons";
 import { FadeIn } from "@/components/animations";
+import Breadcrumb, { type BreadcrumbItem } from "@/components/Breadcrumb";
 
-export default function ProductHero() {
+type ProductHeroProps = {
+  breadcrumbItems: BreadcrumbItem[];
+};
+
+export default function ProductHero({ breadcrumbItems }: ProductHeroProps) {
   return (
     <section className="w-full bg-white">
       {/* Breadcrumb */}
-      <FadeIn direction="up" className="px-[24px] sm:px-[40px] md:px-[80px] lg:px-[200px] pt-[24px] sm:pt-[32px] lg:pt-[40px] text-sm text-gray-500">
-        <span className="hover:text-black cursor-pointer">Home</span>
-        <span className="mx-2">•</span>
-        <span className="text-orange-500">Our Products</span>
+      <FadeIn
+        direction="up"
+        className="px-[24px] sm:px-[40px] md:px-[80px] lg:px-[200px] pt-[24px] sm:pt-[32px] lg:pt-[40px] text-sm text-gray-500"
+      >
+        <Breadcrumb items={breadcrumbItems} />
       </FadeIn>
 
       {/* Main Content */}
@@ -38,10 +44,11 @@ export default function ProductHero() {
       <FadeIn direction="up" delay={0.2} className="px-[0px] pb-[0px]">
         <Image
           src="/assets/product/product-hero-alt.jpg"
-          alt="Interior Design"
+          alt="Spacious interior showcasing FX Acoustics wall and ceiling acoustic treatments"
           width={1920}
           height={900}
           className="w-full h-[280px] sm:h-[380px] lg:h-[500px] object-cover"
+          sizes="100vw"
         />
       </FadeIn>
     </section>

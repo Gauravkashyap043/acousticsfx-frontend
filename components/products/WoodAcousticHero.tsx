@@ -1,13 +1,18 @@
 import Image from "next/image";
+import Breadcrumb, { type BreadcrumbItem } from "@/components/Breadcrumb";
 
-export default function WoodAcousticHero() {
+type WoodAcousticHeroProps = {
+  breadcrumbItems: BreadcrumbItem[];
+};
+
+export default function WoodAcousticHero({ breadcrumbItems }: WoodAcousticHeroProps) {
   return (
     <section className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] overflow-hidden">
 
       {/* Background Image */}
       <Image
         src="/assets/product/product-hero.png"
-        alt="Wood Acoustic Background"
+        alt="Wood acoustic panels installed in a modern commercial interior"
         fill
         priority
         className="object-cover"
@@ -19,10 +24,11 @@ export default function WoodAcousticHero() {
       {/* Vector Line */}
       <Image
         src="/assets/product/vector-decoration.svg"
-        alt="Decorative Line"
+        alt=""
         width={420}
         height={420}
         className="absolute top-0 right-0 opacity-80 hidden sm:block"
+        aria-hidden
       />
 
       {/* Content */}
@@ -30,10 +36,9 @@ export default function WoodAcousticHero() {
         <div className="text-white">
 
           {/* Breadcrumb */}
-          <p className="text-sm text-white/70 mb-4">
-            Home <span className="mx-2">•</span>
-            <span className="text-[#EA8E39]">Resources</span>
-          </p>
+          <div className="text-sm text-white/70 mb-4 [&_a]:text-white/80 [&_a:hover]:text-white [&_span[aria-current]]:text-[#EA8E39]">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
 
           {/* Heading */}
           <h1 className="playfair-display font-[800] text-[42px] sm:text-[64px] lg:text-[90px] leading-tight mb-6">

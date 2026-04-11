@@ -59,7 +59,7 @@ export default function Header() {
         </div>
 
         {/* CENTER : DESKTOP NAV */}
-        <nav className="flex-1 hidden lg:flex justify-center">
+        <nav aria-label="Main navigation" className="flex-1 hidden lg:flex justify-center">
           <ul className="flex items-center gap-8 xl:gap-[55px] text-sm font-medium text-gray-800">
 
             <li>
@@ -76,6 +76,7 @@ export default function Header() {
             >
               <Link
                 href="/products"
+                aria-expanded={openProducts}
                 className={`flex items-center gap-1 transition py-5 cursor-pointer
                   ${pathname?.startsWith("/products")
                     ? "text-orange-500"
@@ -105,12 +106,13 @@ export default function Header() {
                         <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
                           <Image
                             src="/assets/home/headervector.svg"
-                            alt="arrow"
+                            alt=""
                             width={16}
                             height={16}
                             sizes="16px"
                             loading="lazy"
                             decoding="async"
+                            aria-hidden
                             className="
                               transition-all duration-300 ease-in-out
                               transform rotate-[-45deg]
@@ -129,12 +131,13 @@ export default function Header() {
                       <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
                         <Image
                           src="/assets/home/headervector.svg"
-                          alt="arrow"
+                          alt=""
                           width={16}
                           height={16}
                           sizes="16px"
                           loading="lazy"
                           decoding="async"
+                          aria-hidden
                           className="transition-all duration-300 ease-in-out transform rotate-[-45deg] group-hover:rotate-0"
                         />
                       </div>
@@ -152,6 +155,7 @@ export default function Header() {
             >
               <Link
                 href="/resources"
+                aria-expanded={openResources}
                 className={`flex items-center gap-1 transition py-5 cursor-pointer
                   ${pathname?.startsWith("/resources")
                     ? "text-blue-600"
@@ -184,9 +188,10 @@ export default function Header() {
                       <div className="w-9 h-9 flex items-center justify-center rounded-full border border-orange-500 transition-all duration-300 ease-in-out">
                         <Image
                           src="/assets/home/headervector.svg"
-                          alt="arrow"
+                          alt=""
                           width={16}
                           height={16}
+                          aria-hidden
                           className="
                             transition-all duration-300 ease-in-out
                             transform rotate-[-45deg]
@@ -245,7 +250,7 @@ export default function Header() {
           `}
         >
           <div className="p-6 pt-20">
-            <nav>
+            <nav aria-label="Mobile navigation">
               <ul className="space-y-2">
 
                 {/* About */}
@@ -262,7 +267,9 @@ export default function Header() {
                 {/* Our Products - Mobile Accordion */}
                 <li>
                   <button
+                    type="button"
                     onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    aria-expanded={mobileProductsOpen}
                     className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer
                       ${pathname?.startsWith("/products") ? "text-orange-500 bg-orange-50" : ""}
                     `}
@@ -306,7 +313,9 @@ export default function Header() {
                 {/* Resources - Mobile Accordion */}
                 <li>
                   <button
+                    type="button"
                     onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                    aria-expanded={mobileResourcesOpen}
                     className={`w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-orange-50 hover:text-orange-500 transition rounded-lg font-medium cursor-pointer
                       ${pathname?.startsWith("/resources") ? "text-blue-600 bg-blue-50" : ""}
                     `}

@@ -96,7 +96,7 @@ export default function CaseStudies() {
           }}
           ref={splideRef}
         >
-          {studies.map((item, index) => (
+          {studies.map((item) => (
             <SplideSlide key={item.slug}>
               <StaggerContainer>
                 <StaggerItem direction="up">
@@ -128,28 +128,34 @@ export default function CaseStudies() {
         {/* CUSTOM IMAGE ARROWS */}
         <div className="flex justify-center gap-8 mt-10">
           <button
+            type="button"
             onClick={() => splideRef.current?.splide?.go("<")}
             className="flex items-center justify-center cursor-pointer"
+            aria-label="Show previous case studies"
           >
             <Image
               src="/assets/home/Vector.svg"
-              alt="Previous"
+              alt=""
               width={10}
               height={10}
               className="rotate-180 block"
+              aria-hidden
             />
           </button>
 
           <button
+            type="button"
             onClick={() => splideRef.current?.splide?.go(">")}
             className="flex items-center justify-center cursor-pointer"
+            aria-label="Show next case studies"
           >
             <Image
               src="/assets/home/Vector.svg"
-              alt="Next"
+              alt=""
               width={10}
               height={10}
               className="block"
+              aria-hidden
             />
           </button>
         </div>

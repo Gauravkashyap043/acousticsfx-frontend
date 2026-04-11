@@ -10,11 +10,18 @@ import LatestBlogs from "@/components/home/LatestBlogs";
 import Testimonials from "@/components/home/Testimonials";
 import ConnectWithExperts from "@/components/home/ConnectWithExperts";
 import { fetchCategories } from "@/lib/products-api";
+import { SITE_URL } from "@/lib/site-url";
+import { SEO_KEYWORDS_PRODUCTS } from "@/lib/seo-keywords";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title:
+    "Acoustic Panels, Soundproofing & Flooring Products | FX Acoustics",
   description:
-    "Explore our full range of acoustic solutions — wood panels, fabric panels, baffles & clouds, wood wool panels, and more. NRC-certified quality.",
+    "Browse FX Acoustics products—wood and fabric acoustic panels, baffles, clouds, soundproofing systems, and hardwood flooring—with NRC-rated performance for Indian commercial and residential spaces.",
+  keywords: SEO_KEYWORDS_PRODUCTS,
+  alternates: {
+    canonical: `${SITE_URL}/products`,
+  },
 };
 
 export default async function ProductsPage() {
@@ -31,7 +38,12 @@ export default async function ProductsPage() {
 
   return (
     <>
-      <ProductHero />
+      <ProductHero
+        breadcrumbItems={[
+          { name: "Home", href: "/" },
+          { name: "Our Products", href: "/products" },
+        ]}
+      />
       <AwardsSection />
       {firstCategorySlug ? (
         <AcousticSolutions categorySlug={firstCategorySlug} showMasterCategoryTabs />
