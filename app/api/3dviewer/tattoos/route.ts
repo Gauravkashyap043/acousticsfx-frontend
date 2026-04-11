@@ -24,5 +24,12 @@ export async function GET() {
   }
 
   const urls = files.map((f) => `/3dviewer/${encodeURIComponent(f)}`);
-  return NextResponse.json({ urls });
+  return NextResponse.json(
+    { urls },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+      },
+    }
+  );
 }

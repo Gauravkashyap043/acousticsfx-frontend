@@ -39,6 +39,9 @@ export function ProductListingCard({
           alt={title}
           fill
           sizes={imageSizes}
+          quality={78}
+          loading="lazy"
+          decoding="async"
           className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.045]"
         />
         <div

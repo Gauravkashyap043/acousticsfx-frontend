@@ -12,7 +12,19 @@ import {
 import { Toaster } from "sonner";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
+import { getPublicApiBaseUrl } from "@/lib/public-api-base";
+
+const apiOrigin = (() => {
+  try {
+    return new URL(getPublicApiBaseUrl()).origin;
+  } catch {
+    return null;
+  }
+})();
 
 /* ================= Geist ================= */
 const geistSans = Geist({
@@ -119,6 +131,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://ik.imagekit.io" />
+        {apiOrigin ? (
+          <>
+            <link rel="preconnect" href={apiOrigin} crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href={apiOrigin} />
+          </>
+        ) : null}
+      </head>
       <body
         className={`
           ${geistSans.variable}
@@ -133,6 +155,9 @@ export default function RootLayout({
           antialiased
         `}
       >
+        <Analytics />
+        <GoogleAnalytics />
+        <SpeedInsights />
         <Header />
         <main>{children}</main>
         <Footer />
