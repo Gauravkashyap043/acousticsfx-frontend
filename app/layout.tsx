@@ -17,6 +17,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { getPublicApiBaseUrl } from "@/lib/public-api-base";
+import { SITE_URL } from "@/lib/site-url";
+import { SEO_KEYWORDS_GLOBAL } from "@/lib/seo-keywords";
 
 const apiOrigin = (() => {
   try {
@@ -94,29 +96,30 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "FX Acoustics — Premium Acoustic Solutions & Panels",
+    default:
+      "Acoustic Panels & Soundproofing Solutions | FX Acoustics India",
     template: "%s | FX Acoustics",
   },
   description:
-    "FX Acoustics Inc. is a premium manufacturer of high-performance acoustic panels, wood acoustic solutions, fabric panels, baffles & clouds. Transforming spaces with elegant sound control.",
-  keywords: [
-    "acoustic panels",
-    "wood acoustic panel",
-    "fabric acoustic panel",
-    "sound proofing",
-    "acoustic solutions",
-    "FX Acoustics",
-    "NRC certified panels",
-    "acoustic interiors",
-  ],
+    "FX Acoustics offers premium acoustic panels, soundproofing systems, and hardwood flooring for offices, studios, auditoriums and hospitality spaces across India. 15+ years of expertise.",
+  keywords: SEO_KEYWORDS_GLOBAL,
   openGraph: {
-    title: "FX Acoustics — Premium Acoustic Solutions & Panels",
+    title:
+      "Acoustic Panels & Soundproofing Solutions | FX Acoustics India",
     description:
-      "Premium manufacturer of high-performance acoustic panels. From NRC-certified panels to turnkey acoustic interiors.",
-    type: "website",
-    locale: "en_US",
+      "FX Acoustics offers premium acoustic panels, soundproofing systems, and hardwood flooring for offices, studios, auditoriums and hospitality spaces across India. 15+ years of expertise.",
+    url: SITE_URL,
     siteName: "FX Acoustics",
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  verification: {
+    google: "PASTE_YOUR_CODE_HERE",
   },
   robots: {
     index: true,

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import {
@@ -108,10 +107,13 @@ function HeroBackgroundVideo({ src }: { src: string }) {
           className="h-full w-full object-cover"
         />
       ) : (
-        <div
-          className="h-full w-full bg-neutral-900 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_VIDEO_POSTER})` }}
-          aria-hidden
+        <Image
+          src={HERO_VIDEO_POSTER}
+          alt="FX Acoustics interior with premium acoustic wall and ceiling treatments"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
       )}
     </div>

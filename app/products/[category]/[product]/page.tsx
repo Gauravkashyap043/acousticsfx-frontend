@@ -12,17 +12,39 @@ import Product3DViewer from "@/components/products/Product3DViewer";
 import RelatedProducts from "@/components/products/RelatedProducts";
 import SubstratesSection from "@/components/products/SubstratesSection";
 import { fetchMergedProduct, fetchRelatedProductsForCategory } from "@/lib/products-data";
+import { SITE_URL } from "@/lib/site-url";
+import { SEO_KEYWORDS_PRODUCT_DETAIL } from "@/lib/seo-keywords";
 
 type Props = { params: Promise<{ category: string; product: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { product: productSlug } = await params;
+  const { product: productSlug, category } = await params;
   const product = await fetchMergedProduct(productSlug);
   if (!product) return { title: productSlug, description: "" };
+  const canonicalCategory = product.categorySlug ?? category;
+  const canonical = `${SITE_URL}/products/${canonicalCategory}/${product.slug}`;
   return {
     title: product.metaTitle || product.title,
     description:
       (product.metaDescription || product.description)?.slice(0, 160) ?? "",
+    keywords: [
+      product.title,
+      `${product.title} India`,
+      ...(product.categorySlug
+        ? [`${product.categorySlug} acoustic India`, "FX Acoustics"]
+        : ["FX Acoustics"]),
+      ...SEO_KEYWORDS_PRODUCT_DETAIL,
+    ],
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: product.metaTitle || product.title,
+      description:
+        (product.metaDescription || product.description)?.slice(0, 160) ?? "",
+      url: canonical,
+      type: "website",
+    },
   };
 }
 

@@ -1,45 +1,19 @@
-"use client";
-import React, { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { LatestPosts } from '@/components/resources';
-import FeaturedWithAllPosts from '@/components/resources/FeaturedWithAllPosts';
-import WoodAcousticHero from '@/components/products/WoodAcousticHero';
-import Testimonials from '@/components/home/Testimonials';
-import ConnectWithExperts from '@/components/home/ConnectWithExperts';
-import { Loader2 } from 'lucide-react';
+import type { Metadata } from "next";
+import ResourcesPageClient from "./ResourcesPageClient";
+import { SITE_URL } from "@/lib/site-url";
+import { SEO_KEYWORDS_RESOURCES } from "@/lib/seo-keywords";
 
-function ResourcesContent() {
-  const searchParams = useSearchParams();
-  const activeTab = searchParams.get('tab') || 'blogs';
-
-  return (
-    <>
-      <WoodAcousticHero />
-      
-      {/* Show content based on active tab */}
-      {activeTab === 'blogs' && <LatestPosts />}
-      {/* Add other tabs later: news, events */}
-      
-      {/* Featured Post + All Posts section */}
-      {activeTab === 'blogs' && <FeaturedWithAllPosts />}
-      
-      {/* Testimonials */}
-      <Testimonials />
-      
-      {/* Connect With Experts */}
-      <ConnectWithExperts />
-    </>
-  );
-}
+export const metadata: Metadata = {
+  title:
+    "Acoustic Resources, Blogs & Case Studies | FX Acoustics",
+  description:
+    "Read FX Acoustics articles on soundproofing, studio design, and acoustic treatment—plus project stories and technical guidance for architects and facility teams in India.",
+  keywords: SEO_KEYWORDS_RESOURCES,
+  alternates: {
+    canonical: `${SITE_URL}/resources`,
+  },
+};
 
 export default function ResourcesPage() {
-  return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-      </div>
-    }>
-      <ResourcesContent />
-    </Suspense>
-  );
+  return <ResourcesPageClient />;
 }

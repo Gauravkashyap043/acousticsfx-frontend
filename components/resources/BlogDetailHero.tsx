@@ -5,7 +5,7 @@ interface BlogDetailHeroProps {
   heroImage?: string;
 }
 
-export default function BlogDetailHero({ blogTitle, heroImage }: BlogDetailHeroProps) {
+export default function BlogDetailHero({ blogTitle, heroImage: _heroImage }: BlogDetailHeroProps) {
   // Always use the same background image as Wood Acoustic Panel hero
   const backgroundImage = "/assets/product/product-hero.png";
 
@@ -14,10 +14,11 @@ export default function BlogDetailHero({ blogTitle, heroImage }: BlogDetailHeroP
       {/* Background Image */}
       <Image
         src={backgroundImage}
-        alt="Blog Background"
+        alt=""
         fill
         priority
         className="object-cover"
+        aria-hidden
       />
 
       {/* Dark Overlay */}
@@ -26,10 +27,11 @@ export default function BlogDetailHero({ blogTitle, heroImage }: BlogDetailHeroP
       {/* Vector Line */}
       <Image
         src="/assets/product/vector-decoration.svg"
-        alt="Decorative Line"
+        alt=""
         width={420}
         height={420}
         className="absolute top-0 right-0 opacity-80 hidden sm:block"
+        aria-hidden
       />
 
       {/* Content */}
@@ -43,10 +45,10 @@ export default function BlogDetailHero({ blogTitle, heroImage }: BlogDetailHeroP
             <span className="text-white/70">Blogs & Articles</span>
           </p>
 
-          {/* Heading */}
-          <h1 className="playfair-display font-[800] text-[42px] sm:text-[64px] lg:text-[90px] leading-tight mb-6">
+          {/* Display title — semantic h1 lives in the article body (BlogDetailLayout). */}
+          <p className="playfair-display font-[800] text-[42px] sm:text-[64px] lg:text-[90px] leading-tight mb-6">
             {blogTitle || "Blog Article"}
-          </h1>
+          </p>
 
           {/* Description */}
           <p className="text-[16px] sm:text-[18px] lg:text-[20px] inter-font font-[300] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-white max-w-[65ch]">
