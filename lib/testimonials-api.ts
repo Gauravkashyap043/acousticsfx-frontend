@@ -23,7 +23,11 @@ export interface TestimonialsResponse {
 }
 
 export async function fetchTestimonials(): Promise<Testimonial[]> {
-  const res = await fetch(`${getBaseUrl()}/api/testimonials`);
+  const res = await fetch(`${getBaseUrl()}/api/testimonials`, {
+    ...(typeof window === 'undefined'
+      ? { next: { revalidate: 120 } }
+      : {}),
+  });
   if (!res.ok) throw new Error('Failed to fetch testimonials');
   const data: TestimonialsResponse = await res.json();
   return data.testimonials ?? [];

@@ -125,7 +125,11 @@ const getBaseUrl = (): string => getPublicApiBaseUrl();
 
 async function request<T>(path: string): Promise<T> {
   const url = path.startsWith('http') ? path : `${getBaseUrl()}${path}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    ...(typeof window === 'undefined'
+      ? { next: { revalidate: 120 } }
+      : {}),
+  });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error((err as { error?: string }).error ?? res.statusText);

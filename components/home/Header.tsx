@@ -50,8 +50,10 @@ export default function Header() {
               alt="FX Acoustic Inc"
               width={150}
               height={40}
+              sizes="(max-width: 640px) 120px, (max-width: 1024px) 180px, 210px"
               className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[210px] h-auto"
               priority
+              decoding="async"
             />
           </Link>
         </div>
@@ -106,6 +108,9 @@ export default function Header() {
                             alt="arrow"
                             width={16}
                             height={16}
+                            sizes="16px"
+                            loading="lazy"
+                            decoding="async"
                             className="
                               transition-all duration-300 ease-in-out
                               transform rotate-[-45deg]
@@ -127,6 +132,9 @@ export default function Header() {
                           alt="arrow"
                           width={16}
                           height={16}
+                          sizes="16px"
+                          loading="lazy"
+                          decoding="async"
                           className="transition-all duration-300 ease-in-out transform rotate-[-45deg] group-hover:rotate-0"
                         />
                       </div>

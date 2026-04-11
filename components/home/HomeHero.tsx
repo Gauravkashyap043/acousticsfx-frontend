@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import {
   FadeIn,
@@ -66,8 +66,56 @@ const ACCENT_MAP: Record<string, { border: string; text: string }> = {
   "blue-400": { border: "bg-blue-400", text: "text-blue-400" },
 };
 
+/** Static frame shown until the hero is near the viewport — avoids downloading MP4 on first paint. */
+const HERO_VIDEO_POSTER = "/assets/home/background.png";
+
 function val(content: ContentMap, key: string) {
   return content[key]?.value ?? DEFAULTS[key] ?? "";
+}
+
+function HeroBackgroundVideo({ src }: { src: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShouldLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "320px 0px 0px 0px", threshold: 0 }
+    );
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0">
+      {shouldLoad ? (
+        <video
+          key={src}
+          src={src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster={HERO_VIDEO_POSTER}
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div
+          className="h-full w-full bg-neutral-900 bg-cover bg-center"
+          style={{ backgroundImage: `url(${HERO_VIDEO_POSTER})` }}
+          aria-hidden
+        />
+      )}
+    </div>
+  );
 }
 
 export default function HomeHero() {
@@ -83,17 +131,8 @@ export default function HomeHero() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
 
-      {/* Background Video */}
-      <div className="absolute inset-0">
-        <video
-          src={bgVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
-        />
-      </div>
+      {/* Background Video — deferred until hero is near viewport */}
+      <HeroBackgroundVideo src={bgVideo} />
 
       <div className="absolute inset-0 bg-black/60" />
 
@@ -133,6 +172,9 @@ export default function HomeHero() {
                     alt={box.title}
                     width={52}
                     height={52}
+                    sizes="52px"
+                    quality={80}
+                    loading="lazy"
                     className="mb-4"
                   />
 

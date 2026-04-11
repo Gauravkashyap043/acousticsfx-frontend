@@ -53,18 +53,39 @@ async function handleResponse<T>(response: Response): Promise<T> {
   }
 }
 
+type NextFetchInit = RequestInit & {
+  next?: { revalidate?: number | false; tags?: string[] };
+};
+
+/** Default ISR window for public GETs when running on the server (ignored in the browser). */
+const DEFAULT_GET_REVALIDATE_SEC = 120;
+
 export async function apiClient<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
   const url = endpoint.startsWith("http") ? endpoint : `${API_BASE_URL}${endpoint}`;
 
-  const config: RequestInit = {
+  const isServerGet =
+    typeof window === "undefined" &&
+    (!options?.method || options.method === "GET");
+
+  const userNext = (options as NextFetchInit | undefined)?.next;
+
+  const config: NextFetchInit = {
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,
     },
     ...options,
+    ...(isServerGet
+      ? {
+          next: {
+            revalidate: DEFAULT_GET_REVALIDATE_SEC,
+            ...userNext,
+          },
+        }
+      : {}),
   };
 
   try {
