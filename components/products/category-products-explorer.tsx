@@ -198,7 +198,7 @@ export function CategoryTabs({
               isActive
                 ? "bg-[#1F6775] border-[#1F6775] text-white"
                 : "bg-white border-gray-300 text-black hover:bg-gray-50"
-            }`}
+              }`}
           >
             {cat.name.toUpperCase()}
           </button>
@@ -377,9 +377,8 @@ export function CategoryProductCarousel({ layout = "home" }: { layout?: Carousel
             key={i}
             type="button"
             onClick={() => scrollToIndex(i)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              i === currentIndex ? "bg-[#1F6775] w-4" : "bg-gray-300"
-            }`}
+            className={`w-2 h-2 rounded-full transition-all ${i === currentIndex ? "bg-[#1F6775] w-4" : "bg-gray-300"
+              }`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
