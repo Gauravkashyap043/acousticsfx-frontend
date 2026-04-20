@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { SubProductGalleryImage } from "@/lib/products-api";
@@ -17,93 +17,127 @@ interface GallerySectionProps {
 }
 
 export default function GallerySection({ galleryImages }: GallerySectionProps = {}) {
-  const images = (galleryImages && galleryImages.length > 0) ? galleryImages : DEFAULT_GALLERY;
+  const images = galleryImages && galleryImages.length > 0 ? galleryImages : DEFAULT_GALLERY;
   const [currentIndex, setCurrentIndex] = useState(0);
   const total = images.length;
+  const touchStartX = useRef<number | null>(null);
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
+  const prev = useCallback(() => {
+    setCurrentIndex((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const next = useCallback(() => {
+    setCurrentIndex((i) => (i + 1) % total);
+  }, [total]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % total);
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(delta) < 48) return;
+    if (delta > 0) prev();
+    else next();
   };
 
-  const large = images[currentIndex];
-  const small = images[(currentIndex + 1) % total] ?? large;
+  const current = images[currentIndex];
 
   return (
     <section className="w-full bg-white px-[24px] sm:px-[40px] md:px-[60px] lg:px-[100px] py-[48px] sm:py-[64px] lg:py-[80px]">
-      
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
-        <h2 className="text-[28px] sm:text-[32px] lg:text-[35px] manrope font-bold">
+      <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:mb-8 sm:flex-row sm:items-center">
+        <h2 className="text-[28px] font-bold manrope sm:text-[32px] lg:text-[35px]">
           Gallery
         </h2>
 
-        <Link href="/contactus" className="flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
+        <Link
+          href="/contactus"
+          className="flex cursor-pointer items-center gap-2 rounded-full border border-gray-300 px-5 py-2 text-sm transition hover:bg-gray-100"
+        >
           Get Quote
           <Image
             src="/assets/home/universalvector.svg"
-            alt="Arrow"
+            alt=""
             width={34}
             height={14}
+            aria-hidden
           />
         </Link>
       </div>
 
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-        
-        {/* Big Image (Left) */}
-        <div className="col-span-1 sm:col-span-2 h-[280px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden relative">
-          <Image
-            src={large?.url ?? ""}
-            alt={large?.alt ?? "Gallery"}
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Right Tall Image */}
-        <div className="h-[280px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden relative">
-          <Image
-            src={small?.url ?? ""}
-            alt={small?.alt ?? "Gallery"}
-            fill
-            className="object-cover"
-          />
-        </div>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-center gap-6 mt-6 sm:mt-8 text-sm text-gray-500">
-        <button
-          onClick={prev}
-          className="hover:opacity-70 transition cursor-pointer"
+      {/* Single-image carousel */}
+      <div className="relative mx-auto max-w-6xl">
+        <div
+          className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-neutral-100 sm:aspect-video lg:aspect-auto lg:h-[min(56vw,520px)] lg:max-h-[520px]"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           <Image
-            src="/assets/home/universalvector.svg"
-            alt="Previous"
-            width={34}
-            height={14}
-            className="rotate-180"
+            key={current?.url + currentIndex}
+            src={current?.url ?? ""}
+            alt={current?.alt ?? "Gallery"}
+            fill
+            sizes="(max-width: 1024px) 100vw, min(1152px, 90vw)"
+            className="object-cover object-center transition-opacity duration-300"
+            priority={currentIndex === 0}
           />
-        </button>
-        <span>{currentIndex + 1} / {total}</span>
-        <button
-          onClick={next}
-          className="hover:opacity-70 transition cursor-pointer"
-        >
-          <Image
-            src="/assets/home/universalvector.svg"
-            alt="Next"
-            width={34}
-            height={14}
-          />
-        </button>
-      </div>
 
+          {/* Edge arrows (desktop + large tap targets on mobile) */}
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous image"
+            className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white sm:left-4 sm:h-11 sm:w-11"
+          >
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt=""
+              width={20}
+              height={10}
+              className="rotate-180"
+              aria-hidden
+            />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next image"
+            className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white sm:right-4 sm:h-11 sm:w-11"
+          >
+            <Image
+              src="/assets/home/universalvector.svg"
+              alt=""
+              width={20}
+              height={10}
+              aria-hidden
+            />
+          </button>
+        </div>
+
+        {/* Dots + slide counter (arrows are on the image) */}
+        <div className="mt-5 flex flex-col items-center gap-3 sm:mt-6 sm:flex-row sm:justify-center sm:gap-6">
+          <div className="flex items-center justify-center gap-2">
+            {images.map((img, i) => (
+              <button
+                key={`${img.url}-${i}`}
+                type="button"
+                onClick={() => setCurrentIndex(i)}
+                aria-label={`Go to image ${i + 1}`}
+                aria-current={i === currentIndex}
+                className={`h-2 rounded-full transition-all ${
+                  i === currentIndex ? "w-8 bg-[#1F6775]" : "w-2 bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
+          <p className="text-sm tabular-nums text-gray-600">
+            {currentIndex + 1} / {total}
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

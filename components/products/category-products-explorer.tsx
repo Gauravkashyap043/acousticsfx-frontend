@@ -371,7 +371,7 @@ export function CategoryProductCarousel({ layout = "home" }: { layout?: Carousel
         </button>
       </div>
 
-      <div className="flex justify-center gap-2 mt-4 lg:hidden">
+      <div className="flex justify-center gap-2 mt-3 sm:mt-4 lg:hidden">
         {products.map((_, i) => (
           <button
             key={i}

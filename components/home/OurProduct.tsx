@@ -16,18 +16,18 @@ function OurProductContent() {
   }
 
   return (
-    <section className="bg-[#F5F5F5] overflow-hidden py-14 sm:py-16 lg:py-[100px]">
-      <FadeIn direction="up" duration={0.7} className="mb-10 px-6 sm:px-10 lg:mb-12 lg:px-[200px]">
-        <div className="flex flex-col gap-6 md:gap-8 lg:flex-row lg:items-start lg:justify-between">
+    <section className="bg-[#F5F5F5] overflow-hidden py-10 sm:py-16 lg:py-[100px]">
+      <FadeIn direction="up" duration={0.7} className="mb-6 sm:mb-10 px-4 sm:px-10 lg:mb-12 lg:px-[200px]">
+        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl">
-            <p className="mb-3 text-[16px] worksans-font font-bold">Our Products</p>
+            <p className="mb-2 sm:mb-3 text-sm sm:text-[16px] worksans-font font-bold">Our Products</p>
 
-            <h2 className="text-[24px] sm:text-[34px] lg:text-[38px] axiforma font-bold leading-tight mb-4">
+            <h2 className="text-[1.125rem] sm:text-[34px] lg:text-[38px] axiforma font-bold leading-snug sm:leading-tight mb-3 sm:mb-4">
               We Cut Through Noise to create architects that are thoughtful, timeless &
               Impactful.
             </h2>
 
-            <p className="mb-6 text-sm text-gray-600">
+            <p className="mb-4 sm:mb-6 text-xs sm:text-sm text-gray-600 leading-relaxed">
               Our inspired solutions have helped shape modern acoustic design. Alluring
               spaces, internationally recognised for their architectural elegance and
               exceptional sound management live here.

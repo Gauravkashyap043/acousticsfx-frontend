@@ -43,7 +43,7 @@ export default function AboutSection() {
   return (
     <section
       className="relative w-full overflow-hidden 
-      py-14 lg:py-0 lg:min-h-screen"
+      py-10 sm:py-14 lg:py-0 lg:min-h-screen"
     >
 
       {/* ================= Background Image ================= */}
@@ -71,27 +71,27 @@ export default function AboutSection() {
           text-left text-white"
         >
           <div>
-            <p className="text-[14px] sm:text-[15px] lg:text-[16px] mb-3 font-bold work-sans">
+            <p className="text-[13px] sm:text-[15px] lg:text-[16px] mb-2 sm:mb-3 font-bold work-sans">
               {val(content, "home.about.label")}
             </p>
 
             <h2
-              className="text-[26px] sm:text-[32px] lg:text-[38px] 
-              font-bold mb-5 lg:mb-6 leading-tight axiforma"
+              className="text-[1.375rem] sm:text-[32px] lg:text-[38px] 
+              font-bold mb-4 sm:mb-5 lg:mb-6 leading-snug sm:leading-tight axiforma"
             >
               {val(content, "home.about.heading")}
             </h2>
 
             <p
-              className="text-[15px] sm:text-[16px] lg:text-[18px] 
-              text-[#E2D9C8] mb-7 lg:mb-8 leading-relaxed axiforma font-[400]"
+              className="text-sm sm:text-[16px] lg:text-[18px] 
+              text-[#E2D9C8] mb-5 sm:mb-7 lg:mb-8 leading-relaxed axiforma font-normal"
             >
               {val(content, "home.about.body")}
             </p>
 
             <a
               href={val(content, "home.about.ctaLink")}
-              className="inline-block bg-orange-500 px-6 py-3 text-white text-[14px] sm:text-[15px] cursor-pointer no-underline hover:opacity-90 transition"
+              className="inline-block bg-orange-500 px-5 py-2.5 sm:px-6 sm:py-3 text-white text-xs sm:text-[15px] cursor-pointer no-underline hover:opacity-90 transition"
             >
               {val(content, "home.about.ctaLabel")}
             </a>
@@ -102,7 +102,7 @@ export default function AboutSection() {
         <SlideIn
           direction="right"
           className="w-full lg:w-1/2 flex items-center 
-          px-6 sm:px-10 lg:px-0 mt-12 lg:mt-0"
+          px-6 sm:px-10 lg:px-0 mt-6 sm:mt-12 lg:mt-0"
         >
           <div className="relative w-full">
             <Image

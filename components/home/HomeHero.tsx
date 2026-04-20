@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
 } from "@/components/animations";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const CONTENT_KEYS = [
   "home.hero.title",
@@ -31,6 +36,8 @@ const DEFAULTS: Record<string, string> = {
 interface FeatureBox {
   title: string;
   description: string;
+  /** Shorter copy for mobile carousel (full text, no “Read more”) */
+  mobileDescription: string;
   image: string;
   accentColor: string;
 }
@@ -40,6 +47,8 @@ const DEFAULT_FEATURE_BOXES: FeatureBox[] = [
     title: "Acoustic Solution",
     description:
       "Premium acoustical solutions crafted to enhance clarity, reduce echo, and elevate the ambience of any space. Ideal for offices, hotels, residences, studios, auditoriums, and wellness environments, our panels blend design with performance to create interiors that sound as refined as they look.",
+    mobileDescription:
+      "Premium panels for clarity and less echo—offices, hotels, studios, and homes. Design-led acoustics that look as refined as they sound.",
     image: "/assets/home/fi_11062015.png",
     accentColor: "yellow-400",
   },
@@ -47,6 +56,8 @@ const DEFAULT_FEATURE_BOXES: FeatureBox[] = [
     title: "Hard wood Flooring",
     description:
       "Timeless, elegant, and crafted for durability, our hardwood flooring brings natural warmth and architectural luxury to any interior. Designed for high-end homes, hospitality spaces, offices, and premium commercial environments, Fx Acoustics' real wooden flooring delivers refined aesthetics with exceptional performance and long-lasting comfort.",
+    mobileDescription:
+      "Natural wood warmth and durability for high-end homes, hospitality, and premium commercial spaces—lasting comfort with refined aesthetics.",
     image: "/assets/home/fi_7821525.png",
     accentColor: "orange-400",
   },
@@ -54,6 +65,8 @@ const DEFAULT_FEATURE_BOXES: FeatureBox[] = [
     title: "Soundproofing",
     description:
       "Advanced sound-isolation systems engineered to block external noise and ensure complete privacy. Perfect for homes, corporate cabins, studios, hospitality spaces, healthcare rooms, and industrial zones, our solutions deliver silence, comfort, and absolute acoustic control.",
+    mobileDescription:
+      "Isolation systems that block outside noise and add privacy—homes, offices, studios, healthcare, and quiet zones.",
     image: "/assets/home/fi_17991697.png",
     accentColor: "blue-400",
   },
@@ -67,6 +80,74 @@ const ACCENT_MAP: Record<string, { border: string; text: string }> = {
 
 /** Static frame shown until the hero is near the viewport — avoids downloading MP4 on first paint. */
 const HERO_VIDEO_POSTER = "/assets/home/background.png";
+
+function MobileFeatureCarousel({ boxes }: { boxes: FeatureBox[] }) {
+  const paginationRef = useRef<HTMLDivElement>(null);
+
+  const paginationClassName = [
+    "flex w-full flex-wrap items-center justify-center gap-0",
+    "[&_.swiper-pagination-bullet]:mx-0.5 [&_.swiper-pagination-bullet]:h-2 [&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:bg-white/25! [&_.swiper-pagination-bullet]:opacity-100!",
+    "[&_.swiper-pagination-bullet-active]:w-6! [&_.swiper-pagination-bullet-active]:rounded-full! [&_.swiper-pagination-bullet-active]:bg-amber-500!",
+  ].join(" ");
+
+  return (
+    <div className="flex w-full flex-col-reverse gap-4">
+      {/* Mount first so ref exists when Swiper onBeforeInit runs; flex-col-reverse keeps card above dots visually. */}
+      <div ref={paginationRef} className={paginationClassName} />
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        slidesPerView={1}
+        spaceBetween={0}
+        autoHeight
+        loop={boxes.length > 1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        onBeforeInit={(swiper) => {
+          const p = swiper.params.pagination;
+          if (paginationRef.current && p && typeof p === "object") {
+            p.el = paginationRef.current;
+          }
+        }}
+        className="w-full overflow-visible"
+      >
+        {boxes.map((box) => {
+          const accent = ACCENT_MAP[box.accentColor];
+          return (
+            <SwiperSlide key={box.title} className="h-auto!">
+              <div className="relative w-full rounded-lg border border-white/10 bg-black/40 px-4 py-4">
+                <span
+                  className={`absolute left-0 top-0 h-full w-[3px] rounded-l-lg ${accent.border}`}
+                />
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={box.image}
+                    alt={box.title}
+                    width={44}
+                    height={44}
+                    sizes="44px"
+                    quality={80}
+                    className="size-[44px] shrink-0 object-contain"
+                  />
+                  <h3
+                    className={`min-w-0 flex-1 text-left text-[15px] font-bold leading-tight poppins-font ${accent.text}`}
+                  >
+                    {box.title}
+                  </h3>
+                </div>
+                <p className="mt-3 text-left text-[14px] leading-relaxed font-normal poppins-font text-gray-300">
+                  {box.mobileDescription}
+                </p>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
+}
 
 function val(content: ContentMap, key: string) {
   return content[key]?.value ?? DEFAULTS[key] ?? "";
@@ -131,30 +212,28 @@ export default function HomeHero() {
   const bgVideo = val(content, "home.hero.backgroundVideo");
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section className="relative flex w-full flex-col overflow-hidden md:min-h-[88svh] lg:min-h-screen">
+      {/* Background video: 70vh on mobile (clear view), full-bleed on md+ */}
+      <div className="absolute left-0 right-0 top-0 z-0 h-[70vh] md:inset-0 md:h-auto md:min-h-[88svh] lg:min-h-screen">
+        <HeroBackgroundVideo src={bgVideo} />
+      </div>
+      <div className="absolute left-0 right-0 top-0 z-1 h-[70vh] bg-black/60 md:inset-0 md:min-h-[88svh] lg:min-h-screen" />
 
-      {/* Background Video — deferred until hero is near viewport */}
-      <HeroBackgroundVideo src={bgVideo} />
-
-      <div className="absolute inset-0 bg-black/60" />
-
-      <div className="relative z-10 flex min-h-screen flex-col items-center px-4 pt-[50px] sm:pt-[130px] lg:pt-[143px] text-center text-white">
-
-        {/* Heading */}
+      {/* Heading: centered in 70vh on mobile; desktop hero stack unchanged */}
+      <div className="relative z-10 flex h-[70vh] flex-col items-center justify-center px-4 pb-6 pt-8 text-center text-white md:h-auto md:min-h-[88svh] lg:min-h-screen md:justify-start md:px-4 md:pb-0 md:pt-[130px] lg:pt-[143px]">
         <FadeIn direction="up">
-          <h1 className="max-w-7xl text-[28px]  leading-tight sm:text-[40px] lg:text-[76px] font-bold playfair-display">
+          <h1 className="max-w-7xl text-[1.375rem] leading-tight sm:text-[40px] lg:text-[76px] font-bold playfair-display">
             {val(content, "home.hero.title")}
           </h1>
 
-          <p className="mt-6 max-w-2xl mx-auto text-center text-gray-200">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-200 leading-relaxed sm:mt-6 sm:text-base">
             {val(content, "home.hero.subtitle")}
           </p>
         </FadeIn>
 
-        {/* Feature Boxes */}
-        <FadeIn className="mt-16 w-full">
-          <StaggerContainer className="mx-auto flex max-w-[1200px] flex-wrap justify-center gap-6">
-
+        {/* Desktop / tablet: feature cards on the video (unchanged behaviour) */}
+        <FadeIn className="mt-8 hidden w-full sm:mt-16 md:block">
+          <StaggerContainer className="mx-auto flex max-w-[1200px] flex-wrap justify-center gap-4 sm:gap-6">
             {DEFAULT_FEATURE_BOXES.map((box, index) => {
               const accent = ACCENT_MAP[box.accentColor];
               const isExpanded = expanded === index;
@@ -163,7 +242,7 @@ export default function HomeHero() {
                 <StaggerItem
                   key={box.title}
                   direction="up"
-                  className="relative h-[230px] sm:h-[250px] w-full mb-8 sm:w-[360px] bg-black/50 px-6 py-6"
+                  className="relative mb-4 h-[200px] w-full bg-black/50 px-4 py-4 sm:mb-8 sm:h-[250px] sm:w-[360px] sm:px-6 sm:py-6"
                 >
                   <span
                     className={`absolute left-0 top-0 h-full w-[3px] ${accent.border}`}
@@ -181,33 +260,38 @@ export default function HomeHero() {
                   />
 
                   <h3
-                    className={`mb-3 text-[14px] font-[700] poppins-font text-left ${accent.text}`}
+                    className={`mb-3 text-left text-[14px] font-bold poppins-font ${accent.text}`}
                   >
                     {box.title}
                   </h3>
 
                   <div
-                    className={`text-[14px] font-[400] poppins-font text-left text-gray-300 transition-all duration-300 ${isExpanded
-                      ? "max-h-[90px] overflow-y-auto pr-1"
-                      : "max-h-[42px] overflow-hidden"
-                      }`}
+                    className={`text-left text-[14px] font-normal poppins-font text-gray-300 transition-all duration-300 ${
+                      isExpanded
+                        ? "max-h-[90px] overflow-y-auto pr-1"
+                        : "max-h-[42px] overflow-hidden"
+                    }`}
                   >
                     {box.description}
                   </div>
 
                   <button
+                    type="button"
                     onClick={() => setExpanded(isExpanded ? null : index)}
                     className="mt-2 text-[13px] text-orange-400 hover:underline"
                   >
                     {isExpanded ? "Read Less" : "Read More"}
                   </button>
-
                 </StaggerItem>
               );
             })}
           </StaggerContainer>
         </FadeIn>
+      </div>
 
+      {/* Mobile only: carousel below the video with short full copy */}
+      <div className="relative z-10 border-t border-white/5 bg-[#121212] px-4 py-8 md:hidden">
+        <MobileFeatureCarousel boxes={DEFAULT_FEATURE_BOXES} />
       </div>
     </section>
   );

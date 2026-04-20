@@ -81,8 +81,8 @@ export default function Footer() {
     <footer className="w-full bg-white">
 
       {/* TOP FOOTER */}
-      <div className="px-6 sm:px-10 lg:px-[100px] py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-[90px]">
+      <div className="px-4 sm:px-10 lg:px-[100px] py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 lg:gap-[90px]">
 
           {/* LOGO + ABOUT */}
           <div className="text-left">
@@ -91,9 +91,9 @@ export default function Footer() {
               alt="FX Acoustic Inc"
               width={210}
               height={50}
-              className="mb-4"
+              className="mb-3 h-9 w-auto sm:mb-4 sm:h-[50px]"
             />
-            <p className="text-[18px] inter-font font-[500] text-gray-700 leading-relaxed mb-6 text-left">
+            <p className="text-sm sm:text-[18px] inter-font font-medium text-gray-700 leading-relaxed mb-4 sm:mb-6 text-left">
               {val(content, "footer.about")}
             </p>
             <SocialIcons direction="horizontal" variant="filled" />
@@ -101,8 +101,10 @@ export default function Footer() {
 
           {/* OUR SERVICES */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Our Services</h4>
-            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
+            <h4 className="font-semibold inter-font text-lg sm:text-xl lg:text-[24px] mb-3 sm:mb-4 text-left">
+              Our Services
+            </h4>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-[18px] inter-font font-medium text-gray-700 text-left">
               {services.map((s) =>
                 s.href ? (
                   <li key={s._id}><Link href={s.href} className="hover:underline text-gray-700">{s.label}</Link></li>
@@ -115,8 +117,10 @@ export default function Footer() {
 
           {/* RESOURCES */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Resources</h4>
-            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
+            <h4 className="font-semibold inter-font text-lg sm:text-xl lg:text-[24px] mb-3 sm:mb-4 text-left">
+              Resources
+            </h4>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-[18px] inter-font font-medium text-gray-700 text-left">
               {resources.map((r) =>
                 r.href ? (
                   <li key={r._id}><Link href={r.href} className="hover:underline text-gray-700">{r.label}</Link></li>
@@ -129,8 +133,10 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div className="text-left">
-            <h4 className="font-semibold inter-font text-[24px] mb-4 text-left">Contact Us</h4>
-            <ul className="space-y-3 text-[18px] inter-font font-[500] text-gray-700 text-left">
+            <h4 className="font-semibold inter-font text-lg sm:text-xl lg:text-[24px] mb-3 sm:mb-4 text-left">
+              Contact Us
+            </h4>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-[18px] inter-font font-medium text-gray-700 text-left">
               <li>
                 <a href={`mailto:${val(content, "footer.contactEmail")}`} className="hover:underline text-gray-700">
                   {val(content, "footer.contactEmail")}
@@ -144,10 +150,10 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="bg-[#1f5e67] text-white px-6 sm:px-10 lg:px-[100px] py-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[15px] axiforma font-[500] text-left">
-          <span className="text-left">{val(content, "footer.copyright")}</span>
-          <div className="flex gap-6 sm:gap-8 text-[15px] axiforma font-[500] text-left">
+      <div className="bg-[#1f5e67] text-white px-4 sm:px-10 lg:px-[100px] py-3 sm:py-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 text-xs sm:text-[15px] axiforma font-medium text-left">
+          <span className="text-left leading-snug">{val(content, "footer.copyright")}</span>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-8 text-xs sm:text-[15px] axiforma font-medium text-left">
             <Link href="/contactus" className="hover:underline text-left cursor-pointer">Privacy Policy</Link>
             <Link href="/contactus" className="hover:underline text-left cursor-pointer">Terms & Conditions</Link>
           </div>

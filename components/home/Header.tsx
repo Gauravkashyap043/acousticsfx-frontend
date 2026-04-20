@@ -43,7 +43,11 @@ export default function Header() {
       <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-[100px] py-3 sm:py-4 flex items-center justify-between">
 
         {/* LEFT : LOGO */}
-        <div className="flex-shrink-0 z-50">
+        <div
+          className={`flex-shrink-0 z-50 transition-opacity duration-200 ${
+            mobileMenuOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"
+          }`}
+        >
           <Link href="/" className="cursor-pointer inline-block" onClick={handleLinkClick}>
             <Image
               src="/assets/home/Group 34.svg"
@@ -249,7 +253,22 @@ export default function Header() {
             overflow-y-auto
           `}
         >
-          <div className="p-6 pt-20">
+          <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-5 py-4">
+            <Link href="/" className="cursor-pointer inline-block" onClick={handleLinkClick}>
+              <Image
+                src="/assets/home/Group 34.svg"
+                alt="FX Acoustic Inc"
+                width={170}
+                height={44}
+                sizes="170px"
+                className="w-[150px] h-auto"
+                priority
+                decoding="async"
+              />
+            </Link>
+          </div>
+
+          <div className="p-6 pt-4">
             <nav aria-label="Mobile navigation">
               <ul className="space-y-2">
 

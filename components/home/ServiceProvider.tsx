@@ -82,8 +82,8 @@ export default function ServiceProvider() {
   const ctaLink = val(content, "home.services.ctaLink");
 
   return (
-    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px]">
-      <div className="flex flex-col lg:flex-row items-center gap-10">
+    <section className="px-4 sm:px-10 lg:px-[100px] py-10 sm:py-16 lg:py-[100px]">
+      <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10">
 
         {/* Left Side: Image */}
         <SlideIn direction="left" className="w-full lg:w-1/2">
@@ -99,24 +99,24 @@ export default function ServiceProvider() {
 
         {/* Right Side: Content */}
         <FadeIn direction="right" delay={0.1} className="w-full lg:w-[60%] text-left">
-          <p className="text-[15px] uppercase mb-2 worksans-font text-black font-bold">
+          <p className="text-xs sm:text-[15px] uppercase mb-1.5 sm:mb-2 worksans-font text-black font-bold tracking-wide sm:tracking-normal">
             {subtitle}
           </p>
 
-          <h2 className="text-[19px] sm:text-[34px] lg:text-[40px] worksans-font text-black font-bold mb-4 leading-[28px] sm:leading-[46px] lg:leading-[55px]">
+          <h2 className="text-[1.0625rem] sm:text-[34px] lg:text-[40px] worksans-font text-black font-bold mb-3 sm:mb-4 leading-snug sm:leading-[46px] lg:leading-[55px]">
             We are{" "}
             <span ref={textRef} className="text-[#EA8E39]">
               Manufacturers
             </span>
           </h2>
 
-          <p className="text-[15px] font-[400] worksans-font leading-[25px] mb-6 text-[#4F4F4F]">
+          <p className="text-sm sm:text-[15px] font-normal worksans-font leading-relaxed sm:leading-[25px] mb-4 sm:mb-6 text-[#4F4F4F]">
             {description}
           </p>
 
           <a
             href={ctaLink}
-            className="inline-block bg-[#EA8E39] text-white px-4 py-2 worksans-font font-semibold text-[16px] cursor-pointer no-underline hover:opacity-90 transition"
+            className="inline-block bg-[#EA8E39] text-white px-4 py-2 worksans-font font-semibold text-sm sm:text-[16px] cursor-pointer no-underline hover:opacity-90 transition"
           >
             {ctaText}
           </a>

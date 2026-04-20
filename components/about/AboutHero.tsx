@@ -34,7 +34,7 @@ export default function AboutHero() {
   const bgImage = val(content, "about.hero.backgroundImage");
 
   return (
-    <section className="relative w-full min-h-[65vh] sm:min-h-[72vh] lg:min-h-[80vh]">
+    <section className="relative w-full min-h-[52vh] sm:min-h-[72vh] lg:min-h-[80vh]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -55,35 +55,35 @@ export default function AboutHero() {
         duration={0.7}
         className="
           relative z-10
-          px-[16px] sm:px-[40px] lg:px-[100px]
-          py-[60px] sm:py-[80px] lg:py-[100px]
+          px-4 sm:px-[40px] lg:px-[100px]
+          py-10 sm:py-[80px] lg:py-[100px]
           flex flex-col
           items-center justify-center
           text-white text-center
         "
       >
         {/* Heading */}
-        <h1 className="text-[36px] sm:text-[56px] md:text-[72px] lg:text-[90px] font-bold leading-tight max-w-9xl playfair-display">
+        <h1 className="text-[1.625rem] sm:text-[56px] md:text-[72px] lg:text-[90px] font-bold leading-tight max-w-9xl playfair-display">
           {val(content, "about.hero.heading")}
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-6 text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] poppins-font font-[400] max-w-2xl text-white/90">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-[18px] md:text-[20px] lg:text-[24px] poppins-font font-normal max-w-2xl text-white/90 leading-relaxed">
           {val(content, "about.hero.subtitle")}
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-sm sm:max-w-none">
           <Link
             href="/contactus"
-            className="border border-white px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-white hover:text-black transition cursor-pointer"
+            className="border border-white px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[18px] poppins-font font-normal hover:bg-white hover:text-black transition cursor-pointer text-center"
           >
             Get Quote &rarr;
           </Link>
 
           <Link
             href="/contactus"
-            className="bg-orange-500 px-6 py-3 text-[16px] sm:text-[18px] poppins-font font-[400] hover:bg-orange-600 transition cursor-pointer inline-block"
+            className="bg-orange-500 px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[18px] poppins-font font-normal hover:bg-orange-600 transition cursor-pointer inline-block text-center"
           >
             Connect With Us &rarr;
           </Link>

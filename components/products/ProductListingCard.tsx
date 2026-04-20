@@ -65,7 +65,7 @@ export function ProductListingCard({
           isGrid
             ? "p-4 sm:p-5 lg:p-5 xl:p-6"
             : isCompactMobile
-              ? "p-4 sm:p-6 lg:p-7"
+              ? "p-3.5 sm:p-6 lg:p-7"
               : "p-5 sm:p-6 lg:p-7"
         }`}
       >
