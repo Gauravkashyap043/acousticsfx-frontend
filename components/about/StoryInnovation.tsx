@@ -18,24 +18,24 @@ export default function StoryInnovation() {
   const innovationImage = content["about.innovation.image"]?.value ?? DEFAULT_IMAGE;
 
   return (
-    <section className="px-[16px] sm:px-[40px] lg:px-[100px] pt-[60px] sm:pt-[80px] lg:pt-[100px] bg-[#F5F5F5]">
+    <section className="px-4 sm:px-[40px] lg:px-[100px] pt-10 pb-10 sm:pt-[80px] sm:pb-[80px] lg:pt-[100px] lg:pb-[100px] bg-[#F5F5F5]">
       {/* ================= Top Content ================= */}
       <FadeIn
         direction="up"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-start mb-12 sm:mb-14 lg:mb-16"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-14 lg:gap-20 items-start mb-8 sm:mb-14 lg:mb-16"
       >
         {/* Left Heading */}
         <div>
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[60px] lato font-bold leading-[40px]">
+          <h2 className="text-[1.375rem] sm:text-[44px] lg:text-[60px] lato font-bold leading-tight sm:leading-[40px]">
             Our Story That Drives
           </h2>
-          <h2 className="text-[56px] sm:text-[72px] lg:text-[100px] font-bold lato text-[#ea8e39] mt-2">
+          <h2 className="text-[2.25rem] sm:text-[72px] lg:text-[100px] font-bold lato text-[#ea8e39] mt-1 sm:mt-2 leading-none tracking-tight">
             INNOVATION
           </h2>
         </div>
 
         {/* Right Text */}
-        <p className="text-gray-600 leading-relaxed lato font-[400] text-[16px] sm:text-[18px] lg:text-[20px] max-w-xl">
+        <p className="text-gray-600 leading-relaxed lato font-normal text-sm sm:text-[18px] lg:text-[20px] max-w-xl">
           From a bold vision to an industry-leading brand, FX Acoustics has
           pioneered acoustic solutions that blend craftsmanship with cutting-edge
           technology &mdash; transforming how spaces sound and feel.
@@ -43,8 +43,8 @@ export default function StoryInnovation() {
       </FadeIn>
 
       {/* ================= Image / Video Section ================= */}
-      <ScaleOnScroll className="relative w-full overflow-hidden rounded-lg mt-6">
-        <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[520px]">
+      <ScaleOnScroll className="relative w-full overflow-hidden rounded-lg mt-4 sm:mt-6">
+        <div className="relative w-full h-[220px] sm:h-[400px] lg:h-[520px]">
           <Image
             src={innovationImage}
             alt="FX Acoustics innovation auditorium showcase"

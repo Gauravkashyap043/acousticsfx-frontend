@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import { fetchContent, type ContentMap } from "@/lib/content-api";
 import {
   FadeIn,
@@ -9,6 +11,9 @@ import {
   StaggerItem,
   HoverScale,
 } from "@/components/animations";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 interface CardData {
   icon: string;
@@ -64,6 +69,69 @@ const DEFAULT_CARDS: CardData[] = [
   },
 ];
 
+function ChooseUsCard({ card }: { card: CardData }) {
+  return (
+    <HoverScale className="group rounded-xl sm:rounded-2xl border border-gray-100 p-4 sm:p-6 shadow-sm bg-white h-full">
+      <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-[#eaf4f6] transition-all duration-300 group-hover:bg-[#3090A3] mb-3 sm:mb-4">
+        <Image
+          src={card.icon}
+          alt={card.title}
+          width={32}
+          height={30}
+          className="size-6 sm:size-8 transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+        />
+      </div>
+      <h3 className="mb-1.5 sm:mb-2 font-bold text-lg text-[#1F6775] leading-snug sm:text-[22px] lg:text-[25px] inter-font">
+        {card.title}
+      </h3>
+      <p className="text-sm font-normal leading-[1.55] text-gray-600 inter-font sm:text-base sm:leading-relaxed lg:text-[18px]">
+        {card.description}
+      </p>
+    </HoverScale>
+  );
+}
+
+function WhyChooseUsMobileCarousel({ cards }: { cards: CardData[] }) {
+  const paginationRef = useRef<HTMLDivElement>(null);
+
+  const paginationClassName = [
+    "flex w-full flex-wrap items-center justify-center gap-0",
+    "[&_.swiper-pagination-bullet]:mx-0.5 [&_.swiper-pagination-bullet]:h-2 [&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:bg-gray-300! [&_.swiper-pagination-bullet]:opacity-100!",
+    "[&_.swiper-pagination-bullet-active]:w-6! [&_.swiper-pagination-bullet-active]:rounded-full! [&_.swiper-pagination-bullet-active]:bg-[#3090A3]!",
+  ].join(" ");
+
+  return (
+    <div className="flex w-full flex-col-reverse gap-4">
+      <div ref={paginationRef} className={paginationClassName} />
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        slidesPerView={1}
+        spaceBetween={0}
+        autoHeight
+        loop={cards.length > 1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        onBeforeInit={(swiper) => {
+          const p = swiper.params.pagination;
+          if (paginationRef.current && p && typeof p === "object") {
+            p.el = paginationRef.current;
+          }
+        }}
+        className="w-full overflow-visible"
+      >
+        {cards.map((card) => (
+          <SwiperSlide key={card.title} className="h-auto!">
+            <ChooseUsCard card={card} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+}
+
 export default function WhyChooseUs() {
   const [content, setContent] = useState<ContentMap>({});
 
@@ -77,39 +145,28 @@ export default function WhyChooseUs() {
   }));
 
   return (
-    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
+    <section className="px-4 sm:px-10 lg:px-[100px] py-8 sm:py-16 lg:py-[100px] bg-white">
       {/* Heading */}
-      <FadeIn direction="up" duration={0.6} className="max-w-4xl mb-12 lg:mb-16">
-        <p className="text-[15px] mb-3 text-gray-600 worksans-font font-bold">
+      <FadeIn direction="up" duration={0.6} className="max-w-4xl mb-6 sm:mb-12 lg:mb-16">
+        <p className="text-[13px] sm:text-[15px] mb-2 sm:mb-3 text-gray-600 worksans-font font-bold">
           Why Choose Us
         </p>
 
-        <h2 className="text-[18px] sm:text-[34px] lg:text-[40px] font-bold sm:leading-tight text-gray-900 axiforma">
+        <h2 className="text-[1.125rem] leading-snug sm:text-[34px] sm:leading-tight lg:text-[40px] font-bold text-gray-900 axiforma">
           We Cut Through Noise to create architects that are thoughtful, timeless & Impactful.
         </h2>
       </FadeIn>
 
-      {/* Cards Grid */}
-      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {/* Mobile: swipe + autoplay + dots below card (same pattern as HomeHero) */}
+      <div className="sm:hidden">
+        <WhyChooseUsMobileCarousel cards={cards} />
+      </div>
+
+      {/* sm+: staggered grid */}
+      <StaggerContainer className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 lg:gap-8">
         {cards.map((card) => (
           <StaggerItem key={card.title} direction="up">
-            <HoverScale className="group rounded-2xl border border-gray-100 p-6 shadow-sm bg-white">
-              <div className="w-12 h-12 rounded-full bg-[#eaf4f6] group-hover:bg-[#3090A3] transition-all duration-300 flex items-center justify-center mb-4">
-                <Image
-                  src={card.icon}
-                  alt={card.title}
-                  width={32}
-                  height={30}
-                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-                />
-              </div>
-              <h3 className="font-bold text-[25px] mb-2 text-[#1F6775] inter-font">
-                {card.title}
-              </h3>
-              <p className="text-[18px] text-gray-600 leading-relaxed inter-font font-[400]">
-                {card.description}
-              </p>
-            </HoverScale>
+            <ChooseUsCard card={card} />
           </StaggerItem>
         ))}
       </StaggerContainer>

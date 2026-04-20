@@ -54,7 +54,7 @@ export default function OurClients() {
   const title = val(content, "home.clients.title");
 
   return (
-    <section className="relative h-[420px] sm:h-[500px] lg:h-[580px] overflow-hidden">
+    <section className="relative h-[300px] sm:h-[420px] md:h-[500px] lg:h-[580px] overflow-hidden">
       {/* BACKGROUND */}
       <div className="absolute inset-0">
         <Image
@@ -74,7 +74,7 @@ export default function OurClients() {
       {/* CONTENT */}
       <div className="relative z-10 h-full px-6 sm:px-10 lg:px-16 xl:px-24 flex flex-col justify-center">
         <FadeIn direction="up">
-          <h2 className="text-center text-white text-2xl font-semibold mb-10 sm:mb-14 lg:mb-16">
+          <h2 className="text-center text-white text-lg sm:text-2xl font-semibold mb-5 sm:mb-14 lg:mb-16">
             {title}
           </h2>
         </FadeIn>
@@ -104,7 +104,7 @@ export default function OurClients() {
 </div>
 
         {/* ================= MOBILE / TABLET (DOUBLE SLIDER) ================= */}
-        <div className="lg:hidden overflow-hidden space-y-6 -mx-6 sm:mx-0">
+        <div className="lg:hidden overflow-hidden space-y-3 sm:space-y-6 -mx-6 sm:mx-0">
           {/* ROW 1 (Left → Right) */}
           <div className="overflow-hidden">
             <div className="flex w-max animate-marquee-left gap-6">

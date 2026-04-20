@@ -10,6 +10,9 @@ import {
 } from "@/lib/contact-api";
 import { FadeIn, SlideIn } from "@/components/animations";
 
+const inputClassName =
+  "w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 shadow-sm transition placeholder:text-gray-400 focus:border-[#1F6775] focus:outline-none focus:ring-2 focus:ring-[#1F6775]/20";
+
 export default function ContactFormSection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,124 +40,138 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[30px] sm:py-[40px] lg:py-[50px] bg-white">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
-        {/* ================= Left Illustration ================= */}
-        <SlideIn direction="left" className="flex justify-center">
-          <Image
-            src="/assets/contacts/8690678_3969584 1.svg"
-            alt="Contact us illustration — person sending messages"
-            width={400}
-            height={400}
-            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto"
-          />
-        </SlideIn>
-
-        {/* ================= Right Form ================= */}
-        <FadeIn direction="up">
-          <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold text-[#111] mb-2 poppins-font">
-            Contact Us
-          </h2>
-
-          <p className="text-gray-500 mb-8 sm:mb-10 poppins-font font-[500] text-[16px] sm:text-[18px] lg:text-[20px]">
-            Any question or remarks? Just write us a message!
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-8">
-
-            {/* Full Name */}
-            <div>
-              <label className="block text-[13px] font-[500] poppins-font text-gray-500 mb-2">
-                Full Name
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
+    <section className="bg-[#f0f4f5] px-4 sm:px-[40px] lg:px-[100px] py-6 sm:py-10 lg:py-12">
+      <div className="mx-auto max-w-5xl">
+        {/* Single surface: illustration + form read as one block */}
+        <div className="overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_12px_48px_-16px_rgba(15,23,42,0.12)]">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:min-h-[min(100%,520px)]">
+            {/* Illustration — shared panel with form */}
+            <SlideIn
+              direction="left"
+              className="relative flex items-center justify-center border-b border-[#1F6775]/10 bg-linear-to-br from-[#eaf4f6] via-[#f4f9fa] to-white px-6 py-6 sm:py-8 lg:border-b-0 lg:border-r lg:py-10"
+            >
+              <div
+                className="pointer-events-none absolute -left-16 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-[#1F6775]/10 blur-3xl lg:block"
+                aria-hidden
               />
-            </div>
+              <Image
+                src="/assets/contacts/8690678_3969584 1.svg"
+                alt="Contact us illustration — person sending messages"
+                width={400}
+                height={400}
+                className="relative z-10 w-full max-w-[200px] sm:max-w-[260px] lg:max-w-[300px] h-auto drop-shadow-sm"
+              />
+            </SlideIn>
 
-            {/* Email & Phone */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-[13px] font-[500] poppins-font">
-              <div>
-                <label className="block text-sm text-gray-500 mb-2">
-                  Business Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
+            {/* Form */}
+            <FadeIn direction="up" className="flex flex-col justify-center px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-[1.375rem] sm:text-3xl lg:text-[2.25rem] font-bold text-[#111] poppins-font leading-tight">
+                  Contact Us
+                </h2>
+                <p className="mt-1.5 text-sm sm:text-base text-gray-600 poppins-font">
+                  Any question or remarks? Just write us a message!
+                </p>
+                <div
+                  className="mt-3 h-px w-12 rounded-full bg-[#1F6775]"
+                  aria-hidden
                 />
               </div>
 
-              <div>
-                <label className="block text-[13px] font-[500] poppins-font text-gray-500 mb-2">
-                  Business Phone Number
-                </label>
-                <input
-                  type="tel"
-                  placeholder="+91 012 3456 789"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2"
-                />
-              </div>
-            </div>
-
-            {/* Subject */}
-            <div>
-              <p className="text-[15px] font-[600] poppins-font text-gray-600 mb-3">
-                Select Subject?
-              </p>
-
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 text-[13px] font-[400] poppins-font text-gray-600">
-                {CONTACT_SUBJECTS.map((s) => (
-                  <label key={s} className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="subject"
-                      value={s}
-                      checked={subject === s}
-                      onChange={() => setSubject(s)}
-                    />
-                    {s}
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <div>
+                  <label className="mb-1.5 block text-xs font-medium text-gray-600 poppins-font sm:text-[13px]">
+                    Full Name
                   </label>
-                ))}
-              </div>
-            </div>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className={inputClassName}
+                  />
+                </div>
 
-            {/* Message */}
-            <div>
-              <label className="block text-[13px] font-[500] poppins-font text-gray-500 mb-0">
-                Message
-              </label>
-              <textarea
-                rows={3}
-                placeholder="Write your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full border-b border-gray-300 focus:outline-none focus:border-orange-500 py-2 resize-none"
-              />
-            </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-gray-600 sm:text-sm">
+                      Business Email
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className={inputClassName}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-gray-600 poppins-font sm:text-[13px]">
+                      Business Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="+91 012 3456 789"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className={inputClassName}
+                    />
+                  </div>
+                </div>
 
-            {/* Button */}
-            <div className="pt-2">
-              <button
-                type="submit"
-                disabled={sending}
-                className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 transition cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {sending ? "Sending…" : "Send Message"}
-              </button>
-            </div>
-          </form>
-        </FadeIn>
+                <div>
+                  <p className="mb-2 text-sm font-semibold text-gray-700 poppins-font">
+                    Select Subject?
+                  </p>
+                  <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2">
+                    {CONTACT_SUBJECTS.map((s) => (
+                      <label
+                        key={s}
+                        className="flex cursor-pointer items-center gap-2.5 text-xs text-gray-700 sm:text-[13px]"
+                      >
+                        <input
+                          type="radio"
+                          name="subject"
+                          value={s}
+                          checked={subject === s}
+                          onChange={() => setSubject(s)}
+                          className="h-4 w-4 border-gray-300 accent-[#1F6775] focus:ring-[#1F6775]"
+                        />
+                        {s}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="mb-1.5 block text-xs font-medium text-gray-600 poppins-font sm:text-[13px]">
+                    Message
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Write your message..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                    className={`${inputClassName} resize-none`}
+                  />
+                </div>
+
+                <div className="pt-1">
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="w-full rounded-lg bg-[#EA8E39] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#d97a28] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                  >
+                    {sending ? "Sending…" : "Send Message"}
+                  </button>
+                </div>
+              </form>
+            </FadeIn>
+          </div>
+        </div>
       </div>
     </section>
   );

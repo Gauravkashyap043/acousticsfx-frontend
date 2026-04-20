@@ -49,12 +49,12 @@ export default function CaseStudies() {
   const heading = val(content, "home.caseStudies.heading");
 
   return (
-    <section className="py-[80px] lg:py-[100px] bg-white overflow-hidden">
+    <section className="py-10 sm:py-16 lg:py-[100px] bg-white overflow-hidden">
 
       {/* TOP CONTENT */}
-      <FadeIn direction="up" duration={0.7} className="px-6 sm:px-10 lg:px-[200px] mb-14">
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
-          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] font-[400] leading-tight axiforma max-w-xl">
+      <FadeIn direction="up" duration={0.7} className="px-4 sm:px-10 lg:px-[200px] mb-8 sm:mb-14">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-6 sm:gap-10 lg:gap-20">
+          <h2 className="text-[1.625rem] sm:text-[44px] lg:text-[60px] font-normal leading-tight axiforma max-w-xl">
             {heading.split("\n").map((line, i, arr) => (
               <span key={i}>
                 {line}
@@ -64,7 +64,7 @@ export default function CaseStudies() {
           </h2>
 
           <div className="max-w-md">
-            <p className="text-[16px] sm:text-[18px] lg:text-[21px] font-[500] text-gray-600 leading-relaxed mb-6 jakarta">
+            <p className="text-sm sm:text-[18px] lg:text-[21px] font-medium text-gray-600 leading-relaxed mb-4 sm:mb-6 jakarta">
               {val(content, "home.caseStudies.subheading")}
             </p>
 
@@ -79,7 +79,7 @@ export default function CaseStudies() {
       </FadeIn>
 
       {/* SLIDER */}
-      <div className="relative pl-6 sm:pl-10 lg:pl-[360px]">
+      <div className="relative pl-4 sm:pl-10 lg:pl-[360px]">
         <Splide
           options={{
             type: "loop",
@@ -102,7 +102,7 @@ export default function CaseStudies() {
                 <StaggerItem direction="up">
                   <HoverScale className="max-w-[420px]">
                     {/* IMAGE */}
-                    <div className="relative h-[220px] sm:h-[240px] lg:h-[260px] w-full mb-4">
+                    <div className="relative h-[180px] sm:h-[240px] lg:h-[260px] w-full mb-3 sm:mb-4">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -112,7 +112,7 @@ export default function CaseStudies() {
                     </div>
 
                     {/* TEXT */}
-                    <h3 className="font-semibold text-lg mb-1">
+                    <h3 className="font-semibold text-base sm:text-lg mb-1">
                       {item.title}
                     </h3>
                     <p className="text-sm text-gray-600">
@@ -126,7 +126,7 @@ export default function CaseStudies() {
         </Splide>
 
         {/* CUSTOM IMAGE ARROWS */}
-        <div className="flex justify-center gap-8 mt-10">
+        <div className="flex justify-center gap-8 mt-6 sm:mt-10">
           <button
             type="button"
             onClick={() => splideRef.current?.splide?.go("<")}

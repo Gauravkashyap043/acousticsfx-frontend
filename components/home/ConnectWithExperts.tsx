@@ -74,26 +74,26 @@ export default function ConnectWithExperts() {
   };
 
   return (
-    <section className="relative bg-[#1f2528] py-10 text-white overflow-hidden">
+    <section className="relative bg-[#1f2528] py-6 sm:py-10 text-white overflow-hidden">
       {/* ================= TOP AREA ================= */}
-      <div className="relative flex min-h-[300px] flex-col lg:flex-row">
+      <div className="relative flex min-h-0 sm:min-h-[280px] lg:min-h-[300px] flex-col lg:flex-row">
         {/* LEFT CONTENT */}
         <FadeIn
           direction="left"
           duration={0.7}
           className="pl-6 sm:pl-10 lg:pl-[100px] pr-6 lg:pr-12 flex flex-col justify-center max-w-[720px] z-10 text-left"
         >
-          <h2 className="text-[32px] sm:text-[38px] lg:text-[45px] inter-font font-[600] mb-4 text-left">
+          <h2 className="text-[1.375rem] sm:text-[38px] lg:text-[45px] inter-font font-semibold mb-3 sm:mb-4 text-left leading-snug">
             Connect with experts
           </h2>
 
-          <div className="flex flex-wrap justify-start gap-4 text-[14px] inter-font font-[400] text-white/70 mb-4">
+          <div className="flex flex-wrap justify-start gap-x-3 gap-y-1.5 text-xs sm:text-[14px] inter-font font-normal text-white/70 mb-3 sm:mb-4">
             <span>🏆 NRC Certified</span>
             <span>👨‍💼 Acoustic Experts</span>
             <span>📈 500+ Projects</span>
           </div>
 
-          <p className="text-[14px] inter-font font-[400] text-white/80 mb-8 leading-relaxed text-left">
+          <p className="text-xs sm:text-[14px] inter-font font-normal text-white/80 mb-5 sm:mb-8 leading-relaxed text-left">
             Reach out to our expert team for tailored acoustic solutions,
             consultations, and unparalleled support. Your journey to perfect
             sound starts with a conversation at FX Acoustics.
@@ -110,7 +110,7 @@ export default function ConnectWithExperts() {
               target?.scrollIntoView({ behavior: "smooth", block: "center" });
               setTimeout(() => target?.focus(), 400);
             }}
-            className="bg-white text-black px-6 py-3 w-fit text-sm font-medium cursor-pointer"
+            className="bg-white text-black px-5 py-2.5 sm:px-6 sm:py-3 w-fit text-xs sm:text-sm font-medium cursor-pointer"
           >
             Get in touch →
           </button>
@@ -119,9 +119,9 @@ export default function ConnectWithExperts() {
         {/* RIGHT IMAGE */}
         <SlideIn
           direction="right"
-          className="relative lg:absolute right-0 top-1/2 lg:-translate-y-1/2 mt-10 lg:mt-0"
+          className="relative lg:absolute right-0 top-1/2 lg:-translate-y-1/2 mt-6 sm:mt-10 lg:mt-0"
         >
-          <div className="relative w-full lg:w-[600px] h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden">
+          <div className="relative w-full lg:w-[600px] h-[180px] sm:h-[260px] lg:h-[300px] overflow-hidden">
             <Image
               src={expertImage}
               alt="Expert"
@@ -207,12 +207,12 @@ export default function ConnectWithExperts() {
       </div>
 
       {/* ================= MOBILE CONTACT FORM ================= */}
-      <div className="px-6 sm:px-10 py-8 lg:hidden">
+      <div className="px-4 sm:px-10 py-6 sm:py-8 lg:hidden">
         <form
           onSubmit={handleContactSubmit}
-          className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-6 sm:p-8 w-full"
+          className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-4 sm:p-8 w-full"
         >
-          <p className="text-xs mb-6 text-white/70">
+          <p className="text-xs mb-4 sm:mb-6 text-white/70">
             Fill out this form and our team will get back to you.
           </p>
 
@@ -267,12 +267,12 @@ export default function ConnectWithExperts() {
       </div>
 
       {/* ================= BOTTOM SUBSCRIBE ================= */}
-      <div className="px-6 sm:px-10 lg:px-[100px] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="px-4 sm:px-10 lg:px-[100px] py-6 sm:py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-8">
         <div className="text-left">
-          <h3 className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold mb-2 inter-font text-left">
+          <h3 className="text-xl sm:text-[32px] lg:text-[36px] font-semibold mb-1.5 sm:mb-2 inter-font text-left leading-snug">
             Subscribe to our Latest News
           </h3>
-          <p className="text-[14px] inter-font font-[400] text-white/70 max-w-md leading-relaxed text-left">
+          <p className="text-xs sm:text-[14px] inter-font font-normal text-white/70 max-w-md leading-relaxed text-left">
             Join our mailing list and get the latest FX Acoustics news, insights,
             updates, and exclusive articles delivered to your inbox.
           </p>

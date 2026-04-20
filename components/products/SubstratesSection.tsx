@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import type { SubProductSubstratesSection } from "@/lib/products-api";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const substrates = [
   {
@@ -37,7 +40,6 @@ export default function SubstratesSection({
 }: {
   substratesSection?: SubProductSubstratesSection | null;
 }) {
-  const [index, setIndex] = useState(0);
   const items =
     substratesSection?.items?.length
       ? substratesSection.items.map((i) => ({
@@ -50,14 +52,6 @@ export default function SubstratesSection({
   const description =
     substratesSection?.description ??
     "Our inspired solutions have helped shape modern acoustic design. Alluring spaces, internationally recognised for their architectural elegance and exceptional sound management live here.";
-
-  const prev = () => {
-    setIndex((prev) => Math.max(prev - 1, 0));
-  };
-
-  const next = () => {
-    setIndex((prev) => Math.min(prev + 1, items.length - 3));
-  };
 
   return (
     <section className="w-full bg-white pl-[24px] sm:pl-[40px] md:pl-[60px] lg:pl-[100px] py-[60px] sm:py-[70px] lg:py-[80px]">
@@ -74,43 +68,48 @@ export default function SubstratesSection({
 
       {/* Cards Slider */}
       <div className="relative overflow-hidden">
-        <div
-          className="flex gap-6 sm:gap-8 lg:gap-10 transition-transform duration-500"
-          style={{
-            transform: `translateX(-${index * 360}px)`,
+        <Swiper
+          modules={[Navigation]}
+          navigation={{
+            nextEl: ".substrates-next",
+            prevEl: ".substrates-prev",
           }}
+          centeredSlides
+          spaceBetween={20}
+          slidesPerView={1.05}
+          breakpoints={{
+            640: { slidesPerView: 1.2, spaceBetween: 24 },
+            1024: { slidesPerView: 1.35, spaceBetween: 28 },
+          }}
+          className="!overflow-visible"
         >
           {items.map((item, idx) => (
-            <div key={idx} className="min-w-[260px] sm:min-w-[300px] lg:min-w-[350px]">
+            <SwiperSlide key={idx}>
+              <div className="mx-auto w-full max-w-[350px]">
+                {/* Image */}
+                <div className="h-[260px] sm:h-[300px] lg:h-[350px] rounded-xl overflow-hidden mb-4 relative">
+                  <Image src={item.img} alt={item.title} fill className="object-cover" />
+                </div>
 
-              {/* Image */}
-              <div className="h-[260px] sm:h-[300px] lg:h-[350px] rounded-xl overflow-hidden mb-4 relative">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+                {/* Text */}
+                <p className="text-[18px] sm:text-[19px] lg:text-[20px] inter-font font-[400] text-gray-400 mb-1">
+                  {item.size}
+                </p>
+                <p className="text-[18px] sm:text-[19px] lg:text-[20px] inter-font font-[400] tracking-wide">
+                  {item.title}
+                </p>
               </div>
-
-              {/* Text */}
-              <p className="text-[18px] sm:text-[19px] lg:text-[20px] inter-font font-[400] text-gray-400 mb-1">
-                {item.size}
-              </p>
-              <p className="text-[18px] sm:text-[19px] lg:text-[20px] inter-font font-[400] tracking-wide">
-                {item.title}
-              </p>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       {/* Navigation */}
       <div className="flex justify-center gap-8 mt-6 sm:mt-8 items-center">
         <button
-          onClick={prev}
-          disabled={index === 0}
-          className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          type="button"
+          className="substrates-prev hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          aria-label="Previous substrate"
         >
           <Image
             src="/assets/home/universalvector.svg"
@@ -121,9 +120,9 @@ export default function SubstratesSection({
           />
         </button>
         <button
-          onClick={next}
-          disabled={index >= items.length - 3}
-          className="hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          type="button"
+          className="substrates-next hover:opacity-70 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          aria-label="Next substrate"
         >
           <Image
             src="/assets/home/universalvector.svg"

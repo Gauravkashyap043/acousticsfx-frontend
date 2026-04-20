@@ -56,26 +56,26 @@ export default function FoundationSection() {
   ];
 
   return (
-    <section className="px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
+    <section className="px-4 sm:px-[40px] lg:px-[100px] py-10 sm:py-[80px] lg:py-[100px] bg-[#F5F5F5]">
       <FadeIn
         direction="up"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-start"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-14 lg:gap-20 mb-8 sm:mb-16 lg:mb-20 items-start"
       >
-        <h2 className="text-[28px] sm:text-[34px] lg:text-4xl font-semibold text-[#111] leading-tight">
+        <h2 className="text-xl sm:text-[34px] lg:text-4xl font-semibold text-[#111] leading-snug sm:leading-tight">
           Our Foundation of Trust &amp; Innovation
         </h2>
 
-        <p className="text-gray-600 leading-relaxed max-w-xl">
+        <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-xl">
           At FX Acoustics, our values bridge vision with purpose, shaping spaces
           that resonate beyond sound. Integrity, Innovation, Collaboration, and
           Customer-Centricity guide every solution we craft with care.
         </p>
       </FadeIn>
 
-      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-16 items-start">
+      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12 lg:gap-16 items-start">
         {cards.map((card) => (
           <StaggerItem key={card.number}>
-            <div className="group relative h-auto lg:h-[420px] min-h-[320px] overflow-hidden border border-gray-100 bg-white p-8 sm:p-9 lg:p-10 transition-all duration-500">
+            <div className="group relative h-auto lg:h-[420px] min-h-[260px] sm:min-h-[320px] overflow-hidden border border-gray-100 bg-white p-5 sm:p-9 lg:p-10 transition-all duration-500">
               <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <Image
                   src={card.image}
@@ -87,15 +87,15 @@ export default function FoundationSection() {
               </div>
 
               <div className="relative z-10 flex h-full flex-col transition-colors duration-500">
-                <span className="text-5xl font-light text-[#111] transition-colors duration-500 group-hover:text-white">
+                <span className="text-4xl sm:text-5xl font-light text-[#111] transition-colors duration-500 group-hover:text-white">
                   {card.number}
                 </span>
 
-                <h3 className="mt-6 text-xl font-semibold text-[#111] transition-colors duration-500 group-hover:text-white">
+                <h3 className="mt-4 sm:mt-6 text-lg sm:text-xl font-semibold text-[#111] transition-colors duration-500 group-hover:text-white">
                   {card.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-relaxed text-gray-600 transition-colors duration-500 group-hover:text-white/90">
+                <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-gray-600 transition-colors duration-500 group-hover:text-white/90">
                   {card.description}
                 </p>
               </div>

@@ -40,7 +40,7 @@ const applications = [
 export default function ApplicationsSection() {
 
   return (
-    <section className="relative px-[16px] sm:px-[40px] lg:px-[100px] py-[60px] sm:py-[75px] lg:py-[90px] overflow-hidden">
+    <section className="relative px-4 sm:px-[40px] lg:px-[100px] py-10 sm:py-[75px] lg:py-[90px] overflow-hidden">
 
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -56,14 +56,14 @@ export default function ApplicationsSection() {
       {/* Heading */}
       <FadeIn
         direction="up"
-        className="flex flex-col lg:flex-row justify-between items-start mb-8 gap-6"
+        className="flex flex-col lg:flex-row justify-between items-start mb-6 sm:mb-8 gap-4 sm:gap-6"
       >
 
-        <h2 className="text-[30px] sm:text-[38px] lg:text-[45px] worksans-font font-bold text-[#111]">
+        <h2 className="text-xl sm:text-[38px] lg:text-[45px] worksans-font font-bold text-[#111] leading-snug">
           Our Applications
         </h2>
 
-        <p className="text-gray-600 max-w-lg leading-relaxed worksans-font font-[400] text-[16px] sm:text-[18px] lg:text-[20px]">
+        <p className="text-gray-600 max-w-lg leading-relaxed worksans-font font-normal text-sm sm:text-[18px] lg:text-[20px]">
           FX Acoustics solutions blend performance with aesthetics,
           transforming offices, hospitality, education, and residences.
           From clarity in boardrooms to comfort at home, we craft acoustic
@@ -73,7 +73,7 @@ export default function ApplicationsSection() {
       </FadeIn>
 
       {/* SLIDER */}
-      <div className="relative mt-6">
+      <div className="relative mt-4 sm:mt-6">
 
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -190,7 +190,7 @@ function ApplicationCard({
 }) {
 
   return (
-    <div className="relative h-[260px] sm:h-[300px] lg:h-[320px] overflow-hidden group">
+    <div className="relative h-[220px] sm:h-[300px] lg:h-[320px] overflow-hidden group">
 
       <Image
         src={image}

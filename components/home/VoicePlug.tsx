@@ -130,7 +130,7 @@ function WaveGraph({
       <div className="relative rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm px-3 py-2">
         <svg
           viewBox={`0 0 ${w} ${h}`}
-          className="w-full h-[74px] sm:h-[78px]"
+          className="w-full h-[64px] sm:h-[78px]"
           role="img"
           aria-label={withAcoustic ? "Noise reduction waveform" : "Noise waveform"}
         >
@@ -298,70 +298,97 @@ export default function VoicePlug() {
   };
 
   return (
-    <div className="w-full flex justify-center items-center pt-10">
-      <div className="w-full max-w-6xl p-4">
-        <p className="text-center text-gray-600 text-[25px] worksans-font font-normal leading-tight font-sans mb-6">
-          Where Sound, Space &amp; Structure Meet Luxury
-
-          Precision-Engineered Acoustical Panels, Architectural Interiors, and
-          Exterior Facade Systems.
-
-          Crafted in India. Trusted Worldwide
-        </p>
+    <section
+      className="w-full flex justify-center items-center pt-5 pb-1 sm:pt-10 sm:pb-4 bg-linear-to-b from-slate-50/90 via-white to-white"
+      aria-labelledby="voice-plug-heading"
+    >
+      <div className="w-full max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl text-center mb-5 sm:mb-10">
+          <h2
+            id="voice-plug-heading"
+            className="axiforma text-[1.125rem] leading-snug sm:text-2xl sm:leading-tight lg:text-[25px] font-bold text-gray-900 tracking-tight"
+          >
+            Where Sound, Space &amp; Structure Meet Luxury
+          </h2>
+          <div
+            className="mx-auto mt-3 h-0.5 w-10 rounded-full bg-[#1F6775]"
+            aria-hidden
+          />
+          <p className="mt-4 text-sm sm:text-base text-gray-600 worksans-font leading-relaxed max-w-2xl mx-auto">
+            Precision-Engineered Acoustical Panels, Architectural Interiors,
+            and Exterior Facade Systems.
+          </p>
+          <p className="mt-3 inline-flex items-center justify-center rounded-full border border-[#1F6775]/20 bg-[#eaf4f6]/70 px-3 py-1.5 text-[11px] sm:text-sm font-semibold text-[#1F6775] worksans-font tracking-wide">
+            Crafted in India · Trusted Worldwide
+          </p>
+        </div>
 
         <div className="flex justify-center">
-          <div className="flex items-center gap-5 w-full sm:w-[70%] lg:w-[55%]">
-            <button
-              onClick={togglePlay}
-              className="w-14 h-14 shrink-0 flex items-center justify-center rounded-full bg-gray-200 text-black text-lg"
-            >
-              {isPlaying ? "❚❚" : "▶︎"}
-            </button>
+          <div className="w-full sm:w-[70%] lg:w-[55%] rounded-2xl border border-slate-200/90 bg-white/95 p-3 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.12)] backdrop-blur-sm sm:p-4">
+            <div className="flex items-center gap-3 sm:gap-5">
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? "Pause" : "Play"}
+                className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-full bg-linear-to-br from-[#1F6775] to-[#174f5c] text-white text-base sm:text-lg shadow-md shadow-[#1F6775]/25 ring-1 ring-white/20 transition hover:brightness-110 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6775] focus-visible:ring-offset-2"
+              >
+                {isPlaying ? "❚❚" : "▶︎"}
+              </button>
 
-            <div className="flex-1 min-w-0">
-              <WavesurferPlayer
-                height={0}
-                waveColor="transparent"
-                progressColor="transparent"
-                barWidth={1}
-                barGap={1}
-                url="/audio/echo.mp3"
-                onReady={onReady}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-              />
-              <WaveGraph
-                withAcoustic={withAcoustic}
-                isPlaying={isPlaying}
-                progress={progress}
-                currentTime={currentTime}
-                duration={duration}
-              />
+              <div className="flex-1 min-w-0">
+                <WavesurferPlayer
+                  height={0}
+                  waveColor="transparent"
+                  progressColor="transparent"
+                  barWidth={1}
+                  barGap={1}
+                  url="/audio/echo.mp3"
+                  onReady={onReady}
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                />
+                <WaveGraph
+                  withAcoustic={withAcoustic}
+                  isPlaying={isPlaying}
+                  progress={progress}
+                  currentTime={currentTime}
+                  duration={duration}
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center mt-6">
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-500">Without FX Acoustic</span>
+        <div className="flex flex-col items-center mt-5 sm:mt-7">
+          <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3">
+            <span className="text-xs sm:text-sm text-gray-500">
+              Without FX Acoustic
+            </span>
             <button
+              type="button"
               onClick={toggleAcoustic}
-              className={`w-12 h-6 rounded-full relative transition border border-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.6)] ${
-                withAcoustic ? "bg-gray-700" : "bg-gray-400"
+              aria-pressed={withAcoustic}
+              aria-label={
+                withAcoustic
+                  ? "FX Acoustic processing on"
+                  : "FX Acoustic processing off"
+              }
+              className={`w-12 h-6 rounded-full relative transition border border-sky-300/80 shadow-[0_0_10px_rgba(56,189,248,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 ${
+                withAcoustic ? "bg-[#1F6775]" : "bg-gray-400"
               }`}
             >
               <div
-                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition ${
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-[left] duration-200 ${
                   withAcoustic ? "left-[26px]" : "left-[2px]"
                 }`}
               />
             </button>
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-xs sm:text-sm font-semibold text-gray-800">
               With FX Acoustic
             </span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

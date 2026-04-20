@@ -79,31 +79,31 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section className="px-6 sm:px-10 lg:px-[100px] py-[80px] lg:py-[100px] bg-white">
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+    <section className="px-4 sm:px-10 lg:px-[100px] py-10 sm:py-16 lg:py-[100px] bg-white">
+      <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20 items-start">
 
         {/* LEFT CONTENT */}
         <FadeIn direction="left" className="w-full lg:w-1/2">
-          <p className="text-[16px] mb-3 inter-font font-[500]">
+          <p className="text-sm sm:text-[16px] mb-2 sm:mb-3 inter-font font-medium">
             FAQs
           </p>
 
-          <h2 className="text-[34px] sm:text-[44px] lg:text-[54px] font-bold mb-4 inter-font font-[500]">
+          <h2 className="text-[1.625rem] sm:text-[44px] lg:text-[54px] font-bold mb-3 sm:mb-4 inter-font font-medium leading-tight">
             Wondering How We Work?
           </h2>
 
-          <p className="text-[16px] text-gray-600 mb-6 max-w-md inter-font font-[500]">
+          <p className="text-sm sm:text-[16px] text-gray-600 mb-4 sm:mb-6 max-w-md inter-font font-medium">
             Answers to common questions about our process, services, and how we work.
           </p>
 
           <Link href="/contactus">
-            <button className="bg-[#EA8E39] text-white px-6 py-3 text-[20px] mb-10 worksans-font cursor-pointer">
+            <button className="bg-[#EA8E39] text-white px-5 py-2.5 sm:px-6 sm:py-3 text-base sm:text-[20px] mb-6 sm:mb-10 worksans-font cursor-pointer">
               Contact Us
             </button>
           </Link>
 
           {/* IMAGE */}
-          <div className="relative overflow-hidden w-full max-w-[551.55px] aspect-[551.55/443.52]">
+          <div className="relative h-[160px] sm:h-auto sm:aspect-[551.55/443.52] overflow-hidden w-full max-w-[551.55px] mx-auto lg:mx-0 rounded-lg sm:rounded-none">
             <Image
               src="/assets/home/Design.png"
               alt="FAQ Visual"
@@ -117,7 +117,7 @@ export default function FAQSection() {
 
         {/* RIGHT ACCORDION */}
         <div className="w-full lg:w-1/2">
-          <StaggerContainer className="space-y-4">
+          <StaggerContainer className="space-y-2.5 sm:space-y-4">
 
             {faqs.map((item, index) => (
               <StaggerItem key={item._id} direction="up">
@@ -128,20 +128,20 @@ export default function FAQSection() {
                     onClick={() =>
                       setOpenIndex(openIndex === index ? null : index)
                     }
-                    className="w-full flex justify-between items-center p-4 sm:p-5 text-left cursor-pointer"
+                    className="w-full flex justify-between items-center p-3 sm:p-5 text-left cursor-pointer gap-2"
                   >
-                    <span className="font-medium inter-font text-[16px] sm:text-[18px] lg:text-[20px]">
+                    <span className="font-medium inter-font text-sm sm:text-[18px] lg:text-[20px] leading-snug">
                       {index + 1}. {item.question}
                     </span>
 
-                    <span className="text-xl">
+                    <span className="text-lg sm:text-xl shrink-0">
                       {openIndex === index ? "—" : "+"}
                     </span>
 
                   </button>
 
                   {openIndex === index && (
-                    <div className="px-5 pb-5 text-[16px] sm:text-[17px] lg:text-[18px] axiforma text-gray-600">
+                    <div className="px-3 pb-4 sm:px-5 sm:pb-5 text-sm sm:text-[17px] lg:text-[18px] axiforma text-gray-600 leading-relaxed">
                       {item.answer}
                     </div>
                   )}

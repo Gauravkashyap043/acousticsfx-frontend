@@ -10,9 +10,19 @@ export interface SubProductSpec {
   value: string;
 }
 
+/** Perforation pattern (mm) nested under each uploaded texture. */
+export interface VisualizerHoleProfile {
+  name: string;
+  hole: number;
+  spacing: number;
+  thumbnail?: string;
+}
+
+/** Admin-uploaded surface texture with its own hole profiles. */
 export interface VisualizerTexture {
   name: string;
   image: string;
+  profiles: VisualizerHoleProfile[];
 }
 
 export interface VisualizerDimensions {
@@ -94,6 +104,8 @@ export interface Product {
   shortDescription?: string;
   metaTitle?: string;
   metaDescription?: string;
+  /** Public URL of product brochure PDF */
+  brochureUrl?: string;
   specSectionTitle?: string;
   specDescription?: string;
   specs?: SubProductSpec[];
@@ -108,6 +120,9 @@ export interface Product {
   finishesSection?: SubProductFinishesSection;
   visualizerTextures?: VisualizerTexture[];
   visualizerDimensions?: VisualizerDimensions;
+  visualizerTitle?: string;
+  visualizerDescription?: string;
+  visualizerTechnicalCaption?: string;
 }
 
 export interface ProductCategory {
@@ -124,9 +139,9 @@ export interface ProductCategory {
 const getBaseUrl = (): string => getPublicApiBaseUrl();
 
 async function request<T>(path: string): Promise<T> {
-  const url = path.startsWith('http') ? path : `${getBaseUrl()}${path}`;
+  const url = path.startsWith("http") ? path : `${getBaseUrl()}${path}`;
   const res = await fetch(url, {
-    ...(typeof window === 'undefined'
+    ...(typeof window === "undefined"
       ? { next: { revalidate: 120 } }
       : {}),
   });
@@ -139,7 +154,7 @@ async function request<T>(path: string): Promise<T> {
 
 /** GET /api/products/categories */
 export function fetchCategories(): Promise<{ categories: ProductCategory[] }> {
-  return request<{ categories: ProductCategory[] }>('/api/products/categories');
+  return request<{ categories: ProductCategory[] }>("/api/products/categories");
 }
 
 /** GET /api/products/categories/:categorySlug */
@@ -152,7 +167,7 @@ export function fetchCategoryBySlug(categorySlug: string): Promise<{
 
 /** GET /api/products?category=acoustic (optional) */
 export function fetchProducts(categorySlug?: string): Promise<{ products: Product[] }> {
-  const qs = categorySlug ? `?category=${encodeURIComponent(categorySlug)}` : '';
+  const qs = categorySlug ? `?category=${encodeURIComponent(categorySlug)}` : "";
   return request<{ products: Product[] }>(`/api/products${qs}`);
 }
 
@@ -161,7 +176,23 @@ export function fetchProductBySlug(productSlug: string): Promise<Product> {
   return request<Product>(`/api/products/slug/${encodeURIComponent(productSlug)}`);
 }
 
-/** True when the product has at least one 3D visualizer texture URL (server- or client-safe). */
+/** True when the product has at least one texture with image and a valid hole profile. */
 export function hasVisualizerTextures(textures?: VisualizerTexture[] | null): boolean {
-  return Boolean(textures?.some((t) => typeof t.image === "string" && t.image.trim().length > 0));
+  return Boolean(
+    textures?.some(
+      (t) =>
+        typeof t.image === "string" &&
+        t.image.trim().length > 0 &&
+        Array.isArray(t.profiles) &&
+        t.profiles.some(
+          (p) =>
+            typeof p.name === "string" &&
+            p.name.trim().length > 0 &&
+            typeof p.hole === "number" &&
+            p.hole > 0 &&
+            typeof p.spacing === "number" &&
+            p.spacing > 0
+        )
+    )
+  );
 }
