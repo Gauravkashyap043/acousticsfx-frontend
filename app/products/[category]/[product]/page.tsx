@@ -72,14 +72,13 @@ export default async function ProductDetailPage({ params }: Props) {
         showTrademark={product.showTrademark === true}
         description={product.description}
         heroImage={product.heroImage}
-        brochureUrl={product.brochureUrl}
       />
       <ProductSpecification
         sectionTitle={product.specSectionTitle}
         specDescription={product.specDescription}
         specs={product.specs}
       />
-      <GallerySection galleryImages={product.galleryImages} />
+      <GallerySection galleryImages={product.galleryImages} brochureUrl={product.brochureUrl} />
       {hasVisualizerTextures(product.visualizerTextures) ? (
         <Product3DViewer
           visualizerTextures={product.visualizerTextures!}

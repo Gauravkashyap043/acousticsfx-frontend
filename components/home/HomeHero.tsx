@@ -217,7 +217,7 @@ export default function HomeHero() {
       <div className="absolute left-0 right-0 top-0 z-0 h-[70vh] md:inset-0 md:h-auto md:min-h-[88svh] lg:min-h-screen">
         <HeroBackgroundVideo src={bgVideo} />
       </div>
-      <div className="absolute left-0 right-0 top-0 z-1 h-[70vh] bg-black/60 md:inset-0 md:min-h-[88svh] lg:min-h-screen" />
+      <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 z-1 h-full w-full bg-black/60" />
 
       {/* Heading: centered in 70vh on mobile; desktop hero stack unchanged */}
       <div className="relative z-10 flex h-[70vh] flex-col items-center justify-center px-4 pb-6 pt-8 text-center text-white md:h-auto md:min-h-[88svh] lg:min-h-screen md:justify-start md:px-4 md:pb-0 md:pt-[130px] lg:pt-[143px]">
